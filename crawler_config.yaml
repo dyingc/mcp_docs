@@ -36,6 +36,7 @@ output:
     description: Complete n8n documentation for AI assistance
     include_urls: true
     title: n8n Documentation
+  minimal_size: 1024
 site:
   allowed_domains:
   - docs.n8n.io
