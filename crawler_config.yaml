@@ -9,7 +9,8 @@ crawling:
   headers:
     User-Agent: Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)
   include_patterns: []
-  max_pages: 1000
+  max_pages: 5
+  num_threads: 10
   skip_extensions:
   - .pdf
   - .jpg

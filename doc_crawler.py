@@ -17,9 +17,12 @@ import yaml
 from typing import Set, List, Dict, Optional
 import html2text
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
 from openrouter_client import get_llm
 from langchain.tools import tool
 from langchain_core.messages import SystemMessage, HumanMessage
+from collections import deque
 
 @tool("content_metadata_tool")
 def content_metadata_tool(title: str, description: str) -> str:
@@ -43,8 +46,12 @@ class DocCrawler:
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.delay = config['crawling']['delay']
         self.max_pages = config['crawling']['max_pages']
+        self.num_threads = config['crawling'].get('num_threads', 10)
         self.visited_urls: Set[str] = set()
         self.scraped_content: List[Dict] = []
+        self.urls_to_visit = deque([self.base_url])
+        self.lock = threading.Lock()  # Lock for thread safety
+        self.stop_crawl = threading.Event()  # Event to signal stopping the crawl
 
         # Configure html2text for better markdown conversion
         self.h = html2text.HTML2Text()
@@ -59,13 +66,24 @@ class DocCrawler:
             'User-Agent': 'Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)'
         }))
 
+        # Add additional start URLs if configured
+        start_urls = self.config['site'].get('start_urls', [])
+        for url in start_urls:
+            self.urls_to_visit.append(url)
+
+        print(f"Initialized crawler with base URL: {self.base_url}")
+        print(f"Output directory: {self.output_dir}")
+        print(f"Number of threads: {self.num_threads}")
+
     def is_valid_url(self, url: str) -> bool:
         """Check if URL is valid for crawling."""
+        print(f"Checking validity of URL: {url}")
         parsed = urllib.parse.urlparse(url)
 
         # Only crawl URLs from allowed domains
         allowed_domains = self.config['site'].get('allowed_domains', [self.domain])
         if parsed.netloc not in allowed_domains:
+            print(f"URL {url} is not in allowed domains: {allowed_domains}")
             return False
 
         # Skip certain file types
@@ -73,24 +91,29 @@ class DocCrawler:
             '.pdf', '.jpg', '.png', '.gif', '.css', '.js', '.svg', '.ico'
         ]))
         if any(url.lower().endswith(ext) for ext in skip_extensions):
+            print(f"URL {url} ends with a skipped extension: {skip_extensions}")
             return False
 
         # Skip URLs matching exclude patterns
         exclude_patterns = self.config['crawling'].get('exclude_patterns', [])
         for pattern in exclude_patterns:
             if re.search(pattern, url):
+                print(f"URL {url} matches exclude pattern: {pattern}")
                 return False
 
         # Only include URLs matching include patterns (if specified)
         include_patterns = self.config['crawling'].get('include_patterns', [])
         if include_patterns:
             if not any(re.search(pattern, url) for pattern in include_patterns):
+                print(f"URL {url} does not match any include patterns: {include_patterns}")
                 return False
 
         # Skip anchor links to same page
         if url in self.visited_urls:
+            print(f"URL {url} has already been visited")
             return False
 
+        print(f"URL {url} is valid for crawling")
         return True
 
     def normalize_url(self, url: str, base_url: str) -> str:
@@ -218,11 +241,27 @@ class DocCrawler:
 
         minimal_size = self.config['output'].get('minimal_size', 0)
         if len(markdown_content.encode('utf-8')) >= minimal_size:
-            self.saved_file_count += 1
-            # Write file
-            with open(filepath, 'w', encoding='utf-8') as f:
-                f.write(markdown_content)
-            print(f"Saved ({self.saved_file_count}/{len(self.visited_urls)}): {filepath}")
+            with self.lock:  # Acquire lock before checking and incrementing saved_file_count
+                if self.stop_crawl.is_set():
+                    print(f"Skipped saving {filepath} as stop signal is active.")
+                    return
+
+                if self.saved_file_count < self.max_pages:
+                    self.saved_file_count += 1
+                    # Write file
+                    with open(filepath, 'w', encoding='utf-8') as f:
+                        f.write(markdown_content)
+                    print(f"Saved ({self.saved_file_count}/{len(self.visited_urls)}): {filepath}")
+
+                    if self.saved_file_count >= self.max_pages:
+                        self.stop_crawl.set()
+                        print(f"Max pages limit ({self.max_pages}) reached. Signaling threads to stop.")
+                else: # This case should ideally not be hit if stop_crawl is set promptly
+                    print(f"Max pages limit reached. Skipped saving {filepath}.")
+                    if not self.stop_crawl.is_set(): # Ensure stop_crawl is set if somehow missed
+                        self.stop_crawl.set()
+                        print("Max pages limit reached. Signaling threads to stop (redundant check).")
+
         else:
             print(f"Skipped: {filepath} (too small)")
 
@@ -306,40 +345,66 @@ class DocCrawler:
         return title, description
 
     def crawl(self):
-        """Main crawling function."""
-        urls_to_visit = [self.base_url]
+        """Main crawling function with multi-threading."""
+        print("Starting crawl process...")
+        with ThreadPoolExecutor(max_workers=self.num_threads) as executor:
+            futures = {}
+            # Main loop: continue if there are URLs to visit or active futures, and stop_crawl is not set
+            while (self.urls_to_visit or futures) and not self.stop_crawl.is_set():
+                # Submit new tasks
+                while len(futures) < self.num_threads and self.urls_to_visit and not self.stop_crawl.is_set():
+                    url = self.urls_to_visit.popleft()
+                    if url not in self.visited_urls:
+                        self.visited_urls.add(url)
+                        print(f"Submitting {url} for crawling. Saved: {self.saved_file_count}/{self.max_pages}")
+                        futures[executor.submit(self.extract_content, url)] = url
 
-        llm = get_llm().bind_tools([content_metadata_tool])
+                if not futures: # No active tasks, and no new tasks were submitted (e.g. urls_to_visit is empty or stop_crawl is set)
+                    break
 
-        # Add additional start URLs if configured
-        start_urls = self.config['site'].get('start_urls', [])
-        urls_to_visit.extend(start_urls)
+                # Process completed tasks
+                for future in as_completed(list(futures.keys())): # Iterate over a copy of keys for safe deletion
+                    # If stop_crawl is set, we still process the already completed futures
+                    # but new tasks won't be submitted by the outer loops.
+                    # Individual tasks (extract_content) will also check stop_crawl.
 
-        while urls_to_visit and self.saved_file_count < self.max_pages:
-            current_url = urls_to_visit.pop(0)
+                    url = futures.pop(future, None) # Remove future, use None if already removed (should not happen with list(futures.keys()))
+                    if url is None: # Should not happen if logic is correct
+                        continue
 
-            if current_url in self.visited_urls:
-                continue
+                    try:
+                        content_data = future.result()
+                        if content_data: # Ensure content_data is not None (e.g. if task was cancelled early by stop_crawl)
+                            self.scraped_content.append(content_data)
+                            # save_markdown_file will check stop_crawl and might set it
+                            self.save_markdown_file(content_data)
 
-            self.visited_urls.add(current_url)
+                            # Add new links to visit only if crawl is not stopped and content was successfully processed
+                            if content_data['success'] and not self.stop_crawl.is_set():
+                                with self.lock: # Lock for accessing shared urls_to_visit and visited_urls
+                                    # Double check stop_crawl inside lock, as it might be set by save_markdown_file
+                                    if not self.stop_crawl.is_set():
+                                        for link in content_data['links']:
+                                            if link not in self.visited_urls and link not in self.urls_to_visit:
+                                                self.urls_to_visit.append(link)
+                                                # print(f"Added {link} to URLs to visit")
+                                    else:
+                                        # This print might be noisy if many threads hit this after stop_crawl is set
+                                        # print("Stop signal active after saving. Not adding new URLs.")
+                                        pass # Silently stop adding URLs
+                            elif self.stop_crawl.is_set() and content_data['success']:
+                                # print(f"Stop signal active. Not adding new URLs from {url}.")
+                                pass # Silently stop adding URLs
+                    except Exception as e:
+                        print(f"Error processing result for {url}: {e}")
+                    # No finally block needed to delete future as it's popped before try
 
-            # Extract content
-            content_data = self.extract_content(current_url)
-            self.scraped_content.append(content_data)
+                    # Be nice to the server, but only if we are still actively crawling
+                    if not self.stop_crawl.is_set():
+                        time.sleep(self.delay)
+                    else: # If stopping, process remaining completed futures faster
+                        pass
 
-            # Save as markdown file
-            self.save_markdown_file(content_data)
-
-            print(f"Processed: {current_url}\n------------------------\n")
-
-            # Add new links to visit
-            if content_data['success']:
-                for link in content_data['links']:
-                    if link not in self.visited_urls and link not in urls_to_visit:
-                        urls_to_visit.append(link)
-
-            # Be nice to the server
-            time.sleep(self.delay)
 
         print(f"Crawling complete! Processed {len(self.visited_urls)} pages.")
 
@@ -392,6 +457,7 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
             'max_pages': 10,
             'delay': 1.0,
             'timeout': 10,
+            'num_threads': 10,
             'headers': {
                 'User-Agent': 'Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)'
             },
