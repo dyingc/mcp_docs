@@ -17,6 +17,21 @@ import yaml
 from typing import Set, List, Dict, Optional
 import html2text
 import argparse
+from openrouter_client import get_llm
+from langchain.tools import tool
+from langchain_core.messages import SystemMessage, HumanMessage
+
+@tool("content_metadata_tool")
+def content_metadata_tool(title: str, description: str) -> str:
+    """
+    Generate a human-readable title and a concise 1-sentence description for a content item.
+    Args:
+        title: A suitable human-readable title for the file (omit extension).
+        description: A concise 1-sentence summary for use in a document index or LLM retrieval.
+    Returns:
+        String "OK" (output is ignored; tool parameters are what matter for extraction).
+    """
+    return "OK"
 
 class DocCrawler:
     def __init__(self, config: Dict):
@@ -24,7 +39,7 @@ class DocCrawler:
         self.base_url = config['site']['url'].rstrip('/')
         self.domain = urllib.parse.urlparse(self.base_url).netloc
         self.output_dir = Path(config['output']['directory'])
-        self.output_dir.mkdir(exist_ok=True)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         self.delay = config['crawling']['delay']
         self.max_pages = config['crawling']['max_pages']
         self.visited_urls: Set[str] = set()
@@ -184,20 +199,18 @@ class DocCrawler:
         if not content_data['success'] or not content_data['content'].strip():
             return
             
-        # Create filename from URL
+        # Create filepath from URL
         parsed_url = urllib.parse.urlparse(content_data['url'])
         path_parts = [part for part in parsed_url.path.split('/') if part]
         
-        if not path_parts:
-            filename = "index.md"
+        relative_path = '/'.join(path_parts)
+        if not relative_path:
+            filepath = self.output_dir / "index.md"
         else:
-            filename = "_".join(path_parts) + ".md"
+            filepath = self.output_dir / f"{relative_path}.md"
             
-        # Clean filename
-        filename = re.sub(r'[^\w\-_.]', '_', filename)
-        filename = re.sub(r'_+', '_', filename)
-        
-        filepath = self.output_dir / filename
+        # Create directory if it doesn't exist
+        filepath.parent.mkdir(parents=True, exist_ok=True)
         
         # Prepare content with metadata
         frontmatter = self.config['output'].get('frontmatter', {})
@@ -222,31 +235,90 @@ class DocCrawler:
         print(f"Saved: {filepath}")
 
     def create_llms_txt(self):
-        """Create llms.txt file listing all markdown files."""
-        llms_txt_path = self.output_dir / "llms.txt"
+        """Create llms.txt file listing all markdown files with summaries."""
+        print("\n\nCreating llms.txt index...")
+        doc_prefix = self.config['output'].get('doc_prefix', 'llms')
+        llms_txt_path = self.output_dir / f"{doc_prefix}_llms.txt"
         
-        # Get all markdown files
-        md_files = list(self.output_dir.glob("*.md"))
+        # Get all markdown files recursively
+        md_files = list(self.output_dir.rglob("*.md"))
         
         llms_config = self.config['output'].get('llms_txt', {})
         
+        lines = []
+        tool_list = [content_metadata_tool]
+        llm = get_llm().bind_tools(tool_list)
+        
+        dest_github_repo = self.config['output'].get('dest_github_repo')
+        if dest_github_repo:
+            dest_github_repo = dest_github_repo.replace('git@github.com:', 'https://raw.githubusercontent.com/')
+            dest_github_repo = dest_github_repo.replace('.git', '')
+            branch = 'main'  # Assuming main branch, adjust if needed
+            raw_url_prefix = f"{dest_github_repo}/{branch}"
+        
+        for md_file in sorted(md_files):
+            if md_file.name != f"{doc_prefix}_llms.txt":
+                print(f"Processing: {md_file}", end='')
+                relative_path = md_file.relative_to(self.output_dir)
+                with open(md_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                title, desc = self.summarize_and_title(llm, content, md_file.name)
+                if dest_github_repo:
+                    raw_url = f"{raw_url_prefix}/{relative_path}"
+                    lines.append(f"- [{title}]({raw_url}): {desc}")
+                else:
+                    lines.append(f"- [{title}]({relative_path}): {desc}")
+                print(": Done")
+        
         with open(llms_txt_path, 'w', encoding='utf-8') as f:
-            f.write(f"# {llms_config.get('title', f'Documentation for {self.domain}')}\n\n")
-            f.write(f"{llms_config.get('description', f'This directory contains documentation scraped from {self.base_url}')}\n\n")
-            
-            if llms_config.get('include_urls', True):
-                f.write(f"Source: {self.base_url}\n\n")
-            
-            for md_file in sorted(md_files):
-                if md_file.name != "llms.txt":
-                    f.write(f"{md_file.name}\n")
-                    
-        print(f"Created llms.txt with {len(md_files)} files")
+            f.write("# Document Index\n")
+            for line in lines:
+                f.write(line + '\n')
+        
+        print(f"Created {llms_txt_path.name} with {len(lines)} entries.")
+
+    def summarize_and_title(self, llm, content, filename):
+        """
+        Use the LLM with tool calling to produce a title and description.
+        """
+        system_prompt = (
+            f"You are an expert document summarizer. Call the 'content_metadata_tool' with:\n"
+            f' - title: a human-readable title for the file (omit extension)\n'
+            f' - description: a no_more_than_five-sentence summary suitable for indexing\n'
+            f"Respond ONLY by calling the tool with the best arguments.\n"
+        )
+        human_prompt = (
+            f"File name: {filename}\n"
+            f"File content:\n<file_content>\n{content[:8000]}\n</file_content>\n"
+        )
+        response = llm.invoke(
+            [
+                SystemMessage(content=system_prompt),
+                HumanMessage(content=human_prompt)
+            ]
+        )
+
+        tool_calls = getattr(response, "tool_calls", None)
+        title, description = None, None
+        if tool_calls:
+            for call in tool_calls:
+                if call.get("name") == "content_metadata_tool":
+                    args = call.get("args", {})
+                    title = args.get("title")
+                    description = args.get("description")
+                    break
+        if not title:
+            title = filename.rsplit('.', 1)[0].replace('_', ' ').replace('-', ' ').title()
+        if not description:
+            description = f"A summary for {filename}."
+        return title, description
 
     def crawl(self):
         """Main crawling function."""
         urls_to_visit = [self.base_url]
         pages_crawled = 0
+        
+        llm = get_llm().bind_tools([content_metadata_tool])
         
         # Add additional start URLs if configured
         start_urls = self.config['site'].get('start_urls', [])
@@ -267,6 +339,8 @@ class DocCrawler:
             # Save as markdown file
             self.save_markdown_file(content_data)
             
+            print(f"Processed: {current_url}\n------------------------\n")
+            
             # Add new links to visit
             if content_data['success']:
                 for link in content_data['links']:
@@ -278,7 +352,7 @@ class DocCrawler:
             # Be nice to the server
             time.sleep(self.delay)
             
-        print(f"\nCrawling complete! Processed {pages_crawled} pages.")
+        print(f"Crawling complete! Processed {pages_crawled} pages.")
         
         # Create llms.txt file
         self.create_llms_txt()
@@ -332,7 +406,7 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
             'headers': {
                 'User-Agent': 'Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)'
             },
-            'skip_extensions': ['.pdf', '.jpg', '.png', '.gif', '.css', '.js', '.svg', '.ico'],
+            'skip_extensions': ['.pdf', '.jpg', '.png', '.gif', '.css', '.js', '.svg', '.ico', '.json', '.xml', '.yaml'],
             'exclude_patterns': [
                 r'/api/',
                 r'/search',
@@ -343,9 +417,11 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
             'include_patterns': []
         },
         'output': {
-            'directory': 'docs_output',
+            'directory': 'docs_output/n8n',
+            'doc_prefix': 'n8n',
             'ignore_links': False,
             'ignore_images': False,
+            'dest_github_repo': 'git@github.com:dyingc/mcp_docs.git',
             'frontmatter': {
                 'source': 'n8n-docs',
                 'crawled_date': '2024-01-01'

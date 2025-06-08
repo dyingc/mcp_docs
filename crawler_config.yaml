@@ -9,7 +9,7 @@ crawling:
   headers:
     User-Agent: Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)
   include_patterns: []
-  max_pages: 100
+  max_pages: 1000
   skip_extensions:
   - .pdf
   - .jpg
@@ -19,9 +19,14 @@ crawling:
   - .js
   - .svg
   - .ico
+  - .json
+  - .xml
+  - .yaml
   timeout: 10
 output:
-  directory: docs_output
+  dest_github_repo: git@github.com:dyingc/mcp_docs.git
+  directory: docs_output/n8n
+  doc_prefix: n8n
   frontmatter:
     crawled_date: '2024-01-01'
     source: n8n-docs
