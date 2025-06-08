@@ -7,7 +7,7 @@ load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_API_BASE = os.getenv("OPENROUTER_API_BASE", "https://openrouter.ai/api/v1")
-MODEL_NAME = os.getenv("MODEL_NAME", "google/gemini-2.0-flash-001")
+MODEL_NAME = os.getenv("OPENROUTER_MODEL_NAME", "google/gemini-2.0-flash-001")
 
 if not OPENROUTER_API_KEY:
     raise ValueError("Please set the OPENROUTER_API_KEY environment variable.")
@@ -18,9 +18,9 @@ def get_llm(model: str = None):
     Reads model and API base from environment if not supplied.
     """
     return ChatOpenAI(
-        openai_api_base=os.getenv("OPENROUTER_API_BASE", "https://openrouter.ai/api/v1"),
-        openai_api_key=os.getenv("OPENROUTER_API_KEY"),
-        model=model or os.getenv("MODEL_NAME", "google/gemini-2.0-flash-001"),
+        openai_api_base=OPENROUTER_API_BASE,
+        openai_api_key=OPENROUTER_API_KEY,
+        model=model or MODEL_NAME,
     )
 
 def ask_gemini(prompt: str, model: str = None) -> str:
