@@ -116,7 +116,7 @@ def main():
     gh_url = sys.argv[1]
     product = sys.argv[2]
     owner, repo, branch, prefix_path = parse_github_url(gh_url)
-    allowed_extensions = ['md', 'txt']
+    allowed_extensions = ['md', 'mdx', 'txt', 'html', 'htm']
     all_files = list_github_files(owner, repo, branch, prefix_path, allowed_extensions)
 
     lines = []

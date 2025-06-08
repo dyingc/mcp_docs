@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["https://github.com/radareorg/radare2/tree/master/doc", "radare2"],
+            "args": ["https://github.com/modelcontextprotocol/docs/tree/main/", "mcp"],
             "python": "${workspaceFolder}/.venv/bin/python"
         }
     ]
