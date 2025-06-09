@@ -2,7 +2,7 @@ import json
 import re
 import urllib.parse
 from pathlib import Path
-from typing import Dict, List, Callable, Any
+from typing import Dict, List, Callable, Any, Optional
 import threading
 
 # To avoid circular dependency if get_llm or content_metadata_tool were here.
@@ -18,7 +18,7 @@ class OutputManager:
         self.get_llm_func = get_llm_func
         self.saved_file_count = 0
 
-    def save_markdown_file(self, content_data: Dict, lock: threading.Lock, stop_crawl_event: threading.Event, current_visited_count: int) -> bool:
+    def save_markdown_file(self, content_data: Dict, lock: threading.Lock, stop_crawl_event: threading.Event, current_visited_count: int, thread_name: Optional[str] = None) -> bool:
         """
         Save content as a markdown file.
         Returns True if the file was attempted to be saved (or saved), False if skipped due to no content/success.
@@ -49,7 +49,8 @@ class OutputManager:
                     with open(filepath, 'w', encoding='utf-8') as f:
                         f.write(markdown_content)
                     # Use current_visited_count for the print statement
-                    print(f"Saved ({self.saved_file_count}/{current_visited_count}): {filepath}")
+                    thread_id_to_print = thread_name if thread_name else threading.current_thread().name
+                    print(f"Saved ({self.saved_file_count}/{current_visited_count}) [Thread: {thread_id_to_print}]: {filepath}")
 
                     if self.saved_file_count >= self.max_pages and self.max_pages != -1:
                         stop_crawl_event.set()

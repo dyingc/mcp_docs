@@ -90,10 +90,11 @@ class DocCrawler:
 
     # Methods is_valid_url, normalize_url, extract_links, clean_content are moved to HtmlProcessor
 
-    def extract_content(self, url: str) -> Dict:
+    def extract_content(self, url: str, delay: float) -> Dict:
         """Fetch page content and use HtmlProcessor to extract and convert it."""
         try:
             print(f"Crawling: {url}")
+            time.sleep(delay) # Apply delay per thread before making the request
             response = self.session.get(url, timeout=self.config['crawling'].get('timeout', 10))
             response.raise_for_status() # Raise HTTPError for bad responses (4XX or 5XX)
 
@@ -108,7 +109,8 @@ class DocCrawler:
                 'title': processed_data['title'],
                 'content': processed_data['content'],
                 'links': processed_data['links'],
-                'success': True
+                'success': True,
+                'thread_name': threading.current_thread().name # Add thread name
             }
 
         except requests.exceptions.RequestException as e: # More specific exception handling
@@ -149,7 +151,7 @@ class DocCrawler:
                         self.visited_urls.add(url)
                         # Use output_manager's count for the print statement
                         print(f"Submitting {url} for crawling. Saved: {self.output_manager.get_saved_file_count()}/{self.max_pages}")
-                        futures[executor.submit(self.extract_content, url)] = url
+                        futures[executor.submit(self.extract_content, url, self.delay)] = url
 
                 if not futures: # No active tasks, and no new tasks were submitted (e.g. urls_to_visit is empty or stop_crawl is set)
                     break
@@ -171,7 +173,8 @@ class DocCrawler:
                             # Call OutputManager to save the file
                             # It will handle saved_file_count and stop_crawl event
                             self.output_manager.save_markdown_file(
-                                content_data, self.lock, self.stop_crawl, len(self.visited_urls)
+                                content_data, self.lock, self.stop_crawl, len(self.visited_urls),
+                                thread_name=content_data.get('thread_name') # Pass the thread name
                             )
 
                             # Add new links to visit only if crawl is not stopped and content was successfully processed
@@ -193,12 +196,6 @@ class DocCrawler:
                     except Exception as e:
                         print(f"Error processing result for {url}: {e}")
                     # No finally block needed to delete future as it's popped before try
-
-                    # Be nice to the server, but only if we are still actively crawling
-                    if not self.stop_crawl.is_set():
-                        time.sleep(self.delay)
-                    else: # If stopping, process remaining completed futures faster
-                        pass
 
 
         print(f"Crawling complete! Processed {len(self.visited_urls)} pages.")
