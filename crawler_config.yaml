@@ -9,7 +9,7 @@ crawling:
   headers:
     User-Agent: Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)
   include_patterns: []
-  max_pages: 5
+  max_pages: -1
   num_threads: 10
   skip_extensions:
   - .pdf
@@ -27,17 +27,18 @@ crawling:
 output:
   dest_github_repo: git@github.com:dyingc/mcp_docs.git
   directory: docs_output/n8n
-  doc_prefix: n8n
   frontmatter:
-    crawled_date: '2024-01-01'
+    crawled_date: '2025-06-08'
     source: n8n-docs
   ignore_images: false
   ignore_links: false
+  llms_doc_prefix: n8n
   llms_txt:
     description: Complete n8n documentation for AI assistance
     include_urls: true
     title: n8n Documentation
-  minimal_size: 1024
+  minimal_size: 1
+  output_llms_txt: false
 site:
   allowed_domains:
   - docs.n8n.io
