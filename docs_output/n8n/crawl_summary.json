@@ -1,11 +1,11 @@
 {
   "base_url": "https://docs.n8n.io",
-  "pages_crawled": 0,
-  "successful_pages": 0,
-  "failed_pages": 0,
+  "pages_crawled": 2575,
+  "successful_pages": 1246,
+  "failed_pages": 1329,
   "config_used": {
     "crawling": {
-      "crawl": false,
+      "crawl": true,
       "delay": 0.1,
       "exclude_patterns": [
         "/api/",

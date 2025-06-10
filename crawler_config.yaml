@@ -1,6 +1,6 @@
 crawling:
-  crawl: false
-  delay: 0.1
+  crawl: true
+  delay: 1
   exclude_patterns:
   - /api/
   - /search
@@ -27,22 +27,22 @@ crawling:
   timeout: 10
 output:
   dest_github_repo: git@github.com:dyingc/mcp_docs.git
-  directory: docs_output/n8n
+  directory: docs_output/mcp
   frontmatter:
     crawled_date: '2025-06-09'
-    source: n8n-docs
+    source: mcp-docs
   ignore_images: false
   ignore_links: false
-  llms_doc_prefix: n8n
+  llms_doc_prefix: mcp
   llms_txt:
-    description: Complete n8n documentation for AI assistance
+    description: Complete MCP documentation for AI assistance
     include_urls: true
-    title: n8n Documentation
-  minimal_size: 1024
-  output_llms_txt: true
+    title: MCP Documentation
+  minimal_size: 1
+  output_llms_txt: false
 site:
   allowed_domains:
-  - docs.n8n.io
+  - docs.anthropic.com
   content_selectors:
   - main
   - article
@@ -70,4 +70,4 @@ site:
   - title
   - h1
   - .page-title
-  url: https://docs.n8n.io/
+  url: https://docs.anthropic.com/en/docs/agents-and-tools/mcp
