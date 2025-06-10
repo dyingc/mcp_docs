@@ -6,16 +6,12 @@ Uses configuration files for flexible site management.
 """
 
 import requests
-# from bs4 import BeautifulSoup # No longer directly used here
-# import os # Appears unused
 import re
 import time
 import urllib.parse
 from pathlib import Path
 import json
-# import yaml # Removed, as it's now in config_manager.py
 from typing import Set, List, Dict, Optional
-# import html2text # No longer directly used here
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
@@ -42,7 +38,6 @@ def content_metadata_tool(title: str, description: str) -> str:
 class DocCrawler:
     def __init__(self, config: Dict):
         self.config = config
-        # self.saved_file_count = 0 # Moved to OutputManager
         self.base_url = config['site']['url'].rstrip('/')
         self.domain = urllib.parse.urlparse(self.base_url).netloc
         self.output_dir = Path(config['output']['directory'])
@@ -69,8 +64,8 @@ class DocCrawler:
             output_config=config['output'],
             output_dir=self.output_dir,
             max_pages=self.max_pages,
-            content_metadata_tool_func=content_metadata_tool, # Pass the function
-            get_llm_func=get_llm # Pass the function
+            content_metadata_tool_func=content_metadata_tool,
+            get_llm_func=get_llm
         )
 
         # Session for connection reuse
@@ -88,32 +83,25 @@ class DocCrawler:
         print(f"Output directory: {self.output_dir}")
         print(f"Number of threads: {self.num_threads}")
 
-    # Methods is_valid_url, normalize_url, extract_links, clean_content are moved to HtmlProcessor
-
     def extract_content(self, url: str, delay: float) -> Dict:
         """Fetch page content and use HtmlProcessor to extract and convert it."""
         try:
             print(f"Crawling: {url}")
-            time.sleep(delay) # Apply delay per thread before making the request
+            time.sleep(delay)
             response = self.session.get(url, timeout=self.config['crawling'].get('timeout', 10))
-            response.raise_for_status() # Raise HTTPError for bad responses (4XX or 5XX)
-
-            # Use HtmlProcessor to parse and extract content
-            # Pass self.visited_urls to html_processor methods that need it for link validation
+            response.raise_for_status()
             processed_data = self.html_processor.parse_and_extract_html_content(
                 response.text, url, self.visited_urls
             )
-
             return {
                 'url': url,
                 'title': processed_data['title'],
                 'content': processed_data['content'],
                 'links': processed_data['links'],
                 'success': True,
-                'thread_name': threading.current_thread().name # Add thread name
+                'thread_name': threading.current_thread().name
             }
-
-        except requests.exceptions.RequestException as e: # More specific exception handling
+        except requests.exceptions.RequestException as e:
             print(f"Request error crawling {url}: {str(e)}")
             return {
                 'url': url,
@@ -122,7 +110,7 @@ class DocCrawler:
                 'links': [],
                 'success': False
             }
-        except Exception as e: # Catch other potential errors during processing
+        except Exception as e:
             import traceback
             print(f"Error processing content for {url}: {str(e)}")
             print("Full traceback:")
@@ -137,75 +125,59 @@ class DocCrawler:
 
     # Methods save_markdown_file, create_llms_txt, summarize_and_title are moved to OutputManager
 
-    def crawl(self):
-        """Main crawling function with multi-threading."""
+    def crawl_site(self):
+        """Perform only the crawling portion. Returns when crawling is complete."""
         print("Starting crawl process...")
         with ThreadPoolExecutor(max_workers=self.num_threads) as executor:
             futures = {}
-            # Main loop: continue if there are URLs to visit or active futures, and stop_crawl is not set
             while (self.urls_to_visit or futures) and not self.stop_crawl.is_set():
-                # Submit new tasks
                 while len(futures) < self.num_threads and self.urls_to_visit and not self.stop_crawl.is_set():
                     url = self.urls_to_visit.popleft()
                     if url not in self.visited_urls:
                         self.visited_urls.add(url)
-                        # Use output_manager's count for the print statement
                         print(f"Submitting {url} for crawling. Saved: {self.output_manager.get_saved_file_count()}/{self.max_pages}")
                         futures[executor.submit(self.extract_content, url, self.delay)] = url
-
-                if not futures: # No active tasks, and no new tasks were submitted (e.g. urls_to_visit is empty or stop_crawl is set)
+                if not futures:
                     break
-
-                # Process completed tasks
-                for future in as_completed(list(futures.keys())): # Iterate over a copy of keys for safe deletion
-                    # If stop_crawl is set, we still process the already completed futures
-                    # but new tasks won't be submitted by the outer loops.
-                    # Individual tasks (extract_content) will also check stop_crawl.
-
-                    url = futures.pop(future, None) # Remove future, use None if already removed (should not happen with list(futures.keys()))
-                    if url is None: # Should not happen if logic is correct
+                for future in as_completed(list(futures.keys())):
+                    url = futures.pop(future, None)
+                    if url is None:
                         continue
-
                     try:
                         content_data = future.result()
-                        if content_data: # Ensure content_data is not None
+                        if content_data:
                             self.scraped_content.append(content_data)
-                            # Call OutputManager to save the file
-                            # It will handle saved_file_count and stop_crawl event
                             self.output_manager.save_markdown_file(
                                 content_data, self.lock, self.stop_crawl, len(self.visited_urls),
-                                thread_name=content_data.get('thread_name') # Pass the thread name
+                                thread_name=content_data.get('thread_name')
                             )
-
-                            # Add new links to visit only if crawl is not stopped and content was successfully processed
                             if content_data.get('success') and not self.stop_crawl.is_set():
-                                with self.lock: # Lock for accessing shared urls_to_visit and visited_urls
-                                    # Double check stop_crawl inside lock, as it might be set by save_markdown_file
+                                with self.lock:
                                     if not self.stop_crawl.is_set():
                                         for link in content_data['links']:
                                             if link not in self.visited_urls and link not in self.urls_to_visit:
                                                 self.urls_to_visit.append(link)
-                                                # print(f"Added {link} to URLs to visit")
                                     else:
-                                        # This print might be noisy if many threads hit this after stop_crawl is set
-                                        # print("Stop signal active after saving. Not adding new URLs.")
-                                        pass # Silently stop adding URLs
+                                        pass
                             elif self.stop_crawl.is_set() and content_data.get('success'):
-                                # print(f"Stop signal active. Not adding new URLs from {url}.")
-                                pass # Silently stop adding URLs
+                                pass
                     except Exception as e:
                         print(f"Error processing result for {url}: {e}")
-                    # No finally block needed to delete future as it's popped before try
-
-
         print(f"Crawling complete! Processed {len(self.visited_urls)} pages.")
 
-        # Create llms.txt file using OutputManager
-        self.output_manager.create_llms_txt()
-
-        # Save crawl summary using OutputManager
+    def crawl(self):
+        """Controls crawl plus post-crawl output generation."""
+        # Use config flag to control actual crawling
+        do_crawl = self.config.get('crawling', {}).get('crawl', True)
+        if do_crawl:
+            self.crawl_site()
+        else:
+            print("Skipping crawling stage due to crawling:crawl = false in config.")
+        # Only output llms.txt if enabled
+        if self.config.get('output', {}).get('output_llms_txt', False):
+            self.output_manager.create_llms_txt()
         successful_pages_count = len([c for c in self.scraped_content if c.get('success')])
-        failed_pages_count = len(self.scraped_content) - successful_pages_count # More robust count
+        failed_pages_count = len(self.scraped_content) - successful_pages_count
         self.output_manager.save_crawl_summary(
             base_url=self.base_url,
             pages_crawled=len(self.visited_urls),
@@ -235,7 +207,6 @@ def main():
         print("  python doc_crawler.py --config crawler_config.yaml")
         return
 
-    # Install required packages message
     required_packages = ['requests', 'beautifulsoup4', 'html2text', 'pyyaml']
     print("Required packages:", ', '.join(required_packages))
     print("Install with: pip install", ' '.join(required_packages))

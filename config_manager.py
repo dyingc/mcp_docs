@@ -38,10 +38,11 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
             ]
         },
         'crawling': {
-            'max_pages': 10, # Allow unlimited if max_pages is -1
-            'delay': 1.0,
+            'crawl': False,  # Set to True to enable crawling
+            'max_pages': -1, # Allow unlimited if max_pages is -1
+            'delay': 0.1,
             'timeout': 10,
-            'num_threads': 10,
+            'num_threads': 20,
             'headers': {
                 'User-Agent': 'Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)'
             },
@@ -58,7 +59,7 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
         'output': {
             'directory': 'docs_output/n8n',
             'minimal_size': 1024,
-            'output_llms_txt': False,
+            'output_llms_txt': True, # Set to False to disable llms.txt output
             'llms_doc_prefix': 'n8n',
             'ignore_links': False,
             'ignore_images': False,

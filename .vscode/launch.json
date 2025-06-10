@@ -13,6 +13,24 @@
             "console": "integratedTerminal",
             "args": ["https://github.com/modelcontextprotocol/docs/tree/main/", "mcp"],
             "python": "${workspaceFolder}/.venv/bin/python"
+        },
+        {
+            "name": "Generate Sample Config",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/doc_crawler.py",
+            "console": "integratedTerminal",
+            "args": ["--create-config", "--config-name", "crawler_config.yaml"],
+            "python": "${workspaceFolder}/.venv/bin/python"
+        },
+        {
+            "name": "Generate llms.txt",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/doc_crawler.py",
+            "console": "integratedTerminal",
+            "args": ["--config", "crawler_config.yaml"],
+            "python": "${workspaceFolder}/.venv/bin/python"
         }
     ]
 }

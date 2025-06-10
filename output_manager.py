@@ -73,11 +73,6 @@ class OutputManager:
         llms_doc_prefix = self.output_config.get('llms_doc_prefix', '')
         llms_doc_prefix = llms_doc_prefix + "_" if llms_doc_prefix else ''
 
-        if not self.output_config.get('output_llms_txt', False):
-            # llms.txt output is disabled
-            print(f"\nSkipping {llms_doc_prefix}_llms.txt creation (OutputManager).\n")
-            return
-
         print("\n\nCreating llms.txt index (OutputManager)...")
 
         llms_txt_path = self.output_dir / f"{llms_doc_prefix}llms.txt"
