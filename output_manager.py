@@ -4,6 +4,7 @@ import urllib.parse
 from pathlib import Path
 from typing import Dict, List, Callable, Any, Optional
 import threading
+import subprocess
 
 # To avoid circular dependency if get_llm or content_metadata_tool were here.
 # These will be passed in from doc_crawler.py.
@@ -68,6 +69,30 @@ class OutputManager:
     def get_saved_file_count(self) -> int:
         return self.saved_file_count
 
+    def get_github_raw_url(self, username, repo, branch, file_path):
+        return f"https://raw.githubusercontent.com/{username}/{repo}/{branch}/{file_path}"
+
+    def get_current_git_branch(self) -> Optional[str]:
+        """
+        Return the current git branch name for the output_dir.
+        Returns None if it can't determine the branch.
+        """
+        try:
+            result = subprocess.run(
+                ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+                cwd=str(self.output_dir),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                check=True
+            )
+            branch = result.stdout.strip()
+            if branch:
+                return branch
+        except Exception as e:
+            print(f"Could not get current git branch: {e}")
+        return None
+
     def create_llms_txt(self):
         """Create llms.txt file listing all markdown files with summaries."""
         llms_doc_prefix = self.output_config.get('llms_doc_prefix', '')
@@ -82,28 +107,29 @@ class OutputManager:
         llm = self.get_llm_func().bind_tools(tool_list) # Use the passed-in function
 
         dest_github_repo = self.output_config.get('dest_github_repo')
-        raw_url_prefix = None
-        if dest_github_repo:
-            dest_github_repo = dest_github_repo.replace('git@github.com:', 'https://raw.githubusercontent.com/')
-            dest_github_repo = dest_github_repo.replace('.git', '')
-            branch = 'main'  # Assuming main branch
-            raw_url_prefix = f"{dest_github_repo}/{branch}"
+        git_branch = self.get_current_git_branch() if dest_github_repo else None
 
         for md_file in sorted(md_files):
             if md_file.name == f"{llms_doc_prefix}llms.txt":
                 continue
 
             print(f"Processing for llms.txt: {md_file}", end='')
-            relative_path = md_file.relative_to(self.output_dir)
+
             with open(md_file, 'r', encoding='utf-8') as f:
                 content = f.read()
 
             title, desc = self._summarize_and_title_for_llms(llm, content, md_file.name)
 
-            if raw_url_prefix:
-                file_url = f"{raw_url_prefix}/{relative_path}"
+            if dest_github_repo and git_branch:
+                # Extract username and repo from dest_github_repo string
+                match = re.search(r"(?:github.com[/:])([^/]+)/([^/.]+)", dest_github_repo)
+                if match:
+                    username, repo = match.group(1), match.group(2)
+                    file_url = self.get_github_raw_url(username, repo, git_branch, str(md_file))
+                else:
+                    file_url = str(md_file)
             else:
-                file_url = str(relative_path) # Keep as relative path if no repo
+                file_url = str(md_file) # Keep as relative path if no repo or branch not found
             lines.append(f"- [{title}]({file_url}): {desc}")
             print(": Done")
 
