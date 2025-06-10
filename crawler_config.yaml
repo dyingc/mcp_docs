@@ -1,5 +1,5 @@
 crawling:
-  crawl: false
+  crawl: true
   delay: 0.1
   exclude_patterns:
   - /api/
