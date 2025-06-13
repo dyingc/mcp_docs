@@ -44,10 +44,14 @@ class DocCrawler:
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.delay = config['crawling']['delay']
         self.max_pages = config['crawling']['max_pages']
+        self.max_depth = config['crawling'].get('max_depth', 1)
+        self.url_prefix = config['crawling'].get('url_prefix', '')
         self.num_threads = config['crawling'].get('num_threads', 10)
+        self.llm_concurrency = config['output'].get('llm_concurrency', 1)
         self.visited_urls: Set[str] = set()
+        self.url_depths: Dict[str, int] = {}  # Track depth for each URL
         self.scraped_content: List[Dict] = []
-        self.urls_to_visit = deque([self.base_url])
+        self.urls_to_visit = deque([(self.base_url, 0)])  # (url, depth) pairs
         self.lock = threading.Lock()  # Lock for thread safety
         self.stop_crawl = threading.Event()  # Event to signal stopping the crawl
 
@@ -77,16 +81,27 @@ class DocCrawler:
         # Add additional start URLs if configured
         start_urls = self.config['site'].get('start_urls', [])
         for url in start_urls:
-            self.urls_to_visit.append(url)
+            self.urls_to_visit.append((url, 0))
 
         print(f"Initialized crawler with base URL: {self.base_url}")
         print(f"Output directory: {self.output_dir}")
         print(f"Number of threads: {self.num_threads}")
+        print(f"Max depth: {self.max_depth}")
+        print(f"URL prefix: {self.url_prefix}")
+        print(f"LLM concurrency: {self.llm_concurrency}")
 
-    def extract_content(self, url: str, delay: float) -> Dict:
+    def should_crawl_url(self, url: str, depth: int) -> bool:
+        """Check if a URL should be crawled based on depth and prefix rules."""
+        if self.max_depth != -1 and depth > self.max_depth:
+            return False
+        if self.url_prefix and not url.startswith(self.url_prefix):
+            return False
+        return True
+
+    def extract_content(self, url: str, depth: int, delay: float) -> Dict:
         """Fetch page content and use HtmlProcessor to extract and convert it."""
         try:
-            print(f"Crawling: {url}")
+            print(f"Crawling: {url} (depth: {depth})")
             time.sleep(delay)
             response = self.session.get(url, timeout=self.config['crawling'].get('timeout', 10))
             response.raise_for_status()
@@ -98,6 +113,7 @@ class DocCrawler:
                 'title': processed_data['title'],
                 'content': processed_data['content'],
                 'links': processed_data['links'],
+                'depth': depth,
                 'success': True,
                 'thread_name': threading.current_thread().name
             }
@@ -108,6 +124,7 @@ class DocCrawler:
                 'title': 'Request Error',
                 'content': f"Failed to fetch page: {str(e)}",
                 'links': [],
+                'depth': depth,
                 'success': False
             }
         except Exception as e:
@@ -120,6 +137,7 @@ class DocCrawler:
                 'title': 'Error',
                 'content': f"Failed to crawl: {str(e)}",
                 'links': [],
+                'depth': depth,
                 'success': False
             }
 
@@ -132,15 +150,16 @@ class DocCrawler:
             futures = {}
             while (self.urls_to_visit or futures) and not self.stop_crawl.is_set():
                 while len(futures) < self.num_threads and self.urls_to_visit and not self.stop_crawl.is_set():
-                    url = self.urls_to_visit.popleft()
-                    if url not in self.visited_urls:
+                    url, depth = self.urls_to_visit.popleft()
+                    if url not in self.visited_urls and self.should_crawl_url(url, depth):
                         self.visited_urls.add(url)
-                        print(f"Submitting {url} for crawling. Saved: {self.output_manager.get_saved_file_count()}/{self.max_pages}")
-                        futures[executor.submit(self.extract_content, url, self.delay)] = url
+                        self.url_depths[url] = depth
+                        print(f"Submitting {url} for crawling (depth: {depth}). Saved: {self.output_manager.get_saved_file_count()}/{self.max_pages}")
+                        futures[executor.submit(self.extract_content, url, depth, self.delay)] = (url, depth)
                 if not futures:
                     break
                 for future in as_completed(list(futures.keys())):
-                    url = futures.pop(future, None)
+                    url, depth = futures.pop(future, None)
                     if url is None:
                         continue
                     try:
@@ -155,8 +174,8 @@ class DocCrawler:
                                 with self.lock:
                                     if not self.stop_crawl.is_set():
                                         for link in content_data['links']:
-                                            if link not in self.visited_urls and link not in self.urls_to_visit:
-                                                self.urls_to_visit.append(link)
+                                            if link not in self.visited_urls and link not in [u for u, _ in self.urls_to_visit]:
+                                                self.urls_to_visit.append((link, depth + 1))
                                     else:
                                         pass
                             elif self.stop_crawl.is_set() and content_data.get('success'):

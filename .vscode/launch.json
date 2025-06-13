@@ -24,7 +24,7 @@
             "python": "${workspaceFolder}/.venv/bin/python"
         },
         {
-            "name": "Generate llms.txt",
+            "name": "Crawl and/or generate llms.txt",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/doc_crawler.py",

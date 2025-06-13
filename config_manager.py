@@ -40,6 +40,8 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
         'crawling': {
             'crawl': False,  # Set to True to enable crawling
             'max_pages': -1, # Allow unlimited if max_pages is -1
+            'max_depth': 1,  # Maximum crawling depth, -1 for unlimited
+            'url_prefix': '', # Only crawl URLs that start with this prefix
             'delay': 0.1,
             'timeout': 10,
             'num_threads': 20,
@@ -60,6 +62,7 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
             'directory': 'docs_output/n8n',
             'minimal_size': 1024,
             'output_llms_txt': True, # Set to False to disable llms.txt output
+            'llm_concurrency': 1,    # Number of concurrent LLM summarization tasks
             'llms_doc_prefix': 'n8n',
             'ignore_links': False,
             'ignore_images': False,

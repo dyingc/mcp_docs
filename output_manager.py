@@ -103,15 +103,16 @@ class OutputManager:
         llms_txt_path = self.output_dir / f"{llms_doc_prefix}llms.txt"
         md_files = list(self.output_dir.rglob("*.md"))
         lines = []
-        tool_list = [self.content_metadata_tool_func] # Use the passed-in function
-        llm = self.get_llm_func().bind_tools(tool_list) # Use the passed-in function
+        tool_list = [self.content_metadata_tool_func]
+        llm = self.get_llm_func().bind_tools(tool_list)
 
         dest_github_repo = self.output_config.get('dest_github_repo')
         git_branch = self.get_current_git_branch() if dest_github_repo else None
+        llm_concurrency = self.output_config.get('llm_concurrency', 1)
 
-        for md_file in sorted(md_files):
+        def process_file(md_file):
             if md_file.name == f"{llms_doc_prefix}llms.txt":
-                continue
+                return None
 
             print(f"Processing for llms.txt: {md_file}", end='')
 
@@ -129,9 +130,26 @@ class OutputManager:
                 else:
                     file_url = str(md_file)
             else:
-                file_url = str(md_file) # Keep as relative path if no repo or branch not found
-            lines.append(f"- [{title}]({file_url}): {desc}")
+                file_url = str(md_file)
+
             print(": Done")
+            return f"- [{title}]({file_url}): {desc}"
+
+        # Process files concurrently if llm_concurrency > 1
+        if llm_concurrency > 1:
+            from concurrent.futures import ThreadPoolExecutor
+            with ThreadPoolExecutor(max_workers=llm_concurrency) as executor:
+                futures = [executor.submit(process_file, md_file) for md_file in sorted(md_files)]
+                for future in futures:
+                    result = future.result()
+                    if result:
+                        lines.append(result)
+        else:
+            # Sequential processing
+            for md_file in sorted(md_files):
+                result = process_file(md_file)
+                if result:
+                    lines.append(result)
 
         with open(llms_txt_path, 'w', encoding='utf-8') as f:
             f.write("# Document Index\n")
