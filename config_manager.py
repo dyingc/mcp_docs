@@ -56,6 +56,7 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
             'directory': 'docs_output/mcp',
             'frontmatter': {
                 'crawled_date': f'{str(current_date)}',
+                'source': 'mcp-docs'
             },
             'ignore_images': False,
             'ignore_links': False,
@@ -70,10 +71,7 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
             'output_llms_txt': False
         },
         'site': {
-            'allowed_domains': [
-                'github.com',
-                'raw.githubusercontent.com'
-            ],
+            'allowed_domains': [],  # Extra allowed domains beyond the base URL and GitHub domains
             'content_selectors': [
                 'main',
                 'article',

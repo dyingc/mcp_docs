@@ -1,0 +1,685 @@
+{
+  "base_url": "https://modelcontextprotocol.io",
+  "pages_crawled": 0,
+  "successful_pages": 0,
+  "failed_pages": 0,
+  "saved_files": [
+    {
+      "url": "https://modelcontextprotocol.io/introduction",
+      "title": "Introduction - Model Context Protocol",
+      "filepath": "introduction.md",
+      "size": 6275,
+      "depth": 0
+    },
+    {
+      "url": "https://modelcontextprotocol.io/quickstart/user",
+      "title": "For Claude Desktop Users - Model Context Protocol",
+      "filepath": "quickstart/user.md",
+      "size": 11260,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/quickstart/client",
+      "title": "For Client Developers - Model Context Protocol",
+      "filepath": "quickstart/client.md",
+      "size": 61086,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/quickstart/server",
+      "title": "For Server Developers - Model Context Protocol",
+      "filepath": "quickstart/server.md",
+      "size": 64852,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26",
+      "title": "Specification - Model Context Protocol",
+      "filepath": "specification/2025-03-26.md",
+      "size": 7405,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/development/contributing",
+      "title": "Contributing - Model Context Protocol",
+      "filepath": "development/contributing.md",
+      "size": 2476,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/development/roadmap",
+      "title": "Roadmap - Model Context Protocol",
+      "filepath": "development/roadmap.md",
+      "size": 5692,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/concepts/transports",
+      "title": "Transports - Model Context Protocol",
+      "filepath": "docs/concepts/transports.md",
+      "size": 24280,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/concepts/roots",
+      "title": "Roots - Model Context Protocol",
+      "filepath": "docs/concepts/roots.md",
+      "size": 4363,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/concepts/sampling",
+      "title": "Sampling - Model Context Protocol",
+      "filepath": "docs/concepts/sampling.md",
+      "size": 9321,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/concepts/tools",
+      "title": "Tools - Model Context Protocol",
+      "filepath": "docs/concepts/tools.md",
+      "size": 19002,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/concepts/prompts",
+      "title": "Prompts - Model Context Protocol",
+      "filepath": "docs/concepts/prompts.md",
+      "size": 16303,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/concepts/resources",
+      "title": "Resources - Model Context Protocol",
+      "filepath": "docs/concepts/resources.md",
+      "size": 10721,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/concepts/architecture",
+      "title": "Core architecture - Model Context Protocol",
+      "filepath": "docs/concepts/architecture.md",
+      "size": 12378,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/tools/inspector",
+      "title": "Inspector - Model Context Protocol",
+      "filepath": "docs/tools/inspector.md",
+      "size": 6177,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/tools/debugging",
+      "title": "Debugging - Model Context Protocol",
+      "filepath": "docs/tools/debugging.md",
+      "size": 9669,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/tutorials/building-mcp-with-llms",
+      "title": "Building MCP with LLMs - Model Context Protocol",
+      "filepath": "tutorials/building-mcp-with-llms.md",
+      "size": 4896,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/faqs",
+      "title": "FAQs - Model Context Protocol",
+      "filepath": "faqs.md",
+      "size": 6690,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/clients",
+      "title": "Example Clients - Model Context Protocol",
+      "filepath": "clients.md",
+      "size": 42673,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/examples",
+      "title": "Example Servers - Model Context Protocol",
+      "filepath": "examples.md",
+      "size": 7955,
+      "depth": 1
+    },
+    {
+      "url": "https://modelcontextprotocol.io/sdk/java/mcp-client",
+      "title": "MCP Client - Model Context Protocol",
+      "filepath": "sdk/java/mcp-client.md",
+      "size": 17738,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/server",
+      "title": "Overview - Model Context Protocol",
+      "filepath": "specification/2025-03-26/server.md",
+      "size": 3557,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/basic",
+      "title": "Overview - Model Context Protocol",
+      "filepath": "specification/2025-03-26/basic.md",
+      "size": 6671,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/contributing",
+      "title": "Contributions - Model Context Protocol",
+      "filepath": "specification/contributing.md",
+      "size": 2553,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/versioning",
+      "title": "Versioning - Model Context Protocol",
+      "filepath": "specification/versioning.md",
+      "size": 3442,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/architecture",
+      "title": "Architecture - Model Context Protocol",
+      "filepath": "specification/draft/architecture.md",
+      "size": 6479,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/changelog",
+      "title": "Key Changes - Model Context Protocol",
+      "filepath": "specification/draft/changelog.md",
+      "size": 3965,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft",
+      "title": "Specification - Model Context Protocol",
+      "filepath": "specification/draft.md",
+      "size": 7515,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/architecture",
+      "title": "Architecture - Model Context Protocol",
+      "filepath": "specification/2024-11-05/architecture.md",
+      "size": 6970,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05",
+      "title": "Specification - Model Context Protocol",
+      "filepath": "specification/2024-11-05.md",
+      "size": 7321,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/llms-full.txt",
+      "title": "Untitled",
+      "filepath": "llms-full.txt",
+      "size": 506127,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/architecture",
+      "title": "Architecture - Model Context Protocol",
+      "filepath": "specification/2025-03-26/architecture.md",
+      "size": 6513,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/changelog",
+      "title": "Key Changes - Model Context Protocol",
+      "filepath": "specification/2025-03-26/changelog.md",
+      "size": 3864,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/sdk/java/mcp-server",
+      "title": "MCP Server - Model Context Protocol",
+      "filepath": "sdk/java/mcp-server.md",
+      "size": 32528,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/server/utilities/completion",
+      "title": "Completion - Model Context Protocol",
+      "filepath": "specification/2025-03-26/server/utilities/completion.md",
+      "size": 6564,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/client/roots",
+      "title": "Roots - Model Context Protocol",
+      "filepath": "specification/2025-03-26/client/roots.md",
+      "size": 6716,
+      "depth": 2
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/client/sampling",
+      "title": "Sampling - Model Context Protocol",
+      "filepath": "specification/2025-03-26/client/sampling.md",
+      "size": 8200,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/server/tools",
+      "title": "Tools - Model Context Protocol",
+      "filepath": "specification/2025-03-26/server/tools.md",
+      "size": 8914,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/server/resources",
+      "title": "Resources - Model Context Protocol",
+      "filepath": "specification/2025-03-26/server/resources.md",
+      "size": 10480,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/server/prompts",
+      "title": "Prompts - Model Context Protocol",
+      "filepath": "specification/2025-03-26/server/prompts.md",
+      "size": 8939,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization",
+      "title": "Authorization - Model Context Protocol",
+      "filepath": "specification/2025-03-26/basic/authorization.md",
+      "size": 15270,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/basic/transports",
+      "title": "Transports - Model Context Protocol",
+      "filepath": "specification/2025-03-26/basic/transports.md",
+      "size": 15462,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle",
+      "title": "Lifecycle - Model Context Protocol",
+      "filepath": "specification/2025-03-26/basic/lifecycle.md",
+      "size": 9973,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/server/utilities/pagination",
+      "title": "Pagination - Model Context Protocol",
+      "filepath": "specification/draft/server/utilities/pagination.md",
+      "size": 4983,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/basic",
+      "title": "Overview - Model Context Protocol",
+      "filepath": "specification/draft/basic.md",
+      "size": 6407,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/client/elicitation",
+      "title": "Elicitation - Model Context Protocol",
+      "filepath": "specification/draft/client/elicitation.md",
+      "size": 10461,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/server/utilities/pagination",
+      "title": "Pagination - Model Context Protocol",
+      "filepath": "specification/2024-11-05/server/utilities/pagination.md",
+      "size": 5026,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/basic/security_best_practices",
+      "title": "Security Best Practices - Model Context Protocol",
+      "filepath": "specification/draft/basic/security_best_practices.md",
+      "size": 8762,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/basic",
+      "title": "Overview - Model Context Protocol",
+      "filepath": "specification/2024-11-05/basic.md",
+      "size": 5371,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/server/utilities/pagination",
+      "title": "Pagination - Model Context Protocol",
+      "filepath": "specification/2025-03-26/server/utilities/pagination.md",
+      "size": 5031,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/server",
+      "title": "Overview - Model Context Protocol",
+      "filepath": "specification/2024-11-05/server.md",
+      "size": 3557,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/basic/authorization",
+      "title": "Authorization - Model Context Protocol",
+      "filepath": "specification/draft/basic/authorization.md",
+      "size": 17833,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/client/sampling",
+      "title": "Sampling - Model Context Protocol",
+      "filepath": "specification/2024-11-05/client/sampling.md",
+      "size": 8018,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/server/utilities/logging",
+      "title": "Logging - Model Context Protocol",
+      "filepath": "specification/2025-03-26/server/utilities/logging.md",
+      "size": 6031,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/basic/utilities/progress",
+      "title": "Progress - Model Context Protocol",
+      "filepath": "specification/2025-03-26/basic/utilities/progress.md",
+      "size": 4794,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/server/prompts",
+      "title": "Prompts - Model Context Protocol",
+      "filepath": "specification/2024-11-05/server/prompts.md",
+      "size": 8560,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/server/tools",
+      "title": "Tools - Model Context Protocol",
+      "filepath": "specification/2024-11-05/server/tools.md",
+      "size": 8544,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/server/tools",
+      "title": "Tools - Model Context Protocol",
+      "filepath": "specification/draft/server/tools.md",
+      "size": 12518,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/server",
+      "title": "Overview - Model Context Protocol",
+      "filepath": "specification/draft/server.md",
+      "size": 3513,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/basic/utilities/cancellation",
+      "title": "Cancellation - Model Context Protocol",
+      "filepath": "specification/2025-03-26/basic/utilities/cancellation.md",
+      "size": 4955,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/basic/transports",
+      "title": "Transports - Model Context Protocol",
+      "filepath": "specification/2024-11-05/basic/transports.md",
+      "size": 5565,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/server/utilities/logging",
+      "title": "Logging - Model Context Protocol",
+      "filepath": "specification/draft/server/utilities/logging.md",
+      "size": 5981,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/client/roots",
+      "title": "Roots - Model Context Protocol",
+      "filepath": "specification/draft/client/roots.md",
+      "size": 6747,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/basic/transports",
+      "title": "Transports - Model Context Protocol",
+      "filepath": "specification/draft/basic/transports.md",
+      "size": 15671,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/client/sampling",
+      "title": "Sampling - Model Context Protocol",
+      "filepath": "specification/draft/client/sampling.md",
+      "size": 8246,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/server/utilities/logging",
+      "title": "Logging - Model Context Protocol",
+      "filepath": "specification/2024-11-05/server/utilities/logging.md",
+      "size": 6031,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/basic/utilities/cancellation",
+      "title": "Cancellation - Model Context Protocol",
+      "filepath": "specification/draft/basic/utilities/cancellation.md",
+      "size": 5009,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/basic/messages",
+      "title": "Messages - Model Context Protocol",
+      "filepath": "specification/2024-11-05/basic/messages.md",
+      "size": 3905,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/client/roots",
+      "title": "Roots - Model Context Protocol",
+      "filepath": "specification/2024-11-05/client/roots.md",
+      "size": 6716,
+      "depth": 3
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/basic/lifecycle",
+      "title": "Lifecycle - Model Context Protocol",
+      "filepath": "specification/2024-11-05/basic/lifecycle.md",
+      "size": 8631,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/server/utilities/completion",
+      "title": "Completion - Model Context Protocol",
+      "filepath": "specification/2024-11-05/server/utilities/completion.md",
+      "size": 6013,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/server/resources",
+      "title": "Resources - Model Context Protocol",
+      "filepath": "specification/2024-11-05/server/resources.md",
+      "size": 10445,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/basic/lifecycle",
+      "title": "Lifecycle - Model Context Protocol",
+      "filepath": "specification/draft/basic/lifecycle.md",
+      "size": 10144,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/server/utilities/completion",
+      "title": "Completion - Model Context Protocol",
+      "filepath": "specification/draft/server/utilities/completion.md",
+      "size": 7534,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/server/resources",
+      "title": "Resources - Model Context Protocol",
+      "filepath": "specification/draft/server/resources.md",
+      "size": 11101,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/server/prompts",
+      "title": "Prompts - Model Context Protocol",
+      "filepath": "specification/draft/server/prompts.md",
+      "size": 9078,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-03-26/basic/utilities/ping",
+      "title": "Ping - Model Context Protocol",
+      "filepath": "specification/2025-03-26/basic/utilities/ping.md",
+      "size": 4291,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/basic/utilities/cancellation",
+      "title": "Cancellation - Model Context Protocol",
+      "filepath": "specification/2024-11-05/basic/utilities/cancellation.md",
+      "size": 4939,
+      "depth": 5
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/basic/utilities/progress",
+      "title": "Progress - Model Context Protocol",
+      "filepath": "specification/draft/basic/utilities/progress.md",
+      "size": 4828,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/draft/basic/utilities/ping",
+      "title": "Ping - Model Context Protocol",
+      "filepath": "specification/draft/basic/utilities/ping.md",
+      "size": 4325,
+      "depth": 5
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/basic/utilities/progress",
+      "title": "Progress - Model Context Protocol",
+      "filepath": "specification/2024-11-05/basic/utilities/progress.md",
+      "size": 4613,
+      "depth": 4
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/basic/utilities/ping",
+      "title": "Ping - Model Context Protocol",
+      "filepath": "specification/2024-11-05/basic/utilities/ping.md",
+      "size": 4281,
+      "depth": 5
+    }
+  ],
+  "config_used": {
+    "crawling": {
+      "crawl": true,
+      "delay": 1,
+      "exclude_patterns": [
+        "/api/",
+        "/search",
+        "\\.xml$",
+        "/login",
+        "/logout"
+      ],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)"
+      },
+      "include_patterns": [],
+      "max_depth": 1,
+      "max_pages": -1,
+      "num_threads": 20,
+      "skip_extensions": [
+        ".pdf",
+        ".jpg",
+        ".png",
+        ".gif",
+        ".css",
+        ".js",
+        ".svg",
+        ".ico",
+        ".json",
+        ".xml",
+        ".yaml"
+      ],
+      "timeout": 10,
+      "file_extensions": [
+        ".md",
+        ".rst",
+        ".txt",
+        ".py",
+        ".js",
+        ".ts",
+        ".html",
+        ".css",
+        ".json",
+        ".yaml",
+        ".yml"
+      ]
+    },
+    "link_processing": {
+      "url_prefix": "https://modelcontextprotocol.io"
+    },
+    "output": {
+      "dest_github_repo": "git@github.com:dyingc/mcp_docs.git",
+      "directory": "docs_output/mcp",
+      "frontmatter": {
+        "crawled_date": "2025-06-13"
+      },
+      "ignore_images": false,
+      "ignore_links": false,
+      "llm_concurrency": 1,
+      "llms_doc_prefix": "mcp",
+      "llms_txt": {
+        "description": "Complete MCP documentation for AI assistance",
+        "include_urls": true,
+        "title": "MCP Documentation"
+      },
+      "minimal_size": 128,
+      "output_llms_txt": false
+    },
+    "site": {
+      "allowed_domains": [],
+      "content_selectors": [
+        "main",
+        "article",
+        ".content",
+        ".documentation"
+      ],
+      "link_selectors": [
+        "a[href]"
+      ],
+      "name": "MCP Documentation",
+      "remove_selectors": [
+        "nav",
+        "header",
+        "footer",
+        ".navbar",
+        ".nav",
+        ".sidebar",
+        ".menu",
+        ".breadcrumb",
+        ".pagination",
+        "script",
+        "style",
+        "noscript",
+        ".search-box"
+      ],
+      "start_urls": [],
+      "title_selectors": [
+        "title",
+        "h1",
+        ".page-title"
+      ],
+      "url": "https://modelcontextprotocol.io"
+    }
+  }
+}

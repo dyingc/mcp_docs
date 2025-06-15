@@ -24,6 +24,12 @@ from html_processor import HtmlProcessor
 from output_manager import OutputManager # Added import
 import os
 from urllib.parse import urljoin
+from urllib.parse import urlparse
+from scrapy.crawler import CrawlerProcess
+from scrapy.spiders import Spider
+import logging
+
+logger = logging.getLogger(__name__)
 
 @tool("content_metadata_tool")
 def content_metadata_tool(title: str, description: str) -> str:
@@ -36,6 +42,123 @@ def content_metadata_tool(title: str, description: str) -> str:
         String "OK" (output is ignored; tool parameters are what matter for extraction).
     """
     return "OK"
+
+class DocSpider(Spider):
+    name = 'doc_spider'
+
+    def __init__(self, start_urls=None, allowed_domains=None, url_prefix=None,
+                 content_selectors=None, link_selectors=None, remove_selectors=None,
+                 title_selectors=None, exclude_patterns=None, include_patterns=None,
+                 skip_extensions=None, file_extensions=None, max_depth=None,
+                 max_pages=None, delay=None, timeout=None, headers=None,
+                 output_manager=None, *args, **kwargs):
+        super(DocSpider, self).__init__(*args, **kwargs)
+        self.start_urls = start_urls or []
+        self.allowed_domains = allowed_domains or []
+        self.url_prefix = url_prefix
+        self.content_selectors = content_selectors or []
+        self.link_selectors = link_selectors or []
+        self.remove_selectors = remove_selectors or []
+        self.title_selectors = title_selectors or []
+        self.exclude_patterns = exclude_patterns or []
+        self.include_patterns = include_patterns or []
+        self.skip_extensions = skip_extensions or []
+        self.file_extensions = file_extensions or []
+        self.max_depth = max_depth
+        self.max_pages = max_pages
+        self.delay = delay
+        self.timeout = timeout
+        self.headers = headers or {}
+        self.output_manager = output_manager
+        self.visited_urls = set()
+        self.pages_crawled = 0
+        self.lock = threading.Lock()
+        self.stop_crawl = threading.Event()
+        # Get html_processor from output_manager
+        self.html_processor = output_manager.html_processor if output_manager else None
+
+    def parse(self, response):
+        if self.pages_crawled >= self.max_pages and self.max_pages != -1:
+            return
+
+        self.pages_crawled += 1
+        current_url = response.url
+
+        if current_url in self.visited_urls:
+            return
+        self.visited_urls.add(current_url)
+
+        # Use HtmlProcessor to clean and extract content and links
+        html = response.text
+        if self.html_processor:
+            processed = self.html_processor.parse_and_extract_html_content(
+                html, current_url, self.visited_urls
+            )
+            content = processed['content']
+            title = processed['title']
+            links = processed['links']
+        else:
+            content = html
+            title = current_url.split('/')[-1] or 'index'
+            links = []
+
+        # Save content
+        if content:
+            self.logger.info(f"Extracted content from {current_url}")
+            content_data = {
+                'url': current_url,
+                'title': title,
+                'content': content,
+                'success': True,
+                'depth': response.meta.get('depth', 0)
+            }
+            self.output_manager.save_markdown_file(
+                content_data=content_data,
+                lock=self.lock,
+                stop_crawl_event=self.stop_crawl,
+                current_visited_count=len(self.visited_urls),
+                thread_name=threading.current_thread().name
+            )
+        else:
+            self.logger.warning(f"No content extracted from {current_url}")
+
+        # Use HtmlProcessor.extract_links for recursion
+        for link in links:
+            if link not in self.visited_urls:
+                self.logger.info(f"Following link: {link}")
+                yield response.follow(link, self.parse)
+
+    def _should_follow_link(self, url):
+        # Check if URL matches prefix
+        if self.url_prefix and not url.startswith(self.url_prefix):
+            return False
+
+        # Check if URL matches include/exclude patterns
+        for pattern in self.exclude_patterns:
+            if re.search(pattern, url):
+                return False
+
+        if self.include_patterns:
+            matches_include = False
+            for pattern in self.include_patterns:
+                if re.search(pattern, url):
+                    matches_include = True
+                    break
+            if not matches_include:
+                return False
+
+        # Check file extensions
+        if self.skip_extensions:
+            ext = os.path.splitext(url)[1].lower()
+            if ext in self.skip_extensions:
+                return False
+
+        if self.file_extensions:
+            ext = os.path.splitext(url)[1].lower()
+            if ext not in self.file_extensions:
+                return False
+
+        return True
 
 class DocCrawler:
     def __init__(self, config: Dict):
@@ -96,6 +219,8 @@ class DocCrawler:
             content_metadata_tool_func=content_metadata_tool,
             get_llm_func=get_llm
         )
+        # Set html_processor in output_manager
+        self.output_manager.html_processor = self.html_processor
 
         # Session for connection reuse
         self.session = requests.Session()
@@ -301,67 +426,74 @@ class DocCrawler:
 
     # Methods save_markdown_file, create_llms_txt, summarize_and_title are moved to OutputManager
 
+    def _get_start_urls(self) -> List[str]:
+        """Get the list of start URLs for crawling."""
+        start_urls = set()
+
+        # Always add the site URL as the first start URL
+        if self.base_url:
+            start_urls.add(self.base_url)
+
+        # Add any additional start URLs from config
+        config_start_urls = self.config.get('site', {}).get('start_urls', [])
+        start_urls.update(config_start_urls)
+
+        return list(start_urls)
+
     def crawl_site(self):
-        """Perform only the crawling portion. Returns when crawling is complete."""
-        print("Starting crawl process...")
+        """Crawl the site and save the content."""
+        try:
+            # Get start URLs
+            self.start_urls = self._get_start_urls()
+            if not self.start_urls:
+                raise ValueError("No start URLs configured")
 
-        # Always crawl the initial page first
-        print(f"Crawling initial page: {self.base_url}")
-        initial_content = self.extract_content(self.base_url, 0, self.delay)
-        if initial_content:
-            self.scraped_content.append(initial_content)
-            self.output_manager.save_markdown_file(
-                initial_content, self.lock, self.stop_crawl, len(self.visited_urls),
-                thread_name=initial_content.get('thread_name')
+            # Get allowed domains
+            self.allowed_domains = self._get_allowed_domains()
+
+            # Get selectors and patterns from config
+            self.content_selectors = self.config['site'].get('content_selectors', [])
+            self.link_selectors = self.config['site'].get('link_selectors', [])
+            self.remove_selectors = self.config['site'].get('remove_selectors', [])
+            self.title_selectors = self.config['site'].get('title_selectors', [])
+            self.exclude_patterns = self.config['site'].get('exclude_patterns', [])
+            self.include_patterns = self.config['site'].get('include_patterns', [])
+            self.skip_extensions = self.config['crawling'].get('skip_extensions', [])
+            self.file_extensions = self.config['crawling'].get('file_extensions', [])
+            self.timeout = self.config['crawling'].get('timeout', 10)
+            self.headers = self.config['crawling'].get('headers', {})
+
+            # Initialize the crawler
+            self.crawler = CrawlerProcess(self._get_crawler_settings())
+
+            # Add the crawler to the process
+            self.crawler.crawl(
+                DocSpider,
+                start_urls=self.start_urls,
+                allowed_domains=self.allowed_domains,
+                url_prefix=self.url_prefix,
+                content_selectors=self.content_selectors,
+                link_selectors=self.link_selectors,
+                remove_selectors=self.remove_selectors,
+                title_selectors=self.title_selectors,
+                exclude_patterns=self.exclude_patterns,
+                include_patterns=self.include_patterns,
+                skip_extensions=self.skip_extensions,
+                file_extensions=self.file_extensions,
+                max_depth=self.max_depth,
+                max_pages=self.max_pages,
+                delay=self.delay,
+                timeout=self.timeout,
+                headers=self.headers,
+                output_manager=self.output_manager
             )
-            if initial_content.get('success') and not self.stop_crawl.is_set():
-                with self.lock:
-                    if not self.stop_crawl.is_set():
-                        for link in initial_content['links']:
-                            if link not in self.visited_urls and link not in [u for u, _ in self.urls_to_visit]:
-                                print(f'[CRAWLER] Enqueue: {link} (depth=1)')
-                                self.urls_to_visit.append((link, 1))
 
-        # Then proceed with the rest of the crawling
-        with ThreadPoolExecutor(max_workers=self.num_threads) as executor:
-            futures = {}
-            while (self.urls_to_visit or futures) and not self.stop_crawl.is_set():
-                while len(futures) < self.num_threads and self.urls_to_visit and not self.stop_crawl.is_set():
-                    url, depth = self.urls_to_visit.popleft()
-                    print(f'[CRAWLER] To crawl: {url} (depth={depth})')
-                    if url not in self.visited_urls and self.should_crawl_url(url, depth):
-                        self.visited_urls.add(url)
-                        self.url_depths[url] = depth
-                        print(f"Submitting {url} for crawling (depth: {depth}). Saved: {self.output_manager.get_saved_file_count()}/{self.max_pages}")
-                        futures[executor.submit(self.extract_content, url, depth, self.delay)] = (url, depth)
-                if not futures:
-                    break
-                for future in as_completed(list(futures.keys())):
-                    url, depth = futures.pop(future, None)
-                    if url is None:
-                        continue
-                    try:
-                        content_data = future.result()
-                        if content_data:
-                            self.scraped_content.append(content_data)
-                            self.output_manager.save_markdown_file(
-                                content_data, self.lock, self.stop_crawl, len(self.visited_urls),
-                                thread_name=content_data.get('thread_name')
-                            )
-                            if content_data.get('success') and not self.stop_crawl.is_set():
-                                with self.lock:
-                                    if not self.stop_crawl.is_set():
-                                        for link in content_data['links']:
-                                            if link not in self.visited_urls and link not in [u for u, _ in self.urls_to_visit]:
-                                                print(f'[CRAWLER] Enqueue: {link} (depth={depth+1})')
-                                                self.urls_to_visit.append((link, depth + 1))
-                                    else:
-                                        pass
-                            elif self.stop_crawl.is_set() and content_data.get('success'):
-                                pass
-                    except Exception as e:
-                        print(f"Error processing result for {url}: {e}")
-        print(f"Crawling complete! Processed {len(self.visited_urls)} pages.")
+            # Start the crawler
+            self.crawler.start()
+
+        except Exception as e:
+            logger.error(f"Error during crawling: {e}")
+            raise
 
     def crawl(self):
         """Controls crawl plus post-crawl output generation."""
@@ -383,6 +515,69 @@ class DocCrawler:
             failed_pages=failed_pages_count,
             config_used=self.config
         )
+
+    def _get_allowed_domains(self) -> List[str]:
+        """Get the list of allowed domains for crawling."""
+        allowed_domains = set()
+
+        # Add the domain from url_prefix if it exists
+        if self.url_prefix:
+            try:
+                url_prefix_domain = urlparse(self.url_prefix).netloc
+                if url_prefix_domain:
+                    allowed_domains.add(url_prefix_domain)
+            except Exception as e:
+                logger.warning(f"Failed to parse url_prefix domain: {e}")
+
+        # Add the domain from the site URL
+        try:
+            site_domain = urlparse(self.base_url).netloc
+            if site_domain:
+                allowed_domains.add(site_domain)
+        except Exception as e:
+            logger.warning(f"Failed to parse site_url domain: {e}")
+
+        # If the site URL is from GitHub, add GitHub raw domain
+        if 'github.com' in allowed_domains:
+            allowed_domains.add('raw.githubusercontent.com')
+
+        # Add any extra allowed domains from config
+        extra_domains = self.config.get('site', {}).get('allowed_domains', [])
+        allowed_domains.update(extra_domains)
+
+        return list(allowed_domains)
+
+    def _get_crawler_settings(self) -> Dict:
+        """Get Scrapy crawler settings from config."""
+        settings = {
+            'USER_AGENT': self.config['crawling'].get('headers', {}).get('User-Agent', 'Mozilla/5.0'),
+            'DOWNLOAD_DELAY': self.delay,
+            'CONCURRENT_REQUESTS': self.num_threads,
+            'DOWNLOAD_TIMEOUT': self.config['crawling'].get('timeout', 10),
+            'LOG_LEVEL': 'INFO',
+            'COOKIES_ENABLED': False,
+            'ROBOTSTXT_OBEY': True,
+            'DOWNLOADER_MIDDLEWARES': {
+                'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+            }
+        }
+        return settings
+
+    def _is_allowed_url(self, url: str) -> bool:
+        """Check if a URL is allowed to be crawled based on domain restrictions."""
+        try:
+            parsed_url = urlparse(url)
+            url_domain = parsed_url.netloc
+
+            # Always allow the initial URL
+            if url == self.base_url:
+                return True
+
+            # Check if the URL is from an allowed domain
+            return url_domain in self.allowed_domains
+        except Exception as e:
+            logger.warning(f"Failed to check if URL is allowed: {e}")
+            return False
 
 # Removed load_config and create_sample_config functions as they are now in config_manager.py
 

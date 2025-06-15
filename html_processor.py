@@ -22,13 +22,13 @@ class HtmlProcessor:
 
     def is_valid_url(self, url: str, visited_urls: Set[str]) -> bool:
         """Check if URL is valid for crawling."""
-        # print(f"Checking validity of URL: {url}") # Debug print, can be removed or made conditional
         parsed = urllib.parse.urlparse(url)
 
-        # Only crawl URLs from allowed domains
-        allowed_domains = self.site_config.get('allowed_domains', [self.base_domain])
-        if parsed.netloc not in allowed_domains:
-            # print(f"URL {url} is not in allowed domains: {allowed_domains}")
+        # Allow empty netloc (relative links), or netloc in allowed_domains/base_domain/www.base_domain
+        allowed_domains = set(self.site_config.get('allowed_domains', []))
+        allowed_domains.add(self.base_domain)
+        allowed_domains.add('www.' + self.base_domain)
+        if parsed.netloc and parsed.netloc not in allowed_domains:
             return False
 
         # Skip certain file types
@@ -36,29 +36,24 @@ class HtmlProcessor:
             '.pdf', '.jpg', '.png', '.gif', '.css', '.js', '.svg', '.ico'
         ]))
         if any(url.lower().endswith(ext) for ext in skip_extensions):
-            # print(f"URL {url} ends with a skipped extension: {skip_extensions}")
             return False
 
         # Skip URLs matching exclude patterns
         exclude_patterns = self.crawling_config.get('exclude_patterns', [])
         for pattern in exclude_patterns:
             if re.search(pattern, url):
-                # print(f"URL {url} matches exclude pattern: {pattern}")
                 return False
 
         # Only include URLs matching include patterns (if specified)
         include_patterns = self.crawling_config.get('include_patterns', [])
         if include_patterns:
             if not any(re.search(pattern, url) for pattern in include_patterns):
-                # print(f"URL {url} does not match any include patterns: {include_patterns}")
                 return False
 
         # Skip anchor links to same page or already visited URLs
         if url in visited_urls:
-            # print(f"URL {url} has already been visited")
             return False
 
-        # print(f"URL {url} is valid for crawling")
         return True
 
     def normalize_url(self, url: str, base_url: str) -> str:
@@ -141,23 +136,16 @@ class HtmlProcessor:
                 break
 
         try:
-            # Create a new HTML2Text instance for thread safety
-            h = html2text.HTML2Text()
-            h.ignore_links = self.output_config.get('ignore_links', False)
-            h.ignore_images = self.output_config.get('ignore_images', False)
-            h.ignore_emphasis = False
-            h.body_width = 0  # Don't wrap lines
-
-            # Convert to markdown
-            markdown_content = h.handle(str(main_content_element))
+            # Use the configured html2text instance
+            markdown_content = self.h.handle(str(main_content_element))
             markdown_content = re.sub(r'\n{3,}', '\n\n', markdown_content).strip()
         except Exception as e:
             # Add detailed debug information
             print(f"Error during markdown conversion: {str(e)}")
-            print(f"HTML2Text instance: {type(h)}")
+            print(f"HTML2Text instance: {type(self.h)}")
             print(f"Main content element type: {type(main_content_element)}")
-            if hasattr(h, 'handle'):
-                print(f"HTML2Text.handle type: {type(h.handle)}")
+            if hasattr(self.h, 'handle'):
+                print(f"HTML2Text.handle type: {type(self.h.handle)}")
             else:
                 print("HTML2Text has no 'handle' method")
             raise

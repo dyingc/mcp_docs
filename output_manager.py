@@ -22,6 +22,8 @@ class OutputManager:
         self.summary_path = self.output_dir / "crawl_summary.json"
         # Load existing summary if it exists
         self.summary = self._load_summary()
+        # Initialize html_processor
+        self.html_processor = None  # Will be set by DocCrawler
 
     def _load_summary(self) -> Dict:
         """Load existing summary from JSON file if it exists."""
