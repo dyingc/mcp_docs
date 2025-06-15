@@ -42,18 +42,17 @@ link_processing:
   url_prefix: 'https://github.com/modelcontextprotocol/python-sdk/blob/main'
 output:
   dest_github_repo: git@github.com:dyingc/mcp_docs.git
-  directory: docs_output/mcp
+  directory: docs_output/mcp-python-sdk
   frontmatter:
     crawled_date: '2025-06-13'
-    source: mcp-docs
   ignore_images: false
   ignore_links: false
   llm_concurrency: 1
-  llms_doc_prefix: mcp
+  llms_doc_prefix: mcp-python-sdk
   llms_txt:
-    description: Complete MCP documentation for AI assistance
+    description: Complete MCP Python SDK documentation for AI assistance
     include_urls: true
-    title: MCP Documentation
+    title: MCP Python SDK Documentation
   minimal_size: 128
   output_llms_txt: true
 site:

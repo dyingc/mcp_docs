@@ -56,7 +56,6 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
             'directory': 'docs_output/mcp',
             'frontmatter': {
                 'crawled_date': f'{str(current_date)}',
-                'source': 'mcp-docs'
             },
             'ignore_images': False,
             'ignore_links': False,
