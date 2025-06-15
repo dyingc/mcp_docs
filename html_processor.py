@@ -62,11 +62,18 @@ class HtmlProcessor:
         return True
 
     def normalize_url(self, url: str, base_url: str) -> str:
-        """Normalize and resolve relative URLs."""
-        # Remove fragments
+        """
+        Normalize and resolve relative URLs.
+        - For URLs starting with '/', combine with the scheme and netloc of base_url
+        - In other cases, use urljoin(base_url, url)
+        """
         url = url.split('#')[0]
-        # Resolve relative URLs
-        return urllib.parse.urljoin(base_url, url)
+        parsed_base = urllib.parse.urlparse(base_url)
+        if url.startswith('/'):
+            # Combine with the scheme and netloc of base_url
+            return f"{parsed_base.scheme}://{parsed_base.netloc}{url}"
+        else:
+            return urllib.parse.urljoin(base_url, url)
 
     def extract_links(self, soup: BeautifulSoup, current_url: str, visited_urls: Set[str]) -> List[str]:
         """Extract all valid links from the page."""
@@ -78,9 +85,15 @@ class HtmlProcessor:
                 href = link_element.get('href')
                 if href:
                     full_url = self.normalize_url(href, current_url)
+                    # 日志：输出链接补全过程
+                    print(f'[HtmlProcessor] Found link: {href} -> {full_url}', end=' --> ')
                     # is_valid_url now needs visited_urls
                     if self.is_valid_url(full_url, visited_urls):
-                        links.append(full_url)
+                        print(f'Valid!')
+                        if full_url not in links:
+                            links.append(full_url)
+                    else:
+                        print(f'Invalid!')
         return links
 
     def clean_content_html(self, soup: BeautifulSoup) -> BeautifulSoup:

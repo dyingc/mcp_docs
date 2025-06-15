@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Dict, List, Callable, Any, Optional
 import threading
 import subprocess
+import os
 
 # To avoid circular dependency if get_llm or content_metadata_tool were here.
 # These will be passed in from doc_crawler.py.
@@ -29,9 +30,13 @@ class OutputManager:
             return False # Skipped saving
 
         parsed_url = urllib.parse.urlparse(content_data['url'])
+        if 'CLAUDE.md' in parsed_url.path:
+            pass
         path_parts = [part for part in parsed_url.path.split('/') if part]
         relative_path = '/'.join(path_parts)
-        filepath = self.output_dir / f"{relative_path}.md" if relative_path else self.output_dir / "index.md"
+        # filename = relative_path if relative_path.endswith(".md") else f"{relative_path}.md"
+        filename = relative_path if os.path.splitext(relative_path)[1] else f"{relative_path}.md"
+        filepath = self.output_dir / filename
 
         filepath.parent.mkdir(parents=True, exist_ok=True)
         markdown_content = f"# {content_data['title']}\n\n{content_data['content']}"

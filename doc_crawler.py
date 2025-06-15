@@ -23,6 +23,7 @@ from config_manager import load_config, create_sample_config
 from html_processor import HtmlProcessor
 from output_manager import OutputManager # Added import
 import os
+from urllib.parse import urljoin
 
 @tool("content_metadata_tool")
 def content_metadata_tool(title: str, description: str) -> str:
@@ -46,7 +47,7 @@ class DocCrawler:
         self.delay = config['crawling']['delay']
         self.max_pages = config['crawling']['max_pages']
         self.max_depth = config['crawling'].get('max_depth', 1)
-        self.url_prefix = config['crawling'].get('url_prefix', '')
+        self.url_prefix = config.get('link_processing', {}).get('url_prefix', '')
         if not self.url_prefix:
             # Set default prefix based on base URL
             parsed_url = urllib.parse.urlparse(self.base_url)
@@ -152,12 +153,28 @@ class DocCrawler:
         path_parts = parsed_url.path.split('/')
         return len(path_parts) >= 4 and path_parts[3] == 'tree'
 
-    def _get_github_raw_url(self, path: str) -> str:
-        """Convert GitHub URL to raw content URL."""
+    def _get_github_raw_url(self, file_url: str) -> str:
+        """
+        Convert a GitHub repository file page URL to a raw content URL.
+        Example:
+        https://github.com/org/repo/blob/main/xxx/yyy.md
+        -> https://raw.githubusercontent.com/org/repo/refs/heads/main/xxx/yyy.md
+        """
         if not self.is_github or not self.github_owner or not self.github_repo:
-            return path
+            return file_url
 
-        return f"https://raw.githubusercontent.com/{self.github_owner}/{self.github_repo}/{self.github_branch}/{path.lstrip('/')}"
+        # Parse the blob path
+        parsed_url = urllib.parse.urlparse(file_url)
+        path_parts = [p for p in parsed_url.path.split('/') if p]
+        # Structure: /org/repo/blob/branch/path/to/file
+        if len(path_parts) >= 5 and path_parts[2] == 'blob':
+            branch = path_parts[3]
+            file_path = '/'.join(path_parts[4:])
+            # Note: branch must be prefixed with refs/heads/
+            return f"https://raw.githubusercontent.com/{self.github_owner}/{self.github_repo}/refs/heads/{branch}/{file_path}"
+        else:
+            # Fallback
+            return file_url
 
     def _get_github_file_path(self, url: str) -> Optional[str]:
         """Extract file path from GitHub URL."""
@@ -205,6 +222,10 @@ class DocCrawler:
         if parsed_url.netloc not in self.allowed_domains:
             return False
 
+        # For the initial URL (depth 0), don't apply url_prefix restriction
+        if depth == 0:
+            return True
+
         if self.is_github:
             # For GitHub, check if it's a file URL and has allowed extension
             if self._is_github_file_url(url):
@@ -225,23 +246,20 @@ class DocCrawler:
             time.sleep(delay)
 
             if self.is_github and self._is_github_file_url(url):
-                # For GitHub files, fetch raw content
-                file_path = self._get_github_file_path(url)
-                if file_path:
-                    raw_url = self._get_github_raw_url(file_path)
-                    response = self.session.get(raw_url, timeout=self.config['crawling'].get('timeout', 10))
-                    response.raise_for_status()
-                    content = response.text
-                    title = os.path.basename(file_path)
-                    return {
-                        'url': url,
-                        'title': title,
-                        'content': content,
-                        'links': [],  # Raw files don't have links
-                        'depth': depth,
-                        'success': True,
-                        'thread_name': threading.current_thread().name
-                    }
+                raw_url = self._get_github_raw_url(url)
+                response = self.session.get(raw_url, timeout=self.config['crawling'].get('timeout', 10))
+                response.raise_for_status()
+                content = response.text
+                title = os.path.basename(url)
+                return {
+                    'url': url,
+                    'title': title,
+                    'content': content,
+                    'links': [],  # Raw files don't have links
+                    'depth': depth,
+                    'success': True,
+                    'thread_name': threading.current_thread().name
+                }
             else:
                 # Regular website or GitHub directory
                 response = self.session.get(url, timeout=self.config['crawling'].get('timeout', 10))
@@ -286,11 +304,31 @@ class DocCrawler:
     def crawl_site(self):
         """Perform only the crawling portion. Returns when crawling is complete."""
         print("Starting crawl process...")
+
+        # Always crawl the initial page first
+        print(f"Crawling initial page: {self.base_url}")
+        initial_content = self.extract_content(self.base_url, 0, self.delay)
+        if initial_content:
+            self.scraped_content.append(initial_content)
+            self.output_manager.save_markdown_file(
+                initial_content, self.lock, self.stop_crawl, len(self.visited_urls),
+                thread_name=initial_content.get('thread_name')
+            )
+            if initial_content.get('success') and not self.stop_crawl.is_set():
+                with self.lock:
+                    if not self.stop_crawl.is_set():
+                        for link in initial_content['links']:
+                            if link not in self.visited_urls and link not in [u for u, _ in self.urls_to_visit]:
+                                print(f'[CRAWLER] Enqueue: {link} (depth=1)')
+                                self.urls_to_visit.append((link, 1))
+
+        # Then proceed with the rest of the crawling
         with ThreadPoolExecutor(max_workers=self.num_threads) as executor:
             futures = {}
             while (self.urls_to_visit or futures) and not self.stop_crawl.is_set():
                 while len(futures) < self.num_threads and self.urls_to_visit and not self.stop_crawl.is_set():
                     url, depth = self.urls_to_visit.popleft()
+                    print(f'[CRAWLER] To crawl: {url} (depth={depth})')
                     if url not in self.visited_urls and self.should_crawl_url(url, depth):
                         self.visited_urls.add(url)
                         self.url_depths[url] = depth
@@ -315,6 +353,7 @@ class DocCrawler:
                                     if not self.stop_crawl.is_set():
                                         for link in content_data['links']:
                                             if link not in self.visited_urls and link not in [u for u, _ in self.urls_to_visit]:
+                                                print(f'[CRAWLER] Enqueue: {link} (depth={depth+1})')
                                                 self.urls_to_visit.append((link, depth + 1))
                                     else:
                                         pass
