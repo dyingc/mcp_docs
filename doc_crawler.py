@@ -22,6 +22,7 @@ from collections import deque
 from config_manager import load_config, create_sample_config
 from html_processor import HtmlProcessor
 from output_manager import OutputManager # Added import
+import os
 
 @tool("content_metadata_tool")
 def content_metadata_tool(title: str, description: str) -> str:
@@ -46,6 +47,16 @@ class DocCrawler:
         self.max_pages = config['crawling']['max_pages']
         self.max_depth = config['crawling'].get('max_depth', 1)
         self.url_prefix = config['crawling'].get('url_prefix', '')
+        if not self.url_prefix:
+            # Set default prefix based on base URL
+            parsed_url = urllib.parse.urlparse(self.base_url)
+            path_parts = parsed_url.path.split('/')
+            if len(path_parts) > 1:
+                self.url_prefix = f"{parsed_url.scheme}://{parsed_url.netloc}{'/'.join(path_parts[:-1])}"
+            else:
+                self.url_prefix = self.base_url
+        # Normalize URL prefix by removing trailing slash
+        self.url_prefix = self.url_prefix.rstrip('/')
         self.num_threads = config['crawling'].get('num_threads', 10)
         self.llm_concurrency = config['output'].get('llm_concurrency', 1)
         self.visited_urls: Set[str] = set()
@@ -54,6 +65,19 @@ class DocCrawler:
         self.urls_to_visit = deque([(self.base_url, 0)])  # (url, depth) pairs
         self.lock = threading.Lock()  # Lock for thread safety
         self.stop_crawl = threading.Event()  # Event to signal stopping the crawl
+
+        # GitHub specific settings
+        self.is_github = self._is_github_domain(self.domain)
+        if self.is_github:
+            self.github_owner = None
+            self.github_repo = None
+            self.github_branch = 'main'  # Default branch
+            self._parse_github_url(self.base_url)
+
+        # Update allowed domains to include the base domain
+        allowed_domains = set(config['site'].get('allowed_domains', []))
+        allowed_domains.add(self.domain)
+        self.allowed_domains = list(allowed_domains)
 
         # Instantiate HtmlProcessor
         self.html_processor = HtmlProcessor(
@@ -89,34 +113,151 @@ class DocCrawler:
         print(f"Max depth: {self.max_depth}")
         print(f"URL prefix: {self.url_prefix}")
         print(f"LLM concurrency: {self.llm_concurrency}")
+        print(f"Allowed domains: {self.allowed_domains}")
+        if self.is_github:
+            print(f"GitHub mode enabled for {self.github_owner}/{self.github_repo}")
+
+    def _parse_github_url(self, url: str) -> None:
+        """Parse GitHub URL to extract owner and repo."""
+        parsed_url = urllib.parse.urlparse(url)
+        path_parts = [p for p in parsed_url.path.split('/') if p]
+        if len(path_parts) >= 2:
+            self.github_owner = path_parts[0]
+            self.github_repo = path_parts[1]
+        else:
+            raise ValueError(f"Invalid GitHub URL format: {url}")
+
+    def _is_github_domain(self, domain: str) -> bool:
+        """Check if the domain is a GitHub domain."""
+        return domain in ['github.com', 'raw.githubusercontent.com']
+
+    def _is_github_url(self, url: str) -> bool:
+        """Check if URL is a GitHub URL."""
+        parsed_url = urllib.parse.urlparse(url)
+        return self._is_github_domain(parsed_url.netloc)
+
+    def _is_github_file_url(self, url: str) -> bool:
+        """Check if URL is a GitHub file URL."""
+        if not self._is_github_url(url):
+            return False
+        parsed_url = urllib.parse.urlparse(url)
+        path_parts = parsed_url.path.split('/')
+        return len(path_parts) >= 5 and path_parts[3] == 'blob'
+
+    def _is_github_tree_url(self, url: str) -> bool:
+        """Check if URL is a GitHub tree/directory URL."""
+        if not self._is_github_url(url):
+            return False
+        parsed_url = urllib.parse.urlparse(url)
+        path_parts = parsed_url.path.split('/')
+        return len(path_parts) >= 4 and path_parts[3] == 'tree'
+
+    def _get_github_raw_url(self, path: str) -> str:
+        """Convert GitHub URL to raw content URL."""
+        if not self.is_github or not self.github_owner or not self.github_repo:
+            return path
+
+        return f"https://raw.githubusercontent.com/{self.github_owner}/{self.github_repo}/{self.github_branch}/{path.lstrip('/')}"
+
+    def _get_github_file_path(self, url: str) -> Optional[str]:
+        """Extract file path from GitHub URL."""
+        if not self._is_github_file_url(url):
+            return None
+        parsed_url = urllib.parse.urlparse(url)
+        path_parts = parsed_url.path.split('/')
+        if len(path_parts) >= 5:
+            return '/'.join(path_parts[4:])
+        return None
+
+    def _normalize_url(self, url: str) -> str:
+        """
+        Normalize URL for comparison by:
+        1. Removing trailing slash
+        2. Ensuring consistent scheme (http vs https)
+        3. Removing any query parameters or fragments
+        """
+        parsed = urllib.parse.urlparse(url)
+        # Reconstruct URL without trailing slash, query, or fragment
+        normalized = urllib.parse.urlunparse((
+            parsed.scheme,
+            parsed.netloc,
+            parsed.path.rstrip('/'),
+            '',
+            '',
+            ''
+        ))
+        return normalized
+
+    def _url_matches_prefix(self, url: str) -> bool:
+        """
+        Check if URL matches the prefix, handling various URL formats.
+        """
+        normalized_url = self._normalize_url(url)
+        normalized_prefix = self._normalize_url(self.url_prefix)
+        return normalized_url.startswith(normalized_prefix)
 
     def should_crawl_url(self, url: str, depth: int) -> bool:
         """Check if a URL should be crawled based on depth and prefix rules."""
         if self.max_depth != -1 and depth > self.max_depth:
             return False
-        if self.url_prefix and not url.startswith(self.url_prefix):
+
+        parsed_url = urllib.parse.urlparse(url)
+        if parsed_url.netloc not in self.allowed_domains:
             return False
-        return True
+
+        if self.is_github:
+            # For GitHub, check if it's a file URL and has allowed extension
+            if self._is_github_file_url(url):
+                file_path = self._get_github_file_path(url)
+                if file_path:
+                    ext = os.path.splitext(file_path)[1].lower()
+                    return ext in self.config['crawling'].get('file_extensions', [])
+            # For directory URLs or root URL, check if they match the prefix
+            return self._url_matches_prefix(url)
+        else:
+            # For regular websites, just check the prefix
+            return self._url_matches_prefix(url)
 
     def extract_content(self, url: str, depth: int, delay: float) -> Dict:
         """Fetch page content and use HtmlProcessor to extract and convert it."""
         try:
             print(f"Crawling: {url} (depth: {depth})")
             time.sleep(delay)
-            response = self.session.get(url, timeout=self.config['crawling'].get('timeout', 10))
-            response.raise_for_status()
-            processed_data = self.html_processor.parse_and_extract_html_content(
-                response.text, url, self.visited_urls
-            )
-            return {
-                'url': url,
-                'title': processed_data['title'],
-                'content': processed_data['content'],
-                'links': processed_data['links'],
-                'depth': depth,
-                'success': True,
-                'thread_name': threading.current_thread().name
-            }
+
+            if self.is_github and self._is_github_file_url(url):
+                # For GitHub files, fetch raw content
+                file_path = self._get_github_file_path(url)
+                if file_path:
+                    raw_url = self._get_github_raw_url(file_path)
+                    response = self.session.get(raw_url, timeout=self.config['crawling'].get('timeout', 10))
+                    response.raise_for_status()
+                    content = response.text
+                    title = os.path.basename(file_path)
+                    return {
+                        'url': url,
+                        'title': title,
+                        'content': content,
+                        'links': [],  # Raw files don't have links
+                        'depth': depth,
+                        'success': True,
+                        'thread_name': threading.current_thread().name
+                    }
+            else:
+                # Regular website or GitHub directory
+                response = self.session.get(url, timeout=self.config['crawling'].get('timeout', 10))
+                response.raise_for_status()
+                processed_data = self.html_processor.parse_and_extract_html_content(
+                    response.text, url, self.visited_urls
+                )
+                return {
+                    'url': url,
+                    'title': processed_data['title'],
+                    'content': processed_data['content'],
+                    'links': processed_data['links'],
+                    'depth': depth,
+                    'success': True,
+                    'thread_name': threading.current_thread().name
+                }
         except requests.exceptions.RequestException as e:
             print(f"Request error crawling {url}: {str(e)}")
             return {
@@ -136,7 +277,6 @@ class DocCrawler:
                 'url': url,
                 'title': 'Error',
                 'content': f"Failed to crawl: {str(e)}",
-                'links': [],
                 'depth': depth,
                 'success': False
             }

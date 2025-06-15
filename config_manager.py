@@ -24,8 +24,8 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
 
     sample_config = {
         'site': {
-            'url': 'https://docs.n8n.io/',
-            'name': 'n8n Documentation',
+            'url': 'https://github.com/modelcontextprotocol/python-sdk',
+            'name': 'MCP Python SDK Documentation',
             'allowed_domains': ['docs.n8n.io'],
             'start_urls': [],
             'title_selectors': ['title', 'h1', '.page-title'],
@@ -56,7 +56,8 @@ def create_sample_config(filename: str = "crawler_config.yaml"):
                 r'/login',
                 r'/logout'
             ],
-            'include_patterns': []
+            'include_patterns': [],
+            'file_extensions': ['.md', '.rst', '.txt', '.py', '.js', '.ts', '.html', '.css', '.json', '.yaml', '.yml']
         },
         'output': {
             'directory': 'docs_output/n8n',
