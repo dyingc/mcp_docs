@@ -19,6 +19,44 @@ class OutputManager:
         self.content_metadata_tool_func = content_metadata_tool_func
         self.get_llm_func = get_llm_func
         self.saved_file_count = 0
+        self.summary_path = self.output_dir / "crawl_summary.json"
+        # Load existing summary if it exists
+        self.summary = self._load_summary()
+
+    def _load_summary(self) -> Dict:
+        """Load existing summary from JSON file if it exists."""
+        if self.summary_path.exists():
+            try:
+                with open(self.summary_path, 'r', encoding='utf-8') as f:
+                    summary = json.load(f)
+                    # Ensure saved_files exists
+                    if 'saved_files' not in summary:
+                        summary['saved_files'] = []
+                    return summary
+            except (json.JSONDecodeError, IOError) as e:
+                print(f"Error loading summary file: {e}")
+                # Return default summary if file is corrupted
+                return self._get_default_summary()
+        return self._get_default_summary()
+
+    def _get_default_summary(self) -> Dict:
+        """Return a default summary dictionary."""
+        return {
+            'base_url': '',
+            'pages_crawled': 0,
+            'successful_pages': 0,
+            'failed_pages': 0,
+            'saved_files': [],
+            'config_used': {}
+        }
+
+    def _save_summary(self):
+        """Save current summary to JSON file."""
+        # Ensure saved_files exists before saving
+        if 'saved_files' not in self.summary:
+            self.summary['saved_files'] = []
+        with open(self.summary_path, 'w', encoding='utf-8') as f:
+            json.dump(self.summary, f, indent=2)
 
     def save_markdown_file(self, content_data: Dict, lock: threading.Lock, stop_crawl_event: threading.Event, current_visited_count: int, thread_name: Optional[str] = None) -> bool:
         """
@@ -54,6 +92,18 @@ class OutputManager:
                     file_saved_this_call = True
                     with open(filepath, 'w', encoding='utf-8') as f:
                         f.write(markdown_content)
+
+                    # Add file info to summary
+                    file_info = {
+                        'url': content_data['url'],
+                        'title': content_data['title'],
+                        'filepath': str(filepath.relative_to(self.output_dir)),
+                        'size': len(markdown_content.encode('utf-8')),
+                        'depth': content_data.get('depth', 0)
+                    }
+                    self.summary['saved_files'].append(file_info)
+                    self._save_summary()
+
                     # Use current_visited_count for the print statement
                     thread_id_to_print = thread_name if thread_name else threading.current_thread().name
                     print(f"Saved ({self.saved_file_count}/{current_visited_count}) [Thread: {thread_id_to_print}]: {filepath}")
@@ -106,7 +156,20 @@ class OutputManager:
         print("\n\nCreating llms.txt index (OutputManager)...")
 
         llms_txt_path = self.output_dir / f"{llms_doc_prefix}llms.txt"
-        md_files = list(self.output_dir.rglob("*.md"))
+
+        # Read saved files from summary
+        if not self.summary_path.exists():
+            print("No crawl summary found. Please run the crawler first.")
+            return
+
+        with open(self.summary_path, 'r', encoding='utf-8') as f:
+            summary = json.load(f)
+
+        saved_files = summary.get('saved_files', [])
+        if not saved_files:
+            print("No saved files found in crawl summary.")
+            return
+
         lines = []
         tool_list = [self.content_metadata_tool_func]
         llm = self.get_llm_func().bind_tools(tool_list)
@@ -115,27 +178,28 @@ class OutputManager:
         git_branch = self.get_current_git_branch() if dest_github_repo else None
         llm_concurrency = self.output_config.get('llm_concurrency', 1)
 
-        def process_file(md_file):
-            if md_file.name == f"{llms_doc_prefix}llms.txt":
+        def process_file(file_info):
+            filepath = self.output_dir / file_info['filepath']
+            if filepath.name == f"{llms_doc_prefix}llms.txt":
                 return None
 
-            print(f"Processing for llms.txt: {md_file}", end='')
+            print(f"Processing for llms.txt: {filepath}", end='')
 
-            with open(md_file, 'r', encoding='utf-8') as f:
+            with open(filepath, 'r', encoding='utf-8') as f:
                 content = f.read()
 
-            title, desc = self._summarize_and_title_for_llms(llm, content, md_file.name)
+            title, desc = self._summarize_and_title_for_llms(llm, content, filepath.name)
 
             if dest_github_repo and git_branch:
                 # Extract username and repo from dest_github_repo string
                 match = re.search(r"(?:github.com[/:])([^/]+)/([^/.]+)", dest_github_repo)
                 if match:
                     username, repo = match.group(1), match.group(2)
-                    file_url = self.get_github_raw_url(username, repo, git_branch, str(md_file))
+                    file_url = self.get_github_raw_url(username, repo, git_branch, str(filepath))
                 else:
-                    file_url = str(md_file)
+                    file_url = str(filepath)
             else:
-                file_url = str(md_file)
+                file_url = str(filepath)
 
             print(": Done")
             return f"- [{title}]({file_url}): {desc}"
@@ -144,15 +208,15 @@ class OutputManager:
         if llm_concurrency > 1:
             from concurrent.futures import ThreadPoolExecutor
             with ThreadPoolExecutor(max_workers=llm_concurrency) as executor:
-                futures = [executor.submit(process_file, md_file) for md_file in sorted(md_files)]
+                futures = [executor.submit(process_file, file_info) for file_info in saved_files]
                 for future in futures:
                     result = future.result()
                     if result:
                         lines.append(result)
         else:
             # Sequential processing
-            for md_file in sorted(md_files):
-                result = process_file(md_file)
+            for file_info in saved_files:
+                result = process_file(file_info)
                 if result:
                     lines.append(result)
 
@@ -206,14 +270,12 @@ class OutputManager:
 
     def save_crawl_summary(self, base_url: str, pages_crawled: int, successful_pages: int, failed_pages: int, config_used: Dict):
         """Save crawl summary to a JSON file."""
-        summary = {
+        self.summary.update({
             'base_url': base_url,
             'pages_crawled': pages_crawled,
             'successful_pages': successful_pages,
             'failed_pages': failed_pages,
             'config_used': config_used
-        }
-        summary_path = self.output_dir / "crawl_summary.json"
-        with open(summary_path, 'w', encoding='utf-8') as f:
-            json.dump(summary, f, indent=2)
-        print(f"Saved crawl summary to {summary_path} (OutputManager).")
+        })
+        self._save_summary()
+        print(f"Saved crawl summary to {self.summary_path} (OutputManager).")

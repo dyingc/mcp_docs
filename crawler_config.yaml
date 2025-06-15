@@ -1,5 +1,5 @@
 crawling:
-  crawl: true
+  crawl: false
   delay: 1
   exclude_patterns:
   - /api/
@@ -54,8 +54,8 @@ output:
     description: Complete MCP documentation for AI assistance
     include_urls: true
     title: MCP Documentation
-  minimal_size: 512
-  output_llms_txt: false
+  minimal_size: 128
+  output_llms_txt: true
 site:
   allowed_domains:
   - github.com

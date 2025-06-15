@@ -415,7 +415,10 @@ def main():
         crawler = DocCrawler(config)
         crawler.crawl()
     except Exception as e:
-        print(f"Error: {e}")
+        import traceback
+        print("Full traceback:")
+        print(traceback.format_exc())
+        # print(f"Error: {e}")
 
 if __name__ == "__main__":
     main()
