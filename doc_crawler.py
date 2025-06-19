@@ -136,7 +136,7 @@ class DocSpider(Spider):
         self.stop_crawl = threading.Event()
         self.html_processor = output_manager.html_processor if output_manager else None
         self.should_crawl_url = should_crawl_url
-        self.doc_crawler = doc_crawler  # New: save DocCrawler instance
+        self.doc_crawler = doc_crawler
 
     def parse(self, response):
         with self.lock:
@@ -149,16 +149,18 @@ class DocSpider(Spider):
             self.visited_urls.add(current_url)
 
         current_url = response.url
-        # 优先处理 GitHub 文件页面，直接调用 extract_content 并保存
         is_github_blob = False
+        is_github_tree = False
         github_helper = None
         if self.doc_crawler and self.doc_crawler.github_helper:
             github_helper = self.doc_crawler.github_helper
             is_github_blob = github_helper.is_github_file_url(current_url)
+            is_github_tree = github_helper.is_github_tree_url(current_url)
+
+        # Scrapy 官方会在 Request.meta['depth'] 维护递归深度
+        depth = response.meta.get('depth', 0)
 
         if is_github_blob:
-            # Call extract_content to download raw, save as markdown, do not use html_processor
-            depth = response.meta.get('depth', 0)
             extracted = self.doc_crawler.extract_content(current_url, depth, self.delay if self.delay else 0)
             content = extracted.get('content', '')
             title = extracted.get('title', os.path.basename(current_url))
@@ -184,10 +186,24 @@ class DocSpider(Spider):
                 logger.warning(f"No content extracted from {current_url}")
                 if self.output_manager:
                     self.output_manager.add_failed_page(current_url)
-            # Links from github raw 页面无需 follow
             return
 
-        # 普通网页流程保持原样
+        if is_github_tree:
+            logger.info(f"Processing github tree page (not saving): {current_url}")
+            html = response.text
+            links = []
+            if self.html_processor:
+                processed = self.html_processor.parse_and_extract_html_content(
+                    html, current_url, self.visited_urls
+                )
+                links = processed['links']
+            for link in links:
+                # 不设置 meta，Scrapy 会自动 +1 传递 depth
+                if link not in self.visited_urls and (self.should_crawl_url is None or self.should_crawl_url(link, depth+1)):
+                    logger.info(f"Following link: {link}")
+                    yield response.follow(link, self.parse)
+            return
+
         html = response.text
         if self.html_processor:
             processed = self.html_processor.parse_and_extract_html_content(
@@ -201,7 +217,6 @@ class DocSpider(Spider):
             title = current_url.split('/')[-1] or 'index'
             links = []
 
-        depth = response.meta.get('depth', 0)
         if content:
             logger.info(f"Extracted content from {current_url}")
             content_data = {
@@ -225,10 +240,9 @@ class DocSpider(Spider):
                 self.output_manager.add_failed_page(current_url)
 
         for link in links:
-            # 增加 should_crawl_url 判断
             if link not in self.visited_urls and (self.should_crawl_url is None or self.should_crawl_url(link, depth+1)):
                 logger.info(f"Following link: {link}")
-                yield response.follow(link, self.parse, meta={'depth': depth+1})
+                yield response.follow(link, self.parse)
 
 class DocCrawler:
     def __init__(self, config: Dict):
@@ -297,7 +311,8 @@ class DocCrawler:
         return normalized_url.startswith(normalized_prefix)
 
     def should_crawl_url(self, url: str, depth: int) -> bool:
-        if self.max_depth != -1 and depth > self.max_depth:
+        # Only apply max_depth when >=0. If max_depth < 0, allow unlimited depth.
+        if self.max_depth >= 0 and depth > self.max_depth:
             return False
         parsed_url = urlparse(url)
         if parsed_url.netloc not in self.allowed_domains:
@@ -316,7 +331,7 @@ class DocCrawler:
 
     def extract_content(self, url: str, depth: int, delay: float) -> Dict:
         try:
-            logger.info(f"\n\n\n\nCrawling: {url} (depth: {depth})\n\n\n\n")
+            logger.info(f"Crawling: {url} (depth: {depth})")
             time.sleep(delay)
             if self.is_github and self.github_helper and self.github_helper.is_github_file_url(url):
                 raw_url = self.github_helper.get_github_raw_url(url)
@@ -383,7 +398,6 @@ class DocCrawler:
                 raise ValueError("No start URLs configured")
             allowed_domains = self._get_allowed_domains()
             self.crawler = CrawlerProcess(self._get_crawler_settings())
-            # 传递 doc_crawler 参数
             self.crawler.crawl(
                 DocSpider,
                 start_urls=start_urls,
@@ -403,8 +417,8 @@ class DocCrawler:
                 timeout=self.config['crawling'].get('timeout', 10),
                 headers=self.config['crawling'].get('headers', {}),
                 output_manager=self.output_manager,
-                should_crawl_url=self.should_crawl_url,  # 注入过滤函数
-                doc_crawler=self  # 注入自身
+                should_crawl_url=self.should_crawl_url,
+                doc_crawler=self
             )
             self.crawler.start()
         except Exception as e:
@@ -419,18 +433,16 @@ class DocCrawler:
             logger.info("Skipping crawling stage due to crawling:crawl = false in config.")
         if self.config.get('output', {}).get('output_llms_txt', False):
             self.output_manager.create_llms_txt()
-        # Save crawl summary with actual failed pages count
         self.output_manager.save_crawl_summary(
             base_url=self.base_url,
             pages_crawled=self.max_pages,
             successful_pages=self.max_pages,
-            failed_pages=self.output_manager.get_failed_pages_count(),  # Accurate failed page count
+            failed_pages=self.output_manager.get_failed_pages_count(),
             config_used=self.config
         )
 
     def _get_allowed_domains(self) -> List[str]:
         allowed_domains = set()
-        # url_prefix domain
         if self.url_prefix:
             try:
                 url_prefix_domain = urlparse(self.url_prefix).netloc
@@ -438,17 +450,14 @@ class DocCrawler:
                     allowed_domains.add(url_prefix_domain)
             except Exception as e:
                 logger.warning(f"Failed to parse url_prefix domain: {e}")
-        # site_url domain
         try:
             site_domain = urlparse(self.base_url).netloc
             if site_domain:
                 allowed_domains.add(site_domain)
         except Exception as e:
             logger.warning(f"Failed to parse site_url domain: {e}")
-        # If the site URL is from GitHub, add GitHub raw domain
         if 'github.com' in allowed_domains:
             allowed_domains.add('raw.githubusercontent.com')
-        # Add any extra allowed domains from config
         extra_domains = self.config.get('site', {}).get('allowed_domains', [])
         allowed_domains.update(extra_domains)
         return list(allowed_domains)

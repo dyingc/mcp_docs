@@ -3,6 +3,9 @@ import re
 from typing import List, Dict, Set
 from bs4 import BeautifulSoup
 import html2text
+import logging
+
+logger = logging.getLogger(__name__)
 
 class HtmlProcessor:
     def __init__(self, site_config: Dict, crawling_config: Dict, output_config: Dict, base_domain: str):
@@ -80,15 +83,13 @@ class HtmlProcessor:
                 href = link_element.get('href')
                 if href:
                     full_url = self.normalize_url(href, current_url)
-                    # 日志：输出链接补全过程
-                    print(f'[HtmlProcessor] Found link: {href} -> {full_url}', end=' --> ')
                     # is_valid_url now needs visited_urls
                     if self.is_valid_url(full_url, visited_urls):
-                        print(f'Valid!')
+                        logger.info(f'[HtmlProcessor] Found link: {href} -> {full_url} --> Valid!')
                         if full_url not in links:
                             links.append(full_url)
                     else:
-                        print(f'Invalid!')
+                        logger.warning(f'[HtmlProcessor] Found link: {href} -> {full_url} --> Invalid!')
         return links
 
     def clean_content_html(self, soup: BeautifulSoup) -> BeautifulSoup:
@@ -141,13 +142,13 @@ class HtmlProcessor:
             markdown_content = re.sub(r'\n{3,}', '\n\n', markdown_content).strip()
         except Exception as e:
             # Add detailed debug information
-            print(f"Error during markdown conversion: {str(e)}")
-            print(f"HTML2Text instance: {type(self.h)}")
-            print(f"Main content element type: {type(main_content_element)}")
+            logger.error(f"Error during markdown conversion: {str(e)}")
+            logger.error(f"HTML2Text instance: {type(self.h)}")
+            logger.error(f"Main content element type: {type(main_content_element)}")
             if hasattr(self.h, 'handle'):
-                print(f"HTML2Text.handle type: {type(self.h.handle)}")
+                logger.error(f"HTML2Text.handle type: {type(self.h.handle)}")
             else:
-                print("HTML2Text has no 'handle' method")
+                logger.error("HTML2Text has no 'handle' method")
             raise
 
         # Extract links from the original soup (before content-specific cleaning, but after general cleaning if any)
