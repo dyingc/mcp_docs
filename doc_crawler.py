@@ -198,7 +198,8 @@ class DocSpider(Spider):
                 )
                 links = processed['links']
             for link in links:
-                # 不设置 meta，Scrapy 会自动 +1 传递 depth
+                # 调试：打印所有即将递归的链接
+                logger.info(f"[DEBUG] Will follow from tree: {link}")
                 if link not in self.visited_urls and (self.should_crawl_url is None or self.should_crawl_url(link, depth+1)):
                     logger.info(f"Following link: {link}")
                     yield response.follow(link, self.parse)
@@ -320,12 +321,15 @@ class DocCrawler:
         if depth == 0:
             return True
         if self.is_github and self.github_helper:
+            # 允许所有 tree 页面和所有允许扩展名的 blob 文件页面
+            if self.github_helper.is_github_tree_url(url):
+                return self._url_matches_prefix(url)
             if self.github_helper.is_github_file_url(url):
                 file_path = self.github_helper.get_github_file_path(url)
                 if file_path:
                     ext = os.path.splitext(file_path)[1].lower()
                     return ext in self.config['crawling'].get('file_extensions', [])
-            return self._url_matches_prefix(url)
+            return False
         else:
             return self._url_matches_prefix(url)
 

@@ -1,0 +1,463 @@
+{
+  "base_url": "https://github.com/radareorg/r2ai/tree/master",
+  "pages_crawled": -1,
+  "successful_pages": -1,
+  "failed_pages": 0,
+  "saved_files": [
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/README.md",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/.github/workflows/ci.yml",
+      "title": "ci.yml",
+      "filepath": "radareorg/r2ai/blob/master/.github/workflows/ci.yml",
+      "size": 2509,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/.github/workflows/releases.yml",
+      "title": "releases.yml",
+      "filepath": "radareorg/r2ai/blob/master/.github/workflows/releases.yml",
+      "size": 374,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/src/README.md",
+      "size": 3520,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/vdb_embed.inc.c",
+      "title": "vdb_embed.inc.c",
+      "filepath": "radareorg/r2ai/blob/master/src/vdb_embed.inc.c",
+      "size": 4535,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/vdb.c",
+      "title": "vdb.c",
+      "filepath": "radareorg/r2ai/blob/master/src/vdb.c",
+      "size": 6758,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/tools.c",
+      "title": "tools.c",
+      "filepath": "radareorg/r2ai/blob/master/src/tools.c",
+      "size": 17210,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/segment.c",
+      "title": "segment.c",
+      "filepath": "radareorg/r2ai/blob/master/src/segment.c",
+      "size": 819,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/r_vdb.h",
+      "title": "r_vdb.h",
+      "filepath": "radareorg/r2ai/blob/master/src/r_vdb.h",
+      "size": 1507,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/r2ai_http.c",
+      "title": "r2ai_http.c",
+      "filepath": "radareorg/r2ai/blob/master/src/r2ai_http.c",
+      "size": 19332,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/r2ai.h",
+      "title": "r2ai.h",
+      "filepath": "radareorg/r2ai/blob/master/src/r2ai.h",
+      "size": 6778,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/r2ai.c",
+      "title": "r2ai.c",
+      "filepath": "radareorg/r2ai/blob/master/src/r2ai.c",
+      "size": 29893,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/openai.c",
+      "title": "openai.c",
+      "filepath": "radareorg/r2ai/blob/master/src/openai.c",
+      "size": 12841,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/messages.c",
+      "title": "messages.c",
+      "filepath": "radareorg/r2ai/blob/master/src/messages.c",
+      "size": 20882,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/server/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/server/README.md",
+      "size": 935,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/py/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/py/README.md",
+      "size": 5557,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/openapiproxy/vdb.ts",
+      "title": "vdb.ts",
+      "filepath": "radareorg/r2ai/blob/master/openapiproxy/vdb.ts",
+      "size": 7291,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/examples/translator.txt",
+      "title": "translator.txt",
+      "filepath": "radareorg/r2ai/blob/master/examples/translator.txt",
+      "size": 291,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/doc/usage-kobold.md",
+      "title": "usage-kobold.md",
+      "filepath": "radareorg/r2ai/blob/master/doc/usage-kobold.md",
+      "size": 542,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/doc/prompts.txt",
+      "title": "prompts.txt",
+      "filepath": "radareorg/r2ai/blob/master/doc/prompts.txt",
+      "size": 951,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/decai/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/decai/README.md",
+      "size": 5516,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/Attic/r2ai.ts",
+      "title": "r2ai.ts",
+      "filepath": "radareorg/r2ai/blob/master/Attic/r2ai.ts",
+      "size": 1442,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/Attic/nltk.py",
+      "title": "nltk.py",
+      "filepath": "radareorg/r2ai/blob/master/Attic/nltk.py",
+      "size": 934,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/Attic/nl.py",
+      "title": "nl.py",
+      "filepath": "radareorg/r2ai/blob/master/Attic/nl.py",
+      "size": 433,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/Attic/llmcom.py",
+      "title": "llmcom.py",
+      "filepath": "radareorg/r2ai/blob/master/Attic/llmcom.py",
+      "size": 673,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/Attic/README.md",
+      "title": "README.md",
+      "filepath": "radareorg/r2ai/blob/master/Attic/README.md",
+      "size": 2055,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/doc/prompt-voice2cmd.md",
+      "title": "prompt-voice2cmd.md",
+      "filepath": "radareorg/r2ai/blob/master/doc/prompt-voice2cmd.md",
+      "size": 1247,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/examples/socialai.py",
+      "title": "socialai.py",
+      "filepath": "radareorg/r2ai/blob/master/examples/socialai.py",
+      "size": 2068,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/examples/gitci.py",
+      "title": "gitci.py",
+      "filepath": "radareorg/r2ai/blob/master/examples/gitci.py",
+      "size": 519,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/examples/gemini.py",
+      "title": "gemini.py",
+      "filepath": "radareorg/r2ai/blob/master/examples/gemini.py",
+      "size": 219,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/examples/funcall.py",
+      "title": "funcall.py",
+      "filepath": "radareorg/r2ai/blob/master/examples/funcall.py",
+      "size": 3298,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/examples/explain.py",
+      "title": "explain.py",
+      "filepath": "radareorg/r2ai/blob/master/examples/explain.py",
+      "size": 290,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/examples/autocomment.py",
+      "title": "autocomment.py",
+      "filepath": "radareorg/r2ai/blob/master/examples/autocomment.py",
+      "size": 243,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/openapiproxy/server.ts",
+      "title": "server.ts",
+      "filepath": "radareorg/r2ai/blob/master/openapiproxy/server.ts",
+      "size": 2017,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/markdown.h",
+      "title": "markdown.h",
+      "filepath": "radareorg/r2ai/blob/master/src/markdown.h",
+      "size": 1538,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/markdown.c",
+      "title": "markdown.c",
+      "filepath": "radareorg/r2ai/blob/master/src/markdown.c",
+      "size": 8609,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/indent.py",
+      "title": "indent.py",
+      "filepath": "radareorg/r2ai/blob/master/src/indent.py",
+      "size": 1073,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/auto.c",
+      "title": "auto.c",
+      "filepath": "radareorg/r2ai/blob/master/src/auto.c",
+      "size": 13116,
+      "depth": 2
+    },
+    {
+      "url": "https://github.com/radareorg/r2ai/blob/master/src/anthropic.c",
+      "title": "anthropic.c",
+      "filepath": "radareorg/r2ai/blob/master/src/anthropic.c",
+      "size": 9953,
+      "depth": 2
+    }
+  ],
+  "config_used": {
+    "crawling": {
+      "crawl": false,
+      "delay": 1,
+      "exclude_patterns": [
+        "/api/",
+        "/search",
+        "\\.xml$",
+        "/login",
+        "/logout"
+      ],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)"
+      },
+      "include_patterns": [],
+      "max_depth": -1,
+      "max_pages": -1,
+      "num_threads": 20,
+      "skip_extensions": [
+        ".pdf",
+        ".jpg",
+        ".png",
+        ".gif",
+        ".css",
+        ".js",
+        ".svg",
+        ".ico",
+        ".json",
+        ".xml",
+        ".yaml"
+      ],
+      "timeout": 10,
+      "file_extensions": [
+        ".md",
+        ".rst",
+        ".txt",
+        ".py",
+        ".js",
+        ".ts",
+        ".html",
+        ".css",
+        ".json",
+        ".yaml",
+        ".yml",
+        ".c",
+        ".h"
+      ]
+    },
+    "link_processing": {
+      "url_prefix": "https://github.com/radareorg/r2ai/tree/master/"
+    },
+    "output": {
+      "dest_github_repo": "git@github.com:dyingc/mcp_docs.git",
+      "directory": "docs_output/r2ai",
+      "frontmatter": {
+        "crawled_date": "2025-06-18"
+      },
+      "ignore_images": false,
+      "ignore_links": false,
+      "llm_concurrency": 4,
+      "llms_doc_prefix": "r2ai",
+      "llms_txt": {
+        "description": "MCP Documentation for r2ai Radare2 plugin",
+        "include_urls": true,
+        "title": "r2ai Documentation"
+      },
+      "minimal_size": 128,
+      "output_llms_txt": true
+    },
+    "site": {
+      "allowed_domains": [],
+      "content_selectors": [
+        "main",
+        "article",
+        ".content",
+        ".documentation"
+      ],
+      "link_selectors": [
+        "a[href]"
+      ],
+      "name": "ReAI R2 Documentation",
+      "remove_selectors": [
+        "nav",
+        "header",
+        "footer",
+        ".navbar",
+        ".nav",
+        ".sidebar",
+        ".menu",
+        ".breadcrumb",
+        ".pagination",
+        "script",
+        "style",
+        "noscript",
+        ".search-box"
+      ],
+      "start_urls": [],
+      "title_selectors": [
+        "title",
+        "h1",
+        ".page-title"
+      ],
+      "url": "https://github.com/radareorg/r2ai/tree/master"
+    }
+  }
+}

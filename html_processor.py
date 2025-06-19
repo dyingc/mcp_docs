@@ -78,18 +78,70 @@ class HtmlProcessor:
         links = []
         link_selectors = self.site_config.get('link_selectors', ['a'])
 
+        # 优先提取 GitHub 的 blob 和 tree 链接
+        github_blob_tree_links = []
+
+        # 检查是否是 GitHub 目录页面，如果是则从 JSON 数据中提取文件链接
+        if 'github.com' in current_url and '/tree/' in current_url:
+            # 查找包含文件信息的 JSON 数据
+            script_tags = soup.find_all('script', type='application/json')
+            for script in script_tags:
+                if script.get('data-target') == 'react-app.embeddedData':
+                    try:
+                        import json
+                        data = json.loads(script.string)
+                        if 'payload' in data and 'tree' in data['payload'] and 'items' in data['payload']['tree']:
+                            items = data['payload']['tree']['items']
+                            for item in items:
+                                if item.get('contentType') == 'file':
+                                    # 构建 blob 链接
+                                    file_path = item.get('path', '')
+                                    if file_path:
+                                        # 从当前 URL 提取 owner/repo/branch 信息
+                                        url_parts = current_url.split('/')
+                                        if len(url_parts) >= 6:
+                                            owner = url_parts[3]
+                                            repo = url_parts[4]
+                                            branch = url_parts[6]
+                                            blob_url = f"https://github.com/{owner}/{repo}/blob/{branch}/{file_path}"
+                                            if self.is_valid_url(blob_url, visited_urls):
+                                                logger.info(f'[HtmlProcessor] Found GitHub file from JSON: {file_path} -> {blob_url} --> Valid!')
+                                                if blob_url not in github_blob_tree_links:
+                                                    github_blob_tree_links.append(blob_url)
+                                            else:
+                                                logger.warning(f'[HtmlProcessor] Found GitHub file from JSON: {file_path} -> {blob_url} --> Invalid!')
+                    except (json.JSONDecodeError, KeyError, IndexError) as e:
+                        logger.warning(f'[HtmlProcessor] Failed to parse GitHub JSON data: {e}')
+                        continue
+
+        # 提取传统的 a 标签中的 blob 和 tree 链接
+        for link_element in soup.find_all('a', href=True):
+            href = link_element.get('href')
+            if href and ('/blob/' in href or '/tree/' in href):
+                full_url = self.normalize_url(href, current_url)
+                if self.is_valid_url(full_url, visited_urls):
+                    logger.info(f'[HtmlProcessor] Found GitHub blob/tree link: {href} -> {full_url} --> Valid!')
+                    if full_url not in github_blob_tree_links:
+                        github_blob_tree_links.append(full_url)
+                else:
+                    logger.warning(f'[HtmlProcessor] Found GitHub blob/tree link: {href} -> {full_url} --> Invalid!')
+
+        # 提取其他普通链接
+        other_links = []
         for selector in link_selectors:
             for link_element in soup.select(selector):
                 href = link_element.get('href')
-                if href:
+                if href and not ('/blob/' in href or '/tree/' in href):
                     full_url = self.normalize_url(href, current_url)
-                    # is_valid_url now needs visited_urls
                     if self.is_valid_url(full_url, visited_urls):
                         logger.info(f'[HtmlProcessor] Found link: {href} -> {full_url} --> Valid!')
-                        if full_url not in links:
-                            links.append(full_url)
+                        if full_url not in other_links:
+                            other_links.append(full_url)
                     else:
                         logger.warning(f'[HtmlProcessor] Found link: {href} -> {full_url} --> Invalid!')
+
+        # 优先返回 GitHub blob/tree 链接，然后返回其他链接
+        links = github_blob_tree_links + other_links
         return links
 
     def clean_content_html(self, soup: BeautifulSoup) -> BeautifulSoup:
