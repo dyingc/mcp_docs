@@ -1,0 +1,89 @@
+crawling:
+  crawl: false
+  delay: 1
+  exclude_patterns:
+  - /api/
+  - /search
+  - \.xml$
+  - /login
+  - /logout
+  headers:
+    User-Agent: Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)
+  include_patterns: []
+  max_depth: 1
+  max_pages: -1
+  num_threads: 20
+  skip_extensions:
+  - .pdf
+  - .jpg
+  - .png
+  - .gif
+  - .css
+  - .js
+  - .svg
+  - .ico
+  - .json
+  - .xml
+  - .yaml
+  timeout: 10
+  file_extensions:
+  - .md
+  - .rst
+  - .txt
+  - .py
+  - .js
+  - .ts
+  - .html
+  - .css
+  - .json
+  - .yaml
+  - .yml
+  - .c
+  - .h
+link_processing:
+  url_prefix: 'https://github.com/radareorg/r2ai'
+output:
+  dest_github_repo: git@github.com:dyingc/mcp_docs.git
+  directory: docs_output/r2ai
+  frontmatter:
+    crawled_date: '2025-06-18'
+  ignore_images: false
+  ignore_links: false
+  llm_concurrency: 1
+  llms_doc_prefix: r2ai
+  llms_txt:
+    description: MCP Documentation for r2ai Radare2 plugin
+    include_urls: true
+    title: r2ai Documentation
+  minimal_size: 128
+  output_llms_txt: true
+site:
+  allowed_domains: []  # Extra allowed domains beyond the base URL and GitHub domains
+  content_selectors:
+  - main
+  - article
+  - .content
+  - .documentation
+  link_selectors:
+  - a[href]
+  name: ReAI R2 Documentation
+  remove_selectors:
+  - nav
+  - header
+  - footer
+  - .navbar
+  - .nav
+  - .sidebar
+  - .menu
+  - .breadcrumb
+  - .pagination
+  - script
+  - style
+  - noscript
+  - .search-box
+  start_urls: []
+  title_selectors:
+  - title
+  - h1
+  - .page-title
+  url: https://github.com/radareorg/r2ai/tree/master

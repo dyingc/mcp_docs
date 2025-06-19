@@ -25,6 +25,9 @@ class OutputManager:
         # Initialize html_processor
         self.html_processor = None  # Will be set by DocCrawler
 
+        # Store failed pages for counting (added for failed page stat tracking)
+        self.failed_pages_list = []
+
     def _load_summary(self) -> Dict:
         """Load existing summary from JSON file if it exists."""
         if self.summary_path.exists():
@@ -125,6 +128,10 @@ class OutputManager:
 
     def get_saved_file_count(self) -> int:
         return self.saved_file_count
+
+    def get_failed_pages_count(self):
+        """Return the number of failed pages recorded."""
+        return len(self.failed_pages_list)
 
     def get_github_raw_url(self, username, repo, branch, file_path):
         return f"https://raw.githubusercontent.com/{username}/{repo}/{branch}/{file_path}"
