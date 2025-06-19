@@ -1,5 +1,5 @@
 crawling:
-  crawl: false
+  crawl: true
   delay: 1
   exclude_patterns:
   - /api/
@@ -41,7 +41,7 @@ crawling:
   - .c
   - .h
 link_processing:
-  url_prefix: 'https://github.com/radareorg/r2ai'
+  url_prefix: 'https://github.com/radareorg/r2ai/tree/master/'
 output:
   dest_github_repo: git@github.com:dyingc/mcp_docs.git
   directory: docs_output/r2ai
@@ -56,7 +56,7 @@ output:
     include_urls: true
     title: r2ai Documentation
   minimal_size: 128
-  output_llms_txt: true
+  output_llms_txt: false
 site:
   allowed_domains: []  # Extra allowed domains beyond the base URL and GitHub domains
   content_selectors:

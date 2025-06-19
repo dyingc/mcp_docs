@@ -110,7 +110,7 @@ class DocSpider(Spider):
         title_selectors=None, exclude_patterns=None, include_patterns=None,
         skip_extensions=None, file_extensions=None, max_depth=None,
         max_pages=None, delay=None, timeout=None, headers=None,
-        output_manager=None, should_crawl_url=None, *args, **kwargs
+        output_manager=None, should_crawl_url=None, doc_crawler=None, *args, **kwargs
     ):
         super().__init__(*args, **kwargs)
         self.start_urls = start_urls or []
@@ -136,6 +136,7 @@ class DocSpider(Spider):
         self.stop_crawl = threading.Event()
         self.html_processor = output_manager.html_processor if output_manager else None
         self.should_crawl_url = should_crawl_url
+        self.doc_crawler = doc_crawler  # New: save DocCrawler instance
 
     def parse(self, response):
         with self.lock:
@@ -147,6 +148,46 @@ class DocSpider(Spider):
                 return
             self.visited_urls.add(current_url)
 
+        current_url = response.url
+        # 优先处理 GitHub 文件页面，直接调用 extract_content 并保存
+        is_github_blob = False
+        github_helper = None
+        if self.doc_crawler and self.doc_crawler.github_helper:
+            github_helper = self.doc_crawler.github_helper
+            is_github_blob = github_helper.is_github_file_url(current_url)
+
+        if is_github_blob:
+            # Call extract_content to download raw, save as markdown, do not use html_processor
+            depth = response.meta.get('depth', 0)
+            extracted = self.doc_crawler.extract_content(current_url, depth, self.delay if self.delay else 0)
+            content = extracted.get('content', '')
+            title = extracted.get('title', os.path.basename(current_url))
+            links = extracted.get('links', [])
+            if content:
+                logger.info(f"Extracted content from {current_url} via extract_content")
+                content_data = {
+                    'url': current_url,
+                    'title': title,
+                    'content': content,
+                    'success': True,
+                    'depth': depth,
+                    'thread_name': threading.current_thread().name
+                }
+                self.output_manager.save_markdown_file(
+                    content_data=content_data,
+                    lock=self.lock,
+                    stop_crawl_event=self.stop_crawl,
+                    current_visited_count=len(self.visited_urls),
+                    thread_name=threading.current_thread().name
+                )
+            else:
+                logger.warning(f"No content extracted from {current_url}")
+                if self.output_manager:
+                    self.output_manager.add_failed_page(current_url)
+            # Links from github raw 页面无需 follow
+            return
+
+        # 普通网页流程保持原样
         html = response.text
         if self.html_processor:
             processed = self.html_processor.parse_and_extract_html_content(
@@ -180,7 +221,6 @@ class DocSpider(Spider):
             )
         else:
             logger.warning(f"No content extracted from {current_url}")
-            # Record failed page when no content extracted
             if self.output_manager:
                 self.output_manager.add_failed_page(current_url)
 
@@ -188,7 +228,6 @@ class DocSpider(Spider):
             # 增加 should_crawl_url 判断
             if link not in self.visited_urls and (self.should_crawl_url is None or self.should_crawl_url(link, depth+1)):
                 logger.info(f"Following link: {link}")
-                # Scrapy 的 follow，会自动将请求放队列，可以传递 depth
                 yield response.follow(link, self.parse, meta={'depth': depth+1})
 
 class DocCrawler:
@@ -277,7 +316,7 @@ class DocCrawler:
 
     def extract_content(self, url: str, depth: int, delay: float) -> Dict:
         try:
-            logger.info(f"Crawling: {url} (depth: {depth})")
+            logger.info(f"\n\n\n\nCrawling: {url} (depth: {depth})\n\n\n\n")
             time.sleep(delay)
             if self.is_github and self.github_helper and self.github_helper.is_github_file_url(url):
                 raw_url = self.github_helper.get_github_raw_url(url)
@@ -344,6 +383,7 @@ class DocCrawler:
                 raise ValueError("No start URLs configured")
             allowed_domains = self._get_allowed_domains()
             self.crawler = CrawlerProcess(self._get_crawler_settings())
+            # 传递 doc_crawler 参数
             self.crawler.crawl(
                 DocSpider,
                 start_urls=start_urls,
@@ -363,7 +403,8 @@ class DocCrawler:
                 timeout=self.config['crawling'].get('timeout', 10),
                 headers=self.config['crawling'].get('headers', {}),
                 output_manager=self.output_manager,
-                should_crawl_url=self.should_crawl_url  # 注入过滤函数
+                should_crawl_url=self.should_crawl_url,  # 注入过滤函数
+                doc_crawler=self  # 注入自身
             )
             self.crawler.start()
         except Exception as e:
