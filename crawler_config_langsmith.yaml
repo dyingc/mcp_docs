@@ -1,0 +1,89 @@
+crawling:
+  crawl: true
+  delay: 0.1
+  exclude_patterns:
+  - /api/
+  - /search
+  - \.xml$
+  - /login
+  - /logout
+  headers:
+    User-Agent: Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)
+  include_patterns: []
+  max_depth: 3
+  max_pages: -1
+  num_threads: 20
+  skip_extensions:
+  - .pdf
+  - .jpg
+  - .png
+  - .gif
+  - .css
+  - .js
+  - .svg
+  - .ico
+  - .json
+  - .xml
+  - .yaml
+  timeout: 10
+  file_extensions:
+  - .md
+  - .rst
+  - .txt
+  - .py
+  - .js
+  - .ts
+  - .html
+  - .css
+  - .json
+  - .yaml
+  - .yml
+  - .c
+  - .h
+link_processing:
+  url_prefix: 'https://docs.smith.langchain.com'
+output:
+  dest_github_repo: git@github.com:dyingc/mcp_docs.git
+  directory: docs_output/langsmith
+  frontmatter:
+    crawled_date: '2025-06-18'
+  ignore_images: false
+  ignore_links: false
+  llm_concurrency: 4
+  llms_doc_prefix: langsmith
+  llms_txt:
+    description: MCP Documentation for LangSmith
+    include_urls: true
+    title: LangSmith Documentation
+  minimal_size: 1536
+  output_llms_txt: false
+site:
+  allowed_domains: []  # Extra allowed domains beyond the base URL and GitHub domains
+  content_selectors:
+  - main
+  - article
+  - .content
+  - .documentation
+  link_selectors:
+  - a[href]
+  name: LangSmith Documentation
+  remove_selectors:
+  - nav
+  - header
+  - footer
+  - .navbar
+  - .nav
+  - .sidebar
+  - .menu
+  - .breadcrumb
+  - .pagination
+  - script
+  - style
+  - noscript
+  - .search-box
+  start_urls: []
+  title_selectors:
+  - title
+  - h1
+  - .page-title
+  url: https://docs.smith.langchain.com

@@ -7,7 +7,7 @@ load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_API_BASE = os.getenv("OPENROUTER_API_BASE", "https://openrouter.ai/api/v1")
-MODEL_NAME = os.getenv("OPENROUTER_MODEL_NAME", "google/gemini-2.0-flash-001")
+MODEL_NAME = os.getenv("OPENROUTER_MODEL_NAME", "google/gemini-2.5-flash-lite-preview-06-17")
 
 if not OPENROUTER_API_KEY:
     raise ValueError("Please set the OPENROUTER_API_KEY environment variable.")

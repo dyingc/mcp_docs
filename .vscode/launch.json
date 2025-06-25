@@ -29,7 +29,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/doc_crawler.py",
             "console": "integratedTerminal",
-            "args": ["--config", "crawler_config_r2ai.yaml"],
+            "args": ["--config", "crawler_config_litellm.yaml"],
             "python": "${workspaceFolder}/.venv/bin/python"
         }
     ]
