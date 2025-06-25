@@ -1,0 +1,47 @@
+# tracing_context — 🦜️🛠️ LangSmith  documentation
+
+# tracing_context#
+
+langsmith.run_helpers.tracing_context(
+
+    _*_ ,
+    _project_name : str | None = None_,
+    _tags : list[str] | None = None_,
+    _metadata : dict[str, Any] | None = None_,
+    _parent : [RunTree](../run_trees/langsmith.run_trees.RunTree.html#langsmith.run_trees.RunTree "langsmith.run_trees.RunTree") | Mapping | str | Literal[False] | None = None_,
+    _enabled : bool | Literal['local'] | None = None_,
+    _client : [Client](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") | None = None_,
+    _replicas : Sequence[tuple[str, dict | None]] | None = None_,
+    _** kwargs: Any_,
+) → Generator[None, None, None][[source]](../_modules/langsmith/run_helpers.html#tracing_context)#
+    
+
+Set the tracing context for a block of code.
+
+Parameters:
+    
+
+  * **project_name** (_str_ _|__None_) – The name of the project to log the run to. Defaults to None.
+
+  * **tags** (_list_ _[__str_ _]__|__None_) – The tags to add to the run. Defaults to None.
+
+  * **metadata** (_dict_ _[__str_ _,__Any_ _]__|__None_) – The metadata to add to the run. Defaults to None.
+
+  * **parent** ([_RunTree_](../run_trees/langsmith.run_trees.RunTree.html#langsmith.run_trees.RunTree "langsmith.run_trees.RunTree") _|__Mapping_ _|__str_ _|__Literal_ _[__False_ _]__|__None_) – The parent run to use for the context. Can be a Run/RunTree object, request headers (for distributed tracing), or the dotted order string. Defaults to None.
+
+  * **client** ([_Client_](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") _|__None_) – The client to use for logging the run to LangSmith. Defaults to None,
+
+  * **enabled** (_bool_ _|__Literal_ _[__'local'__]__|__None_) – Whether tracing is enabled. Defaults to None, meaning it will use the current context value or environment variables.
+
+  * **replicas** (_Sequence_ _[__tuple_ _[__str_ _,__dict_ _|__None_ _]__]__|__None_) – A sequence of tuples containing project names and optional updates for each replica. Example: [(“my_experiment”, {“reference_example_id”: None}), (“my_project”, None)]
+
+  * **kwargs** (_Any_)
+
+Return type:
+    
+
+_Generator_[None, None, None]
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

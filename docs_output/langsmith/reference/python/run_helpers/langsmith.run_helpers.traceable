@@ -1,0 +1,182 @@
+# traceable — 🦜️🛠️ LangSmith  documentation
+
+# traceable#
+
+langsmith.run_helpers.traceable(
+
+    _func : Callable[[P], R]_,
+) → SupportsLangsmithExtra[P, R][[source]](../_modules/langsmith/run_helpers.html#traceable)#
+langsmith.run_helpers.traceable(
+
+    _run_type : Literal['tool', 'chain', 'llm', 'retriever', 'embedding', 'prompt', 'parser'] = 'chain'_,
+    _*_ ,
+    _name : str | None = None_,
+    _metadata : Mapping[str, Any] | None = None_,
+    _tags : list[str] | None = None_,
+    _client : [Client](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") | None = None_,
+    _reduce_fn : Callable[[Sequence], dict] | None = None_,
+    _project_name : str | None = None_,
+    _process_inputs : Callable[[dict], dict] | None = None_,
+    _process_outputs : Callable[[...], dict] | None = None_,
+    _process_chunk : Callable | None = None_,
+    __invocation_params_fn : Callable[[dict], dict] | None = None_,
+    _dangerously_allow_filesystem : bool = False_,
+) → Callable[[Callable[[P], R]], SupportsLangsmithExtra[P, R]]
+    
+
+Trace a function with langsmith.
+
+Parameters:
+    
+
+  * **run_type** – The type of run (span) to create. Examples: llm, chain, tool, prompt, retriever, etc. Defaults to “chain”.
+
+  * **name** – The name of the run. Defaults to the function name.
+
+  * **metadata** – The metadata to add to the run. Defaults to None.
+
+  * **tags** – The tags to add to the run. Defaults to None.
+
+  * **client** – The client to use for logging the run to LangSmith. Defaults to None, which will use the default client.
+
+  * **reduce_fn** – A function to reduce the output of the function if the function returns a generator. Defaults to None, which means the values will be logged as a list. Note: if the iterator is never exhausted (e.g. the function returns an infinite generator), this will never be called, and the run itself will be stuck in a pending state.
+
+  * **project_name** – The name of the project to log the run to. Defaults to None, which will use the default project.
+
+  * **process_inputs** – Custom serialization / processing function for inputs. Defaults to None.
+
+  * **process_outputs** – Custom serialization / processing function for outputs. Defaults to None.
+
+  * **dangerously_allow_filesystem** – 
+
+Whether to allow filesystem access for attachments. Defaults to False.
+
+Traces that reference local filepaths will be uploaded to LangSmith. In general, network-hosted applications should not be using this because referenced files are usually on the user’s machine, not the host machine.
+
+Returns:
+    
+
+The decorated function.
+
+Return type:
+    
+
+Union[Callable, Callable[[Callable], Callable]]
+
+Note
+
+  * Requires that LANGSMITH_TRACING_V2 be set to ‘true’ in the environment.
+
+Examples
+
+Basic usage:
+    
+    
+    @traceable
+    def my_function(x: float, y: float) -> float:
+        return x + y
+    
+    
+    my_function(5, 6)
+    
+    
+    @traceable
+    async def my_async_function(query_params: dict) -> dict:
+        async with httpx.AsyncClient() as http_client:
+            response = await http_client.get(
+                "https://api.example.com/data",
+                params=query_params,
+            )
+            return response.json()
+    
+    
+    asyncio.run(my_async_function({"param": "value"}))
+    
+
+Streaming data with a generator:
+    
+    
+    @traceable
+    def my_generator(n: int) -> Iterable:
+        for i in range(n):
+            yield i
+    
+    
+    for item in my_generator(5):
+        print(item)
+    
+
+Async streaming data:
+    
+    
+    @traceable
+    async def my_async_generator(query_params: dict) -> Iterable:
+        async with httpx.AsyncClient() as http_client:
+            response = await http_client.get(
+                "https://api.example.com/data",
+                params=query_params,
+            )
+            for item in response.json():
+                yield item
+    
+    
+    async def async_code():
+        async for item in my_async_generator({"param": "value"}):
+            print(item)
+    
+    
+    asyncio.run(async_code())
+    
+
+Specifying a run type and name:
+    
+    
+    @traceable(name="CustomName", run_type="tool")
+    def another_function(a: float, b: float) -> float:
+        return a * b
+    
+    
+    another_function(5, 6)
+    
+
+Logging with custom metadata and tags:
+    
+    
+    @traceable(
+        metadata={"version": "1.0", "author": "John Doe"}, tags=["beta", "test"]
+    )
+    def tagged_function(x):
+        return x**2
+    
+    
+    tagged_function(5)
+    
+
+Specifying a custom client and project name:
+    
+    
+    custom_client = Client(api_key="your_api_key")
+    
+    
+    @traceable(client=custom_client, project_name="My Special Project")
+    def project_specific_function(data):
+        return data
+    
+    
+    project_specific_function({"data": "to process"})
+    
+
+Manually passing langsmith_extra:
+    
+    
+    @traceable
+    def manual_extra_function(x):
+        return x**2
+    
+    
+    manual_extra_function(5, langsmith_extra={"metadata": {"version": "1.0"}})
+    
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

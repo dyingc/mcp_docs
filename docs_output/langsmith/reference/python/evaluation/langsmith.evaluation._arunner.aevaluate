@@ -1,0 +1,223 @@
+# aevaluate — 🦜️🛠️ LangSmith  documentation
+
+# aevaluate#
+
+_async _langsmith.evaluation._arunner.aevaluate(
+
+    _target : ATARGET_T | AsyncIterable[dict] | Runnable | str | uuid.UUID | [schemas.TracerSession](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession")_,
+    _/_ ,
+    _data : DATA_T | AsyncIterable[[schemas.Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")] | Iterable[[schemas.Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")] | None = None_,
+    _evaluators : Sequence[EVALUATOR_T | AEVALUATOR_T] | None = None_,
+    _summary_evaluators : Sequence[SUMMARY_EVALUATOR_T] | None = None_,
+    _metadata : dict | None = None_,
+    _experiment_prefix : str | None = None_,
+    _description : str | None = None_,
+    _max_concurrency : int | None = 0_,
+    _num_repetitions : int = 1_,
+    _client : langsmith.Client | None = None_,
+    _blocking : bool = True_,
+    _experiment : [schemas.TracerSession](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession") | str | uuid.UUID | None = None_,
+    _upload_results : bool = True_,
+    _** kwargs: Any_,
+) → [AsyncExperimentResults](langsmith.evaluation._arunner.AsyncExperimentResults.html#langsmith.evaluation._arunner.AsyncExperimentResults "langsmith.evaluation._arunner.AsyncExperimentResults")[[source]](../_modules/langsmith/evaluation/_arunner.html#aevaluate)#
+    
+
+Evaluate an async target system on a given dataset.
+
+Parameters:
+    
+
+  * **target** (_AsyncCallable_ _[__[__dict_ _]__,__dict_ _]__|__AsyncIterable_ _[__dict_ _]__|__Runnable_ _|__EXPERIMENT_T_ _|__Tuple_ _[__EXPERIMENT_T_ _,__EXPERIMENT_T_ _]_) – The target system or experiment(s) to evaluate. Can be an async function that takes a dict and returns a dict, a langchain Runnable, an existing experiment ID, or a two-tuple of experiment IDs.
+
+  * **data** (_Union_ _[__DATA_T_ _,__AsyncIterable_ _[_[_schemas.Example_](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example") _]__]_) – The dataset to evaluate on. Can be a dataset name, a list of examples, an async generator of examples, or an async iterable of examples.
+
+  * **evaluators** (_Optional_ _[__Sequence_ _[__EVALUATOR_T_ _]__]_) – A list of evaluators to run on each example. Defaults to None.
+
+  * **summary_evaluators** (_Optional_ _[__Sequence_ _[__SUMMARY_EVALUATOR_T_ _]__]_) – A list of summary evaluators to run on the entire dataset. Defaults to None.
+
+  * **metadata** (_Optional_ _[__dict_ _]_) – Metadata to attach to the experiment. Defaults to None.
+
+  * **experiment_prefix** (_Optional_ _[__str_ _]_) – A prefix to provide for your experiment name. Defaults to None.
+
+  * **description** (_Optional_ _[__str_ _]_) – A description of the experiment.
+
+  * **max_concurrency** (_int_ _|__None_) – The maximum number of concurrent evaluations to run. If None then no limit is set. If 0 then no concurrency. Defaults to 0.
+
+  * **num_repetitions** (_int_) – The number of times to run the evaluation. Each item in the dataset will be run and evaluated this many times. Defaults to 1.
+
+  * **client** (_Optional_ _[__langsmith.Client_ _]_) – The LangSmith client to use. Defaults to None.
+
+  * **blocking** (_bool_) – Whether to block until the evaluation is complete. Defaults to True.
+
+  * **experiment** (_Optional_ _[_[_schemas.TracerSession_](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession") _]_) – An existing experiment to extend. If provided, experiment_prefix is ignored. For advanced usage only.
+
+  * **load_nested** – Whether to load all child runs for the experiment. Default is to only load the top-level root runs. Should only be specified when evaluating an existing experiment.
+
+  * **upload_results** (_bool_)
+
+  * **kwargs** (_Any_)
+
+Returns:
+    
+
+An async iterator over the experiment results.
+
+Return type:
+    
+
+AsyncIterator[[ExperimentResultRow](langsmith.evaluation._runner.ExperimentResultRow.html#langsmith.evaluation._runner.ExperimentResultRow "langsmith.evaluation._runner.ExperimentResultRow")]
+
+Environment:
+    
+
+  * LANGSMITH_TEST_CACHE: If set, API calls will be cached to disk to save time and
+    
+
+cost during testing. Recommended to commit the cache files to your repository for faster CI/CD runs. Requires the ‘langsmith[vcr]’ package to be installed.
+
+Examples
+    
+    
+    >>> from typing import Sequence
+    >>> from langsmith import Client, aevaluate
+    >>> from langsmith.schemas import Example, Run
+    >>> client = Client()
+    >>> dataset = client.clone_public_dataset(
+    ...     "https://smith.langchain.com/public/419dcab2-1d66-4b94-8901-0357ead390df/d"
+    ... )
+    >>> dataset_name = "Evaluate Examples"
+    
+
+Basic usage:
+    
+    
+    >>> def accuracy(run: Run, example: Example):
+    ...     # Row-level evaluator for accuracy.
+    ...     pred = run.outputs["output"]
+    ...     expected = example.outputs["answer"]
+    ...     return {"score": expected.lower() == pred.lower()}
+    
+    
+    
+    >>> def precision(runs: Sequence[Run], examples: Sequence[Example]):
+    ...     # Experiment-level evaluator for precision.
+    ...     # TP / (TP + FP)
+    ...     predictions = [run.outputs["output"].lower() for run in runs]
+    ...     expected = [example.outputs["answer"].lower() for example in examples]
+    ...     # yes and no are the only possible answers
+    ...     tp = sum([p == e for p, e in zip(predictions, expected) if p == "yes"])
+    ...     fp = sum([p == "yes" and e == "no" for p, e in zip(predictions, expected)])
+    ...     return {"score": tp / (tp + fp)}
+    
+    
+    
+    >>> import asyncio
+    >>> async def apredict(inputs: dict) -> dict:
+    ...     # This can be any async function or just an API call to your app.
+    ...     await asyncio.sleep(0.1)
+    ...     return {"output": "Yes"}
+    >>> results = asyncio.run(
+    ...     aevaluate(
+    ...         apredict,
+    ...         data=dataset_name,
+    ...         evaluators=[accuracy],
+    ...         summary_evaluators=[precision],
+    ...         experiment_prefix="My Experiment",
+    ...         description="Evaluate the accuracy of the model asynchronously.",
+    ...         metadata={
+    ...             "my-prompt-version": "abcd-1234",
+    ...         },
+    ...     )
+    ... )
+    View the evaluation results for experiment:...
+    
+
+Evaluating over only a subset of the examples using an async generator:
+    
+    
+    >>> async def example_generator():
+    ...     examples = client.list_examples(dataset_name=dataset_name, limit=5)
+    ...     for example in examples:
+    ...         yield example
+    >>> results = asyncio.run(
+    ...     aevaluate(
+    ...         apredict,
+    ...         data=example_generator(),
+    ...         evaluators=[accuracy],
+    ...         summary_evaluators=[precision],
+    ...         experiment_prefix="My Subset Experiment",
+    ...         description="Evaluate a subset of examples asynchronously.",
+    ...     )
+    ... )
+    View the evaluation results for experiment:...
+    
+
+Streaming each prediction to more easily + eagerly debug.
+    
+    
+    >>> results = asyncio.run(
+    ...     aevaluate(
+    ...         apredict,
+    ...         data=dataset_name,
+    ...         evaluators=[accuracy],
+    ...         summary_evaluators=[precision],
+    ...         experiment_prefix="My Streaming Experiment",
+    ...         description="Streaming predictions for debugging.",
+    ...         blocking=False,
+    ...     )
+    ... )
+    View the evaluation results for experiment:...
+    
+    
+    
+    >>> async def aenumerate(iterable):
+    ...     async for elem in iterable:
+    ...         print(elem)
+    >>> asyncio.run(aenumerate(results))
+    
+
+Running without concurrency:
+    
+    
+    >>> results = asyncio.run(
+    ...     aevaluate(
+    ...         apredict,
+    ...         data=dataset_name,
+    ...         evaluators=[accuracy],
+    ...         summary_evaluators=[precision],
+    ...         experiment_prefix="My Experiment Without Concurrency",
+    ...         description="This was run without concurrency.",
+    ...         max_concurrency=0,
+    ...     )
+    ... )
+    View the evaluation results for experiment:...
+    
+
+Using Async evaluators:
+    
+    
+    >>> async def helpfulness(run: Run, example: Example):
+    ...     # Row-level evaluator for helpfulness.
+    ...     await asyncio.sleep(5)  # Replace with your LLM API call
+    ...     return {"score": run.outputs["output"] == "Yes"}
+    
+    
+    
+    >>> results = asyncio.run(
+    ...     aevaluate(
+    ...         apredict,
+    ...         data=dataset_name,
+    ...         evaluators=[helpfulness],
+    ...         summary_evaluators=[precision],
+    ...         experiment_prefix="My Helpful Experiment",
+    ...         description="Applying async evaluators example.",
+    ...     )
+    ... )
+    View the evaluation results for experiment:...
+    
+
+Changed in version 0.2.0: ‘max_concurrency’ default updated from None (no limit on concurrency) to 0 (no concurrency at all).
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

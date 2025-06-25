@@ -1,0 +1,193 @@
+# EvaluateOptions | LangSmith - v0.3.33
+
+* [LangSmith](https://docs.smith.langchain.com/reference/js/modules.html)
+  * [evaluation](https://docs.smith.langchain.com/reference/js/modules/evaluation.html)
+  * [EvaluateOptions](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html)
+
+# Interface EvaluateOptions
+
+interface EvaluateOptions {  
+[data](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#data): [DataT](https://docs.smith.langchain.com/reference/js/types/evaluation.DataT.html);  
+[client](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#client)?: [Client](https://docs.smith.langchain.com/reference/js/classes/client.Client.html);  
+[description](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#description)?: string;  
+[evaluators](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#evaluators)?: [EvaluatorT](https://docs.smith.langchain.com/reference/js/types/evaluation.EvaluatorT.html)[];  
+[experimentPrefix](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#experimentprefix)?: string;  
+[includeAttachments](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#includeattachments)?: boolean;  
+[maxConcurrency](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#maxconcurrency)?: number;  
+[metadata](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#metadata)?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+[numRepetitions](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#numrepetitions)?: number;  
+[summaryEvaluators](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#summaryevaluators)?: [SummaryEvaluatorT](https://docs.smith.langchain.com/reference/js/types/evaluation.SummaryEvaluatorT.html)[];  
+}
+
+#### Hierarchy
+
+  * BaseEvaluateOptions
+    * EvaluateOptions
+
+  * Defined in [src/evaluation/_runner.ts:179](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L179)
+
+#####  Index
+
+### Properties
+
+[data](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#data) [client?](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#client) [description?](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#description) [evaluators?](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#evaluators) [experimentPrefix?](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#experimentprefix) [includeAttachments?](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#includeattachments) [maxConcurrency?](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#maxconcurrency) [metadata?](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#metadata) [numRepetitions?](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#numrepetitions) [summaryEvaluators?](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html#summaryevaluators)
+
+##  Properties
+
+### data
+
+data: [DataT](https://docs.smith.langchain.com/reference/js/types/evaluation.DataT.html)
+
+The dataset to evaluate on. Can be a dataset name, a list of examples, or a generator of examples.
+
+  * Defined in [src/evaluation/_runner.ts:194](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L194)
+
+### `Optional`client
+
+client?: [Client](https://docs.smith.langchain.com/reference/js/classes/client.Client.html)
+
+The LangSmith client to use.
+
+#### Default
+    
+    
+    undefined
+    Copy
+
+Inherited from BaseEvaluateOptions.client
+
+  * Defined in [src/evaluation/_runner.ts:170](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L170)
+
+### `Optional`description
+
+description?: string
+
+A free-form description of the experiment.
+
+Inherited from BaseEvaluateOptions.description
+
+  * Defined in [src/evaluation/_runner.ts:160](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L160)
+
+### `Optional`evaluators
+
+evaluators?: [EvaluatorT](https://docs.smith.langchain.com/reference/js/types/evaluation.EvaluatorT.html)[]
+
+A list of evaluators to run on each example.
+
+#### Default
+    
+    
+    undefined
+    Copy
+
+  * Defined in [src/evaluation/_runner.ts:184](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L184)
+
+### `Optional`experimentPrefix
+
+experimentPrefix?: string
+
+A prefix to provide for your experiment name.
+
+#### Default
+    
+    
+    undefined
+    Copy
+
+Inherited from BaseEvaluateOptions.experimentPrefix
+
+  * Defined in [src/evaluation/_runner.ts:156](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L156)
+
+### `Optional`includeAttachments
+
+includeAttachments?: boolean
+
+Whether to use attachments for the experiment.
+
+#### Default
+    
+    
+    false
+    Copy
+
+  * Defined in [src/evaluation/_runner.ts:199](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L199)
+
+### `Optional`maxConcurrency
+
+maxConcurrency?: number
+
+The maximum number of concurrent evaluations to run.
+
+#### Default
+    
+    
+    undefined
+    Copy
+
+Inherited from BaseEvaluateOptions.maxConcurrency
+
+  * Defined in [src/evaluation/_runner.ts:165](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L165)
+
+### `Optional`metadata
+
+metadata?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)
+
+Metadata to attach to the experiment.
+
+#### Default
+    
+    
+    undefined
+    Copy
+
+Inherited from BaseEvaluateOptions.metadata
+
+  * Defined in [src/evaluation/_runner.ts:151](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L151)
+
+### `Optional`numRepetitions
+
+numRepetitions?: number
+
+The number of repetitions to perform. Each example will be run this many times.
+
+#### Default
+    
+    
+    1
+    Copy
+
+Inherited from BaseEvaluateOptions.numRepetitions
+
+  * Defined in [src/evaluation/_runner.ts:176](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L176)
+
+### `Optional`summaryEvaluators
+
+summaryEvaluators?: [SummaryEvaluatorT](https://docs.smith.langchain.com/reference/js/types/evaluation.SummaryEvaluatorT.html)[]
+
+A list of summary evaluators to run on the entire dataset.
+
+#### Default
+    
+    
+    undefined
+    Copy
+
+  * Defined in [src/evaluation/_runner.ts:189](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L189)
+
+### Settings
+
+Member Visibility
+
+  * Protected
+  * Inherited
+  * External
+
+ThemeOSLightDark
+
+### On This Page
+
+Properties
+
+dataclientdescriptionevaluatorsexperimentPrefixincludeAttachmentsmaxConcurrencymetadatanumRepetitionssummaryEvaluators
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

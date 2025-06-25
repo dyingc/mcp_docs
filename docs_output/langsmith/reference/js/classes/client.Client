@@ -1,0 +1,2045 @@
+# Client | LangSmith - v0.3.33
+
+* [LangSmith](https://docs.smith.langchain.com/reference/js/modules.html)
+  * [client](https://docs.smith.langchain.com/reference/js/modules/client.html)
+  * [Client](https://docs.smith.langchain.com/reference/js/classes/client.Client.html)
+
+# Class Client
+
+#### Implements
+
+  * [LangSmithTracingClientInterface](https://docs.smith.langchain.com/reference/js/interfaces/client.LangSmithTracingClientInterface.html)
+
+  * Defined in [src/client.ts:562](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L562)
+
+#####  Index
+
+### Constructors
+
+[constructor](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#constructor)
+
+### Properties
+
+[debug](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#debug)
+
+### Methods
+
+[addRunsToAnnotationQueue](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#addrunstoannotationqueue) [awaitPendingTraceBatches](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#awaitpendingtracebatches) [batchIngestRuns](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#batchingestruns) [clonePublicDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#clonepublicdataset) [createAnnotationQueue](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createannotationqueue) [createChatExample](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createchatexample) [createCommit](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createcommit) [createComparativeExperiment](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createcomparativeexperiment) [createDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createdataset) [createExample](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createexample) [createExamples](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createexamples) [createFeedback](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createfeedback) [createLLMExample](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createllmexample) [createPresignedFeedbackToken](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createpresignedfeedbacktoken) [createProject](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createproject) [createPrompt](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createprompt) [createRun](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#createrun) [deleteAnnotationQueue](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#deleteannotationqueue) [deleteDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#deletedataset) [deleteExample](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#deleteexample) [deleteFeedback](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#deletefeedback) [deleteProject](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#deleteproject) [deletePrompt](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#deleteprompt) [deleteRunFromAnnotationQueue](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#deleterunfromannotationqueue) [diffDatasetVersions](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#diffdatasetversions) [evaluateRun](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#evaluaterun) [flush](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#flush) [getDatasetUrl](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#getdataseturl) [getHostUrl](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#gethosturl) [getProjectUrl](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#getprojecturl) [getPrompt](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#getprompt) [getRunFromAnnotationQueue](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#getrunfromannotationqueue) [getRunStats](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#getrunstats) [getRunUrl](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#getrunurl) [getSizeFromAnnotationQueue](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#getsizefromannotationqueue) [hasDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#hasdataset) [hasProject](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#hasproject) [indexDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#indexdataset) [likePrompt](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#likeprompt) [listAnnotationQueues](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listannotationqueues) [listCommits](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listcommits) [listDatasets](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listdatasets) [listDatasetSplits](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listdatasetsplits) [listExamples](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listexamples) [listFeedback](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listfeedback) [listGroupRuns](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listgroupruns) [listPresignedFeedbackTokens](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listpresignedfeedbacktokens) [listProjects](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listprojects) [listPrompts](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listprompts) [listRuns](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listruns) [listSharedExamples](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listsharedexamples) [listSharedRuns](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#listsharedruns) [logEvaluationFeedback](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#logevaluationfeedback) [multipartIngestRuns](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#multipartingestruns) [promptExists](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#promptexists) [pullPromptCommit](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#pullpromptcommit) [pushPrompt](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#pushprompt) [readAnnotationQueue](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readannotationqueue) [readDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readdataset) [readDatasetOpenaiFinetuning](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readdatasetopenaifinetuning) [readDatasetSharedSchema](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readdatasetsharedschema) [readDatasetVersion](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readdatasetversion) [readExample](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readexample) [readFeedback](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readfeedback) [readProject](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readproject) [readRun](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readrun) [readRunSharedLink](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readrunsharedlink) [readSharedDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#readshareddataset) [shareDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#sharedataset) [shareRun](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#sharerun) [similarExamples](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#similarexamples) [unlikePrompt](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#unlikeprompt) [unshareDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#unsharedataset) [unshareRun](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#unsharerun) [updateAnnotationQueue](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updateannotationqueue) [updateDataset](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updatedataset) [updateDatasetSplits](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updatedatasetsplits) [updateDatasetTag](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updatedatasettag) [updateExample](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updateexample) [updateExamples](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updateexamples) [updateExamplesMultipart](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updateexamplesmultipart) [updateFeedback](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updatefeedback) [updateProject](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updateproject) [updatePrompt](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updateprompt) [updateRun](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#updaterun) [uploadCsv](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#uploadcsv) [uploadExamplesMultipart](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#uploadexamplesmultipart) [getDefaultClientConfig](https://docs.smith.langchain.com/reference/js/classes/client.Client.html#getdefaultclientconfig)
+
+##  Constructors
+
+### constructor
+
+  * new Client(config?: [ClientConfig](https://docs.smith.langchain.com/reference/js/interfaces/client.ClientConfig.html)): [Client](https://docs.smith.langchain.com/reference/js/classes/client.Client.html)
+
+#### Parameters
+
+    * config: [ClientConfig](https://docs.smith.langchain.com/reference/js/interfaces/client.ClientConfig.html) = {}
+
+#### Returns [Client](https://docs.smith.langchain.com/reference/js/classes/client.Client.html)
+
+    * Defined in [src/client.ts:613](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L613)
+
+##  Properties
+
+### debug
+
+debug: boolean = ...
+
+  * Defined in [src/client.ts:611](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L611)
+
+##  Methods
+
+### addRunsToAnnotationQueue
+
+  * addRunsToAnnotationQueue(queueId: string, runIds: string[]): Promise<void>
+
+Add runs to an annotation queue with the specified queue ID.
+
+#### Parameters
+
+    * queueId: string
+
+The ID of the annotation queue
+
+    * runIds: string[]
+
+The IDs of the runs to be added to the annotation queue
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:4165](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4165)
+
+### awaitPendingTraceBatches
+
+  * awaitPendingTraceBatches(): Promise<void> | Promise<[...void[], void]>
+
+Awaits all pending trace batches. Useful for environments where you need to be sure that all tracing requests finish before execution ends, such as serverless environments.
+
+#### Returns Promise<void> | Promise<[...void[], void]>
+
+A promise that resolves once all currently pending traces have sent.
+
+#### Example
+        
+        import { Client } from "langsmith";  
+          
+        const client = new Client();  
+          
+        try {  
+          // Tracing happens here  
+          ...  
+        } finally {  
+          await client.awaitPendingTraceBatches();  
+        }
+        Copy
+
+    * Defined in [src/client.ts:5058](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L5058)
+
+### batchIngestRuns
+
+  * batchIngestRuns(  
+runs: { runCreates?: [RunCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunCreate.html)[]; runUpdates?: [RunUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunUpdate.html)[] },  
+): Promise<void>
+
+Batch ingest/upsert multiple runs in the Langsmith system.
+
+#### Parameters
+
+    * runs: { runCreates?: [RunCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunCreate.html)[]; runUpdates?: [RunUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunUpdate.html)[] }
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:1113](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1113)
+
+### clonePublicDataset
+
+  * clonePublicDataset(  
+tokenOrUrl: string,  
+options?: { datasetName?: string; sourceApiUrl?: string },  
+): Promise<void>
+
+Clone a public dataset to your own langsmith tenant. This operation is idempotent. If you already have a dataset with the given name, this function will do nothing.
+
+#### Parameters
+
+    * tokenOrUrl: string
+
+The token of the public dataset to clone.
+
+    * `Optional`options: { datasetName?: string; sourceApiUrl?: string } = {}
+
+Additional options for cloning the dataset.
+
+      * ##### `Optional`datasetName?: string
+
+The name of the dataset to create in your tenant. Defaults to the name of the public dataset.
+
+      * ##### `Optional`sourceApiUrl?: string
+
+The URL of the langsmith server where the data is hosted. Defaults to the API URL of your current client.
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:4947](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4947)
+
+### createAnnotationQueue
+
+  * createAnnotationQueue(  
+options: {  
+name: string;  
+description?: string;  
+queueId?: string;  
+rubricInstructions?: string;  
+},  
+): Promise<[AnnotationQueueWithDetails](https://docs.smith.langchain.com/reference/js/interfaces/schemas.AnnotationQueueWithDetails.html)>
+
+Create an annotation queue on the LangSmith API.
+
+#### Parameters
+
+    * options: {  
+name: string;  
+description?: string;  
+queueId?: string;  
+rubricInstructions?: string;  
+}
+
+The options for creating an annotation queue
+
+      * ##### name: string
+
+The name of the annotation queue
+
+      * ##### `Optional`description?: string
+
+The description of the annotation queue
+
+      * ##### `Optional`queueId?: string
+
+The ID of the annotation queue
+
+      * ##### `Optional`rubricInstructions?: string
+
+#### Returns Promise<[AnnotationQueueWithDetails](https://docs.smith.langchain.com/reference/js/interfaces/schemas.AnnotationQueueWithDetails.html)>
+
+The created AnnotationQueue object
+
+    * Defined in [src/client.ts:4051](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4051)
+
+### createChatExample
+
+  * createChatExample(  
+input: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)[] | [LangChainBaseMessage](https://docs.smith.langchain.com/reference/js/interfaces/schemas.LangChainBaseMessage.html)[],  
+generations: undefined | [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html) | [LangChainBaseMessage](https://docs.smith.langchain.com/reference/js/interfaces/schemas.LangChainBaseMessage.html),  
+options: [CreateExampleOptions](https://docs.smith.langchain.com/reference/js/types/client.CreateExampleOptions.html),  
+): Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+#### Parameters
+
+    * input: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)[] | [LangChainBaseMessage](https://docs.smith.langchain.com/reference/js/interfaces/schemas.LangChainBaseMessage.html)[]
+    * generations: undefined | [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html) | [LangChainBaseMessage](https://docs.smith.langchain.com/reference/js/interfaces/schemas.LangChainBaseMessage.html)
+    * options: [CreateExampleOptions](https://docs.smith.langchain.com/reference/js/types/client.CreateExampleOptions.html)
+
+#### Returns Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+    * Defined in [src/client.ts:3192](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3192)
+
+### createCommit
+
+  * createCommit(  
+promptIdentifier: string,  
+object: any,  
+options?: { parentCommitHash?: string },  
+): Promise<string>
+
+#### Parameters
+
+    * promptIdentifier: string
+    * object: any
+    * `Optional`options: { parentCommitHash?: string }
+
+#### Returns Promise<string>
+
+    * Defined in [src/client.ts:4494](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4494)
+
+### createComparativeExperiment
+
+  * createComparativeExperiment(  
+__namedParameters: {  
+experimentIds: string[];  
+name: string;  
+createdAt?: Date;  
+description?: string;  
+id?: string;  
+metadata?: Record<string, unknown>;  
+referenceDatasetId?: string;  
+},  
+): Promise<[ComparativeExperiment](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ComparativeExperiment.html)>
+
+#### Parameters
+
+    * __namedParameters: {  
+experimentIds: string[];  
+name: string;  
+createdAt?: Date;  
+description?: string;  
+id?: string;  
+metadata?: Record<string, unknown>;  
+referenceDatasetId?: string;  
+}
+
+#### Returns Promise<[ComparativeExperiment](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ComparativeExperiment.html)>
+
+    * Defined in [src/client.ts:3847](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3847)
+
+### createDataset
+
+  * createDataset(  
+name: string,  
+__namedParameters?: {  
+dataType?: [DataType](https://docs.smith.langchain.com/reference/js/types/schemas.DataType.html);  
+description?: string;  
+inputsSchema?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+metadata?: RecordStringAny;  
+outputsSchema?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+},  
+): Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+#### Parameters
+
+    * name: string
+    * __namedParameters: {  
+dataType?: [DataType](https://docs.smith.langchain.com/reference/js/types/schemas.DataType.html);  
+description?: string;  
+inputsSchema?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+metadata?: RecordStringAny;  
+outputsSchema?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+} = {}
+
+#### Returns Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+    * Defined in [src/client.ts:2582](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2582)
+
+### createExample
+
+  * createExample(update: [ExampleCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleCreate.html)): Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+#### Parameters
+
+    * update: [ExampleCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleCreate.html)
+
+#### Returns Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+    * Defined in [src/client.ts:3006](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3006)
+
+  * createExample(  
+inputs: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html),  
+outputs: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html),  
+options: [CreateExampleOptions](https://docs.smith.langchain.com/reference/js/types/client.CreateExampleOptions.html),  
+): Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+#### Parameters
+
+    * inputs: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)
+    * outputs: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)
+    * options: [CreateExampleOptions](https://docs.smith.langchain.com/reference/js/types/client.CreateExampleOptions.html)
+
+#### Returns Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+#### Deprecated
+
+This signature is deprecated, use createExample(update: ExampleCreate) instead
+
+    * Defined in [src/client.ts:3011](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3011)
+
+### createExamples
+
+  * createExamples(uploads: [ExampleCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleCreate.html)[]): Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)[]>
+
+#### Parameters
+
+    * uploads: [ExampleCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleCreate.html)[]
+
+#### Returns Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)[]>
+
+    * Defined in [src/client.ts:3070](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3070)
+
+  * createExamples(  
+props: {  
+attachments?: [Attachments](https://docs.smith.langchain.com/reference/js/types/schemas.Attachments.html)[];  
+datasetId?: string;  
+datasetName?: string;  
+exampleIds?: string[];  
+inputs?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)[];  
+metadata?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)[];  
+outputs?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)[];  
+sourceRunIds?: string[];  
+splits?: (string | string[])[];  
+useSourceRunAttachments?: string[][];  
+useSourceRunIOs?: boolean[];  
+},  
+): Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)[]>
+
+#### Parameters
+
+    * props: {  
+attachments?: [Attachments](https://docs.smith.langchain.com/reference/js/types/schemas.Attachments.html)[];  
+datasetId?: string;  
+datasetName?: string;  
+exampleIds?: string[];  
+inputs?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)[];  
+metadata?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)[];  
+outputs?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)[];  
+sourceRunIds?: string[];  
+splits?: (string | string[])[];  
+useSourceRunAttachments?: string[][];  
+useSourceRunIOs?: boolean[];  
+}
+
+#### Returns Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)[]>
+
+#### Deprecated
+
+Use the uploads-only overload instead
+
+    * Defined in [src/client.ts:3072](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3072)
+
+### createFeedback
+
+  * createFeedback(  
+runId: null | string,  
+key: string,  
+__namedParameters: {  
+comment?: string;  
+comparativeExperimentId?: string;  
+correction?: object;  
+eager?: boolean;  
+feedbackConfig?: [FeedbackConfig](https://docs.smith.langchain.com/reference/js/interfaces/schemas.FeedbackConfig.html);  
+feedbackId?: string;  
+feedbackSourceType?: [FeedbackSourceType](https://docs.smith.langchain.com/reference/js/types/client.FeedbackSourceType.html);  
+projectId?: string;  
+score?: [ScoreType](https://docs.smith.langchain.com/reference/js/types/schemas.ScoreType.html);  
+sourceInfo?: object;  
+sourceRunId?: string;  
+value?: [ValueType](https://docs.smith.langchain.com/reference/js/types/schemas.ValueType.html);  
+},  
+): Promise<[Feedback](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Feedback.html)>
+
+#### Parameters
+
+    * runId: null | string
+    * key: string
+    * __namedParameters: {  
+comment?: string;  
+comparativeExperimentId?: string;  
+correction?: object;  
+eager?: boolean;  
+feedbackConfig?: [FeedbackConfig](https://docs.smith.langchain.com/reference/js/interfaces/schemas.FeedbackConfig.html);  
+feedbackId?: string;  
+feedbackSourceType?: [FeedbackSourceType](https://docs.smith.langchain.com/reference/js/types/client.FeedbackSourceType.html);  
+projectId?: string;  
+score?: [ScoreType](https://docs.smith.langchain.com/reference/js/types/schemas.ScoreType.html);  
+sourceInfo?: object;  
+sourceRunId?: string;  
+value?: [ValueType](https://docs.smith.langchain.com/reference/js/types/schemas.ValueType.html);  
+}
+
+#### Returns Promise<[Feedback](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Feedback.html)>
+
+    * Defined in [src/client.ts:3610](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3610)
+
+### createLLMExample
+
+  * createLLMExample(  
+input: string,  
+generation: undefined | string,  
+options: [CreateExampleOptions](https://docs.smith.langchain.com/reference/js/types/client.CreateExampleOptions.html),  
+): Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+#### Parameters
+
+    * input: string
+    * generation: undefined | string
+    * options: [CreateExampleOptions](https://docs.smith.langchain.com/reference/js/types/client.CreateExampleOptions.html)
+
+#### Returns Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+    * Defined in [src/client.ts:3184](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3184)
+
+### createPresignedFeedbackToken
+
+  * createPresignedFeedbackToken(  
+runId: string,  
+feedbackKey: string,  
+options?: {  
+expiration?: string | [TimeDelta](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TimeDelta.html);  
+feedbackConfig?: [FeedbackConfig](https://docs.smith.langchain.com/reference/js/interfaces/schemas.FeedbackConfig.html);  
+},  
+): Promise<[FeedbackIngestToken](https://docs.smith.langchain.com/reference/js/interfaces/schemas.FeedbackIngestToken.html)>
+
+Creates a presigned feedback token and URL.
+
+The token can be used to authorize feedback metrics without needing an API key. This is useful for giving browser-based applications the ability to submit feedback without needing to expose an API key.
+
+#### Parameters
+
+    * runId: string
+
+The ID of the run.
+
+    * feedbackKey: string
+
+The feedback key.
+
+    * options: { expiration?: string | [TimeDelta](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TimeDelta.html); feedbackConfig?: [FeedbackConfig](https://docs.smith.langchain.com/reference/js/interfaces/schemas.FeedbackConfig.html) } = {}
+
+Additional options for the token.
+
+      * ##### `Optional`expiration?: string | [TimeDelta](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TimeDelta.html)
+
+The expiration time for the token.
+
+      * ##### `Optional`feedbackConfig?: [FeedbackConfig](https://docs.smith.langchain.com/reference/js/interfaces/schemas.FeedbackConfig.html)
+
+#### Returns Promise<[FeedbackIngestToken](https://docs.smith.langchain.com/reference/js/interfaces/schemas.FeedbackIngestToken.html)>
+
+A promise that resolves to a FeedbackIngestToken.
+
+    * Defined in [src/client.ts:3804](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3804)
+
+### createProject
+
+  * createProject(__namedParameters: [CreateProjectParams](https://docs.smith.langchain.com/reference/js/types/client.CreateProjectParams.html)): Promise<[TracerSession](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TracerSession.html)>
+
+#### Parameters
+
+    * __namedParameters: [CreateProjectParams](https://docs.smith.langchain.com/reference/js/types/client.CreateProjectParams.html)
+
+#### Returns Promise<[TracerSession](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TracerSession.html)>
+
+    * Defined in [src/client.ts:2233](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2233)
+
+### createPrompt
+
+  * createPrompt(  
+promptIdentifier: string,  
+options?: {  
+description?: string;  
+isPublic?: boolean;  
+readme?: string;  
+tags?: string[];  
+},  
+): Promise<[Prompt](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Prompt.html)>
+
+#### Parameters
+
+    * promptIdentifier: string
+    * `Optional`options: { description?: string; isPublic?: boolean; readme?: string; tags?: string[] }
+
+#### Returns Promise<[Prompt](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Prompt.html)>
+
+    * Defined in [src/client.ts:4444](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4444)
+
+### createRun
+
+  * createRun(run: CreateRunParams): Promise<void>
+
+#### Parameters
+
+    * run: CreateRunParams
+
+#### Returns Promise<void>
+
+Implementation of [LangSmithTracingClientInterface](https://docs.smith.langchain.com/reference/js/interfaces/client.LangSmithTracingClientInterface.html).[createRun](https://docs.smith.langchain.com/reference/js/interfaces/client.LangSmithTracingClientInterface.html#createrun)
+
+    * Defined in [src/client.ts:1066](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1066)
+
+### deleteAnnotationQueue
+
+  * deleteAnnotationQueue(queueId: string): Promise<void>
+
+Delete an annotation queue with the specified queue ID.
+
+#### Parameters
+
+    * queueId: string
+
+The ID of the annotation queue to delete
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:4146](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4146)
+
+### deleteDataset
+
+  * deleteDataset(  
+__namedParameters: { datasetId?: string; datasetName?: string },  
+): Promise<void>
+
+#### Parameters
+
+    * __namedParameters: { datasetId?: string; datasetName?: string }
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:2866](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2866)
+
+### deleteExample
+
+  * deleteExample(exampleId: string): Promise<void>
+
+#### Parameters
+
+    * exampleId: string
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:3338](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3338)
+
+### deleteFeedback
+
+  * deleteFeedback(feedbackId: string): Promise<void>
+
+#### Parameters
+
+    * feedbackId: string
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:3741](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3741)
+
+### deleteProject
+
+  * deleteProject(  
+__namedParameters: { projectId?: string; projectName?: string },  
+): Promise<void>
+
+#### Parameters
+
+    * __namedParameters: { projectId?: string; projectName?: string }
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:2501](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2501)
+
+### deletePrompt
+
+  * deletePrompt(promptIdentifier: string): Promise<void>
+
+#### Parameters
+
+    * promptIdentifier: string
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:4818](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4818)
+
+### deleteRunFromAnnotationQueue
+
+  * deleteRunFromAnnotationQueue(queueId: string, queueRunId: string): Promise<void>
+
+Delete a run from an an annotation queue.
+
+#### Parameters
+
+    * queueId: string
+
+The ID of the annotation queue to delete the run from
+
+    * queueRunId: string
+
+The ID of the run to delete from the annotation queue
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:4217](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4217)
+
+### diffDatasetVersions
+
+  * diffDatasetVersions(  
+__namedParameters: {  
+fromVersion: string | Date;  
+toVersion: string | Date;  
+datasetId?: string;  
+datasetName?: string;  
+},  
+): Promise<[DatasetDiffInfo](https://docs.smith.langchain.com/reference/js/interfaces/schemas.DatasetDiffInfo.html)>
+
+#### Parameters
+
+    * __namedParameters: {  
+fromVersion: string | Date;  
+toVersion: string | Date;  
+datasetId?: string;  
+datasetName?: string;  
+}
+
+#### Returns Promise<[DatasetDiffInfo](https://docs.smith.langchain.com/reference/js/interfaces/schemas.DatasetDiffInfo.html)>
+
+    * Defined in [src/client.ts:2685](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2685)
+
+### evaluateRun
+
+  * evaluateRun(  
+run: string | [Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html),  
+evaluator: [RunEvaluator](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.RunEvaluator.html),  
+__namedParameters?: {  
+loadChildRuns: boolean;  
+referenceExample?: [Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html);  
+sourceInfo?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+},  
+): Promise<[Feedback](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Feedback.html)>
+
+#### Parameters
+
+    * run: string | [Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html)
+    * evaluator: [RunEvaluator](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.RunEvaluator.html)
+    * __namedParameters: { loadChildRuns: boolean; referenceExample?: [Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html); sourceInfo?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html) } = ...
+
+#### Returns Promise<[Feedback](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Feedback.html)>
+
+#### Deprecated
+
+This method is deprecated and will be removed in future LangSmith versions, use `evaluate` from `langsmith/evaluation` instead.
+
+    * Defined in [src/client.ts:3569](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3569)
+
+### flush
+
+  * flush(): Promise<void>
+
+Flushes current queued traces.
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:1061](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1061)
+
+### getDatasetUrl
+
+  * getDatasetUrl(  
+__namedParameters: { datasetId?: string; datasetName?: string },  
+): Promise<string>
+
+#### Parameters
+
+    * __namedParameters: { datasetId?: string; datasetName?: string }
+
+#### Returns Promise<string>
+
+    * Defined in [src/client.ts:2420](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2420)
+
+### getHostUrl
+
+  * getHostUrl(): string
+
+#### Returns string
+
+    * Defined in [src/client.ts:682](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L682)
+
+### getProjectUrl
+
+  * getProjectUrl(  
+__namedParameters: { projectId?: string; projectName?: string },  
+): Promise<string>
+
+#### Parameters
+
+    * __namedParameters: { projectId?: string; projectName?: string }
+
+#### Returns Promise<string>
+
+    * Defined in [src/client.ts:2405](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2405)
+
+### getPrompt
+
+  * getPrompt(promptIdentifier: string): Promise<null | [Prompt](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Prompt.html)>
+
+#### Parameters
+
+    * promptIdentifier: string
+
+#### Returns Promise<null | [Prompt](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Prompt.html)>
+
+    * Defined in [src/client.ts:4418](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4418)
+
+### getRunFromAnnotationQueue
+
+  * getRunFromAnnotationQueue(  
+queueId: string,  
+index: number,  
+): Promise<[RunWithAnnotationQueueInfo](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunWithAnnotationQueueInfo.html)>
+
+Get a run from an annotation queue at the specified index.
+
+#### Parameters
+
+    * queueId: string
+
+The ID of the annotation queue
+
+    * index: number
+
+The index of the run to retrieve
+
+#### Returns Promise<[RunWithAnnotationQueueInfo](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunWithAnnotationQueueInfo.html)>
+
+A Promise that resolves to a RunWithAnnotationQueueInfo object
+
+#### Throws
+
+If the run is not found at the given index or for other API-related errors
+
+    * Defined in [src/client.ts:4192](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4192)
+
+### getRunStats
+
+  * getRunStats(  
+__namedParameters: {  
+dataSourceType?: string;  
+endTime?: string;  
+error?: boolean;  
+filter?: string;  
+id?: string[];  
+isRoot?: boolean;  
+parentRun?: string;  
+projectIds?: string[];  
+projectNames?: string[];  
+query?: string;  
+referenceExampleIds?: string[];  
+runType?: string;  
+startTime?: string;  
+trace?: string;  
+traceFilter?: string;  
+treeFilter?: string;  
+},  
+): Promise<any>
+
+#### Parameters
+
+    * __namedParameters: {  
+dataSourceType?: string;  
+endTime?: string;  
+error?: boolean;  
+filter?: string;  
+id?: string[];  
+isRoot?: boolean;  
+parentRun?: string;  
+projectIds?: string[];  
+projectNames?: string[];  
+query?: string;  
+referenceExampleIds?: string[];  
+runType?: string;  
+startTime?: string;  
+trace?: string;  
+traceFilter?: string;  
+treeFilter?: string;  
+}
+
+#### Returns Promise<any>
+
+    * Defined in [src/client.ts:1901](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1901)
+
+### getRunUrl
+
+  * getRunUrl(  
+__namedParameters: {  
+projectOpts?: ProjectOptions;  
+run?: [Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html);  
+runId?: string;  
+},  
+): Promise<string>
+
+#### Parameters
+
+    * __namedParameters: { projectOpts?: ProjectOptions; run?: [Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html); runId?: string }
+
+#### Returns Promise<string>
+
+    * Defined in [src/client.ts:1563](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1563)
+
+### getSizeFromAnnotationQueue
+
+  * getSizeFromAnnotationQueue(queueId: string): Promise<{ size: number }>
+
+Get the size of an annotation queue.
+
+#### Parameters
+
+    * queueId: string
+
+The ID of the annotation queue
+
+#### Returns Promise<{ size: number }>
+
+    * Defined in [src/client.ts:4241](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4241)
+
+### hasDataset
+
+  * hasDataset(  
+__namedParameters: { datasetId?: string; datasetName?: string },  
+): Promise<boolean>
+
+#### Parameters
+
+    * __namedParameters: { datasetId?: string; datasetName?: string }
+
+#### Returns Promise<boolean>
+
+    * Defined in [src/client.ts:2663](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2663)
+
+### hasProject
+
+  * hasProject(  
+__namedParameters: { projectId?: string; projectName?: string },  
+): Promise<boolean>
+
+#### Parameters
+
+    * __namedParameters: { projectId?: string; projectName?: string }
+
+#### Returns Promise<boolean>
+
+    * Defined in [src/client.ts:2314](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2314)
+
+### indexDataset
+
+  * indexDataset(  
+__namedParameters: {  
+datasetId?: string;  
+datasetName?: string;  
+tag?: string;  
+},  
+): Promise<void>
+
+#### Parameters
+
+    * __namedParameters: { datasetId?: string; datasetName?: string; tag?: string }
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:2902](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2902)
+
+### likePrompt
+
+  * likePrompt(promptIdentifier: string): Promise<[LikePromptResponse](https://docs.smith.langchain.com/reference/js/interfaces/schemas.LikePromptResponse.html)>
+
+#### Parameters
+
+    * promptIdentifier: string
+
+#### Returns Promise<[LikePromptResponse](https://docs.smith.langchain.com/reference/js/interfaces/schemas.LikePromptResponse.html)>
+
+    * Defined in [src/client.ts:4363](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4363)
+
+### listAnnotationQueues
+
+  * listAnnotationQueues(  
+options?: {  
+limit?: number;  
+name?: string;  
+nameContains?: string;  
+queueIds?: string[];  
+},  
+): AsyncIterableIterator<[AnnotationQueue](https://docs.smith.langchain.com/reference/js/interfaces/schemas.AnnotationQueue.html)>
+
+List the annotation queues on the LangSmith API.
+
+#### Parameters
+
+    * options: { limit?: number; name?: string; nameContains?: string; queueIds?: string[] } = {}
+
+The options for listing annotation queues
+
+      * ##### `Optional`limit?: number
+
+The maximum number of queues to return
+
+      * ##### `Optional`name?: string
+
+The name of the queue to filter by
+
+      * ##### `Optional`nameContains?: string
+
+The substring that the queue name should contain
+
+      * ##### `Optional`queueIds?: string[]
+
+The IDs of the queues to filter by
+
+#### Returns AsyncIterableIterator<[AnnotationQueue](https://docs.smith.langchain.com/reference/js/interfaces/schemas.AnnotationQueue.html)>
+
+An iterator of AnnotationQueue objects
+
+    * Defined in [src/client.ts:4009](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4009)
+
+### listCommits
+
+  * listCommits(promptOwnerAndName: string): AsyncIterableIterator<[PromptCommit](https://docs.smith.langchain.com/reference/js/interfaces/schemas.PromptCommit.html)>
+
+#### Parameters
+
+    * promptOwnerAndName: string
+
+#### Returns AsyncIterableIterator<[PromptCommit](https://docs.smith.langchain.com/reference/js/interfaces/schemas.PromptCommit.html)>
+
+    * Defined in [src/client.ts:4375](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4375)
+
+### listDatasets
+
+  * listDatasets(  
+__namedParameters?: {  
+datasetIds?: string[];  
+datasetName?: string;  
+datasetNameContains?: string;  
+limit?: number;  
+metadata?: RecordStringAny;  
+offset?: number;  
+},  
+): AsyncIterable<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+#### Parameters
+
+    * __namedParameters: {  
+datasetIds?: string[];  
+datasetName?: string;  
+datasetNameContains?: string;  
+limit?: number;  
+metadata?: RecordStringAny;  
+offset?: number;  
+} = {}
+
+#### Returns AsyncIterable<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+    * Defined in [src/client.ts:2745](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2745)
+
+### listDatasetSplits
+
+  * listDatasetSplits(  
+__namedParameters: {  
+asOf?: string | Date;  
+datasetId?: string;  
+datasetName?: string;  
+},  
+): Promise<string[]>
+
+#### Parameters
+
+    * __namedParameters: { asOf?: string | Date; datasetId?: string; datasetName?: string }
+
+#### Returns Promise<string[]>
+
+    * Defined in [src/client.ts:3475](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3475)
+
+### listExamples
+
+  * listExamples(  
+__namedParameters?: {  
+asOf?: string | Date;  
+datasetId?: string;  
+datasetName?: string;  
+exampleIds?: string[];  
+filter?: string;  
+includeAttachments?: boolean;  
+inlineS3Urls?: boolean;  
+limit?: number;  
+metadata?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+offset?: number;  
+splits?: string[];  
+},  
+): AsyncIterable<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+#### Parameters
+
+    * __namedParameters: {  
+asOf?: string | Date;  
+datasetId?: string;  
+datasetName?: string;  
+exampleIds?: string[];  
+filter?: string;  
+includeAttachments?: boolean;  
+inlineS3Urls?: boolean;  
+limit?: number;  
+metadata?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+offset?: number;  
+splits?: string[];  
+} = {}
+
+#### Returns AsyncIterable<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+    * Defined in [src/client.ts:3234](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3234)
+
+### listFeedback
+
+  * listFeedback(  
+__namedParameters?: {  
+feedbackKeys?: string[];  
+feedbackSourceTypes?: [FeedbackSourceType](https://docs.smith.langchain.com/reference/js/types/client.FeedbackSourceType.html)[];  
+runIds?: string[];  
+},  
+): AsyncIterable<[Feedback](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Feedback.html)>
+
+#### Parameters
+
+    * __namedParameters: {  
+feedbackKeys?: string[];  
+feedbackSourceTypes?: [FeedbackSourceType](https://docs.smith.langchain.com/reference/js/types/client.FeedbackSourceType.html)[];  
+runIds?: string[];  
+} = {}
+
+#### Returns AsyncIterable<[Feedback](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Feedback.html)>
+
+    * Defined in [src/client.ts:3758](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3758)
+
+### listGroupRuns
+
+  * listGroupRuns(props: GroupRunsParams): AsyncIterable<Thread>
+
+#### Parameters
+
+    * props: GroupRunsParams
+
+#### Returns AsyncIterable<Thread>
+
+    * Defined in [src/client.ts:1834](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1834)
+
+### listPresignedFeedbackTokens
+
+  * listPresignedFeedbackTokens(runId: string): AsyncIterable<[FeedbackIngestToken](https://docs.smith.langchain.com/reference/js/interfaces/schemas.FeedbackIngestToken.html)>
+
+Retrieves a list of presigned feedback tokens for a given run ID.
+
+#### Parameters
+
+    * runId: string
+
+The ID of the run.
+
+#### Returns AsyncIterable<[FeedbackIngestToken](https://docs.smith.langchain.com/reference/js/interfaces/schemas.FeedbackIngestToken.html)>
+
+An async iterable of FeedbackIngestToken objects.
+
+    * Defined in [src/client.ts:3911](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3911)
+
+### listProjects
+
+  * listProjects(  
+__namedParameters?: {  
+metadata?: RecordStringAny;  
+name?: string;  
+nameContains?: string;  
+projectIds?: string[];  
+referenceDatasetId?: string;  
+referenceDatasetName?: string;  
+referenceFree?: boolean;  
+},  
+): AsyncIterable<[TracerSession](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TracerSession.html)>
+
+#### Parameters
+
+    * __namedParameters: {  
+metadata?: RecordStringAny;  
+name?: string;  
+nameContains?: string;  
+projectIds?: string[];  
+referenceDatasetId?: string;  
+referenceDatasetName?: string;  
+referenceFree?: boolean;  
+} = {}
+
+#### Returns AsyncIterable<[TracerSession](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TracerSession.html)>
+
+    * Defined in [src/client.ts:2450](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2450)
+
+### listPrompts
+
+  * listPrompts(  
+options?: {  
+isArchived?: boolean;  
+isPublic?: boolean;  
+query?: string;  
+sortField?: [PromptSortField](https://docs.smith.langchain.com/reference/js/types/schemas.PromptSortField.html);  
+},  
+): AsyncIterableIterator<[Prompt](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Prompt.html)>
+
+#### Parameters
+
+    * `Optional`options: {  
+isArchived?: boolean;  
+isPublic?: boolean;  
+query?: string;  
+sortField?: [PromptSortField](https://docs.smith.langchain.com/reference/js/types/schemas.PromptSortField.html);  
+}
+
+#### Returns AsyncIterableIterator<[Prompt](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Prompt.html)>
+
+    * Defined in [src/client.ts:4390](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4390)
+
+### listRuns
+
+  * listRuns(props: ListRunsParams): AsyncIterable<[Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html)>
+
+List runs from the LangSmith server.
+
+#### Parameters
+
+    * props: ListRunsParams
+
+#### Returns AsyncIterable<[Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html)>
+
+    * The runs.
+
+#### Example
+    
+    // List all runs in a project  
+    const projectRuns = client.listRuns({ projectName: "<your_project>" });
+    Copy
+
+#### Example
+    
+    // List LLM and Chat runs in the last 24 hours  
+    const todaysLLMRuns = client.listRuns({  
+      projectName: "<your_project>",  
+      start_time: new Date(Date.now() - 24 * 60 * 60 * 1000),  
+      run_type: "llm",  
+    });
+    Copy
+
+#### Example
+    
+    // List traces in a project  
+    const rootRuns = client.listRuns({  
+      projectName: "<your_project>",  
+      execution_order: 1,  
+    });
+    Copy
+
+#### Example
+    
+    // List runs without errors  
+    const correctRuns = client.listRuns({  
+      projectName: "<your_project>",  
+      error: false,  
+    });
+    Copy
+
+#### Example
+    
+    // List runs by run ID  
+    const runIds = [  
+      "a36092d2-4ad5-4fb4-9c0d-0dba9a2ed836",  
+      "9398e6be-964f-4aa4-8ae9-ad78cd4b7074",  
+    ];  
+    const selectedRuns = client.listRuns({ run_ids: runIds });
+    Copy
+
+#### Example
+    
+    // List all "chain" type runs that took more than 10 seconds and had `total_tokens` greater than 5000  
+    const chainRuns = client.listRuns({  
+      projectName: "<your_project>",  
+      filter: 'and(eq(run_type, "chain"), gt(latency, 10), gt(total_tokens, 5000))',  
+    });
+    Copy
+
+#### Example
+    
+    // List all runs called "extractor" whose root of the trace was assigned feedback "user_score" score of 1  
+    const goodExtractorRuns = client.listRuns({  
+      projectName: "<your_project>",  
+      filter: 'eq(name, "extractor")',  
+      traceFilter: 'and(eq(feedback_key, "user_score"), eq(feedback_score, 1))',  
+    });
+    Copy
+
+#### Example
+    
+    // List all runs that started after a specific timestamp and either have "error" not equal to null or a "Correctness" feedback score equal to 0  
+    const complexRuns = client.listRuns({  
+      projectName: "<your_project>",  
+      filter: 'and(gt(start_time, "2023-07-15T12:34:56Z"), or(neq(error, null), and(eq(feedback_key, "Correctness"), eq(feedback_score, 0.0))))',  
+    });
+    Copy
+
+#### Example
+    
+    // List all runs where `tags` include "experimental" or "beta" and `latency` is greater than 2 seconds  
+    const taggedRuns = client.listRuns({  
+      projectName: "<your_project>",  
+      filter: 'and(or(has(tags, "experimental"), has(tags, "beta")), gt(latency, 2))',  
+    });
+    Copy
+
+    * Defined in [src/client.ts:1727](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1727)
+
+### listSharedExamples
+
+  * listSharedExamples(  
+shareToken: string,  
+options?: { exampleIds?: string[] },  
+): Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)[]>
+
+Get shared examples.
+
+#### Parameters
+
+    * shareToken: string
+
+The share token to get examples for. A share token is the UUID (or LangSmith URL, including UUID) generated when explicitly marking an example as public.
+
+    * `Optional`options: { exampleIds?: string[] }
+
+Additional options for listing the examples.
+
+      * ##### `Optional`exampleIds?: string[]
+
+A list of example IDs to filter by.
+
+#### Returns Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)[]>
+
+The shared examples.
+
+    * Defined in [src/client.ts:2182](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2182)
+
+### listSharedRuns
+
+  * listSharedRuns(  
+shareToken: string,  
+__namedParameters?: { runIds?: string[] },  
+): Promise<[Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html)[]>
+
+#### Parameters
+
+    * shareToken: string
+    * __namedParameters: { runIds?: string[] } = {}
+
+#### Returns Promise<[Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html)[]>
+
+    * Defined in [src/client.ts:2050](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2050)
+
+### logEvaluationFeedback
+
+  * logEvaluationFeedback(  
+evaluatorResponse:  
+| [EvaluationResult](https://docs.smith.langchain.com/reference/js/types/evaluation.EvaluationResult.html)  
+| [EvaluationResult](https://docs.smith.langchain.com/reference/js/types/evaluation.EvaluationResult.html)[]  
+| EvaluationResults,  
+run?: [Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html),  
+sourceInfo?: { [key: string]: any },  
+): Promise<[EvaluationResult](https://docs.smith.langchain.com/reference/js/types/evaluation.EvaluationResult.html)[]>
+
+#### Parameters
+
+    * evaluatorResponse: [EvaluationResult](https://docs.smith.langchain.com/reference/js/types/evaluation.EvaluationResult.html) | [EvaluationResult](https://docs.smith.langchain.com/reference/js/types/evaluation.EvaluationResult.html)[] | EvaluationResults
+    * `Optional`run: [Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html)
+    * `Optional`sourceInfo: { [key: string]: any }
+
+#### Returns Promise<[EvaluationResult](https://docs.smith.langchain.com/reference/js/types/evaluation.EvaluationResult.html)[]>
+
+    * Defined in [src/client.ts:3980](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3980)
+
+### multipartIngestRuns
+
+  * multipartIngestRuns(  
+runs: { runCreates?: [RunCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunCreate.html)[]; runUpdates?: [RunUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunUpdate.html)[] },  
+): Promise<void>
+
+Batch ingest/upsert multiple runs in the Langsmith system.
+
+#### Parameters
+
+    * runs: { runCreates?: [RunCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunCreate.html)[]; runUpdates?: [RunUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunUpdate.html)[] }
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:1218](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1218)
+
+### promptExists
+
+  * promptExists(promptIdentifier: string): Promise<boolean>
+
+#### Parameters
+
+    * promptIdentifier: string
+
+#### Returns Promise<boolean>
+
+    * Defined in [src/client.ts:4358](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4358)
+
+### pullPromptCommit
+
+  * pullPromptCommit(  
+promptIdentifier: string,  
+options?: { includeModel?: boolean },  
+): Promise<[PromptCommit](https://docs.smith.langchain.com/reference/js/interfaces/schemas.PromptCommit.html)>
+
+#### Parameters
+
+    * promptIdentifier: string
+    * `Optional`options: { includeModel?: boolean }
+
+#### Returns Promise<[PromptCommit](https://docs.smith.langchain.com/reference/js/interfaces/schemas.PromptCommit.html)>
+
+    * Defined in [src/client.ts:4843](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4843)
+
+### pushPrompt
+
+  * pushPrompt(  
+promptIdentifier: string,  
+options?: {  
+description?: string;  
+isPublic?: boolean;  
+object?: any;  
+parentCommitHash?: string;  
+readme?: string;  
+tags?: string[];  
+},  
+): Promise<string>
+
+#### Parameters
+
+    * promptIdentifier: string
+    * `Optional`options: {  
+description?: string;  
+isPublic?: boolean;  
+object?: any;  
+parentCommitHash?: string;  
+readme?: string;  
+tags?: string[];  
+}
+
+#### Returns Promise<string>
+
+    * Defined in [src/client.ts:4895](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4895)
+
+### readAnnotationQueue
+
+  * readAnnotationQueue(queueId: string): Promise<[AnnotationQueueWithDetails](https://docs.smith.langchain.com/reference/js/interfaces/schemas.AnnotationQueueWithDetails.html)>
+
+Read an annotation queue with the specified queue ID.
+
+#### Parameters
+
+    * queueId: string
+
+The ID of the annotation queue to read
+
+#### Returns Promise<[AnnotationQueueWithDetails](https://docs.smith.langchain.com/reference/js/interfaces/schemas.AnnotationQueueWithDetails.html)>
+
+The AnnotationQueueWithDetails object
+
+    * Defined in [src/client.ts:4090](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4090)
+
+### readDataset
+
+  * readDataset(  
+__namedParameters: { datasetId?: string; datasetName?: string },  
+): Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+#### Parameters
+
+    * __namedParameters: { datasetId?: string; datasetName?: string }
+
+#### Returns Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+    * Defined in [src/client.ts:2628](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2628)
+
+### readDatasetOpenaiFinetuning
+
+  * readDatasetOpenaiFinetuning(  
+__namedParameters: { datasetId?: string; datasetName?: string },  
+): Promise<any[]>
+
+#### Parameters
+
+    * __namedParameters: { datasetId?: string; datasetName?: string }
+
+#### Returns Promise<any[]>
+
+    * Defined in [src/client.ts:2720](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2720)
+
+### readDatasetSharedSchema
+
+  * readDatasetSharedSchema(  
+datasetId?: string,  
+datasetName?: string,  
+): Promise<[DatasetShareSchema](https://docs.smith.langchain.com/reference/js/interfaces/schemas.DatasetShareSchema.html)>
+
+#### Parameters
+
+    * `Optional`datasetId: string
+    * `Optional`datasetName: string
+
+#### Returns Promise<[DatasetShareSchema](https://docs.smith.langchain.com/reference/js/interfaces/schemas.DatasetShareSchema.html)>
+
+    * Defined in [src/client.ts:2081](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2081)
+
+### readDatasetVersion
+
+  * readDatasetVersion(  
+options: {  
+asOf?: string | Date;  
+datasetId?: string;  
+datasetName?: string;  
+tag?: string;  
+},  
+): Promise<[DatasetVersion](https://docs.smith.langchain.com/reference/js/interfaces/schemas.DatasetVersion.html)>
+
+Get dataset version by closest date or exact tag.
+
+Use this to resolve the nearest version to a given timestamp or for a given tag.
+
+#### Parameters
+
+    * options: { asOf?: string | Date; datasetId?: string; datasetName?: string; tag?: string }
+
+The options for getting the dataset version
+
+      * ##### `Optional`asOf?: string | Date
+
+The timestamp of the dataset to retrieve
+
+      * ##### `Optional`datasetId?: string
+
+The ID of the dataset
+
+      * ##### `Optional`datasetName?: string
+
+The name of the dataset
+
+      * ##### `Optional`tag?: string
+
+The tag of the dataset to retrieve
+
+#### Returns Promise<[DatasetVersion](https://docs.smith.langchain.com/reference/js/interfaces/schemas.DatasetVersion.html)>
+
+The dataset version
+
+    * Defined in [src/client.ts:3421](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3421)
+
+### readExample
+
+  * readExample(exampleId: string): Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+#### Parameters
+
+    * exampleId: string
+
+#### Returns Promise<[Example](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Example.html)>
+
+    * Defined in [src/client.ts:3213](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3213)
+
+### readFeedback
+
+  * readFeedback(feedbackId: string): Promise<[Feedback](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Feedback.html)>
+
+#### Parameters
+
+    * feedbackId: string
+
+#### Returns Promise<[Feedback](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Feedback.html)>
+
+    * Defined in [src/client.ts:3734](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3734)
+
+### readProject
+
+  * readProject(  
+__namedParameters: {  
+includeStats?: boolean;  
+projectId?: string;  
+projectName?: string;  
+},  
+): Promise<[TracerSessionResult](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TracerSessionResult.html)>
+
+#### Parameters
+
+    * __namedParameters: { includeStats?: boolean; projectId?: string; projectName?: string }
+
+#### Returns Promise<[TracerSessionResult](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TracerSessionResult.html)>
+
+    * Defined in [src/client.ts:2362](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2362)
+
+### readRun
+
+  * readRun(  
+runId: string,  
+__namedParameters?: { loadChildRuns: boolean },  
+): Promise<[Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html)>
+
+#### Parameters
+
+    * runId: string
+    * __namedParameters: { loadChildRuns: boolean } = ...
+
+#### Returns Promise<[Run](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Run.html)>
+
+    * Defined in [src/client.ts:1551](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1551)
+
+### readRunSharedLink
+
+  * readRunSharedLink(runId: string): Promise<undefined | string>
+
+#### Parameters
+
+    * runId: string
+
+#### Returns Promise<undefined | string>
+
+    * Defined in [src/client.ts:2031](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2031)
+
+### readSharedDataset
+
+  * readSharedDataset(shareToken: string): Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+#### Parameters
+
+    * shareToken: string
+
+#### Returns Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+    * Defined in [src/client.ts:2158](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2158)
+
+### shareDataset
+
+  * shareDataset(  
+datasetId?: string,  
+datasetName?: string,  
+): Promise<[DatasetShareSchema](https://docs.smith.langchain.com/reference/js/interfaces/schemas.DatasetShareSchema.html)>
+
+#### Parameters
+
+    * `Optional`datasetId: string
+    * `Optional`datasetName: string
+
+#### Returns Promise<[DatasetShareSchema](https://docs.smith.langchain.com/reference/js/interfaces/schemas.DatasetShareSchema.html)>
+
+    * Defined in [src/client.ts:2110](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2110)
+
+### shareRun
+
+  * shareRun(  
+runId: string,  
+__namedParameters?: { shareId?: string },  
+): Promise<string>
+
+#### Parameters
+
+    * runId: string
+    * __namedParameters: { shareId?: string } = {}
+
+#### Returns Promise<string>
+
+    * Defined in [src/client.ts:1989](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1989)
+
+### similarExamples
+
+  * similarExamples(  
+inputs: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html),  
+datasetId: string,  
+limit: number,  
+filter?: { filter?: string },  
+): Promise<[ExampleSearch](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleSearch.html)[]>
+
+Lets you run a similarity search query on a dataset.
+
+Requires the dataset to be indexed. Please see the `indexDataset` method to set up indexing.
+
+#### Parameters
+
+    * inputs: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)
+
+The input on which to run the similarity search. Must have the same schema as the dataset.
+
+    * datasetId: string
+
+The dataset to search for similar examples.
+
+    * limit: number
+
+The maximum number of examples to return. Will return the top `limit` most similar examples in order of most similar to least similar. If no similar examples are found, random examples will be returned.
+
+    * filter: { filter?: string } = {}
+
+A filter string to apply to the search. Only examples will be returned that match the filter string. Some examples of filters
+          
+          - eq(metadata.mykey, "value")
+                         - and(neq(metadata.my.nested.key, "value"), neq(metadata.mykey, "value"))
+                         - or(eq(metadata.mykey, "value"), eq(metadata.mykey, "othervalue"))
+          
+
+#### Returns Promise<[ExampleSearch](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleSearch.html)[]>
+
+A list of similar examples.
+
+#### Example
+    
+    dataset_id = "123e4567-e89b-12d3-a456-426614174000"  
+    inputs = {"text": "How many people live in Berlin?"}  
+    limit = 5  
+    examples = await client.similarExamples(inputs, dataset_id, limit)
+    Copy
+
+    * Defined in [src/client.ts:2970](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2970)
+
+### unlikePrompt
+
+  * unlikePrompt(promptIdentifier: string): Promise<[LikePromptResponse](https://docs.smith.langchain.com/reference/js/interfaces/schemas.LikePromptResponse.html)>
+
+#### Parameters
+
+    * promptIdentifier: string
+
+#### Returns Promise<[LikePromptResponse](https://docs.smith.langchain.com/reference/js/interfaces/schemas.LikePromptResponse.html)>
+
+    * Defined in [src/client.ts:4369](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4369)
+
+### unshareDataset
+
+  * unshareDataset(datasetId: string): Promise<void>
+
+#### Parameters
+
+    * datasetId: string
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:2143](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2143)
+
+### unshareRun
+
+  * unshareRun(runId: string): Promise<void>
+
+#### Parameters
+
+    * runId: string
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:2016](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2016)
+
+### updateAnnotationQueue
+
+  * updateAnnotationQueue(  
+queueId: string,  
+options: {  
+name: string;  
+description?: string;  
+rubricInstructions?: string;  
+},  
+): Promise<void>
+
+Update an annotation queue with the specified queue ID.
+
+#### Parameters
+
+    * queueId: string
+
+The ID of the annotation queue to update
+
+    * options: { name: string; description?: string; rubricInstructions?: string }
+
+The options for updating the annotation queue
+
+      * ##### name: string
+
+The new name for the annotation queue
+
+      * ##### `Optional`description?: string
+
+The new description for the annotation queue
+
+      * ##### `Optional`rubricInstructions?: string
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:4115](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4115)
+
+### updateDataset
+
+  * updateDataset(  
+props: {  
+datasetId?: string;  
+datasetName?: string;  
+description?: string;  
+name?: string;  
+},  
+): Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+Update a dataset
+
+#### Parameters
+
+    * props: {  
+datasetId?: string;  
+datasetName?: string;  
+description?: string;  
+name?: string;  
+}
+
+The dataset details to update
+
+#### Returns Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+The updated dataset
+
+    * Defined in [src/client.ts:2789](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2789)
+
+### updateDatasetSplits
+
+  * updateDatasetSplits(  
+__namedParameters: {  
+exampleIds: string[];  
+splitName: string;  
+datasetId?: string;  
+datasetName?: string;  
+remove?: boolean;  
+},  
+): Promise<void>
+
+#### Parameters
+
+    * __namedParameters: {  
+exampleIds: string[];  
+splitName: string;  
+datasetId?: string;  
+datasetName?: string;  
+remove?: boolean;  
+}
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:3515](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3515)
+
+### updateDatasetTag
+
+  * updateDatasetTag(  
+props: {  
+asOf: string | Date;  
+tag: string;  
+datasetId?: string;  
+datasetName?: string;  
+},  
+): Promise<void>
+
+Updates a tag on a dataset.
+
+If the tag is already assigned to a different version of this dataset, the tag will be moved to the new version. The as_of parameter is used to determine which version of the dataset to apply the new tags to.
+
+It must be an exact version of the dataset to succeed. You can use the "readDatasetVersion" method to find the exact version to apply the tags to.
+
+#### Parameters
+
+    * props: { asOf: string | Date; tag: string; datasetId?: string; datasetName?: string }
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:2834](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2834)
+
+### updateExample
+
+  * updateExample(  
+exampleId: string,  
+update: [ExampleUpdateWithoutId](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleUpdateWithoutId.html),  
+): Promise<object>
+
+#### Parameters
+
+    * exampleId: string
+    * update: [ExampleUpdateWithoutId](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleUpdateWithoutId.html)
+
+#### Returns Promise<object>
+
+#### Deprecated
+
+This signature is deprecated, use updateExample(update: ExampleUpdate) instead
+
+    * Defined in [src/client.ts:3358](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3358)
+
+  * updateExample(update: [ExampleUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleUpdate.html)): Promise<object>
+
+#### Parameters
+
+    * update: [ExampleUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleUpdate.html)
+
+#### Returns Promise<object>
+
+#### Deprecated
+
+This signature is deprecated, use updateExample(update: ExampleUpdate) instead
+
+    * Defined in [src/client.ts:3363](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3363)
+
+### updateExamples
+
+  * updateExamples(update: [ExampleUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleUpdate.html)[]): Promise<object>
+
+#### Parameters
+
+    * update: [ExampleUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleUpdate.html)[]
+
+#### Returns Promise<object>
+
+    * Defined in [src/client.ts:3396](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3396)
+
+### updateExamplesMultipart
+
+  * updateExamplesMultipart(  
+datasetId: string,  
+updates?: [ExampleUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleUpdate.html)[],  
+): Promise<[UpdateExamplesResponse](https://docs.smith.langchain.com/reference/js/interfaces/schemas.UpdateExamplesResponse.html)>
+
+Update examples with attachments using multipart form data.
+
+#### Parameters
+
+    * datasetId: string
+    * updates: [ExampleUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleUpdate.html)[] = []
+
+List of ExampleUpdateWithAttachments objects to upsert
+
+#### Returns Promise<[UpdateExamplesResponse](https://docs.smith.langchain.com/reference/js/interfaces/schemas.UpdateExamplesResponse.html)>
+
+Promise with the update response
+
+    * Defined in [src/client.ts:4543](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4543)
+
+### updateFeedback
+
+  * updateFeedback(  
+feedbackId: string,  
+__namedParameters: {  
+comment?: null | string;  
+correction?: null | object;  
+score?: null | number | boolean;  
+value?: null | string | number | boolean | object;  
+},  
+): Promise<void>
+
+#### Parameters
+
+    * feedbackId: string
+    * __namedParameters: {  
+comment?: null | string;  
+correction?: null | object;  
+score?: null | number | boolean;  
+value?: null | string | number | boolean | object;  
+}
+
+#### Returns Promise<void>
+
+    * Defined in [src/client.ts:3692](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L3692)
+
+### updateProject
+
+  * updateProject(  
+projectId: string,  
+__namedParameters: {  
+description?: null | string;  
+endTime?: null | string;  
+metadata?: null | RecordStringAny;  
+name?: null | string;  
+projectExtra?: null | RecordStringAny;  
+},  
+): Promise<[TracerSession](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TracerSession.html)>
+
+#### Parameters
+
+    * projectId: string
+    * __namedParameters: {  
+description?: null | string;  
+endTime?: null | string;  
+metadata?: null | RecordStringAny;  
+name?: null | string;  
+projectExtra?: null | RecordStringAny;  
+}
+
+#### Returns Promise<[TracerSession](https://docs.smith.langchain.com/reference/js/interfaces/schemas.TracerSession.html)>
+
+    * Defined in [src/client.ts:2271](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2271)
+
+### updatePrompt
+
+  * updatePrompt(  
+promptIdentifier: string,  
+options?: {  
+description?: string;  
+isArchived?: boolean;  
+isPublic?: boolean;  
+readme?: string;  
+tags?: string[];  
+},  
+): Promise<Record<string, any>>
+
+#### Parameters
+
+    * promptIdentifier: string
+    * `Optional`options: {  
+description?: string;  
+isArchived?: boolean;  
+isPublic?: boolean;  
+readme?: string;  
+tags?: string[];  
+}
+
+#### Returns Promise<Record<string, any>>
+
+    * Defined in [src/client.ts:4764](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4764)
+
+### updateRun
+
+  * updateRun(runId: string, run: [RunUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunUpdate.html)): Promise<void>
+
+#### Parameters
+
+    * runId: string
+    * run: [RunUpdate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.RunUpdate.html)
+
+#### Returns Promise<void>
+
+Implementation of [LangSmithTracingClientInterface](https://docs.smith.langchain.com/reference/js/interfaces/client.LangSmithTracingClientInterface.html).[updateRun](https://docs.smith.langchain.com/reference/js/interfaces/client.LangSmithTracingClientInterface.html#updaterun)
+
+    * Defined in [src/client.ts:1495](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L1495)
+
+### uploadCsv
+
+  * uploadCsv(__namedParameters: UploadCSVParams): Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+#### Parameters
+
+    * __namedParameters: UploadCSVParams
+
+#### Returns Promise<[Dataset](https://docs.smith.langchain.com/reference/js/interfaces/schemas.Dataset.html)>
+
+    * Defined in [src/client.ts:2536](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L2536)
+
+### uploadExamplesMultipart
+
+  * uploadExamplesMultipart(  
+datasetId: string,  
+uploads?: [ExampleCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleCreate.html)[],  
+): Promise<[UploadExamplesResponse](https://docs.smith.langchain.com/reference/js/interfaces/schemas.UploadExamplesResponse.html)>
+
+Upload examples with attachments using multipart form data.
+
+#### Parameters
+
+    * datasetId: string
+    * uploads: [ExampleCreate](https://docs.smith.langchain.com/reference/js/interfaces/schemas.ExampleCreate.html)[] = []
+
+List of ExampleUploadWithAttachments objects to upload
+
+#### Returns Promise<[UploadExamplesResponse](https://docs.smith.langchain.com/reference/js/interfaces/schemas.UploadExamplesResponse.html)>
+
+Promise with the upload response
+
+#### Deprecated
+
+This method is deprecated and will be removed in future LangSmith versions, please use `createExamples` instead
+
+    * Defined in [src/client.ts:4661](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L4661)
+
+### `Static`getDefaultClientConfig
+
+  * getDefaultClientConfig(): {  
+apiUrl: string;  
+apiKey?: string;  
+hideInputs?: boolean;  
+hideOutputs?: boolean;  
+webUrl?: string;  
+}
+
+#### Returns {  
+apiUrl: string;  
+apiKey?: string;  
+hideInputs?: boolean;  
+hideOutputs?: boolean;  
+webUrl?: string;  
+}
+
+    * Defined in [src/client.ts:658](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/client.ts#L658)
+
+### Settings
+
+Member Visibility
+
+  * Protected
+  * Inherited
+  * External
+
+ThemeOSLightDark
+
+### On This Page
+
+Constructors
+
+constructor
+
+Properties
+
+debug
+
+Methods
+
+addRunsToAnnotationQueueawaitPendingTraceBatchesbatchIngestRunsclonePublicDatasetcreateAnnotationQueuecreateChatExamplecreateCommitcreateComparativeExperimentcreateDatasetcreateExamplecreateExamplescreateFeedbackcreateLLMExamplecreatePresignedFeedbackTokencreateProjectcreatePromptcreateRundeleteAnnotationQueuedeleteDatasetdeleteExampledeleteFeedbackdeleteProjectdeletePromptdeleteRunFromAnnotationQueuediffDatasetVersionsevaluateRunflushgetDatasetUrlgetHostUrlgetProjectUrlgetPromptgetRunFromAnnotationQueuegetRunStatsgetRunUrlgetSizeFromAnnotationQueuehasDatasethasProjectindexDatasetlikePromptlistAnnotationQueueslistCommitslistDatasetslistDatasetSplitslistExampleslistFeedbacklistGroupRunslistPresignedFeedbackTokenslistProjectslistPromptslistRunslistSharedExampleslistSharedRunslogEvaluationFeedbackmultipartIngestRunspromptExistspullPromptCommitpushPromptreadAnnotationQueuereadDatasetreadDatasetOpenaiFinetuningreadDatasetSharedSchemareadDatasetVersionreadExamplereadFeedbackreadProjectreadRunreadRunSharedLinkreadSharedDatasetshareDatasetshareRunsimilarExamplesunlikePromptunshareDatasetunshareRunupdateAnnotationQueueupdateDatasetupdateDatasetSplitsupdateDatasetTagupdateExampleupdateExamplesupdateExamplesMultipartupdateFeedbackupdateProjectupdatePromptupdateRunuploadCsvuploadExamplesMultipartgetDefaultClientConfig
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

@@ -1,0 +1,54 @@
+# ComparativeExperimentResults — 🦜️🛠️ LangSmith  documentation
+
+# ComparativeExperimentResults#
+
+_class _langsmith.evaluation._runner.ComparativeExperimentResults(
+
+    _results : dict_,
+    _examples : dict[UUID, [Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")] | None = None_,
+)[[source]](../_modules/langsmith/evaluation/_runner.html#ComparativeExperimentResults)#
+    
+
+Represents the results of an evaluate_comparative() call.
+
+This class provides an iterator interface to iterate over the experiment results as they become available. It also provides methods to access the experiment name, the number of results, and to wait for the results to be processed.
+
+Parameters:
+    
+
+  * **results** (_dict_)
+
+  * **examples** (_Optional_ _[__dict_ _[__uuid.UUID_ _,_[_schemas.Example_](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example") _]__]_)
+
+experiment_name() → str#
+    
+
+Returns the name of the experiment.
+
+wait() → None#
+    
+
+Waits for the experiment data to be processed.
+
+Methods
+
+`__init__`(results[, examples]) |   
+---|---  
+  
+__init__(
+
+    _results : dict_,
+    _examples : dict[UUID, [Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")] | None = None_,
+)[[source]](../_modules/langsmith/evaluation/_runner.html#ComparativeExperimentResults.__init__)#
+    
+
+Parameters:
+    
+
+  * **results** (_dict_)
+
+  * **examples** (_dict_ _[__UUID_ _,_[_Example_](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example") _]__|__None_)
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

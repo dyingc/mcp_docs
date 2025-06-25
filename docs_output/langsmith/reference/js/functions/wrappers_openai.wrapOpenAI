@@ -1,0 +1,68 @@
+# wrapOpenAI | LangSmith - v0.3.33
+
+* [LangSmith](https://docs.smith.langchain.com/reference/js/modules.html)
+  * [wrappers/openai](https://docs.smith.langchain.com/reference/js/modules/wrappers_openai.html)
+  * [wrapOpenAI](https://docs.smith.langchain.com/reference/js/functions/wrappers_openai.wrapOpenAI.html)
+
+# Function wrapOpenAI
+
+Wraps an OpenAI client's completion methods, enabling automatic LangSmith tracing. Method signatures are unchanged, with the exception that you can pass an additional and optional "langsmithExtra" field within the second parameter.
+
+#### Example
+    
+    
+    import { OpenAI } from "openai";  
+    import { wrapOpenAI } from "langsmith/wrappers/openai";  
+      
+    const patchedClient = wrapOpenAI(new OpenAI());  
+      
+    const patchedStream = await patchedClient.chat.completions.create(  
+      {  
+        messages: [{ role: "user", content: `Say 'foo'` }],  
+        model: "gpt-4.1-mini",  
+        stream: true,  
+      },  
+      {  
+        langsmithExtra: {  
+          metadata: {  
+            additional_data: "bar",  
+          },  
+        },  
+      },  
+    );
+    Copy
+
+  * wrapOpenAI<[T](https://docs.smith.langchain.com/reference/js/functions/wrappers_openai.wrapOpenAI.html#wrapopenait) extends OpenAIType>(  
+openai: [T](https://docs.smith.langchain.com/reference/js/functions/wrappers_openai.wrapOpenAI.html#wrapopenait),  
+options?: Partial<[RunTreeConfig](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html)>,  
+): PatchedOpenAIClient<[T](https://docs.smith.langchain.com/reference/js/functions/wrappers_openai.wrapOpenAI.html#wrapopenait)>
+
+#### Type Parameters
+
+    * T extends OpenAIType
+
+#### Parameters
+
+    * openai: [T](https://docs.smith.langchain.com/reference/js/functions/wrappers_openai.wrapOpenAI.html#wrapopenait)
+
+An OpenAI client instance.
+
+    * `Optional`options: Partial<[RunTreeConfig](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html)>
+
+LangSmith options.
+
+#### Returns PatchedOpenAIClient<[T](https://docs.smith.langchain.com/reference/js/functions/wrappers_openai.wrapOpenAI.html#wrapopenait)>
+
+    * Defined in [src/wrappers/openai.ts:258](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/wrappers/openai.ts#L258)
+
+### Settings
+
+Member Visibility
+
+  * Protected
+  * Inherited
+  * External
+
+ThemeOSLightDark
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

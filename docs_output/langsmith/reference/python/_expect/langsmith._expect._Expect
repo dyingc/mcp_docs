@@ -1,0 +1,204 @@
+# _Expect — 🦜️🛠️ LangSmith  documentation
+
+# _Expect#
+
+_class _langsmith._expect._Expect(_*_ , _client : [Client](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") | None = None_)[[source]](../_modules/langsmith/_expect.html#_Expect)#
+    
+
+A class for setting expectations on test results.
+
+Methods
+
+`__init__`(*[, client]) |   
+---|---  
+`edit_distance`(prediction, reference, *[, config]) | Compute the string distance between the prediction and reference.  
+`embedding_distance`(prediction, reference, *) | Compute the embedding distance between the prediction and reference.  
+`score`(score, *[, key, source_run_id, comment]) | Log a numeric score to LangSmith.  
+`value`(value) | Create a _Matcher instance for making assertions on the given value.  
+  
+Parameters:
+    
+
+**client** (_Optional_ _[__ls_client.Client_ _]_)
+
+__init__(
+
+    _*_ ,
+    _client : [Client](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") | None = None_,
+)[[source]](../_modules/langsmith/_expect.html#_Expect.__init__)#
+    
+
+Parameters:
+    
+
+**client** ([_Client_](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") _|__None_)
+
+edit_distance(
+
+    _prediction : str_,
+    _reference : str_,
+    _*_ ,
+    _config : EditDistanceConfig | None = None_,
+) → _Matcher[[source]](../_modules/langsmith/_expect.html#_Expect.edit_distance)#
+    
+
+Compute the string distance between the prediction and reference.
+
+This logs the string distance (Damerau-Levenshtein) to LangSmith and returns a _Matcher instance for making assertions on the distance value.
+
+This depends on the rapidfuzz package for string distance computation.
+
+Parameters:
+    
+
+  * **prediction** (_str_) – The predicted string to compare.
+
+  * **reference** (_str_) – The reference string to compare against.
+
+  * **config** (_Optional_ _[__EditDistanceConfig_ _]_) – 
+
+Optional configuration for the string distance evaluator. Supported options: \- metric: The distance metric to use for comparison.
+
+> Supported values: “damerau_levenshtein”, “levenshtein”, “jaro”, “jaro_winkler”, “hamming”, “indel”.
+
+    * normalize_score: Whether to normalize the score between 0 and 1.
+
+Returns:
+    
+
+A _Matcher instance for the string distance value.
+
+Return type:
+    
+
+_Matcher
+
+Examples
+    
+    
+    >>> expect.edit_distance("hello", "helo").to_be_less_than(1)
+    
+
+embedding_distance(
+
+    _prediction : str_,
+    _reference : str_,
+    _*_ ,
+    _config : EmbeddingConfig | None = None_,
+) → _Matcher[[source]](../_modules/langsmith/_expect.html#_Expect.embedding_distance)#
+    
+
+Compute the embedding distance between the prediction and reference.
+
+This logs the embedding distance to LangSmith and returns a _Matcher instance for making assertions on the distance value.
+
+By default, this uses the OpenAI API for computing embeddings.
+
+Parameters:
+    
+
+  * **prediction** (_str_) – The predicted string to compare.
+
+  * **reference** (_str_) – The reference string to compare against.
+
+  * **config** (_Optional_ _[__EmbeddingConfig_ _]_) – 
+
+Optional configuration for the embedding distance evaluator. Supported options: \- encoder: A custom encoder function to encode the list of input
+
+> strings to embeddings. Defaults to the OpenAI API.
+
+    * metric: The distance metric to use for comparison.
+    
+
+Supported values: “cosine”, “euclidean”, “manhattan”, “chebyshev”, “hamming”.
+
+Returns:
+    
+
+A _Matcher instance for the embedding distance value.
+
+Return type:
+    
+
+_Matcher
+
+Examples
+    
+    
+    >>> expect.embedding_distance(
+    ...     prediction="hello",
+    ...     reference="hi",
+    ... ).to_be_less_than(1.0)
+    
+
+score(
+
+    _score : float | int | bool_,
+    _*_ ,
+    _key : str = 'score'_,
+    _source_run_id : UUID | str | None = None_,
+    _comment : str | None = None_,
+) → _Matcher[[source]](../_modules/langsmith/_expect.html#_Expect.score)#
+    
+
+Log a numeric score to LangSmith.
+
+Parameters:
+    
+
+  * **score** (_float_ _|__int_ _|__bool_) – The score value to log.
+
+  * **key** (_str_) – The key to use for logging the score. Defaults to “score”.
+
+  * **source_run_id** (_UUID_ _|__str_ _|__None_)
+
+  * **comment** (_str_ _|__None_)
+
+Return type:
+    
+
+__Matcher_
+
+Examples
+    
+    
+    >>> expect.score(0.8)
+    <langsmith._expect._Matcher object at ...>
+    
+    
+    
+    >>> expect.score(0.8, key="similarity").to_be_greater_than(0.7)
+    
+
+value(
+
+    _value : Any_,
+) → _Matcher[[source]](../_modules/langsmith/_expect.html#_Expect.value)#
+    
+
+Create a _Matcher instance for making assertions on the given value.
+
+Parameters:
+    
+
+**value** (_Any_) – The value to make assertions on.
+
+Returns:
+    
+
+A _Matcher instance for the given value.
+
+Return type:
+    
+
+__Matcher_
+
+Examples
+    
+    
+    >>> expect.value(10).to_be_less_than(20)
+    
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

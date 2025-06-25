@@ -1,0 +1,4680 @@
+# Client — 🦜️🛠️ LangSmith  documentation
+
+# Client#
+
+_class _langsmith.client.Client(
+
+    _api_url : str | None = None_,
+    _*_ ,
+    _api_key : str | None = None_,
+    _retry_config : Retry | None = None_,
+    _timeout_ms : int | tuple[int, int] | None = None_,
+    _web_url : str | None = None_,
+    _session : Session | None = None_,
+    _auto_batch_tracing : bool = True_,
+    _anonymizer : Callable[[dict], dict] | None = None_,
+    _hide_inputs : Callable[[dict], dict] | bool | None = None_,
+    _hide_outputs : Callable[[dict], dict] | bool | None = None_,
+    _hide_metadata : Callable[[dict], dict] | bool | None = None_,
+    _info : dict | [LangSmithInfo](../schemas/langsmith.schemas.LangSmithInfo.html#langsmith.schemas.LangSmithInfo "langsmith.schemas.LangSmithInfo") | None = None_,
+    _api_urls : dict[str, str] | None = None_,
+    _otel_tracer_provider : [TracerProvider](langsmith.client.TracerProvider.html#langsmith.client.TracerProvider "langsmith.client.TracerProvider") | None = None_,
+    _tracing_sampling_rate : float | None = None_,
+)[[source]](../_modules/langsmith/client.html#Client)#
+    
+
+Client for interacting with the LangSmith API.
+
+Initialize a Client instance.
+
+Parameters:
+    
+
+  * **api_url** (_Optional_ _[__str_ _]_) – URL for the LangSmith API. Defaults to the LANGCHAIN_ENDPOINT environment variable or <https://api.smith.langchain.com> if not set.
+
+  * **api_key** (_Optional_ _[__str_ _]_) – API key for the LangSmith API. Defaults to the LANGCHAIN_API_KEY environment variable.
+
+  * **retry_config** (_Optional_ _[__Retry_ _]_) – Retry configuration for the HTTPAdapter.
+
+  * **timeout_ms** (_Optional_ _[__Union_ _[__int_ _,__Tuple_ _[__int_ _,__int_ _]__]__]_) – Timeout for the HTTPAdapter. Can also be a 2-tuple of (connect timeout, read timeout) to set them separately.
+
+  * **web_url** (_Optional_ _[__str_ _]_) – URL for the LangSmith web app. Default is auto-inferred from the ENDPOINT.
+
+  * **session** (_Optional_ _[__requests.Session_ _]_) – The session to use for requests. If None, a new session will be created.
+
+  * **auto_batch_tracing** (_bool_ _,__default=True_) – Whether to automatically batch tracing.
+
+  * **anonymizer** (_Optional_ _[__Callable_ _[__[__dict_ _]__,__dict_ _]__]_) – A function applied for masking serialized run inputs and outputs, before sending to the API.
+
+  * **hide_inputs** (_Optional_ _[__Union_ _[__Callable_ _[__[__dict_ _]__,__dict_ _]__,__bool_ _]__]_) – Whether to hide run inputs when tracing with this client. If True, hides the entire inputs. If a function, applied to all run inputs when creating runs.
+
+  * **hide_outputs** (_Optional_ _[__Union_ _[__Callable_ _[__[__dict_ _]__,__dict_ _]__,__bool_ _]__]_) – Whether to hide run outputs when tracing with this client. If True, hides the entire outputs. If a function, applied to all run outputs when creating runs.
+
+  * **hide_metadata** (_Optional_ _[__Union_ _[__Callable_ _[__[__dict_ _]__,__dict_ _]__,__bool_ _]__]_) – Whether to hide run metadata when tracing with this client. If True, hides the entire metadata. If a function, applied to all run metadata when creating runs.
+
+  * **info** (_Optional_ _[__ls_schemas.LangSmithInfo_ _]_) – The information about the LangSmith API. If not provided, it will be fetched from the API.
+
+  * **api_urls** (_Optional_ _[__Dict_ _[__str_ _,__str_ _]__]_) – A dictionary of write API URLs and their corresponding API keys. Useful for multi-tenant setups. Data is only read from the first URL in the dictionary. However, ONLY Runs are written (POST and PATCH) to all URLs in the dictionary. Feedback, sessions, datasets, examples, annotation queues and evaluation results are only written to the first.
+
+  * **otel_tracer_provider** (_Optional_ _[_[_TracerProvider_](langsmith.client.TracerProvider.html#langsmith.client.TracerProvider "langsmith.client.TracerProvider") _]_) – Optional tracer provider for OpenTelemetry integration. If not provided, a LangSmith-specific tracer provider will be used.
+
+  * **tracing_sampling_rate** (_Optional_ _[__float_ _]_) – The sampling rate for tracing. If provided, overrides the LANGCHAIN_TRACING_SAMPLING_RATE environment variable. Should be a float between 0 and 1, where 1 means trace everything and 0 means trace nothing.
+
+Raises:
+    
+
+[**LangSmithUserError**](../utils/langsmith.utils.LangSmithUserError.html#langsmith.utils.LangSmithUserError "langsmith.utils.LangSmithUserError") – If the API key is not provided when using the hosted service. If both api_url and api_urls are provided.
+
+Attributes
+
+`api_url` |   
+---|---  
+`retry_config` |   
+`timeout_ms` |   
+`session` |   
+`tracing_sample_rate` |   
+`tracing_queue` |   
+`compressed_traces` |   
+`otel_exporter` |   
+`api_key` | Return the API key used for authentication.  
+`info` | Get the information about the LangSmith API.  
+  
+Methods
+
+`__init__`([api_url, api_key, retry_config, ...]) | Initialize a Client instance.  
+---|---  
+`add_runs_to_annotation_queue`(queue_id, *, ...) | Add runs to an annotation queue with the specified queue ID.  
+`aevaluate`(target, /[, data, evaluators, ...]) | Evaluate an async target system on a given dataset.  
+`aevaluate_run`(run, evaluator, *[, ...]) | Evaluate a run asynchronously.  
+`arun_on_dataset`(dataset_name, ...[, ...]) | Asynchronously run the Chain or language model on a dataset.  
+`batch_ingest_runs`([create, update, pre_sampled]) | Batch ingest/upsert multiple runs in the Langsmith system.  
+`cleanup`() | Manually trigger cleanup of the background thread.  
+`clone_public_dataset`(token_or_url, *[, ...]) | Clone a public dataset to your own langsmith tenant.  
+`create_annotation_queue`(*, name[, ...]) | Create an annotation queue on the LangSmith API.  
+`create_chat_example`(messages[, generations, ...]) | Add an example (row) to a Chat-type dataset.  
+`create_commit`(prompt_identifier, object, *) | Create a commit for an existing prompt.  
+`create_comparative_experiment`(name, ...[, ...]) | Create a comparative experiment on the LangSmith API.  
+`create_dataset`(dataset_name, *[, ...]) | Create a dataset in the LangSmith API.  
+`create_example`([inputs, dataset_id, ...]) | Create a dataset example in the LangSmith API.  
+`create_example_from_run`(run[, dataset_id, ...]) | Add an example (row) to a dataset from a run.  
+`create_examples`(*[, dataset_name, ...]) | Create examples in a dataset.  
+`create_feedback`([run_id, key, score, value, ...]) | Create feedback for a run.  
+`create_feedback_from_token`(token_or_url[, ...]) | Create feedback from a presigned token or URL.  
+`create_llm_example`(prompt[, generation, ...]) | Add an example (row) to an LLM-type dataset.  
+`create_presigned_feedback_token`(run_id, ...) | Create a pre-signed URL to send feedback data to.  
+`create_presigned_feedback_tokens`(run_id, ...) | Create a pre-signed URL to send feedback data to.  
+`create_project`(project_name, *[, ...]) | Create a project on the LangSmith API.  
+`create_prompt`(prompt_identifier, *[, ...]) | Create a new prompt.  
+`create_run`(name, inputs, run_type, *[, ...]) | Persist a run to the LangSmith API.  
+`delete_annotation_queue`(queue_id) | Delete an annotation queue with the specified queue ID.  
+`delete_dataset`(*[, dataset_id, dataset_name]) | Delete a dataset from the LangSmith API.  
+`delete_example`(example_id) | Delete an example by ID.  
+`delete_examples`(example_ids) | Delete multiple examples by ID.  
+`delete_feedback`(feedback_id) | Delete a feedback by ID.  
+`delete_project`(*[, project_name, project_id]) | Delete a project from LangSmith.  
+`delete_prompt`(prompt_identifier) | Delete a prompt.  
+`delete_run_from_annotation_queue`(queue_id, ...) | Delete a run from an annotation queue with the specified queue ID and run ID.  
+`diff_dataset_versions`([dataset_id, dataset_name]) | Get the difference between two versions of a dataset.  
+`evaluate`(target, /[, data, evaluators, ...]) | Evaluate a target system on a given dataset.  
+`evaluate_run`(run, evaluator, *[, ...]) | Evaluate a run.  
+`flush`() | Flush either queue or compressed buffer, depending on mode.  
+`flush_compressed_traces`([attempts]) | Force flush the currently buffered compressed runs.  
+`get_prompt`(prompt_identifier) | Get a specific prompt by its identifier.  
+`get_run_from_annotation_queue`(queue_id, *, index) | Get a run from an annotation queue at the specified index.  
+`get_run_stats`(*[, id, trace, parent_run, ...]) | Get aggregate statistics over queried runs.  
+`get_run_url`(*, run[, project_name, project_id]) | Get the URL for a run.  
+`get_test_results`(*[, project_id, project_name]) | Read the record-level information from an experiment into a Pandas DF.  
+`has_dataset`(*[, dataset_name, dataset_id]) | Check whether a dataset exists in your tenant.  
+`has_project`(project_name, *[, project_id]) | Check if a project exists.  
+`index_dataset`(*, dataset_id[, tag]) | Enable dataset indexing.  
+`like_prompt`(prompt_identifier) | Like a prompt.  
+`list_annotation_queues`(*[, queue_ids, name, ...]) | List the annotation queues on the LangSmith API.  
+`list_dataset_splits`(*[, dataset_id, ...]) | Get the splits for a dataset.  
+`list_dataset_versions`(*[, dataset_id, ...]) | List dataset versions.  
+`list_datasets`(*[, dataset_ids, data_type, ...]) | List the datasets on the LangSmith API.  
+`list_examples`([dataset_id, dataset_name, ...]) | Retrieve the example rows of the specified dataset.  
+`list_feedback`(*[, run_ids, feedback_key, ...]) | List the feedback objects on the LangSmith API.  
+`list_presigned_feedback_tokens`(run_id, *[, ...]) | List the feedback ingest tokens for a run.  
+`list_projects`([project_ids, name, ...]) | List projects from the LangSmith API.  
+`list_prompt_commits`(prompt_identifier, *[, ...]) | List commits for a given prompt.  
+`list_prompts`(*[, limit, offset, is_public, ...]) | List prompts with pagination.  
+`list_runs`(*[, project_id, project_name, ...]) | List runs from the LangSmith API.  
+`list_shared_examples`(share_token, *[, ...]) | Get shared examples.  
+`list_shared_projects`(*, dataset_share_token) | List shared projects.  
+`list_shared_runs`(share_token[, run_ids]) | Get shared runs.  
+`multipart_ingest`([create, update, ...]) | Batch ingest/upsert multiple runs in the Langsmith system.  
+`pull_prompt`(prompt_identifier, *[, ...]) | Pull a prompt and return it as a LangChain PromptTemplate.  
+`pull_prompt_commit`(prompt_identifier, *[, ...]) | Pull a prompt object from the LangSmith API.  
+`push_prompt`(prompt_identifier, *[, object, ...]) | Push a prompt to the LangSmith API.  
+`read_annotation_queue`(queue_id) | Read an annotation queue with the specified queue ID.  
+`read_dataset`(*[, dataset_name, dataset_id]) | Read a dataset from the LangSmith API.  
+`read_dataset_openai_finetuning`([dataset_id, ...]) | Download a dataset in OpenAI Jsonl format and load it as a list of dicts.  
+`read_dataset_shared_schema`([dataset_id, ...]) | Retrieve the shared schema of a dataset.  
+`read_dataset_version`(*[, dataset_id, ...]) | Get dataset version by as_of or exact tag.  
+`read_example`(example_id, *[, as_of]) | Read an example from the LangSmith API.  
+`read_feedback`(feedback_id) | Read a feedback from the LangSmith API.  
+`read_project`(*[, project_id, project_name, ...]) | Read a project from the LangSmith API.  
+`read_run`(run_id[, load_child_runs]) | Read a run from the LangSmith API.  
+`read_run_shared_link`(run_id) | Retrieve the shared link for a specific run.  
+`read_shared_dataset`(share_token) | Get shared datasets.  
+`read_shared_run`(share_token[, run_id]) | Get shared runs.  
+`request_with_retries`(method, pathname, *[, ...]) | Send a request with retries.  
+`run_is_shared`(run_id) | Get share state for a run.  
+`run_on_dataset`(dataset_name, ...[, ...]) | Run the Chain or language model on a dataset.  
+`share_dataset`([dataset_id, dataset_name]) | Get a share link for a dataset.  
+`share_run`(run_id, *[, share_id]) | Get a share link for a run.  
+`similar_examples`(inputs, /, *, limit, dataset_id) | Retrieve the dataset examples whose inputs best match the current inputs.  
+`sync_indexed_dataset`(*, dataset_id, **kwargs) | Sync dataset index.  
+`unlike_prompt`(prompt_identifier) | Unlike a prompt.  
+`unshare_dataset`(dataset_id) | Delete share link for a dataset.  
+`unshare_run`(run_id) | Delete share link for a run.  
+`update_annotation_queue`(queue_id, *, name[, ...]) | Update an annotation queue with the specified queue_id.  
+`update_dataset_splits`(*[, dataset_id, ...]) | Update the splits for a dataset.  
+`update_dataset_tag`(*[, dataset_id, dataset_name]) | Update the tags of a dataset.  
+`update_example`(example_id, *[, inputs, ...]) | Update a specific example.  
+`update_examples`(*[, dataset_name, ...]) | Update multiple examples.  
+`update_examples_multipart`(*, dataset_id[, ...]) | Update examples using multipart.  
+`update_feedback`(feedback_id, *[, score, ...]) | Update a feedback in the LangSmith API.  
+`update_project`(project_id, *[, name, ...]) | Update a LangSmith project.  
+`update_prompt`(prompt_identifier, *[, ...]) | Update a prompt's metadata.  
+`update_run`(run_id, *[, name, end_time, ...]) | Update a run in the LangSmith API.  
+`upload_csv`(csv_file, input_keys, output_keys, *) | Upload a CSV file to the LangSmith API.  
+`upload_dataframe`(df, name, input_keys, ...) | Upload a dataframe as individual examples to the LangSmith API.  
+`upload_examples_multipart`(*, dataset_id[, ...]) | Upload examples using multipart.  
+`upsert_examples_multipart`(*[, upserts, ...]) | Upsert examples.  
+  
+__init__(
+
+    _api_url : str | None = None_,
+    _*_ ,
+    _api_key : str | None = None_,
+    _retry_config : Retry | None = None_,
+    _timeout_ms : int | tuple[int, int] | None = None_,
+    _web_url : str | None = None_,
+    _session : Session | None = None_,
+    _auto_batch_tracing : bool = True_,
+    _anonymizer : Callable[[dict], dict] | None = None_,
+    _hide_inputs : Callable[[dict], dict] | bool | None = None_,
+    _hide_outputs : Callable[[dict], dict] | bool | None = None_,
+    _hide_metadata : Callable[[dict], dict] | bool | None = None_,
+    _info : dict | [LangSmithInfo](../schemas/langsmith.schemas.LangSmithInfo.html#langsmith.schemas.LangSmithInfo "langsmith.schemas.LangSmithInfo") | None = None_,
+    _api_urls : dict[str, str] | None = None_,
+    _otel_tracer_provider : [TracerProvider](langsmith.client.TracerProvider.html#langsmith.client.TracerProvider "langsmith.client.TracerProvider") | None = None_,
+    _tracing_sampling_rate : float | None = None_,
+) → None[[source]](../_modules/langsmith/client.html#Client.__init__)#
+    
+
+Initialize a Client instance.
+
+Parameters:
+    
+
+  * **api_url** (_Optional_ _[__str_ _]_) – URL for the LangSmith API. Defaults to the LANGCHAIN_ENDPOINT environment variable or <https://api.smith.langchain.com> if not set.
+
+  * **api_key** (_Optional_ _[__str_ _]_) – API key for the LangSmith API. Defaults to the LANGCHAIN_API_KEY environment variable.
+
+  * **retry_config** (_Optional_ _[__Retry_ _]_) – Retry configuration for the HTTPAdapter.
+
+  * **timeout_ms** (_Optional_ _[__Union_ _[__int_ _,__Tuple_ _[__int_ _,__int_ _]__]__]_) – Timeout for the HTTPAdapter. Can also be a 2-tuple of (connect timeout, read timeout) to set them separately.
+
+  * **web_url** (_Optional_ _[__str_ _]_) – URL for the LangSmith web app. Default is auto-inferred from the ENDPOINT.
+
+  * **session** (_Optional_ _[__requests.Session_ _]_) – The session to use for requests. If None, a new session will be created.
+
+  * **auto_batch_tracing** (_bool_ _,__default=True_) – Whether to automatically batch tracing.
+
+  * **anonymizer** (_Optional_ _[__Callable_ _[__[__dict_ _]__,__dict_ _]__]_) – A function applied for masking serialized run inputs and outputs, before sending to the API.
+
+  * **hide_inputs** (_Optional_ _[__Union_ _[__Callable_ _[__[__dict_ _]__,__dict_ _]__,__bool_ _]__]_) – Whether to hide run inputs when tracing with this client. If True, hides the entire inputs. If a function, applied to all run inputs when creating runs.
+
+  * **hide_outputs** (_Optional_ _[__Union_ _[__Callable_ _[__[__dict_ _]__,__dict_ _]__,__bool_ _]__]_) – Whether to hide run outputs when tracing with this client. If True, hides the entire outputs. If a function, applied to all run outputs when creating runs.
+
+  * **hide_metadata** (_Optional_ _[__Union_ _[__Callable_ _[__[__dict_ _]__,__dict_ _]__,__bool_ _]__]_) – Whether to hide run metadata when tracing with this client. If True, hides the entire metadata. If a function, applied to all run metadata when creating runs.
+
+  * **info** (_Optional_ _[__ls_schemas.LangSmithInfo_ _]_) – The information about the LangSmith API. If not provided, it will be fetched from the API.
+
+  * **api_urls** (_Optional_ _[__Dict_ _[__str_ _,__str_ _]__]_) – A dictionary of write API URLs and their corresponding API keys. Useful for multi-tenant setups. Data is only read from the first URL in the dictionary. However, ONLY Runs are written (POST and PATCH) to all URLs in the dictionary. Feedback, sessions, datasets, examples, annotation queues and evaluation results are only written to the first.
+
+  * **otel_tracer_provider** (_Optional_ _[_[_TracerProvider_](langsmith.client.TracerProvider.html#langsmith.client.TracerProvider "langsmith.client.TracerProvider") _]_) – Optional tracer provider for OpenTelemetry integration. If not provided, a LangSmith-specific tracer provider will be used.
+
+  * **tracing_sampling_rate** (_Optional_ _[__float_ _]_) – The sampling rate for tracing. If provided, overrides the LANGCHAIN_TRACING_SAMPLING_RATE environment variable. Should be a float between 0 and 1, where 1 means trace everything and 0 means trace nothing.
+
+Raises:
+    
+
+[**LangSmithUserError**](../utils/langsmith.utils.LangSmithUserError.html#langsmith.utils.LangSmithUserError "langsmith.utils.LangSmithUserError") – If the API key is not provided when using the hosted service. If both api_url and api_urls are provided.
+
+Return type:
+    
+
+None
+
+add_runs_to_annotation_queue(
+
+    _queue_id : UUID | str_,
+    _*_ ,
+    _run_ids : list[UUID | str]_,
+) → None[[source]](../_modules/langsmith/client.html#Client.add_runs_to_annotation_queue)#
+    
+
+Add runs to an annotation queue with the specified queue ID.
+
+Parameters:
+    
+
+  * **queue_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the annotation queue.
+
+  * **run_ids** (_List_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The IDs of the runs to be added to the annotation queue.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+_async _aevaluate(
+
+    _target : ATARGET_T | AsyncIterable[dict] | Runnable | str | uuid.UUID | [schemas.TracerSession](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession")_,
+    _/_ ,
+    _data : DATA_T | AsyncIterable[[schemas.Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")] | Iterable[[schemas.Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")] | None = None_,
+    _evaluators : Sequence[EVALUATOR_T | AEVALUATOR_T] | None = None_,
+    _summary_evaluators : Sequence[SUMMARY_EVALUATOR_T] | None = None_,
+    _metadata : dict | None = None_,
+    _experiment_prefix : str | None = None_,
+    _description : str | None = None_,
+    _max_concurrency : int | None = 0_,
+    _num_repetitions : int = 1_,
+    _blocking : bool = True_,
+    _experiment : [schemas.TracerSession](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession") | str | uuid.UUID | None = None_,
+    _upload_results : bool = True_,
+    _** kwargs: Any_,
+) → [AsyncExperimentResults](../evaluation/langsmith.evaluation._arunner.AsyncExperimentResults.html#langsmith.evaluation._arunner.AsyncExperimentResults "langsmith.evaluation._arunner.AsyncExperimentResults")[[source]](../_modules/langsmith/client.html#Client.aevaluate)#
+    
+
+Evaluate an async target system on a given dataset.
+
+Parameters:
+    
+
+  * **target** (_Union_ _[__ATARGET_T_ _,__AsyncIterable_ _[__dict_ _]__,__Runnable_ _,__str_ _,__uuid.UUID_ _,_[_TracerSession_](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession") _]_) – The target system or experiment(s) to evaluate. Can be an async function that takes a dict and returns a dict, a langchain Runnable, an existing experiment ID, or a two-tuple of experiment IDs.
+
+  * **data** (_Union_ _[__DATA_T_ _,__AsyncIterable_ _[_[_Example_](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example") _]__]_) – The dataset to evaluate on. Can be a dataset name, a list of examples, an async generator of examples, or an async iterable of examples.
+
+  * **evaluators** (_Optional_ _[__Sequence_ _[__EVALUATOR_T_ _]__]_) – A list of evaluators to run on each example. Defaults to None.
+
+  * **summary_evaluators** (_Optional_ _[__Sequence_ _[__SUMMARY_EVALUATOR_T_ _]__]_) – A list of summary evaluators to run on the entire dataset. Defaults to None.
+
+  * **metadata** (_Optional_ _[__dict_ _]_) – Metadata to attach to the experiment. Defaults to None.
+
+  * **experiment_prefix** (_Optional_ _[__str_ _]_) – A prefix to provide for your experiment name. Defaults to None.
+
+  * **description** (_Optional_ _[__str_ _]_) – A description of the experiment.
+
+  * **max_concurrency** (_Optional_ _[__int_ _]__,__default=0_) – The maximum number of concurrent evaluations to run. If None then no limit is set. If 0 then no concurrency. Defaults to 0.
+
+  * **num_repetitions** (_int_ _,__default=1_) – The number of times to run the evaluation. Each item in the dataset will be run and evaluated this many times. Defaults to 1.
+
+  * **blocking** (_bool_ _,__default=True_) – Whether to block until the evaluation is complete. Defaults to True.
+
+  * **experiment** (_Optional_ _[_[_TracerSession_](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession") _]_) – An existing experiment to extend. If provided, experiment_prefix is ignored. For advanced usage only.
+
+  * **upload_results** (_bool_ _,__default=True_) – Whether to upload the results to LangSmith. Defaults to True.
+
+  * ****kwargs** (_Any_) – Additional keyword arguments to pass to the evaluator.
+
+Returns:
+    
+
+An async iterator over the experiment results.
+
+Return type:
+    
+
+AsyncIterator[[ExperimentResultRow](../evaluation/langsmith.evaluation._runner.ExperimentResultRow.html#langsmith.evaluation._runner.ExperimentResultRow "langsmith.evaluation._runner.ExperimentResultRow")]
+
+Environment:
+    
+
+  * LANGSMITH_TEST_CACHE: If set, API calls will be cached to disk to save time and
+    
+
+cost during testing. Recommended to commit the cache files to your repository for faster CI/CD runs. Requires the ‘langsmith[vcr]’ package to be installed.
+
+Examples
+
+Prepare the dataset:
+    
+    
+    import asyncio
+    from langsmith import Client
+    
+    client = Client()
+    dataset = client.clone_public_dataset(
+        "https://smith.langchain.com/public/419dcab2-1d66-4b94-8901-0357ead390df/d"
+    )
+    dataset_name = "Evaluate Examples"
+    
+
+Basic usage:
+    
+    
+    def accuracy(outputs: dict, reference_outputs: dict) -> dict:
+        # Row-level evaluator for accuracy.
+        pred = outputs["resposen"]
+        expected = reference_outputs["answer"]
+        return {"score": expected.lower() == pred.lower()}
+    
+    
+    def precision(outputs: list[dict], reference_outputs: list[dict]) -> dict:
+        # Experiment-level evaluator for precision.
+        # TP / (TP + FP)
+        predictions = [out["response"].lower() for out in outputs]
+        expected = [ref["answer"].lower() for ref in reference_outputs]
+        # yes and no are the only possible answers
+        tp = sum([p == e for p, e in zip(predictions, expected) if p == "yes"])
+        fp = sum([p == "yes" and e == "no" for p, e in zip(predictions, expected)])
+        return {"score": tp / (tp + fp)}
+    
+    
+    async def apredict(inputs: dict) -> dict:
+        # This can be any async function or just an API call to your app.
+        await asyncio.sleep(0.1)
+        return {"response": "Yes"}
+    
+    
+    results = asyncio.run(
+        client.aevaluate(
+            apredict,
+            data=dataset_name,
+            evaluators=[accuracy],
+            summary_evaluators=[precision],
+            experiment_prefix="My Experiment",
+            description="Evaluate the accuracy of the model asynchronously.",
+            metadata={
+                "my-prompt-version": "abcd-1234",
+            },
+        )
+    )
+    
+
+Evaluating over only a subset of the examples using an async generator:
+    
+    
+    async def example_generator():
+        examples = client.list_examples(dataset_name=dataset_name, limit=5)
+        for example in examples:
+            yield example
+    
+    
+    results = asyncio.run(
+        client.aevaluate(
+            apredict,
+            data=example_generator(),
+            evaluators=[accuracy],
+            summary_evaluators=[precision],
+            experiment_prefix="My Subset Experiment",
+            description="Evaluate a subset of examples asynchronously.",
+        )
+    )
+    
+
+Streaming each prediction to more easily + eagerly debug.
+    
+    
+    results = asyncio.run(
+        client.aevaluate(
+            apredict,
+            data=dataset_name,
+            evaluators=[accuracy],
+            summary_evaluators=[precision],
+            experiment_prefix="My Streaming Experiment",
+            description="Streaming predictions for debugging.",
+            blocking=False,
+        )
+    )
+    
+    
+    async def aenumerate(iterable):
+        async for elem in iterable:
+            print(elem)
+    
+    
+    asyncio.run(aenumerate(results))
+    
+
+Running without concurrency:
+    
+    
+    results = asyncio.run(
+        client.aevaluate(
+            apredict,
+            data=dataset_name,
+            evaluators=[accuracy],
+            summary_evaluators=[precision],
+            experiment_prefix="My Experiment Without Concurrency",
+            description="This was run without concurrency.",
+            max_concurrency=0,
+        )
+    )
+    
+
+Using Async evaluators:
+    
+    
+    async def helpfulness(outputs: dict) -> dict:
+        # Row-level evaluator for helpfulness.
+        await asyncio.sleep(5)  # Replace with your LLM API call
+        return {"score": outputs["output"] == "Yes"}
+    
+    
+    results = asyncio.run(
+        client.aevaluate(
+            apredict,
+            data=dataset_name,
+            evaluators=[helpfulness],
+            summary_evaluators=[precision],
+            experiment_prefix="My Helpful Experiment",
+            description="Applying async evaluators example.",
+        )
+    )
+    
+
+Evaluate an existing experiment:
+    
+    
+    results = asyncio.run(
+        client.aevaluate(
+            # The target is the ID of the experiment we are evaluating
+            target="419dcab2-1d66-4b94-8901-0357ead390df",
+            evaluators=[accuracy, helpfulness],
+            summary_evaluators=[precision],
+        )
+    )
+    
+
+Added in version 0.2.0.
+
+_async _aevaluate_run(
+
+    _run : ls_schemas.Run | str | uuid.UUID_,
+    _evaluator : ls_evaluator.RunEvaluator_,
+    _*_ ,
+    _source_info : dict[str, Any] | None = None_,
+    _reference_example : ls_schemas.Example | str | dict | uuid.UUID | None = None_,
+    _load_child_runs : bool = False_,
+) → ls_evaluator.EvaluationResult[[source]](../_modules/langsmith/client.html#Client.aevaluate_run)#
+    
+
+Evaluate a run asynchronously.
+
+Parameters:
+    
+
+  * **run** (_Union_ _[_[_Run_](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run") _,__str_ _,__UUID_ _]_) – The run to evaluate.
+
+  * **evaluator** ([_RunEvaluator_](../evaluation/langsmith.evaluation.evaluator.RunEvaluator.html#langsmith.evaluation.evaluator.RunEvaluator "langsmith.evaluation.evaluator.RunEvaluator")) – The evaluator to use.
+
+  * **source_info** (_Optional_ _[__Dict_ _[__str_ _,__Any_ _]__]_) – Additional information about the source of the evaluation to log as feedback metadata.
+
+  * **reference_example** (_Optional_ _[__Union_ _[_[_Example_](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example") _,__str_ _,__dict_ _,__UUID_ _]__]_) – The example to use as a reference for the evaluation. If not provided, the run’s reference example will be used.
+
+  * **load_child_runs** (_bool_ _,__default=False_) – Whether to load child runs when resolving the run ID.
+
+Returns:
+    
+
+The evaluation result object created by the evaluation.
+
+Return type:
+    
+
+[EvaluationResult](../evaluation/langsmith.evaluation.evaluator.EvaluationResult.html#langsmith.evaluation.evaluator.EvaluationResult "langsmith.evaluation.evaluator.EvaluationResult")
+
+_async _arun_on_dataset(
+
+    _dataset_name : str_,
+    _llm_or_chain_factory : Any_,
+    _*_ ,
+    _evaluation : Any | None = None_,
+    _concurrency_level : int = 5_,
+    _project_name : str | None = None_,
+    _project_metadata : dict[str, Any] | None = None_,
+    _dataset_version : datetime | str | None = None_,
+    _verbose : bool = False_,
+    _input_mapper : Callable[[dict], Any] | None = None_,
+    _revision_id : str | None = None_,
+    _** kwargs: Any_,
+) → dict[str, Any][[source]](../_modules/langsmith/client.html#Client.arun_on_dataset)#
+    
+
+Asynchronously run the Chain or language model on a dataset.
+
+Deprecated since version 0.1.0: This method is deprecated. Use `langsmith.aevaluate()` instead.
+
+Parameters:
+    
+
+  * **dataset_name** (_str_)
+
+  * **llm_or_chain_factory** (_Any_)
+
+  * **evaluation** (_Any_ _|__None_)
+
+  * **concurrency_level** (_int_)
+
+  * **project_name** (_str_ _|__None_)
+
+  * **project_metadata** (_dict_ _[__str_ _,__Any_ _]__|__None_)
+
+  * **dataset_version** (_datetime_ _|__str_ _|__None_)
+
+  * **verbose** (_bool_)
+
+  * **input_mapper** (_Callable_ _[__[__dict_ _]__,__Any_ _]__|__None_)
+
+  * **revision_id** (_str_ _|__None_)
+
+  * **kwargs** (_Any_)
+
+Return type:
+    
+
+dict[str, _Any_]
+
+batch_ingest_runs(
+
+    _create : Sequence[[Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run") | RunLikeDict | dict] | None = None_,
+    _update : Sequence[[Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run") | RunLikeDict | dict] | None = None_,
+    _*_ ,
+    _pre_sampled : bool = False_,
+) → None[[source]](../_modules/langsmith/client.html#Client.batch_ingest_runs)#
+    
+
+Batch ingest/upsert multiple runs in the Langsmith system.
+
+Parameters:
+    
+
+  * **create** (_Optional_ _[__Sequence_ _[__Union_ _[_[_Run_](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run") _,__RunLikeDict_ _]__]__]_) – A sequence of Run objects or equivalent dictionaries representing runs to be created / posted.
+
+  * **update** (_Optional_ _[__Sequence_ _[__Union_ _[_[_Run_](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run") _,__RunLikeDict_ _]__]__]_) – A sequence of Run objects or equivalent dictionaries representing runs that have already been created and should be updated / patched.
+
+  * **pre_sampled** (_bool_ _,__default=False_) – Whether the runs have already been subject to sampling, and therefore should not be sampled again. Defaults to False.
+
+Raises:
+    
+
+**LangsmithAPIError** – If there is an error in the API request.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+Note
+
+  * The run objects MUST contain the dotted_order and trace_id fields
+    
+
+to be accepted by the API.
+
+Examples
+    
+    
+    from langsmith import Client
+    import datetime
+    from uuid import uuid4
+    
+    client = Client()
+    _session = "__test_batch_ingest_runs"
+    trace_id = uuid4()
+    trace_id_2 = uuid4()
+    run_id_2 = uuid4()
+    current_time = datetime.datetime.now(datetime.timezone.utc).strftime(
+        "%Y%m%dT%H%M%S%fZ"
+    )
+    later_time = (
+        datetime.datetime.now(datetime.timezone.utc) + timedelta(seconds=1)
+    ).strftime("%Y%m%dT%H%M%S%fZ")
+    
+    runs_to_create = [
+        {
+            "id": str(trace_id),
+            "session_name": _session,
+            "name": "run 1",
+            "run_type": "chain",
+            "dotted_order": f"{current_time}{str(trace_id)}",
+            "trace_id": str(trace_id),
+            "inputs": {"input1": 1, "input2": 2},
+            "outputs": {"output1": 3, "output2": 4},
+        },
+        {
+            "id": str(trace_id_2),
+            "session_name": _session,
+            "name": "run 3",
+            "run_type": "chain",
+            "dotted_order": f"{current_time}{str(trace_id_2)}",
+            "trace_id": str(trace_id_2),
+            "inputs": {"input1": 1, "input2": 2},
+            "error": "error",
+        },
+        {
+            "id": str(run_id_2),
+            "session_name": _session,
+            "name": "run 2",
+            "run_type": "chain",
+            "dotted_order": f"{current_time}{str(trace_id)}."
+            f"{later_time}{str(run_id_2)}",
+            "trace_id": str(trace_id),
+            "parent_run_id": str(trace_id),
+            "inputs": {"input1": 5, "input2": 6},
+        },
+    ]
+    runs_to_update = [
+        {
+            "id": str(run_id_2),
+            "dotted_order": f"{current_time}{str(trace_id)}."
+            f"{later_time}{str(run_id_2)}",
+            "trace_id": str(trace_id),
+            "parent_run_id": str(trace_id),
+            "outputs": {"output1": 4, "output2": 5},
+        },
+    ]
+    
+    client.batch_ingest_runs(create=runs_to_create, update=runs_to_update)
+    
+
+cleanup() → None[[source]](../_modules/langsmith/client.html#Client.cleanup)#
+    
+
+Manually trigger cleanup of the background thread.
+
+Return type:
+    
+
+None
+
+clone_public_dataset(
+
+    _token_or_url : str_,
+    _*_ ,
+    _source_api_url : str | None = None_,
+    _dataset_name : str | None = None_,
+) → [Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")[[source]](../_modules/langsmith/client.html#Client.clone_public_dataset)#
+    
+
+Clone a public dataset to your own langsmith tenant.
+
+This operation is idempotent. If you already have a dataset with the given name, this function will do nothing.
+
+Parameters:
+    
+
+  * **token_or_url** (_str_) – The token of the public dataset to clone.
+
+  * **source_api_url** (_Optional_ _[__str_ _]_) – The URL of the langsmith server where the data is hosted. Defaults to the API URL of your current client.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to create in your tenant. Defaults to the name of the public dataset.
+
+Returns:
+    
+
+The cloned dataset.
+
+Return type:
+    
+
+[Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")
+
+create_annotation_queue(
+
+    _*_ ,
+    _name : str_,
+    _description : str | None = None_,
+    _queue_id : UUID | str | None = None_,
+    _rubric_instructions : str | None = None_,
+) → [AnnotationQueueWithDetails](../schemas/langsmith.schemas.AnnotationQueueWithDetails.html#langsmith.schemas.AnnotationQueueWithDetails "langsmith.schemas.AnnotationQueueWithDetails")[[source]](../_modules/langsmith/client.html#Client.create_annotation_queue)#
+    
+
+Create an annotation queue on the LangSmith API.
+
+Parameters:
+    
+
+  * **name** (_str_) – The name of the annotation queue.
+
+  * **description** (_Optional_ _[__str_ _]_) – The description of the annotation queue.
+
+  * **queue_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the annotation queue.
+
+  * **rubric_instructions** (_Optional_ _[__str_ _]_) – The rubric instructions for the annotation queue.
+
+Returns:
+    
+
+The created annotation queue object.
+
+Return type:
+    
+
+[AnnotationQueue](../schemas/langsmith.schemas.AnnotationQueue.html#langsmith.schemas.AnnotationQueue "langsmith.schemas.AnnotationQueue")
+
+create_chat_example(
+
+    _messages : list[Mapping[str, Any] | BaseMessageLike]_,
+    _generations : Mapping[str, Any] | BaseMessageLike | None = None_,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _created_at : datetime | None = None_,
+) → [Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")[[source]](../_modules/langsmith/client.html#Client.create_chat_example)#
+    
+
+Add an example (row) to a Chat-type dataset.
+
+Parameters:
+    
+
+  * **messages** (_List_ _[__Union_ _[__Mapping_ _[__str_ _,__Any_ _]__,__BaseMessageLike_ _]__]_) – The input messages for the example.
+
+  * **generations** (_Optional_ _[__Union_ _[__Mapping_ _[__str_ _,__Any_ _]__,__BaseMessageLike_ _]__]_) – The output messages for the example.
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset.
+
+  * **created_at** (_Optional_ _[__datetime.datetime_ _]_) – The creation timestamp of the example.
+
+Returns:
+    
+
+The created example
+
+Return type:
+    
+
+[Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")
+
+create_commit(
+
+    _prompt_identifier : str_,
+    _object : Any_,
+    _*_ ,
+    _parent_commit_hash : str | None = None_,
+) → str[[source]](../_modules/langsmith/client.html#Client.create_commit)#
+    
+
+Create a commit for an existing prompt.
+
+Parameters:
+    
+
+  * **prompt_identifier** (_str_) – The identifier of the prompt.
+
+  * **object** (_Any_) – The LangChain object to commit.
+
+  * **parent_commit_hash** (_Optional_ _[__str_ _]_) – The hash of the parent commit. Defaults to latest commit.
+
+Returns:
+    
+
+The url of the prompt commit.
+
+Return type:
+    
+
+str
+
+Raises:
+    
+
+  * **HTTPError** – If the server request fails.
+
+  * **ValueError** – If the prompt does not exist.
+
+create_comparative_experiment(
+
+    _name : str_,
+    _experiments : Sequence[UUID | str]_,
+    _*_ ,
+    _reference_dataset : UUID | str | None = None_,
+    _description : str | None = None_,
+    _created_at : datetime | None = None_,
+    _metadata : dict[str, Any] | None = None_,
+    _id : UUID | str | None = None_,
+) → [ComparativeExperiment](../schemas/langsmith.schemas.ComparativeExperiment.html#langsmith.schemas.ComparativeExperiment "langsmith.schemas.ComparativeExperiment")[[source]](../_modules/langsmith/client.html#Client.create_comparative_experiment)#
+    
+
+Create a comparative experiment on the LangSmith API.
+
+These experiments compare 2 or more experiment results over a shared dataset.
+
+Parameters:
+    
+
+  * **name** (_str_) – The name of the comparative experiment.
+
+  * **experiments** (_Sequence_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The IDs of the experiments to compare.
+
+  * **reference_dataset** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset these experiments are compared on.
+
+  * **description** (_Optional_ _[__str_ _]_) – The description of the comparative experiment.
+
+  * **created_at** (_Optional_ _[__datetime.datetime_ _]_) – The creation time of the comparative experiment.
+
+  * **metadata** (_Optional_ _[__Dict_ _[__str_ _,__Any_ _]__]_) – Additional metadata for the comparative experiment.
+
+  * **id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the comparative experiment.
+
+Returns:
+    
+
+The created comparative experiment object.
+
+Return type:
+    
+
+[ComparativeExperiment](../schemas/langsmith.schemas.ComparativeExperiment.html#langsmith.schemas.ComparativeExperiment "langsmith.schemas.ComparativeExperiment")
+
+create_dataset(
+
+    _dataset_name : str_,
+    _*_ ,
+    _description : str | None = None_,
+    _data_type : [DataType](../schemas/langsmith.schemas.DataType.html#langsmith.schemas.DataType "langsmith.schemas.DataType") = DataType.kv_,
+    _inputs_schema : dict[str, Any] | None = None_,
+    _outputs_schema : dict[str, Any] | None = None_,
+    _transformations : list[[DatasetTransformation](../schemas/langsmith.schemas.DatasetTransformation.html#langsmith.schemas.DatasetTransformation "langsmith.schemas.DatasetTransformation")] | None = None_,
+    _metadata : dict | None = None_,
+) → [Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")[[source]](../_modules/langsmith/client.html#Client.create_dataset)#
+    
+
+Create a dataset in the LangSmith API.
+
+Parameters:
+    
+
+  * **dataset_name** (_str_) – The name of the dataset.
+
+  * **description** (_Optional_ _[__str_ _]_) – The description of the dataset.
+
+  * **data_type** ([_DataType_](../schemas/langsmith.schemas.DataType.html#langsmith.schemas.DataType "langsmith.schemas.DataType") _,__default=DataType.kv_) – The data type of the dataset.
+
+  * **inputs_schema** (_Optional_ _[__Dict_ _[__str_ _,__Any_ _]__]_) – The schema definition for the inputs of the dataset.
+
+  * **outputs_schema** (_Optional_ _[__Dict_ _[__str_ _,__Any_ _]__]_) – The schema definition for the outputs of the dataset.
+
+  * **transformations** (_Optional_ _[__List_ _[_[_DatasetTransformation_](../schemas/langsmith.schemas.DatasetTransformation.html#langsmith.schemas.DatasetTransformation "langsmith.schemas.DatasetTransformation") _]__]_) – A list of transformations to apply to the dataset.
+
+  * **metadata** (_Optional_ _[__dict_ _]_) – Additional metadata to associate with the dataset.
+
+Returns:
+    
+
+The created dataset.
+
+Return type:
+    
+
+[Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")
+
+Raises:
+    
+
+**requests.HTTPError** – If the request to create the dataset fails.
+
+create_example(
+
+    _inputs : Mapping[str, Any] | None = None_,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _created_at : datetime | None = None_,
+    _outputs : Mapping[str, Any] | None = None_,
+    _metadata : Mapping[str, Any] | None = None_,
+    _split : str | list[str] | None = None_,
+    _example_id : UUID | str | None = None_,
+    _source_run_id : UUID | str | None = None_,
+    _use_source_run_io : bool = False_,
+    _use_source_run_attachments : list[str] | None = None_,
+    _attachments : dict[str, tuple[str, bytes] | [Attachment](../schemas/langsmith.schemas.Attachment.html#langsmith.schemas.Attachment "langsmith.schemas.Attachment") | tuple[str, Path]] | None = None_,
+) → [Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")[[source]](../_modules/langsmith/client.html#Client.create_example)#
+    
+
+Create a dataset example in the LangSmith API.
+
+Examples are rows in a dataset, containing the inputs and expected outputs (or other reference information) for a model or chain.
+
+Parameters:
+    
+
+  * **inputs** (_Mapping_ _[__str_ _,__Any_ _]_) – The input values for the example.
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset to create the example in.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to create the example in.
+
+  * **created_at** (_Optional_ _[__datetime.datetime_ _]_) – The creation timestamp of the example.
+
+  * **outputs** (_Optional_ _[__Mapping_ _[__str_ _,__Any_ _]__]_) – The output values for the example.
+
+  * **metadata** (_Optional_ _[__Mapping_ _[__str_ _,__Any_ _]__]_) – The metadata for the example.
+
+  * **split** (_Optional_ _[__str_ _|__List_ _[__str_ _]__]_) – The splits for the example, which are divisions of your dataset such as ‘train’, ‘test’, or ‘validation’.
+
+  * **example_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the example to create. If not provided, a new example will be created.
+
+  * **source_run_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the source run associated with this example.
+
+  * **use_source_run_io** (_bool_) – Whether to use the inputs, outputs, and attachments from the source run.
+
+  * **use_source_run_attachments** (_Optional_ _[__List_ _[__str_ _]__]_) – Which attachments to use from the source run. If use_source_run_io is True, all attachments will be used regardless of this param.
+
+  * **attachments** (_Optional_ _[__Attachments_ _]_) – The attachments for the example.
+
+Returns:
+    
+
+The created example.
+
+Return type:
+    
+
+[Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")
+
+create_example_from_run(
+
+    _run : [Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")_,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _created_at : datetime | None = None_,
+) → [Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")[[source]](../_modules/langsmith/client.html#Client.create_example_from_run)#
+    
+
+Add an example (row) to a dataset from a run.
+
+Parameters:
+    
+
+  * **run** ([_Run_](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")) – The run to create an example from.
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset.
+
+  * **created_at** (_Optional_ _[__datetime.datetime_ _]_) – The creation timestamp of the example.
+
+Returns:
+    
+
+The created example
+
+Return type:
+    
+
+[Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")
+
+create_examples(
+
+    _*_ ,
+    _dataset_name : str | None = None_,
+    _dataset_id : UUID | str | None = None_,
+    _examples : Sequence[[ExampleCreate](../schemas/langsmith.schemas.ExampleCreate.html#langsmith.schemas.ExampleCreate "langsmith.schemas.ExampleCreate") | dict] | None = None_,
+    _dangerously_allow_filesystem : bool = False_,
+    _** kwargs: Any_,
+) → [UpsertExamplesResponse](../schemas/langsmith.schemas.UpsertExamplesResponse.html#langsmith.schemas.UpsertExamplesResponse "langsmith.schemas.UpsertExamplesResponse") | dict[str, Any][[source]](../_modules/langsmith/client.html#Client.create_examples)#
+    
+
+Create examples in a dataset.
+
+Parameters:
+    
+
+  * **dataset_name** (_str_ _|__None_) – The name of the dataset to create the examples in. Must specify exactly one of dataset_name or dataset_id.
+
+  * **dataset_id** (_UUID_ _|__str_ _|__None_) – The ID of the dataset to create the examples in. Must specify exactly one of dataset_name or dataset_id
+
+  * **examples** (_Sequence_ _[_[_ExampleCreate_](../schemas/langsmith.schemas.ExampleCreate.html#langsmith.schemas.ExampleCreate "langsmith.schemas.ExampleCreate") _|__dict_ _]_) – The examples to create.
+
+  * **dangerously_allow_filesystem** (_bool_) – Whether to allow uploading files from the filesystem.
+
+  * ****kwargs** (_Any_) – 
+
+Legacy keyword args. Should not be specified if ‘examples’ is specified.
+
+    * inputs (Sequence[Mapping[str, Any]]): The input values for the examples.
+
+    * outputs (Optional[Sequence[Optional[Mapping[str, Any]]]]): The output values for the examples.
+
+    * metadata (Optional[Sequence[Optional[Mapping[str, Any]]]]): The metadata for the examples.
+
+    * splits (Optional[Sequence[Optional[str | List[str]]]]): The splits for the examples, which are divisions of your dataset such as ‘train’, ‘test’, or ‘validation’.
+
+    * source_run_ids (Optional[Sequence[Optional[Union[UUID, str]]]]): The IDs of the source runs associated with the examples.
+
+    * ids (Optional[Sequence[Union[UUID, str]]]): The IDs of the examples.
+
+Raises:
+    
+
+**ValueError** – If ‘examples’ and legacy args are both provided.
+
+Returns:
+    
+
+The LangSmith JSON response. Includes ‘count’ and ‘example_ids’.
+
+Return type:
+    
+
+[_UpsertExamplesResponse_](../schemas/langsmith.schemas.UpsertExamplesResponse.html#langsmith.schemas.UpsertExamplesResponse "langsmith.schemas.UpsertExamplesResponse") | dict[str, _Any_]
+
+Changed in version 0.3.11: Updated to take argument ‘examples’, a single list where each element is the full example to create. This should be used instead of the legacy ‘inputs’, ‘outputs’, etc. arguments which split each examples attributes across arguments.
+
+Updated to support creating examples with attachments.
+
+Example
+    
+    
+    from langsmith import Client
+    
+    client = Client()
+    
+    dataset = client.create_dataset("agent-qa")
+    
+    examples = [
+        {
+            "inputs": {"question": "what's an agent"},
+            "outputs": {"answer": "an agent is..."},
+            "metadata": {"difficulty": "easy"},
+        },
+        {
+            "inputs": {
+                "question": "can you explain the agent architecture in this diagram?"
+            },
+            "outputs": {"answer": "this diagram shows..."},
+            "attachments": {"diagram": {"mime_type": "image/png", "data": b"..."}},
+            "metadata": {"difficulty": "medium"},
+        },
+        # more examples...
+    ]
+    
+    response = client.create_examples(dataset_name="agent-qa", examples=examples)
+    # -> {"example_ids": [...
+    
+
+create_feedback(
+
+    _run_id : UUID | str | None = None_,
+    _key : str = 'unnamed'_,
+    _*_ ,
+    _score : float | int | bool | None = None_,
+    _value : str | dict | None = None_,
+    _trace_id : UUID | str | None = None_,
+    _correction : dict | None = None_,
+    _comment : str | None = None_,
+    _source_info : dict[str, Any] | None = None_,
+    _feedback_source_type : [FeedbackSourceType](../schemas/langsmith.schemas.FeedbackSourceType.html#langsmith.schemas.FeedbackSourceType "langsmith.schemas.FeedbackSourceType") | str = FeedbackSourceType.API_,
+    _source_run_id : UUID | str | None = None_,
+    _feedback_id : UUID | str | None = None_,
+    _feedback_config : [FeedbackConfig](../schemas/langsmith.schemas.FeedbackConfig.html#langsmith.schemas.FeedbackConfig "langsmith.schemas.FeedbackConfig") | None = None_,
+    _stop_after_attempt : int = 10_,
+    _project_id : UUID | str | None = None_,
+    _comparative_experiment_id : UUID | str | None = None_,
+    _feedback_group_id : UUID | str | None = None_,
+    _extra : dict | None = None_,
+    _error : bool | None = None_,
+    _** kwargs: Any_,
+) → [Feedback](../schemas/langsmith.schemas.Feedback.html#langsmith.schemas.Feedback "langsmith.schemas.Feedback")[[source]](../_modules/langsmith/client.html#Client.create_feedback)#
+    
+
+Create feedback for a run.
+
+**NOTE** : To enable feedback to be batch uploaded in the background you must specify trace_id. _We highly encourage this for latency-sensitive environments._
+
+Parameters:
+    
+
+  * **key** (_str_) – The name of the feedback metric.
+
+  * **score** (_Optional_ _[__Union_ _[__float_ _,__int_ _,__bool_ _]__]_) – The score to rate this run on the metric or aspect.
+
+  * **value** (_Optional_ _[__Union_ _[__float_ _,__int_ _,__bool_ _,__str_ _,__dict_ _]__]_) – The display value or non-numeric value for this feedback.
+
+  * **run_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the run to provide feedback for. At least one of run_id, trace_id, or project_id must be specified.
+
+  * **trace_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the trace (i.e. root parent run) of the run to provide feedback for (specified by run_id). If run_id and trace_id are the same, only trace_id needs to be specified. **NOTE** : trace_id is required feedback ingestion to be batched and backgrounded.
+
+  * **correction** (_Optional_ _[__dict_ _]_) – The proper ground truth for this run.
+
+  * **comment** (_Optional_ _[__str_ _]_) – A comment about this feedback, such as a justification for the score or chain-of-thought trajectory for an LLM judge.
+
+  * **source_info** (_Optional_ _[__Dict_ _[__str_ _,__Any_ _]__]_) – Information about the source of this feedback.
+
+  * **feedback_source_type** (_Union_ _[_[_FeedbackSourceType_](../schemas/langsmith.schemas.FeedbackSourceType.html#langsmith.schemas.FeedbackSourceType "langsmith.schemas.FeedbackSourceType") _,__str_ _]_) – The type of feedback source, such as model (for model-generated feedback) or API.
+
+  * **source_run_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the run that generated this feedback, if a “model” type.
+
+  * **feedback_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the feedback to create. If not provided, a random UUID will be generated.
+
+  * **feedback_config** (_Optional_ _[_[_FeedbackConfig_](../evaluation/langsmith.evaluation.evaluator.FeedbackConfig.html#langsmith.evaluation.evaluator.FeedbackConfig "langsmith.evaluation.evaluator.FeedbackConfig") _]_) – The configuration specifying how to interpret feedback with this key. Examples include continuous (with min/max bounds), categorical, or freeform.
+
+  * **stop_after_attempt** (_int_ _,__default=10_) – The number of times to retry the request before giving up.
+
+  * **project_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the project (or experiment) to provide feedback on. This is used for creating summary metrics for experiments. Cannot specify run_id or trace_id if project_id is specified, and vice versa.
+
+  * **comparative_experiment_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – If this feedback was logged as a part of a comparative experiment, this associates the feedback with that experiment.
+
+  * **feedback_group_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – When logging preferences, ranking runs, or other comparative feedback, this is used to group feedback together.
+
+  * **extra** (_Optional_ _[__Dict_ _]_) – Metadata for the feedback.
+
+  * ****kwargs** (_Any_) – Additional keyword arguments.
+
+  * **error** (_bool_ _|__None_)
+
+  * ****kwargs**
+
+Returns:
+    
+
+The created feedback object.
+
+Return type:
+    
+
+[Feedback](../schemas/langsmith.schemas.Feedback.html#langsmith.schemas.Feedback "langsmith.schemas.Feedback")
+
+Example
+    
+    
+    from langsmith import trace, traceable, Client
+    
+    
+    @traceable
+    def foo(x):
+        return {"y": x * 2}
+    
+    
+    @traceable
+    def bar(y):
+        return {"z": y - 1}
+    
+    
+    client = Client()
+    
+    inputs = {"x": 1}
+    with trace(name="foobar", inputs=inputs) as root_run:
+        result = foo(**inputs)
+        result = bar(**result)
+        root_run.outputs = result
+        trace_id = root_run.id
+        child_runs = root_run.child_runs
+    
+    # Provide feedback for a trace (a.k.a. a root run)
+    client.create_feedback(
+        key="user_feedback",
+        score=1,
+        trace_id=trace_id,
+    )
+    
+    # Provide feedback for a child run
+    foo_run_id = [run for run in child_runs if run.name == "foo"][0].id
+    client.create_feedback(
+        key="correctness",
+        score=0,
+        run_id=foo_run_id,
+        # trace_id= is optional but recommended to enable batched and backgrounded
+        # feedback ingestion.
+        trace_id=trace_id,
+    )
+    
+
+create_feedback_from_token(
+
+    _token_or_url : str | UUID_,
+    _score : float | int | bool | None = None_,
+    _*_ ,
+    _value : float | int | bool | str | dict | None = None_,
+    _correction : dict | None = None_,
+    _comment : str | None = None_,
+    _metadata : dict | None = None_,
+) → None[[source]](../_modules/langsmith/client.html#Client.create_feedback_from_token)#
+    
+
+Create feedback from a presigned token or URL.
+
+Parameters:
+    
+
+  * **token_or_url** (_Union_ _[__str_ _,__uuid.UUID_ _]_) – The token or URL from which to create feedback.
+
+  * **score** (_Optional_ _[__Union_ _[__float_ _,__int_ _,__bool_ _]__]_) – The score of the feedback. Defaults to None.
+
+  * **value** (_Optional_ _[__Union_ _[__float_ _,__int_ _,__bool_ _,__str_ _,__dict_ _]__]_) – The value of the feedback. Defaults to None.
+
+  * **correction** (_Optional_ _[__dict_ _]_) – The correction of the feedback. Defaults to None.
+
+  * **comment** (_Optional_ _[__str_ _]_) – The comment of the feedback. Defaults to None.
+
+  * **metadata** (_Optional_ _[__dict_ _]_) – Additional metadata for the feedback. Defaults to None.
+
+Raises:
+    
+
+**ValueError** – If the source API URL is invalid.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+create_llm_example(
+
+    _prompt : str_,
+    _generation : str | None = None_,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _created_at : datetime | None = None_,
+) → [Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")[[source]](../_modules/langsmith/client.html#Client.create_llm_example)#
+    
+
+Add an example (row) to an LLM-type dataset.
+
+Parameters:
+    
+
+  * **prompt** (_str_) – The input prompt for the example.
+
+  * **generation** (_Optional_ _[__str_ _]_) – The output generation for the example.
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset.
+
+  * **created_at** (_Optional_ _[__datetime.datetime_ _]_) – The creation timestamp of the example.
+
+Returns:
+    
+
+The created example
+
+Return type:
+    
+
+[Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")
+
+create_presigned_feedback_token(
+
+    _run_id : UUID | str_,
+    _feedback_key : str_,
+    _*_ ,
+    _expiration : datetime | timedelta | None = None_,
+    _feedback_config : [FeedbackConfig](../schemas/langsmith.schemas.FeedbackConfig.html#langsmith.schemas.FeedbackConfig "langsmith.schemas.FeedbackConfig") | None = None_,
+    _feedback_id : UUID | str | None = None_,
+) → [FeedbackIngestToken](../schemas/langsmith.schemas.FeedbackIngestToken.html#langsmith.schemas.FeedbackIngestToken "langsmith.schemas.FeedbackIngestToken")[[source]](../_modules/langsmith/client.html#Client.create_presigned_feedback_token)#
+    
+
+Create a pre-signed URL to send feedback data to.
+
+This is useful for giving browser-based clients a way to upload feedback data directly to LangSmith without accessing the API key.
+
+Parameters:
+    
+
+  * **run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run.
+
+  * **feedback_key** (_str_) – The key of the feedback to create.
+
+  * **expiration** (_Optional_ _[__datetime.datetime_ _|__datetime.timedelta_ _]_) – The expiration time of the pre-signed URL. Either a datetime or a timedelta offset from now. Default to 3 hours.
+
+  * **feedback_config** (_Optional_ _[_[_FeedbackConfig_](../evaluation/langsmith.evaluation.evaluator.FeedbackConfig.html#langsmith.evaluation.evaluator.FeedbackConfig "langsmith.evaluation.evaluator.FeedbackConfig") _]_) – If creating a feedback_key for the first time, this defines how the metric should be interpreted, such as a continuous score (w/ optional bounds), or distribution over categorical values.
+
+  * **feedback_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]_) – The ID of the feedback to create. If not provided, a new feedback will be created.
+
+Returns:
+    
+
+The pre-signed URL for uploading feedback data.
+
+Return type:
+    
+
+[FeedbackIngestToken](../schemas/langsmith.schemas.FeedbackIngestToken.html#langsmith.schemas.FeedbackIngestToken "langsmith.schemas.FeedbackIngestToken")
+
+create_presigned_feedback_tokens(
+
+    _run_id : UUID | str_,
+    _feedback_keys : Sequence[str]_,
+    _*_ ,
+    _expiration : datetime | timedelta | None = None_,
+    _feedback_configs : Sequence[[FeedbackConfig](../schemas/langsmith.schemas.FeedbackConfig.html#langsmith.schemas.FeedbackConfig "langsmith.schemas.FeedbackConfig") | None] | None = None_,
+) → Sequence[[FeedbackIngestToken](../schemas/langsmith.schemas.FeedbackIngestToken.html#langsmith.schemas.FeedbackIngestToken "langsmith.schemas.FeedbackIngestToken")][[source]](../_modules/langsmith/client.html#Client.create_presigned_feedback_tokens)#
+    
+
+Create a pre-signed URL to send feedback data to.
+
+This is useful for giving browser-based clients a way to upload feedback data directly to LangSmith without accessing the API key.
+
+Parameters:
+    
+
+  * **run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run.
+
+  * **feedback_keys** (_Sequence_ _[__str_ _]_) – The key of the feedback to create.
+
+  * **expiration** (_Optional_ _[__datetime.datetime_ _|__datetime.timedelta_ _]_) – The expiration time of the pre-signed URL. Either a datetime or a timedelta offset from now. Default to 3 hours.
+
+  * **feedback_configs** (_Optional_ _[__Sequence_ _[__Optional_ _[_[_FeedbackConfig_](../evaluation/langsmith.evaluation.evaluator.FeedbackConfig.html#langsmith.evaluation.evaluator.FeedbackConfig "langsmith.evaluation.evaluator.FeedbackConfig") _]__]__]_) – If creating a feedback_key for the first time, this defines how the metric should be interpreted, such as a continuous score (w/ optional bounds), or distribution over categorical values.
+
+Returns:
+    
+
+The pre-signed URL for uploading feedback data.
+
+Return type:
+    
+
+Sequence[[FeedbackIngestToken](../schemas/langsmith.schemas.FeedbackIngestToken.html#langsmith.schemas.FeedbackIngestToken "langsmith.schemas.FeedbackIngestToken")]
+
+create_project(
+
+    _project_name : str_,
+    _*_ ,
+    _description : str | None = None_,
+    _metadata : dict | None = None_,
+    _upsert : bool = False_,
+    _project_extra : dict | None = None_,
+    _reference_dataset_id : UUID | str | None = None_,
+) → [TracerSession](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession")[[source]](../_modules/langsmith/client.html#Client.create_project)#
+    
+
+Create a project on the LangSmith API.
+
+Parameters:
+    
+
+  * **project_name** (_str_) – The name of the project.
+
+  * **project_extra** (_Optional_ _[__dict_ _]_) – Additional project information.
+
+  * **metadata** (_Optional_ _[__dict_ _]_) – Additional metadata to associate with the project.
+
+  * **description** (_Optional_ _[__str_ _]_) – The description of the project.
+
+  * **upsert** (_bool_ _,__default=False_) – Whether to update the project if it already exists.
+
+  * **reference_dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]_) – The ID of the reference dataset to associate with the project.
+
+Returns:
+    
+
+The created project.
+
+Return type:
+    
+
+[TracerSession](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession")
+
+create_prompt(
+
+    _prompt_identifier : str_,
+    _*_ ,
+    _description : str | None = None_,
+    _readme : str | None = None_,
+    _tags : Sequence[str] | None = None_,
+    _is_public : bool = False_,
+) → [Prompt](../schemas/langsmith.schemas.Prompt.html#langsmith.schemas.Prompt "langsmith.schemas.Prompt")[[source]](../_modules/langsmith/client.html#Client.create_prompt)#
+    
+
+Create a new prompt.
+
+Does not attach prompt object, just creates an empty prompt.
+
+Parameters:
+    
+
+  * **prompt_identifier** (_str_) – The identifier of the prompt. The identifier should be in the formatof owner/name:hash, name:hash, owner/name, or name
+
+  * **description** (_Optional_ _[__str_ _]_) – A description of the prompt.
+
+  * **readme** (_Optional_ _[__str_ _]_) – A readme for the prompt.
+
+  * **tags** (_Optional_ _[__Sequence_ _[__str_ _]__]_) – A list of tags for the prompt.
+
+  * **is_public** (_bool_) – Whether the prompt should be public. Defaults to False.
+
+Returns:
+    
+
+The created prompt object.
+
+Return type:
+    
+
+[Prompt](../schemas/langsmith.schemas.Prompt.html#langsmith.schemas.Prompt "langsmith.schemas.Prompt")
+
+Raises:
+    
+
+  * **ValueError** – If the current tenant is not the owner.
+
+  * **HTTPError** – If the server request fails.
+
+create_run(
+
+    _name : str_,
+    _inputs : dict[str, Any]_,
+    _run_type : Literal['tool', 'chain', 'llm', 'retriever', 'embedding', 'prompt', 'parser']_,
+    _*_ ,
+    _project_name : str | None = None_,
+    _revision_id : str | None = None_,
+    _dangerously_allow_filesystem : bool = False_,
+    _** kwargs: Any_,
+) → None[[source]](../_modules/langsmith/client.html#Client.create_run)#
+    
+
+Persist a run to the LangSmith API.
+
+Parameters:
+    
+
+  * **name** (_str_) – The name of the run.
+
+  * **inputs** (_Dict_ _[__str_ _,__Any_ _]_) – The input values for the run.
+
+  * **run_type** (_str_) – The type of the run, such as tool, chain, llm, retriever, embedding, prompt, or parser.
+
+  * **project_name** (_Optional_ _[__str_ _]_) – The project name of the run.
+
+  * **revision_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The revision ID of the run.
+
+  * ****kwargs** (_Any_) – Additional keyword arguments.
+
+  * **dangerously_allow_filesystem** (_bool_)
+
+  * ****kwargs**
+
+Returns:
+    
+
+None
+
+Raises:
+    
+
+[**LangSmithUserError**](../utils/langsmith.utils.LangSmithUserError.html#langsmith.utils.LangSmithUserError "langsmith.utils.LangSmithUserError") – If the API key is not provided when using the hosted service.
+
+Return type:
+    
+
+None
+
+Examples
+    
+    
+    from langsmith import Client
+    import datetime
+    from uuid import uuid4
+    
+    client = Client()
+    
+    run_id = uuid4()
+    client.create_run(
+        id=run_id,
+        project_name=project_name,
+        name="test_run",
+        run_type="llm",
+        inputs={"prompt": "hello world"},
+        outputs={"generation": "hi there"},
+        start_time=datetime.datetime.now(datetime.timezone.utc),
+        end_time=datetime.datetime.now(datetime.timezone.utc),
+        hide_inputs=True,
+        hide_outputs=True,
+    )
+    
+
+delete_annotation_queue(
+
+    _queue_id : UUID | str_,
+) → None[[source]](../_modules/langsmith/client.html#Client.delete_annotation_queue)#
+    
+
+Delete an annotation queue with the specified queue ID.
+
+Parameters:
+    
+
+**queue_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the annotation queue to delete.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+delete_dataset(
+
+    _*_ ,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+) → None[[source]](../_modules/langsmith/client.html#Client.delete_dataset)#
+    
+
+Delete a dataset from the LangSmith API.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset to delete.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to delete.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+delete_example(_example_id : UUID | str_) → None[[source]](../_modules/langsmith/client.html#Client.delete_example)#
+    
+
+Delete an example by ID.
+
+Parameters:
+    
+
+**example_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the example to delete.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+delete_examples(
+
+    _example_ids : Sequence[UUID | str]_,
+) → None[[source]](../_modules/langsmith/client.html#Client.delete_examples)#
+    
+
+Delete multiple examples by ID.
+
+Parameters:
+    
+
+**example_ids** (_Sequence_ _[__ID_TYPE_ _]_) – The IDs of the examples to delete.
+
+Return type:
+    
+
+None
+
+delete_feedback(
+
+    _feedback_id : UUID | str_,
+) → None[[source]](../_modules/langsmith/client.html#Client.delete_feedback)#
+    
+
+Delete a feedback by ID.
+
+Parameters:
+    
+
+**feedback_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the feedback to delete.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+delete_project(
+
+    _*_ ,
+    _project_name : str | None = None_,
+    _project_id : str | None = None_,
+) → None[[source]](../_modules/langsmith/client.html#Client.delete_project)#
+    
+
+Delete a project from LangSmith.
+
+Parameters:
+    
+
+  * **project_name** (_Optional_ _[__str_ _]_) – The name of the project to delete.
+
+  * **project_id** (_Optional_ _[__str_ _]_) – The ID of the project to delete.
+
+Returns:
+    
+
+None
+
+Raises:
+    
+
+**ValueError** – If neither project_name or project_id is provided.
+
+Return type:
+    
+
+None
+
+delete_prompt(_prompt_identifier : str_) → None[[source]](../_modules/langsmith/client.html#Client.delete_prompt)#
+    
+
+Delete a prompt.
+
+Parameters:
+    
+
+**prompt_identifier** (_str_) – The identifier of the prompt to delete.
+
+Returns:
+    
+
+True if the prompt was successfully deleted, False otherwise.
+
+Return type:
+    
+
+bool
+
+Raises:
+    
+
+**ValueError** – If the current tenant is not the owner of the prompt.
+
+delete_run_from_annotation_queue(
+
+    _queue_id : UUID | str_,
+    _*_ ,
+    _run_id : UUID | str_,
+) → None[[source]](../_modules/langsmith/client.html#Client.delete_run_from_annotation_queue)#
+    
+
+Delete a run from an annotation queue with the specified queue ID and run ID.
+
+Parameters:
+    
+
+  * **queue_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the annotation queue.
+
+  * **run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run to be added to the annotation queue.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+diff_dataset_versions(
+
+    _dataset_id : UUID | str | None = None_,
+    _*_ ,
+    _dataset_name : str | None = None_,
+    _from_version : str | datetime_,
+    _to_version : str | datetime_,
+) → [DatasetDiffInfo](../schemas/langsmith.schemas.DatasetDiffInfo.html#langsmith.schemas.DatasetDiffInfo "langsmith.schemas.DatasetDiffInfo")[[source]](../_modules/langsmith/client.html#Client.diff_dataset_versions)#
+    
+
+Get the difference between two versions of a dataset.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset.
+
+  * **from_version** (_Union_ _[__str_ _,__datetime.datetime_ _]_) – The starting version for the diff.
+
+  * **to_version** (_Union_ _[__str_ _,__datetime.datetime_ _]_) – The ending version for the diff.
+
+Returns:
+    
+
+The difference between the two versions of the dataset.
+
+Return type:
+    
+
+[DatasetDiffInfo](../schemas/langsmith.schemas.DatasetDiffInfo.html#langsmith.schemas.DatasetDiffInfo "langsmith.schemas.DatasetDiffInfo")
+
+Examples
+    
+    
+    # Get the difference between two tagged versions of a dataset
+    from_version = "prod"
+    to_version = "dev"
+    diff = client.diff_dataset_versions(
+        dataset_name="my-dataset",
+        from_version=from_version,
+        to_version=to_version,
+    )
+    
+    # Get the difference between two timestamped versions of a dataset
+    from_version = datetime.datetime(2024, 1, 1)
+    to_version = datetime.datetime(2024, 2, 1)
+    diff = client.diff_dataset_versions(
+        dataset_name="my-dataset",
+        from_version=from_version,
+        to_version=to_version,
+    )
+    
+
+evaluate(
+
+    _target : TARGET_T | Runnable | EXPERIMENT_T | tuple[EXPERIMENT_T, EXPERIMENT_T]_,
+    _/_ ,
+    _data : DATA_T | None = None_,
+    _evaluators : Sequence[EVALUATOR_T] | Sequence[COMPARATIVE_EVALUATOR_T] | None = None_,
+    _summary_evaluators : Sequence[SUMMARY_EVALUATOR_T] | None = None_,
+    _metadata : dict | None = None_,
+    _experiment_prefix : str | None = None_,
+    _description : str | None = None_,
+    _max_concurrency : int | None = 0_,
+    _num_repetitions : int = 1_,
+    _blocking : bool = True_,
+    _experiment : EXPERIMENT_T | None = None_,
+    _upload_results : bool = True_,
+    _** kwargs: Any_,
+) → [ExperimentResults](../evaluation/langsmith.evaluation._runner.ExperimentResults.html#langsmith.evaluation._runner.ExperimentResults "langsmith.evaluation._runner.ExperimentResults") | [ComparativeExperimentResults](../evaluation/langsmith.evaluation._runner.ComparativeExperimentResults.html#langsmith.evaluation._runner.ComparativeExperimentResults "langsmith.evaluation._runner.ComparativeExperimentResults")[[source]](../_modules/langsmith/client.html#Client.evaluate)#
+    
+
+Evaluate a target system on a given dataset.
+
+Parameters:
+    
+
+  * **target** (_Union_ _[__TARGET_T_ _,__Runnable_ _,__EXPERIMENT_T_ _,__Tuple_ _[__EXPERIMENT_T_ _,__EXPERIMENT_T_ _]__]_) – The target system or experiment(s) to evaluate. Can be a function that takes a dict and returns a dict, a langchain Runnable, an existing experiment ID, or a two-tuple of experiment IDs.
+
+  * **data** (_DATA_T_) – The dataset to evaluate on. Can be a dataset name, a list of examples, or a generator of examples.
+
+  * **evaluators** (_Optional_ _[__Union_ _[__Sequence_ _[__EVALUATOR_T_ _]__,__Sequence_ _[__COMPARATIVE_EVALUATOR_T_ _]__]__]_) – A list of evaluators to run on each example. The evaluator signature depends on the target type. Default to None.
+
+  * **summary_evaluators** (_Optional_ _[__Sequence_ _[__SUMMARY_EVALUATOR_T_ _]__]_) – A list of summary evaluators to run on the entire dataset. Should not be specified if comparing two existing experiments. Defaults to None.
+
+  * **metadata** (_Optional_ _[__dict_ _]_) – Metadata to attach to the experiment. Defaults to None.
+
+  * **experiment_prefix** (_Optional_ _[__str_ _]_) – A prefix to provide for your experiment name. Defaults to None.
+
+  * **description** (_Optional_ _[__str_ _]_) – A free-form text description for the experiment.
+
+  * **max_concurrency** (_Optional_ _[__int_ _]__,__default=0_) – The maximum number of concurrent evaluations to run. If None then no limit is set. If 0 then no concurrency. Defaults to 0.
+
+  * **blocking** (_bool_ _,__default=True_) – Whether to block until the evaluation is complete. Defaults to True.
+
+  * **num_repetitions** (_int_ _,__default=1_) – The number of times to run the evaluation. Each item in the dataset will be run and evaluated this many times. Defaults to 1.
+
+  * **experiment** (_Optional_ _[__EXPERIMENT_T_ _]_) – An existing experiment to extend. If provided, experiment_prefix is ignored. For advanced usage only. Should not be specified if target is an existing experiment or two-tuple fo experiments.
+
+  * **upload_results** (_bool_ _,__default=True_) – Whether to upload the results to LangSmith. Defaults to True.
+
+  * ****kwargs** (_Any_) – Additional keyword arguments to pass to the evaluator.
+
+Returns:
+    
+
+If target is a function, Runnable, or existing experiment. ComparativeExperimentResults: If target is a two-tuple of existing experiments.
+
+Return type:
+    
+
+[ExperimentResults](../evaluation/langsmith.evaluation._runner.ExperimentResults.html#langsmith.evaluation._runner.ExperimentResults "langsmith.evaluation._runner.ExperimentResults")
+
+Examples
+
+Prepare the dataset:
+    
+    
+    from langsmith import Client
+    
+    client = Client()
+    dataset = client.clone_public_dataset(
+        "https://smith.langchain.com/public/419dcab2-1d66-4b94-8901-0357ead390df/d"
+    )
+    dataset_name = "Evaluate Examples"
+    
+
+Basic usage:
+    
+    
+    def accuracy(outputs: dict, reference_outputs: dict) -> dict:
+        # Row-level evaluator for accuracy.
+        pred = outputs["response"]
+        expected = reference_outputs["answer"]
+        return {"score": expected.lower() == pred.lower()}
+    
+    
+    
+    def precision(outputs: list[dict], reference_outputs: list[dict]) -> dict:
+        # Experiment-level evaluator for precision.
+        # TP / (TP + FP)
+        predictions = [out["response"].lower() for out in outputs]
+        expected = [ref["answer"].lower() for ref in reference_outputs]
+        # yes and no are the only possible answers
+        tp = sum([p == e for p, e in zip(predictions, expected) if p == "yes"])
+        fp = sum([p == "yes" and e == "no" for p, e in zip(predictions, expected)])
+        return {"score": tp / (tp + fp)}
+    
+    
+    def predict(inputs: dict) -> dict:
+        # This can be any function or just an API call to your app.
+        return {"response": "Yes"}
+    
+    
+    results = client.evaluate(
+        predict,
+        data=dataset_name,
+        evaluators=[accuracy],
+        summary_evaluators=[precision],
+        experiment_prefix="My Experiment",
+        description="Evaluating the accuracy of a simple prediction model.",
+        metadata={
+            "my-prompt-version": "abcd-1234",
+        },
+    )
+    
+
+Evaluating over only a subset of the examples
+    
+    
+    experiment_name = results.experiment_name
+    examples = client.list_examples(dataset_name=dataset_name, limit=5)
+    results = client.evaluate(
+        predict,
+        data=examples,
+        evaluators=[accuracy],
+        summary_evaluators=[precision],
+        experiment_prefix="My Experiment",
+        description="Just testing a subset synchronously.",
+    )
+    
+
+Streaming each prediction to more easily + eagerly debug.
+    
+    
+    results = client.evaluate(
+        predict,
+        data=dataset_name,
+        evaluators=[accuracy],
+        summary_evaluators=[precision],
+        description="I don't even have to block!",
+        blocking=False,
+    )
+    for i, result in enumerate(results):  # doctest: +ELLIPSIS
+        pass
+    
+
+Using the evaluate API with an off-the-shelf LangChain evaluator:
+    
+    
+    from langsmith.evaluation import LangChainStringEvaluator
+    from langchain.chat_models import init_chat_model
+    
+    
+    def prepare_criteria_data(run: Run, example: Example):
+        return {
+            "prediction": run.outputs["output"],
+            "reference": example.outputs["answer"],
+            "input": str(example.inputs),
+        }
+    
+    
+    results = client.evaluate(
+        predict,
+        data=dataset_name,
+        evaluators=[
+            accuracy,
+            LangChainStringEvaluator("embedding_distance"),
+            LangChainStringEvaluator(
+                "labeled_criteria",
+                config={
+                    "criteria": {
+                        "usefulness": "The prediction is useful if it is correct"
+                        " and/or asks a useful followup question."
+                    },
+                    "llm": init_chat_model("gpt-4o"),
+                },
+                prepare_data=prepare_criteria_data,
+            ),
+        ],
+        description="Evaluating with off-the-shelf LangChain evaluators.",
+        summary_evaluators=[precision],
+    )
+    
+
+View the evaluation results for experiment:… Evaluating a LangChain object:
+    
+    
+    from langchain_core.runnables import chain as as_runnable
+    
+    
+    @as_runnable
+    def nested_predict(inputs):
+        return {"response": "Yes"}
+    
+    
+    @as_runnable
+    def lc_predict(inputs):
+        return nested_predict.invoke(inputs)
+    
+    
+    results = client.evaluate(
+        lc_predict,
+        data=dataset_name,
+        evaluators=[accuracy],
+        description="This time we're evaluating a LangChain object.",
+        summary_evaluators=[precision],
+    )
+    
+
+Comparative evaluation:
+    
+    
+    results = client.evaluate(
+        # The target is a tuple of the experiment IDs to compare
+        target=(
+            "12345678-1234-1234-1234-123456789012",
+            "98765432-1234-1234-1234-123456789012",
+        ),
+        evaluators=[accuracy],
+        summary_evaluators=[precision],
+    )
+    
+
+Evaluate an existing experiment:
+    
+    
+    results = client.evaluate(
+        # The target is the ID of the experiment we are evaluating
+        target="12345678-1234-1234-1234-123456789012",
+        evaluators=[accuracy],
+        summary_evaluators=[precision],
+    )
+    
+
+Added in version 0.2.0.
+
+evaluate_run(
+
+    _run : ls_schemas.Run | ls_schemas.RunBase | str | uuid.UUID_,
+    _evaluator : ls_evaluator.RunEvaluator_,
+    _*_ ,
+    _source_info : dict[str, Any] | None = None_,
+    _reference_example : ls_schemas.Example | str | dict | uuid.UUID | None = None_,
+    _load_child_runs : bool = False_,
+) → ls_evaluator.EvaluationResult[[source]](../_modules/langsmith/client.html#Client.evaluate_run)#
+    
+
+Evaluate a run.
+
+Parameters:
+    
+
+  * **run** (_Union_ _[_[_Run_](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run") _,_[_RunBase_](../schemas/langsmith.schemas.RunBase.html#langsmith.schemas.RunBase "langsmith.schemas.RunBase") _,__str_ _,__UUID_ _]_) – The run to evaluate.
+
+  * **evaluator** ([_RunEvaluator_](../evaluation/langsmith.evaluation.evaluator.RunEvaluator.html#langsmith.evaluation.evaluator.RunEvaluator "langsmith.evaluation.evaluator.RunEvaluator")) – The evaluator to use.
+
+  * **source_info** (_Optional_ _[__Dict_ _[__str_ _,__Any_ _]__]_) – Additional information about the source of the evaluation to log as feedback metadata.
+
+  * **reference_example** (_Optional_ _[__Union_ _[_[_Example_](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example") _,__str_ _,__dict_ _,__UUID_ _]__]_) – The example to use as a reference for the evaluation. If not provided, the run’s reference example will be used.
+
+  * **load_child_runs** (_bool_ _,__default=False_) – Whether to load child runs when resolving the run ID.
+
+Returns:
+    
+
+The feedback object created by the evaluation.
+
+Return type:
+    
+
+[Feedback](../schemas/langsmith.schemas.Feedback.html#langsmith.schemas.Feedback "langsmith.schemas.Feedback")
+
+flush() → None[[source]](../_modules/langsmith/client.html#Client.flush)#
+    
+
+Flush either queue or compressed buffer, depending on mode.
+
+Return type:
+    
+
+None
+
+flush_compressed_traces(_attempts : int = 3_) → None[[source]](../_modules/langsmith/client.html#Client.flush_compressed_traces)#
+    
+
+Force flush the currently buffered compressed runs.
+
+Parameters:
+    
+
+**attempts** (_int_)
+
+Return type:
+    
+
+None
+
+get_prompt(
+
+    _prompt_identifier : str_,
+) → [Prompt](../schemas/langsmith.schemas.Prompt.html#langsmith.schemas.Prompt "langsmith.schemas.Prompt") | None[[source]](../_modules/langsmith/client.html#Client.get_prompt)#
+    
+
+Get a specific prompt by its identifier.
+
+Parameters:
+    
+
+**prompt_identifier** (_str_) – The identifier of the prompt. The identifier should be in the format “prompt_name” or “owner/prompt_name”.
+
+Returns:
+    
+
+The prompt object.
+
+Return type:
+    
+
+Optional[[Prompt](../schemas/langsmith.schemas.Prompt.html#langsmith.schemas.Prompt "langsmith.schemas.Prompt")]
+
+Raises:
+    
+
+**requests.exceptions.HTTPError** – If the prompt is not found or another error occurs.
+
+get_run_from_annotation_queue(
+
+    _queue_id : UUID | str_,
+    _*_ ,
+    _index : int_,
+) → [RunWithAnnotationQueueInfo](../schemas/langsmith.schemas.RunWithAnnotationQueueInfo.html#langsmith.schemas.RunWithAnnotationQueueInfo "langsmith.schemas.RunWithAnnotationQueueInfo")[[source]](../_modules/langsmith/client.html#Client.get_run_from_annotation_queue)#
+    
+
+Get a run from an annotation queue at the specified index.
+
+Parameters:
+    
+
+  * **queue_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the annotation queue.
+
+  * **index** (_int_) – The index of the run to retrieve.
+
+Returns:
+    
+
+The run at the specified index.
+
+Return type:
+    
+
+[RunWithAnnotationQueueInfo](../schemas/langsmith.schemas.RunWithAnnotationQueueInfo.html#langsmith.schemas.RunWithAnnotationQueueInfo "langsmith.schemas.RunWithAnnotationQueueInfo")
+
+Raises:
+    
+
+  * [**LangSmithNotFoundError**](../utils/langsmith.utils.LangSmithNotFoundError.html#langsmith.utils.LangSmithNotFoundError "langsmith.utils.LangSmithNotFoundError") – If the run is not found at the given index.
+
+  * [**LangSmithError**](../utils/langsmith.utils.LangSmithError.html#langsmith.utils.LangSmithError "langsmith.utils.LangSmithError") – For other API-related errors.
+
+get_run_stats(
+
+    _*_ ,
+    _id : list[UUID | str] | None = None_,
+    _trace : UUID | str | None = None_,
+    _parent_run : UUID | str | None = None_,
+    _run_type : str | None = None_,
+    _project_names : list[str] | None = None_,
+    _project_ids : list[UUID | str] | None = None_,
+    _reference_example_ids : list[UUID | str] | None = None_,
+    _start_time : str | None = None_,
+    _end_time : str | None = None_,
+    _error : bool | None = None_,
+    _query : str | None = None_,
+    _filter : str | None = None_,
+    _trace_filter : str | None = None_,
+    _tree_filter : str | None = None_,
+    _is_root : bool | None = None_,
+    _data_source_type : str | None = None_,
+) → dict[str, Any][[source]](../_modules/langsmith/client.html#Client.get_run_stats)#
+    
+
+Get aggregate statistics over queried runs.
+
+Takes in similar query parameters to list_runs and returns statistics based on the runs that match the query.
+
+Parameters:
+    
+
+  * **id** (_Optional_ _[__List_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – List of run IDs to filter by.
+
+  * **trace** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – Trace ID to filter by.
+
+  * **parent_run** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – Parent run ID to filter by.
+
+  * **run_type** (_Optional_ _[__str_ _]_) – Run type to filter by.
+
+  * **project_names** (_Optional_ _[__List_ _[__str_ _]__]_) – List of project names to filter by.
+
+  * **project_ids** (_Optional_ _[__List_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – List of project IDs to filter by.
+
+  * **reference_example_ids** (_Optional_ _[__List_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – List of reference example IDs to filter by.
+
+  * **start_time** (_Optional_ _[__str_ _]_) – Start time to filter by.
+
+  * **end_time** (_Optional_ _[__str_ _]_) – End time to filter by.
+
+  * **error** (_Optional_ _[__bool_ _]_) – Filter by error status.
+
+  * **query** (_Optional_ _[__str_ _]_) – Query string to filter by.
+
+  * **filter** (_Optional_ _[__str_ _]_) – Filter string to apply.
+
+  * **trace_filter** (_Optional_ _[__str_ _]_) – Trace filter string to apply.
+
+  * **tree_filter** (_Optional_ _[__str_ _]_) – Tree filter string to apply.
+
+  * **is_root** (_Optional_ _[__bool_ _]_) – Filter by root run status.
+
+  * **data_source_type** (_Optional_ _[__str_ _]_) – Data source type to filter by.
+
+Returns:
+    
+
+A dictionary containing the run statistics.
+
+Return type:
+    
+
+Dict[str, Any]
+
+get_run_url(
+
+    _*_ ,
+    _run : [RunBase](../schemas/langsmith.schemas.RunBase.html#langsmith.schemas.RunBase "langsmith.schemas.RunBase")_,
+    _project_name : str | None = None_,
+    _project_id : UUID | str | None = None_,
+) → str[[source]](../_modules/langsmith/client.html#Client.get_run_url)#
+    
+
+Get the URL for a run.
+
+Not recommended for use within your agent runtime. More for use interacting with runs after the fact for data analysis or ETL workloads.
+
+Parameters:
+    
+
+  * **run** ([_RunBase_](../schemas/langsmith.schemas.RunBase.html#langsmith.schemas.RunBase "langsmith.schemas.RunBase")) – The run.
+
+  * **project_name** (_Optional_ _[__str_ _]_) – The name of the project.
+
+  * **project_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the project.
+
+Returns:
+    
+
+The URL for the run.
+
+Return type:
+    
+
+str
+
+get_test_results(
+
+    _*_ ,
+    _project_id : ID_TYPE | None = None_,
+    _project_name : str | None = None_,
+) → pd.DataFrame[[source]](../_modules/langsmith/client.html#Client.get_test_results)#
+    
+
+Read the record-level information from an experiment into a Pandas DF.
+
+Note: this will fetch whatever data exists in the DB. Results are not immediately available in the DB upon evaluation run completion.
+
+Feedback score values will be returned as an average across all runs for the experiment. Note that non-numeric feedback scores will be omitted.
+
+Parameters:
+    
+
+  * **project_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the project.
+
+  * **project_name** (_Optional_ _[__str_ _]_) – The name of the project.
+
+Returns:
+    
+
+A dataframe containing the test results.
+
+Return type:
+    
+
+pd.DataFrame
+
+has_dataset(
+
+    _*_ ,
+    _dataset_name : str | None = None_,
+    _dataset_id : UUID | str | None = None_,
+) → bool[[source]](../_modules/langsmith/client.html#Client.has_dataset)#
+    
+
+Check whether a dataset exists in your tenant.
+
+Parameters:
+    
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to check.
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset to check.
+
+Returns:
+    
+
+Whether the dataset exists.
+
+Return type:
+    
+
+bool
+
+has_project(
+
+    _project_name : str_,
+    _*_ ,
+    _project_id : str | None = None_,
+) → bool[[source]](../_modules/langsmith/client.html#Client.has_project)#
+    
+
+Check if a project exists.
+
+Parameters:
+    
+
+  * **project_name** (_str_) – The name of the project to check for.
+
+  * **project_id** (_Optional_ _[__str_ _]_) – The ID of the project to check for.
+
+Returns:
+    
+
+Whether the project exists.
+
+Return type:
+    
+
+bool
+
+index_dataset(
+
+    _*_ ,
+    _dataset_id : UUID | str_,
+    _tag : str = 'latest'_,
+    _** kwargs: Any_,
+) → None[[source]](../_modules/langsmith/client.html#Client.index_dataset)#
+    
+
+Enable dataset indexing. Examples are indexed by their inputs.
+
+This enables searching for similar examples by inputs with `client.similar_examples()`.
+
+Parameters:
+    
+
+  * **dataset_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the dataset to index.
+
+  * **tag** (_Optional_ _[__str_ _]_) – The version of the dataset to index. If ‘latest’ then any updates to the dataset (additions, updates, deletions of examples) will be reflected in the index.
+
+  * ****kwargs** (_Any_) – Additional keyword arguments to pass as part of request body.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+like_prompt(_prompt_identifier : str_) → dict[str, int][[source]](../_modules/langsmith/client.html#Client.like_prompt)#
+    
+
+Like a prompt.
+
+Parameters:
+    
+
+**prompt_identifier** (_str_) – The identifier of the prompt.
+
+Returns:
+    
+
+A dictionary with the key ‘likes’ and the count of likes as the value.
+
+Return type:
+    
+
+Dict[str, int]
+
+list_annotation_queues(
+
+    _*_ ,
+    _queue_ids : list[UUID | str] | None = None_,
+    _name : str | None = None_,
+    _name_contains : str | None = None_,
+    _limit : int | None = None_,
+) → Iterator[[AnnotationQueue](../schemas/langsmith.schemas.AnnotationQueue.html#langsmith.schemas.AnnotationQueue "langsmith.schemas.AnnotationQueue")][[source]](../_modules/langsmith/client.html#Client.list_annotation_queues)#
+    
+
+List the annotation queues on the LangSmith API.
+
+Parameters:
+    
+
+  * **queue_ids** (_Optional_ _[__List_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – The IDs of the queues to filter by.
+
+  * **name** (_Optional_ _[__str_ _]_) – The name of the queue to filter by.
+
+  * **name_contains** (_Optional_ _[__str_ _]_) – The substring that the queue name should contain.
+
+  * **limit** (_Optional_ _[__int_ _]_) – The maximum number of queues to return.
+
+Yields:
+    
+
+The annotation queues.
+
+Return type:
+    
+
+_Iterator_[[_AnnotationQueue_](../schemas/langsmith.schemas.AnnotationQueue.html#langsmith.schemas.AnnotationQueue "langsmith.schemas.AnnotationQueue")]
+
+list_dataset_splits(
+
+    _*_ ,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _as_of : datetime | str | None = None_,
+) → list[str][[source]](../_modules/langsmith/client.html#Client.list_dataset_splits)#
+    
+
+Get the splits for a dataset.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset.
+
+  * **as_of** (_Optional_ _[__Union_ _[__str_ _,__datetime.datetime_ _]__]_) – The version of the dataset to retrieve splits for. Can be a timestamp or a string tag. Defaults to “latest”.
+
+Returns:
+    
+
+The names of this dataset’s splits.
+
+Return type:
+    
+
+List[str]
+
+list_dataset_versions(
+
+    _*_ ,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _search : str | None = None_,
+    _limit : int | None = None_,
+) → Iterator[[DatasetVersion](../schemas/langsmith.schemas.DatasetVersion.html#langsmith.schemas.DatasetVersion "langsmith.schemas.DatasetVersion")][[source]](../_modules/langsmith/client.html#Client.list_dataset_versions)#
+    
+
+List dataset versions.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset.
+
+  * **search** (_Optional_ _[__str_ _]_) – The search query.
+
+  * **limit** (_Optional_ _[__int_ _]_) – The maximum number of versions to return.
+
+Yields:
+    
+
+The dataset versions.
+
+Return type:
+    
+
+_Iterator_[[_DatasetVersion_](../schemas/langsmith.schemas.DatasetVersion.html#langsmith.schemas.DatasetVersion "langsmith.schemas.DatasetVersion")]
+
+list_datasets(
+
+    _*_ ,
+    _dataset_ids : list[UUID | str] | None = None_,
+    _data_type : str | None = None_,
+    _dataset_name : str | None = None_,
+    _dataset_name_contains : str | None = None_,
+    _metadata : dict[str, Any] | None = None_,
+    _limit : int | None = None_,
+) → Iterator[[Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")][[source]](../_modules/langsmith/client.html#Client.list_datasets)#
+    
+
+List the datasets on the LangSmith API.
+
+Parameters:
+    
+
+  * **dataset_ids** (_Optional_ _[__List_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – A list of dataset IDs to filter the results by.
+
+  * **data_type** (_Optional_ _[__str_ _]_) – The data type of the datasets to filter the results by.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to filter the results by.
+
+  * **dataset_name_contains** (_Optional_ _[__str_ _]_) – A substring to search for in the dataset names.
+
+  * **metadata** (_Optional_ _[__Dict_ _[__str_ _,__Any_ _]__]_) – A dictionary of metadata to filter the results by.
+
+  * **limit** (_Optional_ _[__int_ _]_) – The maximum number of datasets to return.
+
+Yields:
+    
+
+The datasets.
+
+Return type:
+    
+
+_Iterator_[[_Dataset_](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")]
+
+list_examples(
+
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _example_ids : Sequence[UUID | str] | None = None_,
+    _as_of : datetime | str | None = None_,
+    _splits : Sequence[str] | None = None_,
+    _inline_s3_urls : bool = True_,
+    _*_ ,
+    _offset : int = 0_,
+    _limit : int | None = None_,
+    _metadata : dict | None = None_,
+    _filter : str | None = None_,
+    _include_attachments : bool = False_,
+    _** kwargs: Any_,
+) → Iterator[[Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")][[source]](../_modules/langsmith/client.html#Client.list_examples)#
+    
+
+Retrieve the example rows of the specified dataset.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset to filter by. Defaults to None.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to filter by. Defaults to None.
+
+  * **example_ids** (_Optional_ _[__Sequence_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The IDs of the examples to filter by. Defaults to None.
+
+  * **as_of** (_Optional_ _[__Union_ _[__datetime.datetime_ _,__str_ _]__]_) – The dataset version tag OR timestamp to retrieve the examples as of. Response examples will only be those that were present at the time of the tagged (or timestamped) version.
+
+  * **splits** (_Optional_ _[__Sequence_ _[__str_ _]__]_) – A list of dataset splits, which are divisions of your dataset such as ‘train’, ‘test’, or ‘validation’. Returns examples only from the specified splits.
+
+  * **inline_s3_urls** (_bool_ _,__default=True_) – Whether to inline S3 URLs. Defaults to True.
+
+  * **offset** (_int_ _,__default=0_) – The offset to start from. Defaults to 0.
+
+  * **limit** (_Optional_ _[__int_ _]_) – The maximum number of examples to return.
+
+  * **metadata** (_Optional_ _[__dict_ _]_) – A dictionary of metadata to filter by.
+
+  * **filter** (_Optional_ _[__str_ _]_) – A structured filter string to apply to the examples.
+
+  * **include_attachments** (_bool_ _,__default=False_) – Whether to include the attachments in the response. Defaults to False.
+
+  * ****kwargs** (_Any_) – Additional keyword arguments are ignored.
+
+Yields:
+    
+
+The examples.
+
+Return type:
+    
+
+_Iterator_[[_Example_](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")]
+
+Examples
+
+List all examples for a dataset:
+    
+    
+    from langsmith import Client
+    
+    client = Client()
+    
+    # By Dataset ID
+    examples = client.list_examples(
+        dataset_id="c9ace0d8-a82c-4b6c-13d2-83401d68e9ab"
+    )
+    # By Dataset Name
+    examples = client.list_examples(dataset_name="My Test Dataset")
+    
+
+List examples by id
+    
+    
+    example_ids = [
+        "734fc6a0-c187-4266-9721-90b7a025751a",
+        "d6b4c1b9-6160-4d63-9b61-b034c585074f",
+        "4d31df4e-f9c3-4a6e-8b6c-65701c2fed13",
+    ]
+    examples = client.list_examples(example_ids=example_ids)
+    
+
+List examples by metadata
+    
+    
+    examples = client.list_examples(
+        dataset_name=dataset_name, metadata={"foo": "bar"}
+    )
+    
+
+List examples by structured filter
+    
+    
+    examples = client.list_examples(
+        dataset_name=dataset_name,
+        filter='and(not(has(metadata, \'{"foo": "bar"}\')), exists(metadata, "tenant_id"))',
+    )
+    
+
+list_feedback(
+
+    _*_ ,
+    _run_ids : Sequence[UUID | str] | None = None_,
+    _feedback_key : Sequence[str] | None = None_,
+    _feedback_source_type : Sequence[[FeedbackSourceType](../schemas/langsmith.schemas.FeedbackSourceType.html#langsmith.schemas.FeedbackSourceType "langsmith.schemas.FeedbackSourceType")] | None = None_,
+    _limit : int | None = None_,
+    _** kwargs: Any_,
+) → Iterator[[Feedback](../schemas/langsmith.schemas.Feedback.html#langsmith.schemas.Feedback "langsmith.schemas.Feedback")][[source]](../_modules/langsmith/client.html#Client.list_feedback)#
+    
+
+List the feedback objects on the LangSmith API.
+
+Parameters:
+    
+
+  * **run_ids** (_Optional_ _[__Sequence_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – The IDs of the runs to filter by.
+
+  * **feedback_key** (_Optional_ _[__Sequence_ _[__str_ _]__]_) – The feedback key(s) to filter by. Examples: ‘correctness’ The query performs a union of all feedback keys.
+
+  * **feedback_source_type** (_Optional_ _[__Sequence_ _[_[_FeedbackSourceType_](../schemas/langsmith.schemas.FeedbackSourceType.html#langsmith.schemas.FeedbackSourceType "langsmith.schemas.FeedbackSourceType") _]__]_) – The type of feedback source, such as model or API.
+
+  * **limit** (_Optional_ _[__int_ _]_) – The maximum number of feedback to return.
+
+  * ****kwargs** (_Any_) – Additional keyword arguments.
+
+Yields:
+    
+
+The feedback objects.
+
+Return type:
+    
+
+_Iterator_[[_Feedback_](../schemas/langsmith.schemas.Feedback.html#langsmith.schemas.Feedback "langsmith.schemas.Feedback")]
+
+list_presigned_feedback_tokens(
+
+    _run_id : UUID | str_,
+    _*_ ,
+    _limit : int | None = None_,
+) → Iterator[[FeedbackIngestToken](../schemas/langsmith.schemas.FeedbackIngestToken.html#langsmith.schemas.FeedbackIngestToken "langsmith.schemas.FeedbackIngestToken")][[source]](../_modules/langsmith/client.html#Client.list_presigned_feedback_tokens)#
+    
+
+List the feedback ingest tokens for a run.
+
+Parameters:
+    
+
+  * **run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run to filter by.
+
+  * **limit** (_Optional_ _[__int_ _]_) – The maximum number of tokens to return.
+
+Yields:
+    
+
+The feedback ingest tokens.
+
+Return type:
+    
+
+_Iterator_[[_FeedbackIngestToken_](../schemas/langsmith.schemas.FeedbackIngestToken.html#langsmith.schemas.FeedbackIngestToken "langsmith.schemas.FeedbackIngestToken")]
+
+list_projects(
+
+    _project_ids : list[UUID | str] | None = None_,
+    _name : str | None = None_,
+    _name_contains : str | None = None_,
+    _reference_dataset_id : UUID | str | None = None_,
+    _reference_dataset_name : str | None = None_,
+    _reference_free : bool | None = None_,
+    _limit : int | None = None_,
+    _metadata : dict[str, Any] | None = None_,
+) → Iterator[[TracerSession](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession")][[source]](../_modules/langsmith/client.html#Client.list_projects)#
+    
+
+List projects from the LangSmith API.
+
+Parameters:
+    
+
+  * **project_ids** (_Optional_ _[__List_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – A list of project IDs to filter by, by default None
+
+  * **name** (_Optional_ _[__str_ _]_) – The name of the project to filter by, by default None
+
+  * **name_contains** (_Optional_ _[__str_ _]_) – A string to search for in the project name, by default None
+
+  * **reference_dataset_id** (_Optional_ _[__List_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – A dataset ID to filter by, by default None
+
+  * **reference_dataset_name** (_Optional_ _[__str_ _]_) – The name of the reference dataset to filter by, by default None
+
+  * **reference_free** (_Optional_ _[__bool_ _]_) – Whether to filter for only projects not associated with a dataset.
+
+  * **limit** (_Optional_ _[__int_ _]_) – The maximum number of projects to return, by default None
+
+  * **metadata** (_Optional_ _[__Dict_ _[__str_ _,__Any_ _]__]_) – Metadata to filter by.
+
+Yields:
+    
+
+The projects.
+
+Raises:
+    
+
+**ValueError** – If both reference_dataset_id and reference_dataset_name are given.
+
+Return type:
+    
+
+_Iterator_[[_TracerSession_](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession")]
+
+list_prompt_commits(
+
+    _prompt_identifier : str_,
+    _*_ ,
+    _limit : int | None = None_,
+    _offset : int = 0_,
+    _include_model : bool = False_,
+) → Iterator[[ListedPromptCommit](../schemas/langsmith.schemas.ListedPromptCommit.html#langsmith.schemas.ListedPromptCommit "langsmith.schemas.ListedPromptCommit")][[source]](../_modules/langsmith/client.html#Client.list_prompt_commits)#
+    
+
+List commits for a given prompt.
+
+Parameters:
+    
+
+  * **prompt_identifier** (_str_) – The identifier of the prompt in the format ‘owner/repo_name’.
+
+  * **limit** (_Optional_ _[__int_ _]_) – The maximum number of commits to return. If None, returns all commits. Defaults to None.
+
+  * **offset** (_int_ _,__default=0_) – The number of commits to skip before starting to return results. Defaults to 0.
+
+  * **include_model** (_bool_ _,__default=False_) – Whether to include the model information in the commit data. Defaults to False.
+
+Yields:
+    
+
+A ListedPromptCommit object for each commit.
+
+Return type:
+    
+
+_Iterator_[[_ListedPromptCommit_](../schemas/langsmith.schemas.ListedPromptCommit.html#langsmith.schemas.ListedPromptCommit "langsmith.schemas.ListedPromptCommit")]
+
+Note
+
+This method uses pagination to retrieve commits. It will make multiple API calls if necessary to retrieve all commits or up to the specified limit.
+
+list_prompts(
+
+    _*_ ,
+    _limit : int = 100_,
+    _offset : int = 0_,
+    _is_public : bool | None = None_,
+    _is_archived : bool | None = False_,
+    _sort_field : [PromptSortField](../schemas/langsmith.schemas.PromptSortField.html#langsmith.schemas.PromptSortField "langsmith.schemas.PromptSortField") = PromptSortField.updated_at_,
+    _sort_direction : Literal['desc', 'asc'] = 'desc'_,
+    _query : str | None = None_,
+) → [ListPromptsResponse](../schemas/langsmith.schemas.ListPromptsResponse.html#langsmith.schemas.ListPromptsResponse "langsmith.schemas.ListPromptsResponse")[[source]](../_modules/langsmith/client.html#Client.list_prompts)#
+    
+
+List prompts with pagination.
+
+Parameters:
+    
+
+  * **limit** (_int_ _,__default=100_) – The maximum number of prompts to return. Defaults to 100.
+
+  * **offset** (_int_ _,__default=0_) – The number of prompts to skip. Defaults to 0.
+
+  * **is_public** (_Optional_ _[__bool_ _]_) – Filter prompts by if they are public.
+
+  * **is_archived** (_Optional_ _[__bool_ _]_) – Filter prompts by if they are archived.
+
+  * **sort_field** ([_PromptSortField_](../schemas/langsmith.schemas.PromptSortField.html#langsmith.schemas.PromptSortField "langsmith.schemas.PromptSortField")) – The field to sort by. Defaults to “updated_at”.
+
+  * **sort_direction** (_Literal_ _[__"desc"__,__"asc"__]__,__default="desc"_) – The order to sort by. Defaults to “desc”.
+
+  * **query** (_Optional_ _[__str_ _]_) – Filter prompts by a search query.
+
+Returns:
+    
+
+A response object containing the list of prompts.
+
+Return type:
+    
+
+[ListPromptsResponse](../schemas/langsmith.schemas.ListPromptsResponse.html#langsmith.schemas.ListPromptsResponse "langsmith.schemas.ListPromptsResponse")
+
+list_runs(
+
+    _*_ ,
+    _project_id : UUID | str | Sequence[UUID | str] | None = None_,
+    _project_name : str | Sequence[str] | None = None_,
+    _run_type : str | None = None_,
+    _trace_id : UUID | str | None = None_,
+    _reference_example_id : UUID | str | None = None_,
+    _query : str | None = None_,
+    _filter : str | None = None_,
+    _trace_filter : str | None = None_,
+    _tree_filter : str | None = None_,
+    _is_root : bool | None = None_,
+    _parent_run_id : UUID | str | None = None_,
+    _start_time : datetime | None = None_,
+    _error : bool | None = None_,
+    _run_ids : Sequence[UUID | str] | None = None_,
+    _select : Sequence[str] | None = None_,
+    _limit : int | None = None_,
+    _** kwargs: Any_,
+) → Iterator[[Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")][[source]](../_modules/langsmith/client.html#Client.list_runs)#
+    
+
+List runs from the LangSmith API.
+
+Parameters:
+    
+
+  * **project_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__,__Sequence_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – The ID(s) of the project to filter by.
+
+  * **project_name** (_Optional_ _[__Union_ _[__str_ _,__Sequence_ _[__str_ _]__]__]_) – The name(s) of the project to filter by.
+
+  * **run_type** (_Optional_ _[__str_ _]_) – The type of the runs to filter by.
+
+  * **trace_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the trace to filter by.
+
+  * **reference_example_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the reference example to filter by.
+
+  * **query** (_Optional_ _[__str_ _]_) – The query string to filter by.
+
+  * **filter** (_Optional_ _[__str_ _]_) – The filter string to filter by.
+
+  * **trace_filter** (_Optional_ _[__str_ _]_) – Filter to apply to the ROOT run in the trace tree. This is meant to be used in conjunction with the regular filter parameter to let you filter runs by attributes of the root run within a trace.
+
+  * **tree_filter** (_Optional_ _[__str_ _]_) – Filter to apply to OTHER runs in the trace tree, including sibling and child runs. This is meant to be used in conjunction with the regular filter parameter to let you filter runs by attributes of any run within a trace.
+
+  * **is_root** (_Optional_ _[__bool_ _]_) – Whether to filter by root runs.
+
+  * **parent_run_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the parent run to filter by.
+
+  * **start_time** (_Optional_ _[__datetime.datetime_ _]_) – The start time to filter by.
+
+  * **error** (_Optional_ _[__bool_ _]_) – Whether to filter by error status.
+
+  * **run_ids** (_Optional_ _[__Sequence_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – The IDs of the runs to filter by.
+
+  * **select** (_Optional_ _[__Sequence_ _[__str_ _]__]_) – The fields to select.
+
+  * **limit** (_Optional_ _[__int_ _]_) – The maximum number of runs to return.
+
+  * ****kwargs** (_Any_) – Additional keyword arguments.
+
+Yields:
+    
+
+The runs.
+
+Return type:
+    
+
+_Iterator_[[_Run_](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")]
+
+Examples
+    
+    
+    # List all runs in a project
+    project_runs = client.list_runs(project_name="<your_project>")
+    
+    # List LLM and Chat runs in the last 24 hours
+    todays_llm_runs = client.list_runs(
+        project_name="<your_project>",
+        start_time=datetime.now() - timedelta(days=1),
+        run_type="llm",
+    )
+    
+    # List root traces in a project
+    root_runs = client.list_runs(project_name="<your_project>", is_root=1)
+    
+    # List runs without errors
+    correct_runs = client.list_runs(project_name="<your_project>", error=False)
+    
+    # List runs and only return their inputs/outputs (to speed up the query)
+    input_output_runs = client.list_runs(
+        project_name="<your_project>", select=["inputs", "outputs"]
+    )
+    
+    # List runs by run ID
+    run_ids = [
+        "a36092d2-4ad5-4fb4-9c0d-0dba9a2ed836",
+        "9398e6be-964f-4aa4-8ae9-ad78cd4b7074",
+    ]
+    selected_runs = client.list_runs(id=run_ids)
+    
+    # List all "chain" type runs that took more than 10 seconds and had
+    # `total_tokens` greater than 5000
+    chain_runs = client.list_runs(
+        project_name="<your_project>",
+        filter='and(eq(run_type, "chain"), gt(latency, 10), gt(total_tokens, 5000))',
+    )
+    
+    # List all runs called "extractor" whose root of the trace was assigned feedback "user_score" score of 1
+    good_extractor_runs = client.list_runs(
+        project_name="<your_project>",
+        filter='eq(name, "extractor")',
+        trace_filter='and(eq(feedback_key, "user_score"), eq(feedback_score, 1))',
+    )
+    
+    # List all runs that started after a specific timestamp and either have "error" not equal to null or a "Correctness" feedback score equal to 0
+    complex_runs = client.list_runs(
+        project_name="<your_project>",
+        filter='and(gt(start_time, "2023-07-15T12:34:56Z"), or(neq(error, null), and(eq(feedback_key, "Correctness"), eq(feedback_score, 0.0))))',
+    )
+    
+    # List all runs where `tags` include "experimental" or "beta" and `latency` is greater than 2 seconds
+    tagged_runs = client.list_runs(
+        project_name="<your_project>",
+        filter='and(or(has(tags, "experimental"), has(tags, "beta")), gt(latency, 2))',
+    )
+    
+
+list_shared_examples(
+
+    _share_token : str_,
+    _*_ ,
+    _example_ids : list[UUID | str] | None = None_,
+) → list[[Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")][[source]](../_modules/langsmith/client.html#Client.list_shared_examples)#
+    
+
+Get shared examples.
+
+Parameters:
+    
+
+  * **share_token** (_Union_ _[__UUID_ _,__str_ _]_) – The share token or URL of the shared dataset.
+
+  * **example_ids** (_Optional_ _[__List_ _[__UUID_ _,__str_ _]__]__,__optional_) – The IDs of the examples to filter by. Defaults to None.
+
+Returns:
+    
+
+The list of shared examples.
+
+Return type:
+    
+
+List[ls_schemas.Example]
+
+list_shared_projects(
+
+    _*_ ,
+    _dataset_share_token : str_,
+    _project_ids : list[UUID | str] | None = None_,
+    _name : str | None = None_,
+    _name_contains : str | None = None_,
+    _limit : int | None = None_,
+) → Iterator[[TracerSessionResult](../schemas/langsmith.schemas.TracerSessionResult.html#langsmith.schemas.TracerSessionResult "langsmith.schemas.TracerSessionResult")][[source]](../_modules/langsmith/client.html#Client.list_shared_projects)#
+    
+
+List shared projects.
+
+Parameters:
+    
+
+  * **dataset_share_token** (_str_) – The share token of the dataset.
+
+  * **project_ids** (_Optional_ _[__List_ _[__Union_ _[__UUID_ _,__str_ _]__]__]_) – List of project IDs to filter the results, by default None.
+
+  * **name** (_Optional_ _[__str_ _]_) – Name of the project to filter the results, by default None.
+
+  * **name_contains** (_Optional_ _[__str_ _]_) – Substring to search for in project names, by default None.
+
+  * **limit** (_Optional_ _[__int_ _]_) – Maximum number of projects to return, by default None.
+
+Yields:
+    
+
+The shared projects.
+
+Return type:
+    
+
+_Iterator_[[_TracerSessionResult_](../schemas/langsmith.schemas.TracerSessionResult.html#langsmith.schemas.TracerSessionResult "langsmith.schemas.TracerSessionResult")]
+
+list_shared_runs(
+
+    _share_token : UUID | str_,
+    _run_ids : list[str] | None = None_,
+) → Iterator[[Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")][[source]](../_modules/langsmith/client.html#Client.list_shared_runs)#
+    
+
+Get shared runs.
+
+Parameters:
+    
+
+  * **share_token** (_Union_ _[__UUID_ _,__str_ _]_) – The share token or URL of the shared run.
+
+  * **run_ids** (_Optional_ _[__List_ _[__str_ _]__]_) – A list of run IDs to filter the results by.
+
+Yields:
+    
+
+A shared run.
+
+Return type:
+    
+
+_Iterator_[[_Run_](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")]
+
+multipart_ingest(
+
+    _create : Sequence[[Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run") | RunLikeDict | dict] | None = None_,
+    _update : Sequence[[Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run") | RunLikeDict | dict] | None = None_,
+    _*_ ,
+    _pre_sampled : bool = False_,
+    _dangerously_allow_filesystem : bool = False_,
+) → None[[source]](../_modules/langsmith/client.html#Client.multipart_ingest)#
+    
+
+Batch ingest/upsert multiple runs in the Langsmith system.
+
+Parameters:
+    
+
+  * **create** (_Optional_ _[__Sequence_ _[__Union_ _[__ls_schemas.Run_ _,__RunLikeDict_ _]__]__]_) – A sequence of Run objects or equivalent dictionaries representing runs to be created / posted.
+
+  * **update** (_Optional_ _[__Sequence_ _[__Union_ _[__ls_schemas.Run_ _,__RunLikeDict_ _]__]__]_) – A sequence of Run objects or equivalent dictionaries representing runs that have already been created and should be updated / patched.
+
+  * **pre_sampled** (_bool_ _,__default=False_) – Whether the runs have already been subject to sampling, and therefore should not be sampled again. Defaults to False.
+
+  * **dangerously_allow_filesystem** (_bool_)
+
+Raises:
+    
+
+**LangsmithAPIError** – If there is an error in the API request.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+Note
+
+  * The run objects MUST contain the dotted_order and trace_id fields
+    
+
+to be accepted by the API.
+
+Examples
+    
+    
+    from langsmith import Client
+    import datetime
+    from uuid import uuid4
+    
+    client = Client()
+    _session = "__test_batch_ingest_runs"
+    trace_id = uuid4()
+    trace_id_2 = uuid4()
+    run_id_2 = uuid4()
+    current_time = datetime.datetime.now(datetime.timezone.utc).strftime(
+        "%Y%m%dT%H%M%S%fZ"
+    )
+    later_time = (
+        datetime.datetime.now(datetime.timezone.utc) + timedelta(seconds=1)
+    ).strftime("%Y%m%dT%H%M%S%fZ")
+    
+    runs_to_create = [
+        {
+            "id": str(trace_id),
+            "session_name": _session,
+            "name": "run 1",
+            "run_type": "chain",
+            "dotted_order": f"{current_time}{str(trace_id)}",
+            "trace_id": str(trace_id),
+            "inputs": {"input1": 1, "input2": 2},
+            "outputs": {"output1": 3, "output2": 4},
+        },
+        {
+            "id": str(trace_id_2),
+            "session_name": _session,
+            "name": "run 3",
+            "run_type": "chain",
+            "dotted_order": f"{current_time}{str(trace_id_2)}",
+            "trace_id": str(trace_id_2),
+            "inputs": {"input1": 1, "input2": 2},
+            "error": "error",
+        },
+        {
+            "id": str(run_id_2),
+            "session_name": _session,
+            "name": "run 2",
+            "run_type": "chain",
+            "dotted_order": f"{current_time}{str(trace_id)}."
+            f"{later_time}{str(run_id_2)}",
+            "trace_id": str(trace_id),
+            "parent_run_id": str(trace_id),
+            "inputs": {"input1": 5, "input2": 6},
+        },
+    ]
+    runs_to_update = [
+        {
+            "id": str(run_id_2),
+            "dotted_order": f"{current_time}{str(trace_id)}."
+            f"{later_time}{str(run_id_2)}",
+            "trace_id": str(trace_id),
+            "parent_run_id": str(trace_id),
+            "outputs": {"output1": 4, "output2": 5},
+        },
+    ]
+    
+    client.multipart_ingest(create=runs_to_create, update=runs_to_update)
+    
+
+pull_prompt(
+
+    _prompt_identifier : str_,
+    _*_ ,
+    _include_model : bool | None = False_,
+) → Any[[source]](../_modules/langsmith/client.html#Client.pull_prompt)#
+    
+
+Pull a prompt and return it as a LangChain PromptTemplate.
+
+This method requires langchain_core.
+
+Parameters:
+    
+
+  * **prompt_identifier** (_str_) – The identifier of the prompt.
+
+  * **include_model** (_Optional_ _[__bool_ _]__,__default=False_) – Whether to include the model information in the prompt data.
+
+Returns:
+    
+
+The prompt object in the specified format.
+
+Return type:
+    
+
+Any
+
+pull_prompt_commit(
+
+    _prompt_identifier : str_,
+    _*_ ,
+    _include_model : bool | None = False_,
+) → [PromptCommit](../schemas/langsmith.schemas.PromptCommit.html#langsmith.schemas.PromptCommit "langsmith.schemas.PromptCommit")[[source]](../_modules/langsmith/client.html#Client.pull_prompt_commit)#
+    
+
+Pull a prompt object from the LangSmith API.
+
+Parameters:
+    
+
+  * **prompt_identifier** (_str_) – The identifier of the prompt.
+
+  * **include_model** (_bool_ _|__None_)
+
+Returns:
+    
+
+The prompt object.
+
+Return type:
+    
+
+[PromptCommit](../schemas/langsmith.schemas.PromptCommit.html#langsmith.schemas.PromptCommit "langsmith.schemas.PromptCommit")
+
+Raises:
+    
+
+**ValueError** – If no commits are found for the prompt.
+
+push_prompt(
+
+    _prompt_identifier : str_,
+    _*_ ,
+    _object : Any | None = None_,
+    _parent_commit_hash : str = 'latest'_,
+    _is_public : bool | None = None_,
+    _description : str | None = None_,
+    _readme : str | None = None_,
+    _tags : Sequence[str] | None = None_,
+) → str[[source]](../_modules/langsmith/client.html#Client.push_prompt)#
+    
+
+Push a prompt to the LangSmith API.
+
+Can be used to update prompt metadata or prompt content.
+
+If the prompt does not exist, it will be created. If the prompt exists, it will be updated.
+
+Parameters:
+    
+
+  * **prompt_identifier** (_str_) – The identifier of the prompt.
+
+  * **object** (_Optional_ _[__Any_ _]_) – The LangChain object to push.
+
+  * **parent_commit_hash** (_str_) – The parent commit hash. Defaults to “latest”.
+
+  * **is_public** (_Optional_ _[__bool_ _]_) – Whether the prompt should be public. If None (default), the current visibility status is maintained for existing prompts. For new prompts, None defaults to private. Set to True to make public, or False to make private.
+
+  * **description** (_Optional_ _[__str_ _]_) – A description of the prompt. Defaults to an empty string.
+
+  * **readme** (_Optional_ _[__str_ _]_) – A readme for the prompt. Defaults to an empty string.
+
+  * **tags** (_Optional_ _[__Sequence_ _[__str_ _]__]_) – A list of tags for the prompt. Defaults to an empty list.
+
+Returns:
+    
+
+The URL of the prompt.
+
+Return type:
+    
+
+str
+
+read_annotation_queue(
+
+    _queue_id : UUID | str_,
+) → [AnnotationQueue](../schemas/langsmith.schemas.AnnotationQueue.html#langsmith.schemas.AnnotationQueue "langsmith.schemas.AnnotationQueue")[[source]](../_modules/langsmith/client.html#Client.read_annotation_queue)#
+    
+
+Read an annotation queue with the specified queue ID.
+
+Parameters:
+    
+
+**queue_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the annotation queue to read.
+
+Returns:
+    
+
+The annotation queue object.
+
+Return type:
+    
+
+[AnnotationQueue](../schemas/langsmith.schemas.AnnotationQueue.html#langsmith.schemas.AnnotationQueue "langsmith.schemas.AnnotationQueue")
+
+read_dataset(
+
+    _*_ ,
+    _dataset_name : str | None = None_,
+    _dataset_id : UUID | str | None = None_,
+) → [Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")[[source]](../_modules/langsmith/client.html#Client.read_dataset)#
+    
+
+Read a dataset from the LangSmith API.
+
+Parameters:
+    
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to read.
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset to read.
+
+Returns:
+    
+
+The dataset.
+
+Return type:
+    
+
+[Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")
+
+read_dataset_openai_finetuning(
+
+    _dataset_id : UUID | str | None = None_,
+    _*_ ,
+    _dataset_name : str | None = None_,
+) → list[[source]](../_modules/langsmith/client.html#Client.read_dataset_openai_finetuning)#
+    
+
+Download a dataset in OpenAI Jsonl format and load it as a list of dicts.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset to download.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to download.
+
+Returns:
+    
+
+The dataset loaded as a list of dicts.
+
+Return type:
+    
+
+list[dict]
+
+Raises:
+    
+
+**ValueError** – If neither dataset_id nor dataset_name is provided.
+
+read_dataset_shared_schema(
+
+    _dataset_id : UUID | str | None = None_,
+    _*_ ,
+    _dataset_name : str | None = None_,
+) → [DatasetShareSchema](../schemas/langsmith.schemas.DatasetShareSchema.html#langsmith.schemas.DatasetShareSchema "langsmith.schemas.DatasetShareSchema")[[source]](../_modules/langsmith/client.html#Client.read_dataset_shared_schema)#
+    
+
+Retrieve the shared schema of a dataset.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset. Either dataset_id or dataset_name must be given.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset. Either dataset_id or dataset_name must be given.
+
+Returns:
+    
+
+The shared schema of the dataset.
+
+Return type:
+    
+
+ls_schemas.DatasetShareSchema
+
+Raises:
+    
+
+**ValueError** – If neither dataset_id nor dataset_name is given.
+
+read_dataset_version(
+
+    _*_ ,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _as_of : datetime | None = None_,
+    _tag : str | None = None_,
+) → [DatasetVersion](../schemas/langsmith.schemas.DatasetVersion.html#langsmith.schemas.DatasetVersion "langsmith.schemas.DatasetVersion")[[source]](../_modules/langsmith/client.html#Client.read_dataset_version)#
+    
+
+Get dataset version by as_of or exact tag.
+
+Ues this to resolve the nearest version to a given timestamp or for a given tag.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__ID_TYPE_ _]_) – The ID of the dataset.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset.
+
+  * **as_of** (_Optional_ _[__datetime.datetime_ _]_) – The timestamp of the dataset to retrieve.
+
+  * **tag** (_Optional_ _[__str_ _]_) – The tag of the dataset to retrieve.
+
+Returns:
+    
+
+The dataset version.
+
+Return type:
+    
+
+[DatasetVersion](../schemas/langsmith.schemas.DatasetVersion.html#langsmith.schemas.DatasetVersion "langsmith.schemas.DatasetVersion")
+
+Examples
+    
+    
+    # Get the latest version of a dataset
+    client.read_dataset_version(dataset_name="my-dataset", tag="latest")
+    
+    # Get the version of a dataset <= a given timestamp
+    client.read_dataset_version(
+        dataset_name="my-dataset",
+        as_of=datetime.datetime(2024, 1, 1),
+    )
+    
+    
+    # Get the version of a dataset with a specific tag
+    client.read_dataset_version(dataset_name="my-dataset", tag="prod")
+    
+
+read_example(
+
+    _example_id : UUID | str_,
+    _*_ ,
+    _as_of : datetime | None = None_,
+) → [Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")[[source]](../_modules/langsmith/client.html#Client.read_example)#
+    
+
+Read an example from the LangSmith API.
+
+Parameters:
+    
+
+  * **example_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the example to read.
+
+  * **as_of** (_Optional_ _[__datetime.datetime_ _]_) – The dataset version tag OR timestamp to retrieve the example as of. Response examples will only be those that were present at the time of the tagged (or timestamped) version.
+
+Returns:
+    
+
+The example.
+
+Return type:
+    
+
+[Example](../schemas/langsmith.schemas.Example.html#langsmith.schemas.Example "langsmith.schemas.Example")
+
+read_feedback(
+
+    _feedback_id : UUID | str_,
+) → [Feedback](../schemas/langsmith.schemas.Feedback.html#langsmith.schemas.Feedback "langsmith.schemas.Feedback")[[source]](../_modules/langsmith/client.html#Client.read_feedback)#
+    
+
+Read a feedback from the LangSmith API.
+
+Parameters:
+    
+
+**feedback_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the feedback to read.
+
+Returns:
+    
+
+The feedback.
+
+Return type:
+    
+
+[Feedback](../schemas/langsmith.schemas.Feedback.html#langsmith.schemas.Feedback "langsmith.schemas.Feedback")
+
+read_project(
+
+    _*_ ,
+    _project_id : str | None = None_,
+    _project_name : str | None = None_,
+    _include_stats : bool = False_,
+) → [TracerSessionResult](../schemas/langsmith.schemas.TracerSessionResult.html#langsmith.schemas.TracerSessionResult "langsmith.schemas.TracerSessionResult")[[source]](../_modules/langsmith/client.html#Client.read_project)#
+    
+
+Read a project from the LangSmith API.
+
+Parameters:
+    
+
+  * **project_id** (_Optional_ _[__str_ _]_) – The ID of the project to read.
+
+  * **project_name** (_Optional_ _[__str_ _]_) – The name of the project to read. Only one of project_id or project_name may be given.
+
+  * **include_stats** (_bool_ _,__default=False_) – Whether to include a project’s aggregate statistics in the response.
+
+Returns:
+    
+
+The project.
+
+Return type:
+    
+
+[TracerSessionResult](../schemas/langsmith.schemas.TracerSessionResult.html#langsmith.schemas.TracerSessionResult "langsmith.schemas.TracerSessionResult")
+
+read_run(
+
+    _run_id : UUID | str_,
+    _load_child_runs : bool = False_,
+) → [Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")[[source]](../_modules/langsmith/client.html#Client.read_run)#
+    
+
+Read a run from the LangSmith API.
+
+Parameters:
+    
+
+  * **run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run to read.
+
+  * **load_child_runs** (_bool_ _,__default=False_) – Whether to load nested child runs.
+
+Returns:
+    
+
+The run read from the LangSmith API.
+
+Return type:
+    
+
+[Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")
+
+Examples
+    
+    
+    from langsmith import Client
+    
+    # Existing run
+    run_id = "your-run-id"
+    
+    client = Client()
+    stored_run = client.read_run(run_id)
+    
+
+read_run_shared_link(
+
+    _run_id : UUID | str_,
+) → str | None[[source]](../_modules/langsmith/client.html#Client.read_run_shared_link)#
+    
+
+Retrieve the shared link for a specific run.
+
+Parameters:
+    
+
+**run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run.
+
+Returns:
+    
+
+The shared link for the run, or None if the link is not available.
+
+Return type:
+    
+
+Optional[str]
+
+read_shared_dataset(
+
+    _share_token : str_,
+) → [Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")[[source]](../_modules/langsmith/client.html#Client.read_shared_dataset)#
+    
+
+Get shared datasets.
+
+Parameters:
+    
+
+**share_token** (_Union_ _[__UUID_ _,__str_ _]_) – The share token or URL of the shared dataset.
+
+Returns:
+    
+
+The shared dataset.
+
+Return type:
+    
+
+[Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")
+
+read_shared_run(
+
+    _share_token : UUID | str_,
+    _run_id : UUID | str | None = None_,
+) → [Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")[[source]](../_modules/langsmith/client.html#Client.read_shared_run)#
+    
+
+Get shared runs.
+
+Parameters:
+    
+
+  * **share_token** (_Union_ _[__UUID_ _,__str_ _]_) – The share token or URL of the shared run.
+
+  * **run_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the specific run to retrieve. If not provided, the full shared run will be returned.
+
+Returns:
+    
+
+The shared run.
+
+Return type:
+    
+
+[Run](../schemas/langsmith.schemas.Run.html#langsmith.schemas.Run "langsmith.schemas.Run")
+
+request_with_retries(
+
+    _method : Literal['GET', 'POST', 'PUT', 'PATCH', 'DELETE']_,
+    _pathname : str_,
+    _*_ ,
+    _request_kwargs : Mapping | None = None_,
+    _stop_after_attempt : int = 1_,
+    _retry_on : Sequence[type[BaseException]] | None = None_,
+    _to_ignore : Sequence[type[BaseException]] | None = None_,
+    _handle_response : Callable[[Response, int], Any] | None = None_,
+    __context : str = ''_,
+    _** kwargs: Any_,
+) → Response[[source]](../_modules/langsmith/client.html#Client.request_with_retries)#
+    
+
+Send a request with retries.
+
+Parameters:
+    
+
+  * **method** (_str_) – The HTTP request method.
+
+  * **pathname** (_str_) – The pathname of the request URL. Will be appended to the API URL.
+
+  * **request_kwargs** (_Mapping_) – Additional request parameters.
+
+  * **stop_after_attempt** (_int_ _,__default=1_) – The number of attempts to make.
+
+  * **retry_on** (_Optional_ _[__Sequence_ _[__Type_ _[__BaseException_ _]__]__]_) – The exceptions to retry on. In addition to: [LangSmithConnectionError, LangSmithAPIError].
+
+  * **to_ignore** (_Optional_ _[__Sequence_ _[__Type_ _[__BaseException_ _]__]__]_) – The exceptions to ignore / pass on.
+
+  * **handle_response** (_Optional_ _[__Callable_ _[__[__requests.Response_ _,__int_ _]__,__Any_ _]__]_) – A function to handle the response and return whether to continue retrying.
+
+  * **_context** (_str_ _,__default=""_) – The context of the request.
+
+  * ****kwargs** (_Any_) – Additional keyword arguments to pass to the request.
+
+Returns:
+    
+
+The response object.
+
+Return type:
+    
+
+requests.Response
+
+Raises:
+    
+
+  * [**LangSmithAPIError**](../utils/langsmith.utils.LangSmithAPIError.html#langsmith.utils.LangSmithAPIError "langsmith.utils.LangSmithAPIError") – If a server error occurs.
+
+  * [**LangSmithUserError**](../utils/langsmith.utils.LangSmithUserError.html#langsmith.utils.LangSmithUserError "langsmith.utils.LangSmithUserError") – If the request fails.
+
+  * [**LangSmithConnectionError**](../utils/langsmith.utils.LangSmithConnectionError.html#langsmith.utils.LangSmithConnectionError "langsmith.utils.LangSmithConnectionError") – If a connection error occurs.
+
+  * [**LangSmithError**](../utils/langsmith.utils.LangSmithError.html#langsmith.utils.LangSmithError "langsmith.utils.LangSmithError") – If the request fails.
+
+run_is_shared(_run_id : UUID | str_) → bool[[source]](../_modules/langsmith/client.html#Client.run_is_shared)#
+    
+
+Get share state for a run.
+
+Parameters:
+    
+
+**run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run.
+
+Returns:
+    
+
+True if the run is shared, False otherwise.
+
+Return type:
+    
+
+bool
+
+run_on_dataset(
+
+    _dataset_name : str_,
+    _llm_or_chain_factory : Any_,
+    _*_ ,
+    _evaluation : Any | None = None_,
+    _concurrency_level : int = 5_,
+    _project_name : str | None = None_,
+    _project_metadata : dict[str, Any] | None = None_,
+    _dataset_version : datetime | str | None = None_,
+    _verbose : bool = False_,
+    _input_mapper : Callable[[dict], Any] | None = None_,
+    _revision_id : str | None = None_,
+    _** kwargs: Any_,
+) → dict[str, Any][[source]](../_modules/langsmith/client.html#Client.run_on_dataset)#
+    
+
+Run the Chain or language model on a dataset.
+
+Deprecated since version 0.1.0: This method is deprecated. Use `langsmith.aevaluate()` instead.
+
+Parameters:
+    
+
+  * **dataset_name** (_str_)
+
+  * **llm_or_chain_factory** (_Any_)
+
+  * **evaluation** (_Any_ _|__None_)
+
+  * **concurrency_level** (_int_)
+
+  * **project_name** (_str_ _|__None_)
+
+  * **project_metadata** (_dict_ _[__str_ _,__Any_ _]__|__None_)
+
+  * **dataset_version** (_datetime_ _|__str_ _|__None_)
+
+  * **verbose** (_bool_)
+
+  * **input_mapper** (_Callable_ _[__[__dict_ _]__,__Any_ _]__|__None_)
+
+  * **revision_id** (_str_ _|__None_)
+
+  * **kwargs** (_Any_)
+
+Return type:
+    
+
+dict[str, _Any_]
+
+share_dataset(
+
+    _dataset_id : UUID | str | None = None_,
+    _*_ ,
+    _dataset_name : str | None = None_,
+) → [DatasetShareSchema](../schemas/langsmith.schemas.DatasetShareSchema.html#langsmith.schemas.DatasetShareSchema "langsmith.schemas.DatasetShareSchema")[[source]](../_modules/langsmith/client.html#Client.share_dataset)#
+    
+
+Get a share link for a dataset.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset. Either dataset_id or dataset_name must be given.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset. Either dataset_id or dataset_name must be given.
+
+Returns:
+    
+
+The shared schema of the dataset.
+
+Return type:
+    
+
+ls_schemas.DatasetShareSchema
+
+Raises:
+    
+
+**ValueError** – If neither dataset_id nor dataset_name is given.
+
+share_run(
+
+    _run_id : UUID | str_,
+    _*_ ,
+    _share_id : UUID | str | None = None_,
+) → str[[source]](../_modules/langsmith/client.html#Client.share_run)#
+    
+
+Get a share link for a run.
+
+Parameters:
+    
+
+  * **run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run to share.
+
+  * **share_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – Custom share ID. If not provided, a random UUID will be generated.
+
+Returns:
+    
+
+The URL of the shared run.
+
+Return type:
+    
+
+str
+
+similar_examples(
+
+    _inputs : dict_,
+    _/_ ,
+    _*_ ,
+    _limit : int_,
+    _dataset_id : UUID | str_,
+    _filter : str | None = None_,
+    _** kwargs: Any_,
+) → list[[ExampleSearch](../schemas/langsmith.schemas.ExampleSearch.html#langsmith.schemas.ExampleSearch "langsmith.schemas.ExampleSearch")][[source]](../_modules/langsmith/client.html#Client.similar_examples)#
+    
+
+Retrieve the dataset examples whose inputs best match the current inputs.
+
+**Note** : Must have few-shot indexing enabled for the dataset. See client.index_dataset().
+
+Parameters:
+    
+
+  * **inputs** (_dict_) – The inputs to use as a search query. Must match the dataset input schema. Must be JSON serializable.
+
+  * **limit** (_int_) – The maximum number of examples to return.
+
+  * **dataset_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the dataset to search over.
+
+  * **filter** (_Optional_ _[__str_ _]_) – 
+
+A filter string to apply to the search results. Uses the same syntax as the filter parameter in list_runs(). Only a subset of operations are supported. Defaults to None.
+
+For example, you can use `and(eq(metadata.some_tag, 'some_value'), neq(metadata.env, 'dev'))` to filter only examples where some_tag has some_value, and the environment is not dev.
+
+  * ****kwargs** – Additional keyword arguments to pass as part of request body.
+
+Returns:
+    
+
+List of ExampleSearch objects.
+
+Return type:
+    
+
+list[[ExampleSearch](../schemas/langsmith.schemas.ExampleSearch.html#langsmith.schemas.ExampleSearch "langsmith.schemas.ExampleSearch")]
+
+Examples
+    
+    
+    from langsmith import Client
+    
+    client = Client()
+    client.similar_examples(
+        {"question": "When would i use the runnable generator"},
+        limit=3,
+        dataset_id="...",
+    )
+    
+    
+    
+    [
+        ExampleSearch(
+            inputs={
+                "question": "How do I cache a Chat model? What caches can I use?"
+            },
+            outputs={
+                "answer": "You can use LangChain's caching layer for Chat Models. This can save you money by reducing the number of API calls you make to the LLM provider, if you're often requesting the same completion multiple times, and speed up your application.\n\nfrom langchain.cache import InMemoryCache\nlangchain.llm_cache = InMemoryCache()\n\n# The first time, it is not yet in cache, so it should take longer\nllm.predict('Tell me a joke')\n\nYou can also use SQLite Cache which uses a SQLite database:\n\nrm .langchain.db\n\nfrom langchain.cache import SQLiteCache\nlangchain.llm_cache = SQLiteCache(database_path=\".langchain.db\")\n\n# The first time, it is not yet in cache, so it should take longer\nllm.predict('Tell me a joke') \n"
+            },
+            metadata=None,
+            id=UUID("b2ddd1c4-dff6-49ae-8544-f48e39053398"),
+            dataset_id=UUID("01b6ce0f-bfb6-4f48-bbb8-f19272135d40"),
+        ),
+        ExampleSearch(
+            inputs={"question": "What's a runnable lambda?"},
+            outputs={
+                "answer": "A runnable lambda is an object that implements LangChain's `Runnable` interface and runs a callbale (i.e., a function). Note the function must accept a single argument."
+            },
+            metadata=None,
+            id=UUID("f94104a7-2434-4ba7-8293-6a283f4860b4"),
+            dataset_id=UUID("01b6ce0f-bfb6-4f48-bbb8-f19272135d40"),
+        ),
+        ExampleSearch(
+            inputs={"question": "Show me how to use RecursiveURLLoader"},
+            outputs={
+                "answer": 'The RecursiveURLLoader comes from the langchain.document_loaders.recursive_url_loader module. Here\'s an example of how to use it:\n\nfrom langchain.document_loaders.recursive_url_loader import RecursiveUrlLoader\n\n# Create an instance of RecursiveUrlLoader with the URL you want to load\nloader = RecursiveUrlLoader(url="https://example.com")\n\n# Load all child links from the URL page\nchild_links = loader.load()\n\n# Print the child links\nfor link in child_links:\n    print(link)\n\nMake sure to replace "https://example.com" with the actual URL you want to load. The load() method returns a list of child links found on the URL page. You can iterate over this list to access each child link.'
+            },
+            metadata=None,
+            id=UUID("0308ea70-a803-4181-a37d-39e95f138f8c"),
+            dataset_id=UUID("01b6ce0f-bfb6-4f48-bbb8-f19272135d40"),
+        ),
+    ]
+    
+
+sync_indexed_dataset(
+
+    _*_ ,
+    _dataset_id : UUID | str_,
+    _** kwargs: Any_,
+) → None[[source]](../_modules/langsmith/client.html#Client.sync_indexed_dataset)#
+    
+
+Sync dataset index. This already happens automatically every 5 minutes, but you can call this to force a sync.
+
+Parameters:
+    
+
+  * **dataset_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the dataset to sync.
+
+  * **kwargs** (_Any_)
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+unlike_prompt(
+
+    _prompt_identifier : str_,
+) → dict[str, int][[source]](../_modules/langsmith/client.html#Client.unlike_prompt)#
+    
+
+Unlike a prompt.
+
+Parameters:
+    
+
+**prompt_identifier** (_str_) – The identifier of the prompt.
+
+Returns:
+    
+
+A dictionary with the key ‘likes’ and the count of likes as the value.
+
+Return type:
+    
+
+Dict[str, int]
+
+unshare_dataset(_dataset_id : UUID | str_) → None[[source]](../_modules/langsmith/client.html#Client.unshare_dataset)#
+    
+
+Delete share link for a dataset.
+
+Parameters:
+    
+
+**dataset_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the dataset to unshare.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+unshare_run(_run_id : UUID | str_) → None[[source]](../_modules/langsmith/client.html#Client.unshare_run)#
+    
+
+Delete share link for a run.
+
+Parameters:
+    
+
+**run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run to unshare.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+update_annotation_queue(
+
+    _queue_id : UUID | str_,
+    _*_ ,
+    _name : str_,
+    _description : str | None = None_,
+    _rubric_instructions : str | None = None_,
+) → None[[source]](../_modules/langsmith/client.html#Client.update_annotation_queue)#
+    
+
+Update an annotation queue with the specified queue_id.
+
+Parameters:
+    
+
+  * **queue_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the annotation queue to update.
+
+  * **name** (_str_) – The new name for the annotation queue.
+
+  * **description** (_Optional_ _[__str_ _]_) – The new description for the annotation queue. Defaults to None.
+
+  * **rubric_instructions** (_Optional_ _[__str_ _]_) – The new rubric instructions for the annotation queue. Defaults to None.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+update_dataset_splits(
+
+    _*_ ,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _split_name : str_,
+    _example_ids : list[UUID | str]_,
+    _remove : bool = False_,
+) → None[[source]](../_modules/langsmith/client.html#Client.update_dataset_splits)#
+    
+
+Update the splits for a dataset.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset to update.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to update.
+
+  * **split_name** (_str_) – The name of the split to update.
+
+  * **example_ids** (_List_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The IDs of the examples to add to or remove from the split.
+
+  * **remove** (_Optional_ _[__bool_ _]_) – If True, remove the examples from the split. If False, add the examples to the split. Defaults to False.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+update_dataset_tag(
+
+    _*_ ,
+    _dataset_id : UUID | str | None = None_,
+    _dataset_name : str | None = None_,
+    _as_of : datetime_,
+    _tag : str_,
+) → None[[source]](../_modules/langsmith/client.html#Client.update_dataset_tag)#
+    
+
+Update the tags of a dataset.
+
+If the tag is already assigned to a different version of this dataset, the tag will be moved to the new version. The as_of parameter is used to determine which version of the dataset to apply the new tags to. It must be an exact version of the dataset to succeed. You can use the read_dataset_version method to find the exact version to apply the tags to.
+
+Parameters:
+    
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset to update.
+
+  * **dataset_name** (_Optional_ _[__str_ _]_) – The name of the dataset to update.
+
+  * **as_of** (_datetime.datetime_) – The timestamp of the dataset to apply the new tags to.
+
+  * **tag** (_str_) – The new tag to apply to the dataset.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+Examples
+    
+    
+    dataset_name = "my-dataset"
+    # Get the version of a dataset <= a given timestamp
+    dataset_version = client.read_dataset_version(
+        dataset_name=dataset_name, as_of=datetime.datetime(2024, 1, 1)
+    )
+    # Assign that version a new tag
+    client.update_dataset_tags(
+        dataset_name="my-dataset",
+        as_of=dataset_version.as_of,
+        tag="prod",
+    )
+    
+
+update_example(
+
+    _example_id : UUID | str_,
+    _*_ ,
+    _inputs : dict[str, Any] | None = None_,
+    _outputs : Mapping[str, Any] | None = None_,
+    _metadata : dict | None = None_,
+    _split : str | list[str] | None = None_,
+    _dataset_id : UUID | str | None = None_,
+    _attachments_operations : [AttachmentsOperations](../schemas/langsmith.schemas.AttachmentsOperations.html#langsmith.schemas.AttachmentsOperations "langsmith.schemas.AttachmentsOperations") | None = None_,
+    _attachments : dict[str, tuple[str, bytes] | [Attachment](../schemas/langsmith.schemas.Attachment.html#langsmith.schemas.Attachment "langsmith.schemas.Attachment") | tuple[str, Path]] | None = None_,
+) → dict[str, Any][[source]](../_modules/langsmith/client.html#Client.update_example)#
+    
+
+Update a specific example.
+
+Parameters:
+    
+
+  * **example_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the example to update.
+
+  * **inputs** (_Optional_ _[__Dict_ _[__str_ _,__Any_ _]__]_) – The input values to update.
+
+  * **outputs** (_Optional_ _[__Mapping_ _[__str_ _,__Any_ _]__]_) – The output values to update.
+
+  * **metadata** (_Optional_ _[__Dict_ _]_) – The metadata to update.
+
+  * **split** (_Optional_ _[__str_ _|__List_ _[__str_ _]__]_) – The dataset split to update, such as ‘train’, ‘test’, or ‘validation’.
+
+  * **dataset_id** (_Optional_ _[__Union_ _[__UUID_ _,__str_ _]__]_) – The ID of the dataset to update.
+
+  * **attachments_operations** (_Optional_ _[_[_AttachmentsOperations_](../schemas/langsmith.schemas.AttachmentsOperations.html#langsmith.schemas.AttachmentsOperations "langsmith.schemas.AttachmentsOperations") _]_) – The attachments operations to perform.
+
+  * **attachments** (_Optional_ _[__Attachments_ _]_) – The attachments to add to the example.
+
+Returns:
+    
+
+The updated example.
+
+Return type:
+    
+
+Dict[str, Any]
+
+update_examples(
+
+    _*_ ,
+    _dataset_name : str | None = None_,
+    _dataset_id : UUID | str | None = None_,
+    _updates : Sequence[[ExampleUpdate](../schemas/langsmith.schemas.ExampleUpdate.html#langsmith.schemas.ExampleUpdate "langsmith.schemas.ExampleUpdate") | dict] | None = None_,
+    _dangerously_allow_filesystem : bool = False_,
+    _** kwargs: Any_,
+) → dict[str, Any][[source]](../_modules/langsmith/client.html#Client.update_examples)#
+    
+
+Update multiple examples.
+
+> Examples are expected to all be part of the same dataset.
+
+Parameters:
+    
+
+  * **dataset_name** (_str_ _|__None_) – The name of the dataset to update. Should specify exactly one of ‘dataset_name’ or ‘dataset_id’.
+
+  * **dataset_id** (_UUID_ _|__str_ _|__None_) – The ID of the dataset to update. Should specify exactly one of ‘dataset_name’ or ‘dataset_id’.
+
+  * **updates** (_Sequence_ _[_[_ExampleUpdate_](../schemas/langsmith.schemas.ExampleUpdate.html#langsmith.schemas.ExampleUpdate "langsmith.schemas.ExampleUpdate") _|__dict_ _]__|__None_) – The example updates. Overwrites any specified fields and does not update any unspecified fields.
+
+  * **dangerously_allow_filesystem** (_bool_) – Whether to allow using filesystem paths as attachments.
+
+  * ****kwargs** (_Any_) – 
+
+Legacy keyword args. Should not be specified if ‘updates’ is specified.
+
+    * example_ids (Sequence[UUID | str]): The IDs of the examples to update.
+
+    * inputs (Sequence[dict | None] | None): The input values for the examples.
+
+    * outputs (Sequence[dict | None] | None): The output values for the examples.
+
+    * metadata (Sequence[dict | None] | None): The metadata for the examples.
+
+    * splits (Sequence[str | list[str] | None] | None): The splits for the examples, which are divisions of your dataset such as ‘train’, ‘test’, or ‘validation’.
+
+    * attachments_operations (Sequence[AttachmentsOperations | None] | None): The operations to perform on the attachments.
+
+    * dataset_ids (Sequence[UUID | str] | None): The IDs of the datasets to move the examples to.
+
+Returns:
+    
+
+The LangSmith JSON response. Includes ‘message’, ‘count’, and ‘example_ids’.
+
+Changed in version 0.3.9: Updated to …
+
+Return type:
+    
+
+dict[str, _Any_]
+
+Example
+    
+    
+    from langsmith import Client
+    
+    client = Client()
+    
+    dataset = client.create_dataset("agent-qa")
+    
+    examples = [
+        {
+            "inputs": {"question": "what's an agent"},
+            "outputs": {"answer": "an agent is..."},
+            "metadata": {"difficulty": "easy"},
+        },
+        {
+            "inputs": {
+                "question": "can you explain the agent architecture in this diagram?"
+            },
+            "outputs": {"answer": "this diagram shows..."},
+            "attachments": {"diagram": {"mime_type": "image/png", "data": b"..."}},
+            "metadata": {"difficulty": "medium"},
+        },
+        # more examples...
+    ]
+    
+    response = client.create_examples(dataset_name="agent-qa", examples=examples)
+    example_ids = response["example_ids"]
+    
+    updates = [
+        {
+            "id": example_ids[0],
+            "inputs": {"question": "what isn't an agent"},
+            "outputs": {"answer": "an agent is not..."},
+        },
+        {
+            "id": example_ids[1],
+            "attachments_operations": [
+                {"rename": {"diagram": "agent_diagram"}, "retain": []}
+            ],
+        },
+    ]
+    response = client.update_examples(dataset_name="agent-qa", updates=updates)
+    # -> {"example_ids": [...
+    
+
+update_examples_multipart(
+
+    _*_ ,
+    _dataset_id : UUID | str_,
+    _updates : list[[ExampleUpdate](../schemas/langsmith.schemas.ExampleUpdate.html#langsmith.schemas.ExampleUpdate "langsmith.schemas.ExampleUpdate")] | None = None_,
+    _dangerously_allow_filesystem : bool = False_,
+) → [UpsertExamplesResponse](../schemas/langsmith.schemas.UpsertExamplesResponse.html#langsmith.schemas.UpsertExamplesResponse "langsmith.schemas.UpsertExamplesResponse")[[source]](../_modules/langsmith/client.html#Client.update_examples_multipart)#
+    
+
+Update examples using multipart.
+
+Deprecated since version 0.3.9: Use Client.update_examples instead. Will be removed in 0.4.0.
+
+Parameters:
+    
+
+  * **dataset_id** (_UUID_ _|__str_)
+
+  * **updates** (_list_ _[_[_ExampleUpdate_](../schemas/langsmith.schemas.ExampleUpdate.html#langsmith.schemas.ExampleUpdate "langsmith.schemas.ExampleUpdate") _]__|__None_)
+
+  * **dangerously_allow_filesystem** (_bool_)
+
+Return type:
+    
+
+[_UpsertExamplesResponse_](../schemas/langsmith.schemas.UpsertExamplesResponse.html#langsmith.schemas.UpsertExamplesResponse "langsmith.schemas.UpsertExamplesResponse")
+
+update_feedback(
+
+    _feedback_id : UUID | str_,
+    _*_ ,
+    _score : float | int | bool | None = None_,
+    _value : float | int | bool | str | dict | None = None_,
+    _correction : dict | None = None_,
+    _comment : str | None = None_,
+) → None[[source]](../_modules/langsmith/client.html#Client.update_feedback)#
+    
+
+Update a feedback in the LangSmith API.
+
+Parameters:
+    
+
+  * **feedback_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the feedback to update.
+
+  * **score** (_Optional_ _[__Union_ _[__float_ _,__int_ _,__bool_ _]__]_) – The score to update the feedback with.
+
+  * **value** (_Optional_ _[__Union_ _[__float_ _,__int_ _,__bool_ _,__str_ _,__dict_ _]__]_) – The value to update the feedback with.
+
+  * **correction** (_Optional_ _[__dict_ _]_) – The correction to update the feedback with.
+
+  * **comment** (_Optional_ _[__str_ _]_) – The comment to update the feedback with.
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+update_project(
+
+    _project_id : UUID | str_,
+    _*_ ,
+    _name : str | None = None_,
+    _description : str | None = None_,
+    _metadata : dict | None = None_,
+    _project_extra : dict | None = None_,
+    _end_time : datetime | None = None_,
+) → [TracerSession](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession")[[source]](../_modules/langsmith/client.html#Client.update_project)#
+    
+
+Update a LangSmith project.
+
+Parameters:
+    
+
+  * **project_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the project to update.
+
+  * **name** (_Optional_ _[__str_ _]_) – The new name to give the project. This is only valid if the project has been assigned an end_time, meaning it has been completed/closed.
+
+  * **description** (_Optional_ _[__str_ _]_) – The new description to give the project.
+
+  * **metadata** (_Optional_ _[__dict_ _]_) – Additional metadata to associate with the project.
+
+  * **project_extra** (_Optional_ _[__dict_ _]_) – Additional project information.
+
+  * **end_time** (_Optional_ _[__datetime.datetime_ _]_) – The time the project was completed.
+
+Returns:
+    
+
+The updated project.
+
+Return type:
+    
+
+[TracerSession](../schemas/langsmith.schemas.TracerSession.html#langsmith.schemas.TracerSession "langsmith.schemas.TracerSession")
+
+update_prompt(
+
+    _prompt_identifier : str_,
+    _*_ ,
+    _description : str | None = None_,
+    _readme : str | None = None_,
+    _tags : Sequence[str] | None = None_,
+    _is_public : bool | None = None_,
+    _is_archived : bool | None = None_,
+) → dict[str, Any][[source]](../_modules/langsmith/client.html#Client.update_prompt)#
+    
+
+Update a prompt’s metadata.
+
+To update the content of a prompt, use push_prompt or create_commit instead.
+
+Parameters:
+    
+
+  * **prompt_identifier** (_str_) – The identifier of the prompt to update.
+
+  * **description** (_Optional_ _[__str_ _]_) – New description for the prompt.
+
+  * **readme** (_Optional_ _[__str_ _]_) – New readme for the prompt.
+
+  * **tags** (_Optional_ _[__Sequence_ _[__str_ _]__]_) – New list of tags for the prompt.
+
+  * **is_public** (_Optional_ _[__bool_ _]_) – New public status for the prompt.
+
+  * **is_archived** (_Optional_ _[__bool_ _]_) – New archived status for the prompt.
+
+Returns:
+    
+
+The updated prompt data as returned by the server.
+
+Return type:
+    
+
+Dict[str, Any]
+
+Raises:
+    
+
+  * **ValueError** – If the prompt_identifier is empty.
+
+  * **HTTPError** – If the server request fails.
+
+update_run(
+
+    _run_id : UUID | str_,
+    _*_ ,
+    _name : str | None = None_,
+    _end_time : datetime | None = None_,
+    _error : str | None = None_,
+    _inputs : dict | None = None_,
+    _outputs : dict | None = None_,
+    _events : Sequence[dict] | None = None_,
+    _extra : dict | None = None_,
+    _tags : list[str] | None = None_,
+    _attachments : dict[str, tuple[str, bytes] | [Attachment](../schemas/langsmith.schemas.Attachment.html#langsmith.schemas.Attachment "langsmith.schemas.Attachment") | tuple[str, Path]] | None = None_,
+    _dangerously_allow_filesystem : bool = False_,
+    _** kwargs: Any_,
+) → None[[source]](../_modules/langsmith/client.html#Client.update_run)#
+    
+
+Update a run in the LangSmith API.
+
+Parameters:
+    
+
+  * **run_id** (_Union_ _[__UUID_ _,__str_ _]_) – The ID of the run to update.
+
+  * **name** (_Optional_ _[__str_ _]_) – The name of the run.
+
+  * **end_time** (_Optional_ _[__datetime.datetime_ _]_) – The end time of the run.
+
+  * **error** (_Optional_ _[__str_ _]_) – The error message of the run.
+
+  * **inputs** (_Optional_ _[__Dict_ _]_) – The input values for the run.
+
+  * **outputs** (_Optional_ _[__Dict_ _]_) – The output values for the run.
+
+  * **events** (_Optional_ _[__Sequence_ _[__dict_ _]__]_) – The events for the run.
+
+  * **extra** (_Optional_ _[__Dict_ _]_) – The extra information for the run.
+
+  * **tags** (_Optional_ _[__List_ _[__str_ _]__]_) – The tags for the run.
+
+  * **attachments** (_Optional_ _[__Dict_ _[__str_ _,_[_Attachment_](../schemas/langsmith.schemas.Attachment.html#langsmith.schemas.Attachment "langsmith.schemas.Attachment") _]__]_) – A dictionary of attachments to add to the run. The keys are the attachment names, and the values are Attachment objects containing the data and mime type.
+
+  * ****kwargs** (_Any_) – Kwargs are ignored.
+
+  * **dangerously_allow_filesystem** (_bool_)
+
+  * ****kwargs**
+
+Returns:
+    
+
+None
+
+Return type:
+    
+
+None
+
+Examples
+    
+    
+    from langsmith import Client
+    import datetime
+    from uuid import uuid4
+    
+    client = Client()
+    project_name = "__test_update_run"
+    
+    start_time = datetime.datetime.now()
+    revision_id = uuid4()
+    run: dict = dict(
+        id=uuid4(),
+        name="test_run",
+        run_type="llm",
+        inputs={"text": "hello world"},
+        project_name=project_name,
+        api_url=os.getenv("LANGCHAIN_ENDPOINT"),
+        start_time=start_time,
+        extra={"extra": "extra"},
+        revision_id=revision_id,
+    )
+    # Create the run
+    client.create_run(**run)
+    run["outputs"] = {"output": ["Hi"]}
+    run["extra"]["foo"] = "bar"
+    run["name"] = "test_run_updated"
+    # Update the run
+    client.update_run(run["id"], **run)
+    
+
+upload_csv(
+
+    _csv_file : str | tuple[str, BytesIO]_,
+    _input_keys : Sequence[str]_,
+    _output_keys : Sequence[str]_,
+    _*_ ,
+    _name : str | None = None_,
+    _description : str | None = None_,
+    _data_type : [DataType](../schemas/langsmith.schemas.DataType.html#langsmith.schemas.DataType "langsmith.schemas.DataType") | None = DataType.kv_,
+) → [Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")[[source]](../_modules/langsmith/client.html#Client.upload_csv)#
+    
+
+Upload a CSV file to the LangSmith API.
+
+Parameters:
+    
+
+  * **csv_file** (_Union_ _[__str_ _,__Tuple_ _[__str_ _,__io.BytesIO_ _]__]_) – The CSV file to upload. If a string, it should be the path If a tuple, it should be a tuple containing the filename and a BytesIO object.
+
+  * **input_keys** (_Sequence_ _[__str_ _]_) – The input keys.
+
+  * **output_keys** (_Sequence_ _[__str_ _]_) – The output keys.
+
+  * **name** (_Optional_ _[__str_ _]_) – The name of the dataset.
+
+  * **description** (_Optional_ _[__str_ _]_) – The description of the dataset.
+
+  * **data_type** (_Optional_ _[__ls_schemas.DataType_ _]_) – The data type of the dataset.
+
+Returns:
+    
+
+The uploaded dataset.
+
+Return type:
+    
+
+[Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")
+
+Raises:
+    
+
+**ValueError** – If the csv_file is not a string or tuple.
+
+Examples
+    
+    
+    from langsmith import Client
+    import os
+    
+    client = Client()
+    
+    csv_file = "path/to/your/myfile.csv"
+    input_keys = ["column1", "column2"]  # replace with your input column names
+    output_keys = ["output1", "output2"]  # replace with your output column names
+    
+    dataset = client.upload_csv(
+        csv_file=csv_file,
+        input_keys=input_keys,
+        output_keys=output_keys,
+        name="My CSV Dataset",
+        description="Dataset created from a CSV file",
+        data_type="kv",  # The default
+    )
+    
+
+upload_dataframe(
+
+    _df : pd.DataFrame_,
+    _name : str_,
+    _input_keys : Sequence[str]_,
+    _output_keys : Sequence[str]_,
+    _*_ ,
+    _description : str | None = None_,
+    _data_type : ls_schemas.DataType | None = DataType.kv_,
+) → ls_schemas.Dataset[[source]](../_modules/langsmith/client.html#Client.upload_dataframe)#
+    
+
+Upload a dataframe as individual examples to the LangSmith API.
+
+Parameters:
+    
+
+  * **df** (_pd.DataFrame_) – The dataframe to upload.
+
+  * **name** (_str_) – The name of the dataset.
+
+  * **input_keys** (_Sequence_ _[__str_ _]_) – The input keys.
+
+  * **output_keys** (_Sequence_ _[__str_ _]_) – The output keys.
+
+  * **description** (_Optional_ _[__str_ _]_) – The description of the dataset.
+
+  * **data_type** (_Optional_ _[_[_DataType_](../schemas/langsmith.schemas.DataType.html#langsmith.schemas.DataType "langsmith.schemas.DataType") _]_) – The data type of the dataset.
+
+Returns:
+    
+
+The uploaded dataset.
+
+Return type:
+    
+
+[Dataset](../schemas/langsmith.schemas.Dataset.html#langsmith.schemas.Dataset "langsmith.schemas.Dataset")
+
+Raises:
+    
+
+**ValueError** – If the csv_file is not a string or tuple.
+
+Examples
+    
+    
+    from langsmith import Client
+    import os
+    import pandas as pd
+    
+    client = Client()
+    
+    df = pd.read_parquet("path/to/your/myfile.parquet")
+    input_keys = ["column1", "column2"]  # replace with your input column names
+    output_keys = ["output1", "output2"]  # replace with your output column names
+    
+    dataset = client.upload_dataframe(
+        df=df,
+        input_keys=input_keys,
+        output_keys=output_keys,
+        name="My Parquet Dataset",
+        description="Dataset created from a parquet file",
+        data_type="kv",  # The default
+    )
+    
+
+upload_examples_multipart(
+
+    _*_ ,
+    _dataset_id : UUID | str_,
+    _uploads : list[[ExampleCreate](../schemas/langsmith.schemas.ExampleCreate.html#langsmith.schemas.ExampleCreate "langsmith.schemas.ExampleCreate")] | None = None_,
+    _dangerously_allow_filesystem : bool = False_,
+) → [UpsertExamplesResponse](../schemas/langsmith.schemas.UpsertExamplesResponse.html#langsmith.schemas.UpsertExamplesResponse "langsmith.schemas.UpsertExamplesResponse")[[source]](../_modules/langsmith/client.html#Client.upload_examples_multipart)#
+    
+
+Upload examples using multipart.
+
+Deprecated since version 0.3.9: Use Client.create_examples instead. Will be removed in 0.4.0.
+
+Parameters:
+    
+
+  * **dataset_id** (_UUID_ _|__str_)
+
+  * **uploads** (_list_ _[_[_ExampleCreate_](../schemas/langsmith.schemas.ExampleCreate.html#langsmith.schemas.ExampleCreate "langsmith.schemas.ExampleCreate") _]__|__None_)
+
+  * **dangerously_allow_filesystem** (_bool_)
+
+Return type:
+    
+
+[_UpsertExamplesResponse_](../schemas/langsmith.schemas.UpsertExamplesResponse.html#langsmith.schemas.UpsertExamplesResponse "langsmith.schemas.UpsertExamplesResponse")
+
+upsert_examples_multipart(
+
+    _*_ ,
+    _upserts : list[[ExampleUpsertWithAttachments](../schemas/langsmith.schemas.ExampleUpsertWithAttachments.html#langsmith.schemas.ExampleUpsertWithAttachments "langsmith.schemas.ExampleUpsertWithAttachments")] | None = None_,
+    _dangerously_allow_filesystem : bool = False_,
+) → [UpsertExamplesResponse](../schemas/langsmith.schemas.UpsertExamplesResponse.html#langsmith.schemas.UpsertExamplesResponse "langsmith.schemas.UpsertExamplesResponse")[[source]](../_modules/langsmith/client.html#Client.upsert_examples_multipart)#
+    
+
+Upsert examples.
+
+Deprecated since version 0.3.9: Use Client.create_examples and Client.update_examples instead. Will be removed in 0.4.0.
+
+Parameters:
+    
+
+  * **upserts** (_list_ _[_[_ExampleUpsertWithAttachments_](../schemas/langsmith.schemas.ExampleUpsertWithAttachments.html#langsmith.schemas.ExampleUpsertWithAttachments "langsmith.schemas.ExampleUpsertWithAttachments") _]__|__None_)
+
+  * **dangerously_allow_filesystem** (_bool_)
+
+Return type:
+    
+
+[_UpsertExamplesResponse_](../schemas/langsmith.schemas.UpsertExamplesResponse.html#langsmith.schemas.UpsertExamplesResponse "langsmith.schemas.UpsertExamplesResponse")
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

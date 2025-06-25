@@ -1,0 +1,83 @@
+# wrap_openai — 🦜️🛠️ LangSmith  documentation
+
+# wrap_openai#
+
+langsmith.wrappers._openai.wrap_openai(
+
+    _client : C_,
+    _*_ ,
+    _tracing_extra : [TracingExtra](langsmith.wrappers._openai.TracingExtra.html#langsmith.wrappers._openai.TracingExtra "langsmith.wrappers._openai.TracingExtra") | None = None_,
+    _chat_name : str = 'ChatOpenAI'_,
+    _completions_name : str = 'OpenAI'_,
+) → C[[source]](../_modules/langsmith/wrappers/_openai.html#wrap_openai)#
+    
+
+Patch the OpenAI client to make it traceable.
+
+Supports:
+    
+
+  * Chat and Responses API’s
+
+  * Sync and async OpenAI clients
+
+  * create() and parse() methods
+
+  * with and without streaming
+
+Parameters:
+    
+
+  * **client** (_Union_ _[__OpenAI_ _,__AsyncOpenAI_ _]_) – The client to patch.
+
+  * **tracing_extra** (_Optional_ _[_[_TracingExtra_](langsmith.wrappers._openai.TracingExtra.html#langsmith.wrappers._openai.TracingExtra "langsmith.wrappers._openai.TracingExtra") _]__,__optional_) – Extra tracing information. Defaults to None.
+
+  * **chat_name** (_str_ _,__optional_) – The run name for the chat completions endpoint. Defaults to “ChatOpenAI”.
+
+  * **completions_name** (_str_ _,__optional_) – The run name for the completions endpoint. Defaults to “OpenAI”.
+
+Returns:
+    
+
+The patched client.
+
+Return type:
+    
+
+Union[OpenAI, AsyncOpenAI]
+
+Example
+    
+    
+    import openai
+    from langsmith import wrappers
+    
+    # Use OpenAI client same as you normally would.
+    client = wrappers.wrap_openai(openai.OpenAI())
+    
+    # Chat API:
+    messages = [
+        {"role": "system", "content": "You are a helpful assistant."},
+        {
+            "role": "user",
+            "content": "What physics breakthroughs do you predict will happen by 2300?",
+        },
+    ]
+    completion = client.chat.completions.create(
+        model="gpt-4o-mini", messages=messages
+    )
+    print(completion.choices[0].message.content)
+    
+    # Responses API:
+    response = client.responses.create(
+        model="gpt-4o-mini",
+        messages=messages,
+    )
+    print(response.output_text)
+    
+
+Changed in version 0.3.16: Support for Responses API added.
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

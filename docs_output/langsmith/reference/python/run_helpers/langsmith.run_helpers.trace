@@ -1,0 +1,161 @@
+# trace — 🦜️🛠️ LangSmith  documentation
+
+# trace#
+
+_class _langsmith.run_helpers.trace(
+
+    _name : str_,
+    _run_type : Literal['tool', 'chain', 'llm', 'retriever', 'embedding', 'prompt', 'parser'] = 'chain'_,
+    _*_ ,
+    _inputs : dict | None = None_,
+    _extra : dict | None = None_,
+    _project_name : str | None = None_,
+    _parent : [RunTree](../run_trees/langsmith.run_trees.RunTree.html#langsmith.run_trees.RunTree "langsmith.run_trees.RunTree") | str | Mapping | Literal['ignore'] | None = None_,
+    _tags : list[str] | None = None_,
+    _metadata : Mapping[str, Any] | None = None_,
+    _client : [Client](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") | None = None_,
+    _run_id : UUID | str | None = None_,
+    _reference_example_id : UUID | str | None = None_,
+    _exceptions_to_handle : tuple[type[BaseException], ...] | None = None_,
+    _attachments : dict[str, tuple[str, bytes] | [Attachment](../schemas/langsmith.schemas.Attachment.html#langsmith.schemas.Attachment "langsmith.schemas.Attachment") | tuple[str, Path]] | None = None_,
+    _** kwargs: Any_,
+)[[source]](../_modules/langsmith/run_helpers.html#trace)#
+    
+
+Manage a LangSmith run in context.
+
+This class can be used as both a synchronous and asynchronous context manager.
+
+Parameters:
+    
+
+  * **name** (_str_) – Name of the run.
+
+  * **run_type** (_ls_client.RUN_TYPE_T_ _,__optional_) – Type of run (e.g., “chain”, “llm”, “tool”). Defaults to “chain”.
+
+  * **inputs** (_Optional_ _[__Dict_ _]__,__optional_) – Initial input data for the run. Defaults to None.
+
+  * **project_name** (_Optional_ _[__str_ _]__,__optional_) – Project name to associate the run with. Defaults to None.
+
+  * **parent** (_Optional_ _[__Union_ _[_[_run_trees.RunTree_](../run_trees/langsmith.run_trees.RunTree.html#langsmith.run_trees.RunTree "langsmith.run_trees.RunTree") _,__str_ _,__Mapping_ _]__]__,__optional_) – Parent run. Can be a RunTree, dotted order string, or tracing headers. Defaults to None.
+
+  * **tags** (_Optional_ _[__List_ _[__str_ _]__]__,__optional_) – List of tags for the run. Defaults to None.
+
+  * **metadata** (_Optional_ _[__Mapping_ _[__str_ _,__Any_ _]__]__,__optional_) – Additional metadata for the run. Defaults to None.
+
+  * **client** (_Optional_ _[__ls_client.Client_ _]__,__optional_) – LangSmith client for custom settings. Defaults to None.
+
+  * **run_id** (_Optional_ _[__ls_client.ID_TYPE_ _]__,__optional_) – Preset identifier for the run. Defaults to None.
+
+  * **reference_example_id** (_Optional_ _[__ls_client.ID_TYPE_ _]__,__optional_) – Associates run with a dataset example. Only for root runs in evaluation. Defaults to None.
+
+  * **exceptions_to_handle** (_Optional_ _[__Tuple_ _[__Type_ _[__BaseException_ _]__,__...__]__]__,__optional_) – Exception types to ignore. Defaults to None.
+
+  * **extra** (_Optional_ _[__Dict_ _]__,__optional_) – Extra data to send to LangSmith. Use ‘metadata’ instead. Defaults to None.
+
+  * **attachments** (_Optional_ _[__schemas.Attachments_ _]_)
+
+  * **kwargs** (_Any_)
+
+Examples
+
+Synchronous usage:
+    
+    
+    >>> with trace("My Operation", run_type="tool", tags=["important"]) as run:
+    ...     result = "foo"  # Perform operation
+    ...     run.metadata["some-key"] = "some-value"
+    ...     run.end(outputs={"result": result})
+    
+
+Asynchronous usage:
+    
+    
+    >>> async def main():
+    ...     async with trace("Async Operation", run_type="tool", tags=["async"]) as run:
+    ...         result = "foo"  # Await async operation
+    ...         run.metadata["some-key"] = "some-value"
+    ...         # "end" just adds the outputs and sets error to None
+    ...         # The actual patching of the run happens when the context exits
+    ...         run.end(outputs={"result": result})
+    >>> asyncio.run(main())
+    
+
+Handling specific exceptions:
+    
+    
+    >>> import pytest
+    >>> import sys
+    >>> with trace("Test", exceptions_to_handle=(pytest.skip.Exception,)):
+    ...     if sys.platform == "win32": # Just an example
+    ...         pytest.skip("Skipping test for windows")
+    ...     result = "foo"  # Perform test operation
+    
+
+Initialize the trace context manager.
+
+Warns if unsupported kwargs are passed.
+
+Methods
+
+`__init__`(name[, run_type, inputs, extra, ...]) | Initialize the trace context manager.  
+---|---  
+  
+__init__(
+
+    _name : str_,
+    _run_type : Literal['tool', 'chain', 'llm', 'retriever', 'embedding', 'prompt', 'parser'] = 'chain'_,
+    _*_ ,
+    _inputs : dict | None = None_,
+    _extra : dict | None = None_,
+    _project_name : str | None = None_,
+    _parent : [RunTree](../run_trees/langsmith.run_trees.RunTree.html#langsmith.run_trees.RunTree "langsmith.run_trees.RunTree") | str | Mapping | Literal['ignore'] | None = None_,
+    _tags : list[str] | None = None_,
+    _metadata : Mapping[str, Any] | None = None_,
+    _client : [Client](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") | None = None_,
+    _run_id : UUID | str | None = None_,
+    _reference_example_id : UUID | str | None = None_,
+    _exceptions_to_handle : tuple[type[BaseException], ...] | None = None_,
+    _attachments : dict[str, tuple[str, bytes] | [Attachment](../schemas/langsmith.schemas.Attachment.html#langsmith.schemas.Attachment "langsmith.schemas.Attachment") | tuple[str, Path]] | None = None_,
+    _** kwargs: Any_,
+)[[source]](../_modules/langsmith/run_helpers.html#trace.__init__)#
+    
+
+Initialize the trace context manager.
+
+Warns if unsupported kwargs are passed.
+
+Parameters:
+    
+
+  * **name** (_str_)
+
+  * **run_type** (_Literal_ _[__'tool'__,__'chain'__,__'llm'__,__'retriever'__,__'embedding'__,__'prompt'__,__'parser'__]_)
+
+  * **inputs** (_dict_ _|__None_)
+
+  * **extra** (_dict_ _|__None_)
+
+  * **project_name** (_str_ _|__None_)
+
+  * **parent** ([_RunTree_](../run_trees/langsmith.run_trees.RunTree.html#langsmith.run_trees.RunTree "langsmith.run_trees.RunTree") _|__str_ _|__Mapping_ _|__Literal_ _[__'ignore'__]__|__None_)
+
+  * **tags** (_list_ _[__str_ _]__|__None_)
+
+  * **metadata** (_Mapping_ _[__str_ _,__Any_ _]__|__None_)
+
+  * **client** ([_Client_](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") _|__None_)
+
+  * **run_id** (_UUID_ _|__str_ _|__None_)
+
+  * **reference_example_id** (_UUID_ _|__str_ _|__None_)
+
+  * **exceptions_to_handle** (_tuple_ _[__type_ _[__BaseException_ _]__,__...__]__|__None_)
+
+  * **attachments** (_dict_ _[__str_ _,__tuple_ _[__str_ _,__bytes_ _]__|_[_Attachment_](../schemas/langsmith.schemas.Attachment.html#langsmith.schemas.Attachment "langsmith.schemas.Attachment") _|__tuple_ _[__str_ _,__Path_ _]__]__|__None_)
+
+  * **kwargs** (_Any_)
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

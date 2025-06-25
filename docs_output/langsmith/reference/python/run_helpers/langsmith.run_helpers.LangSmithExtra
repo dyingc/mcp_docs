@@ -1,0 +1,67 @@
+# LangSmithExtra — 🦜️🛠️ LangSmith  documentation
+
+# LangSmithExtra#
+
+_class _langsmith.run_helpers.LangSmithExtra[[source]](../_modules/langsmith/run_helpers.html#LangSmithExtra)#
+    
+
+Any additional info to be injected into the run dynamically.
+
+name _: str | None_#
+    
+
+Optional name for the run.
+
+reference_example_id _: UUID | str | None_#
+    
+
+Optional ID of a reference example.
+
+run_extra _: dict | None_#
+    
+
+Optional additional run information.
+
+parent _: [RunTree](../run_trees/langsmith.run_trees.RunTree.html#langsmith.run_trees.RunTree "langsmith.run_trees.RunTree") | str | Mapping | None_#
+    
+
+Optional parent run, can be a RunTree, string, or mapping.
+
+run_tree _: [RunTree](../run_trees/langsmith.run_trees.RunTree.html#langsmith.run_trees.RunTree "langsmith.run_trees.RunTree") | None_#
+    
+
+Optional run tree (deprecated).
+
+project_name _: str | None_#
+    
+
+Optional name of the project.
+
+metadata _: dict[str, Any] | None_#
+    
+
+Optional metadata for the run.
+
+tags _: list[str] | None_#
+    
+
+Optional list of tags for the run.
+
+run_id _: UUID | str | None_#
+    
+
+Optional ID for the run.
+
+client _: [Client](../client/langsmith.client.Client.html#langsmith.client.Client "langsmith.client.Client") | None_#
+    
+
+Optional LangSmith client.
+
+on_end _: Callable[[[RunTree](../run_trees/langsmith.run_trees.RunTree.html#langsmith.run_trees.RunTree "langsmith.run_trees.RunTree")], Any] | None_#
+    
+
+Optional callback function to be called when the run ends.
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

@@ -1,0 +1,1786 @@
+{
+  "base_url": "https://docs.smith.langchain.com",
+  "pages_crawled": -1,
+  "successful_pages": -1,
+  "failed_pages": 0,
+  "saved_files": [
+    {
+      "url": "https://docs.smith.langchain.com",
+      "title": "Get started with LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": ".md",
+      "size": 3931,
+      "depth": 0
+    },
+    {
+      "url": "https://docs.smith.langchain.com/",
+      "title": "Get started with LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": ".md",
+      "size": 3931,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides",
+      "title": "Prompt engineering how-to guides | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides.md",
+      "size": 2135,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com",
+      "title": "Get started with LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": ".md",
+      "size": 3931,
+      "depth": 0
+    },
+    {
+      "url": "https://docs.smith.langchain.com/",
+      "title": "Get started with LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": ".md",
+      "size": 3931,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides",
+      "title": "Prompt engineering how-to guides | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides.md",
+      "size": 2135,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/create_a_prompt",
+      "title": "Create a prompt | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/create_a_prompt.md",
+      "size": 15815,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/compare_experiment_results",
+      "title": "How to compare experiment results | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/compare_experiment_results.md",
+      "size": 4360,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides",
+      "title": "Evaluation how-to guides | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides.md",
+      "size": 7841,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/prebuilt_evaluators",
+      "title": "How to use prebuilt evaluators | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/prebuilt_evaluators.md",
+      "size": 6361,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/dashboards",
+      "title": "Monitor projects with dashboards | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/dashboards.md",
+      "size": 8349,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_with_langchain",
+      "title": "Trace with LangChain (Python and JS/TS) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_with_langchain.md",
+      "size": 29206,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/changelog",
+      "title": "Changelog | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "changelog.md",
+      "size": 3038,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/sdk_reference/langchain_evaluators",
+      "title": "LangChain off-the-shelf evaluators | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/sdk_reference/langchain_evaluators.md",
+      "size": 4298,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/regions_faq",
+      "title": "Regions FAQ | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/regions_faq.md",
+      "size": 3702,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/evaluation/dataset_transformations",
+      "title": "Dataset transformations | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/evaluation/dataset_transformations.md",
+      "size": 6131,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/authentication_authorization/authentication_methods",
+      "title": "Authentication methods | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/authentication_authorization/authentication_methods.md",
+      "size": 2233,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/cloud_architecture_and_scalability",
+      "title": "Cloud architecture and scalability | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/cloud_architecture_and_scalability.md",
+      "size": 4313,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting",
+      "title": "Self-Hosting LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting.md",
+      "size": 3756,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/manage_prompts_programatically",
+      "title": "Manage prompts programmatically | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/manage_prompts_programatically.md",
+      "size": 13243,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/quickstarts/quickstart_ui",
+      "title": "Prompt Engineering Quick Start (UI) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/quickstarts/quickstart_ui.md",
+      "size": 3457,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/index_datasets_for_dynamic_few_shot_example_selection",
+      "title": "Dynamic few shot example selection | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/index_datasets_for_dynamic_few_shot_example_selection.md",
+      "size": 4896,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation?mode=ui",
+      "title": "Evaluation Quick Start | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation.md",
+      "size": 13027,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/concepts",
+      "title": "Concepts | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/concepts.md",
+      "size": 6197,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/output_detailed_logs",
+      "title": "How to print detailed logs (Python SDK) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/output_detailed_logs.md",
+      "size": 1983,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_with_langgraph",
+      "title": "Trace with LangGraph (Python and JS/TS) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_with_langgraph.md",
+      "size": 17460,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/evaluation/langsmith.evaluation._runner.evaluate",
+      "title": "evaluate \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/evaluation/langsmith.evaluation._runner.evaluate",
+      "size": 9207,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/webhooks",
+      "title": "Set up webhook notifications for rules | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/webhooks.md",
+      "size": 9960,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_langchain_with_otel",
+      "title": "Trace LangChain with OpenTelemetry | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_langchain_with_otel.md",
+      "size": 12299,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/toubleshooting_variable_caching",
+      "title": "Toubleshooting variable caching | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/toubleshooting_variable_caching.md",
+      "size": 2012,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/async_client/langsmith.async_client.AsyncClient",
+      "title": "AsyncClient \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/async_client/langsmith.async_client.AsyncClient",
+      "size": 48252,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/threads",
+      "title": "Set up threads | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/threads.md",
+      "size": 8911,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides/organization_management/create_account_api_key",
+      "title": "Create an account and API key | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides/organization_management/create_account_api_key.md",
+      "size": 1953,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/data_formats/dataset_json_types",
+      "title": "Dataset prebuilt JSON schema types | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/data_formats/dataset_json_types.md",
+      "size": 1648,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/data_formats/trace_query_syntax",
+      "title": "Trace query syntax | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/data_formats/trace_query_syntax.md",
+      "size": 3270,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/basic_auth",
+      "title": "Email/password a.k.a. basic auth | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/basic_auth.md",
+      "size": 3690,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/concepts",
+      "title": "Concepts | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/concepts.md",
+      "size": 22690,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/pricing/faq",
+      "title": "Frequently Asked Questions | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "pricing/faq.md",
+      "size": 7884,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/ttl",
+      "title": "TTL and Data Retention | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/ttl.md",
+      "size": 1989,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides",
+      "title": "Administration how-to guides | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides.md",
+      "size": 3105,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/tutorials/manage_spend",
+      "title": "Optimize tracing spend on LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/tutorials/manage_spend.md",
+      "size": 13342,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/blob_storage",
+      "title": "Enable blob storage | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/blob_storage.md",
+      "size": 16209,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/quickstarts/quickstart_sdk",
+      "title": "Prompt Engineering Quick Start (SDK) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/quickstarts/quickstart_sdk.md",
+      "size": 8087,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/external_redis",
+      "title": "Connect to an external Redis database | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/external_redis.md",
+      "size": 3365,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/external_postgres",
+      "title": "Connect to an external Postgres database | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/external_postgres.md",
+      "size": 3730,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/external_clickhouse",
+      "title": "Connect to an external ClickHouse database | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/external_clickhouse.md",
+      "size": 10248,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/installation/docker",
+      "title": "Self-hosting LangSmith with Docker | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/installation/docker.md",
+      "size": 6509,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/installation/kubernetes",
+      "title": "Self-hosting LangSmith on Kubernetes | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/installation/kubernetes.md",
+      "size": 13185,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides/organization_management/set_up_resource_tags",
+      "title": "Set up resource tags | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides/organization_management/set_up_resource_tags.md",
+      "size": 3409,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides/organization_management/set_up_access_control",
+      "title": "Set up access control | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides/organization_management/set_up_access_control.md",
+      "size": 2816,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides/organization_management/manage_organization_by_api",
+      "title": "Manage your organization using the API | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides/organization_management/manage_organization_by_api.md",
+      "size": 11345,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/using_an_existing_secret",
+      "title": "Using an existing secret for your installation (Kubernetes only) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/using_an_existing_secret.md",
+      "size": 5416,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/user_management",
+      "title": "User management | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/user_management.md",
+      "size": 3186,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/scale",
+      "title": "Configuring LangSmith for scale | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/scale.md",
+      "size": 6746,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/playground_environment_settings",
+      "title": "Using environment variables for model providers | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/playground_environment_settings.md",
+      "size": 2624,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/mirroring_images",
+      "title": "Mirroring Images for your LangSmith installation | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/mirroring_images.md",
+      "size": 5955,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/ingress",
+      "title": "Create an Ingress for your LangSmith installation (Kubernetes only) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/ingress.md",
+      "size": 4367,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/client/langsmith.client.Client",
+      "title": "Client \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/client/langsmith.client.Client",
+      "size": 161911,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/custom_tls_certificates",
+      "title": "Use custom TLS certificates for model providers | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/custom_tls_certificates.md",
+      "size": 2467,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides/organization_management/update_business_info",
+      "title": "Update invoice email, tax id and, business information | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides/organization_management/update_business_info.md",
+      "size": 2517,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.TracerSession",
+      "title": "TracerSession \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.TracerSession",
+      "size": 7822,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/_modules/langsmith/evaluation/_runner",
+      "title": "langsmith.evaluation._runner \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/_modules/langsmith/evaluation/_runner.md",
+      "size": 100892,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/evaluation/langsmith.evaluation._runner.ComparativeExperimentResults",
+      "title": "ComparativeExperimentResults \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/evaluation/langsmith.evaluation._runner.ComparativeExperimentResults",
+      "size": 1778,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/evaluation/langsmith.evaluation._runner.ExperimentResults",
+      "title": "ExperimentResults \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/evaluation/langsmith.evaluation._runner.ExperimentResults",
+      "size": 2056,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides/organization_management/set_up_billing",
+      "title": "Set up billing for your LangSmith account | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides/organization_management/set_up_billing.md",
+      "size": 4566,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.ExampleSearch",
+      "title": "ExampleSearch \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.ExampleSearch",
+      "size": 7528,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.PromptCommit",
+      "title": "PromptCommit \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.PromptCommit",
+      "size": 7419,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides/organization_management/set_up_workspace",
+      "title": "Set up a workspace | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides/organization_management/set_up_workspace.md",
+      "size": 3847,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides/organization_management/set_up_organization",
+      "title": "Set up an organization | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides/organization_management/set_up_organization.md",
+      "size": 3765,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.Run",
+      "title": "Run \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.Run",
+      "size": 11276,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.ListPromptsResponse",
+      "title": "ListPromptsResponse \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.ListPromptsResponse",
+      "size": 7435,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.ListedPromptCommit",
+      "title": "ListedPromptCommit \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.ListedPromptCommit",
+      "size": 8125,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.RunWithAnnotationQueueInfo",
+      "title": "RunWithAnnotationQueueInfo \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.RunWithAnnotationQueueInfo",
+      "size": 9176,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.Prompt",
+      "title": "Prompt \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.Prompt",
+      "size": 8565,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.FeedbackIngestToken",
+      "title": "FeedbackIngestToken \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.FeedbackIngestToken",
+      "size": 7311,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.Feedback",
+      "title": "Feedback \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.Feedback",
+      "size": 8533,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.Example",
+      "title": "Example \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.Example",
+      "size": 8478,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.Dataset",
+      "title": "Dataset \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.Dataset",
+      "size": 8878,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/schemas/langsmith.schemas.AnnotationQueue",
+      "title": "AnnotationQueue \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/schemas/langsmith.schemas.AnnotationQueue",
+      "size": 7484,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/_modules/langsmith/async_client",
+      "title": "langsmith.async_client \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/_modules/langsmith/async_client.md",
+      "size": 86005,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/_expect",
+      "title": "_expect \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/_expect.md",
+      "size": 2007,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/testing",
+      "title": "testing \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/testing.md",
+      "size": 2077,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/troubleshooting",
+      "title": "Troubleshooting | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/troubleshooting.md",
+      "size": 9392,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/langsmith_managed_clickhouse",
+      "title": "LangSmith-managed ClickHouse | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/langsmith_managed_clickhouse.md",
+      "size": 4257,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/faq",
+      "title": "Frequently Asked Questions: | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/faq.md",
+      "size": 3364,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/release_notes",
+      "title": "LangSmith Release Notes | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/release_notes.md",
+      "size": 18154,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/egress",
+      "title": "egress | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/egress.md",
+      "size": 3576,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/upgrades",
+      "title": "General Upgrade Instructions | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/upgrades.md",
+      "size": 8957,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/usage",
+      "title": "Using your self-hosted instance of LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/usage.md",
+      "size": 2074,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration",
+      "title": "Configuration | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration.md",
+      "size": 1658,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/scripts",
+      "title": "Scripts for administering LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/scripts.md",
+      "size": 1590,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/architectural_overview",
+      "title": "Architectural overview | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/architectural_overview.md",
+      "size": 4566,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/configuration/sso",
+      "title": "SSO with OAuth2.0 and OIDC | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/configuration/sso.md",
+      "size": 9408,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/administration/how_to_guides/organization_management/set_up_saml_sso",
+      "title": "SAML SSO | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "administration/how_to_guides/organization_management/set_up_saml_sso.md",
+      "size": 13802,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/data_formats/feedback_data_format",
+      "title": "Feedback data format | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/data_formats/feedback_data_format.md",
+      "size": 3225,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/data_formats/run_data_format",
+      "title": "Run (span) data format | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/data_formats/run_data_format.md",
+      "size": 7731,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/serverless_environments",
+      "title": "Trace JS functions in serverless environments | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/serverless_environments.md",
+      "size": 3215,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/collector_proxy",
+      "title": "[Beta] LangSmith Collector-Proxy | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/collector_proxy.md",
+      "size": 6770,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/alerts_webhook",
+      "title": "Configuring Webhook Notifications for LangSmith Alerts | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/alerts_webhook.md",
+      "size": 8620,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/alerts_pagerduty",
+      "title": "Configuring PagerDuty Integration for LangSmith Alerts | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/alerts_pagerduty.md",
+      "size": 3870,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/alerts",
+      "title": "Alerts in LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/alerts.md",
+      "size": 4218,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/data_export",
+      "title": "Bulk Exporting Trace Data | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/data_export.md",
+      "size": 14729,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/nest_traces",
+      "title": "Troubleshoot trace nesting | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/nest_traces.md",
+      "size": 7255,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/calculate_token_based_costs",
+      "title": "Calculate token-based costs for traces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/calculate_token_based_costs.md",
+      "size": 7257,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_with_openai_agents_sdk",
+      "title": "Trace with OpenAI Agents SDK | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_with_openai_agents_sdk.md",
+      "size": 1900,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_with_api",
+      "title": "Trace using the LangSmith REST API | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_with_api.md",
+      "size": 11988,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_without_env_vars",
+      "title": "Trace without setting environment variables | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_without_env_vars.md",
+      "size": 4920,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_with_vercel_ai_sdk",
+      "title": "Trace with the Vercel AI SDK (JS/TS only) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_with_vercel_ai_sdk.md",
+      "size": 14598,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/scripts/running_pg_support_queries",
+      "title": "Running Support Queries against Postgres | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/scripts/running_pg_support_queries.md",
+      "size": 2603,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/scripts/generate_query_stats",
+      "title": "Generating Query Stats | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/scripts/generate_query_stats.md",
+      "size": 2314,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/scripts/generate_clickhouse_stats",
+      "title": "Generating Clickhouse Stats | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/scripts/generate_clickhouse_stats.md",
+      "size": 2329,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/scripts/delete_traces",
+      "title": "Deleting Traces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/scripts/delete_traces.md",
+      "size": 3097,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/scripts/delete_an_organization",
+      "title": "Deleting Organizations | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/scripts/delete_an_organization.md",
+      "size": 3345,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/scripts/delete_a_workspace",
+      "title": "Deleting Workspaces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/scripts/delete_a_workspace.md",
+      "size": 3555,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting/scripts/running_ch_support_queries",
+      "title": "Running Support Queries against Clickhouse | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting/scripts/running_ch_support_queries.md",
+      "size": 2553,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_with_opentelemetry",
+      "title": "Trace with OpenTelemetry | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_with_opentelemetry.md",
+      "size": 21268,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_with_instructor",
+      "title": "Trace with Instructor (Python only) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_with_instructor.md",
+      "size": 2446,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_generator_functions",
+      "title": "Trace generator functions | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_generator_functions.md",
+      "size": 3394,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/share_trace",
+      "title": "Share or unshare a trace publicly | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/share_trace.md",
+      "size": 1803,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/export_traces",
+      "title": "Query traces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/export_traces.md",
+      "size": 26861,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/mask_inputs_outputs",
+      "title": "Prevent logging of sensitive data in traces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/mask_inputs_outputs.md",
+      "size": 27310,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/log_llm_trace",
+      "title": "Log custom LLM traces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/log_llm_trace.md",
+      "size": 22414,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/log_retriever_trace",
+      "title": "Log retriever traces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/log_retriever_trace.md",
+      "size": 3401,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/log_multimodal_traces",
+      "title": "Log multimodal traces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/log_multimodal_traces.md",
+      "size": 2444,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/distributed_tracing",
+      "title": "Implement distributed tracing | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/distributed_tracing.md",
+      "size": 6099,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/access_current_span",
+      "title": "Access the current run (span) within a traced function | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/access_current_span.md",
+      "size": 5032,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/add_metadata_tags",
+      "title": "Add metadata and tags to traces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/add_metadata_tags.md",
+      "size": 4701,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/rules",
+      "title": "Set up automation rules | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/rules.md",
+      "size": 6458,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/log_traces_to_project",
+      "title": "Log traces to specific project | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/log_traces_to_project.md",
+      "size": 5431,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/upload_files_with_traces",
+      "title": "Upload files with traces | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/upload_files_with_traces.md",
+      "size": 7052,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/filter_traces_in_application",
+      "title": "Filter traces in the application | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/filter_traces_in_application.md",
+      "size": 17891,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/annotate_code",
+      "title": "Annotate code for tracing | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/annotate_code.md",
+      "size": 18799,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides",
+      "title": "Observability how-to guides | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides.md",
+      "size": 5317,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/tutorials/observability",
+      "title": "Add observability to your LLM application | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/tutorials/observability.md",
+      "size": 19896,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/online_evaluations",
+      "title": "Set up online evaluations | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/online_evaluations.md",
+      "size": 4965,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/concepts",
+      "title": "Evaluation concepts | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/concepts.md",
+      "size": 35189,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/vitest_jest",
+      "title": "How to run evals with Vitest/Jest (beta) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/vitest_jest.md",
+      "size": 19292,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/summary",
+      "title": "How to define a summary evaluator | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/summary.md",
+      "size": 6695,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/repetition",
+      "title": "How to evaluate with repetitions | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/repetition.md",
+      "size": 2655,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/rate_limiting",
+      "title": "How to handle model rate limits | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/rate_limiting.md",
+      "size": 4590,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/multiple_scores",
+      "title": "How to return multiple scores in one evaluator | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/multiple_scores.md",
+      "size": 2808,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/wrappers/langsmith.wrappers._anthropic.wrap_anthropic",
+      "title": "wrap_anthropic \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/wrappers/langsmith.wrappers._anthropic.wrap_anthropic",
+      "size": 2018,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/multi_turn_simulation",
+      "title": "How to simulate multi-turn interactions | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/multi_turn_simulation.md",
+      "size": 29662,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/metric_type",
+      "title": "How to return categorical vs numerical metrics | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/metric_type.md",
+      "size": 2350,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/local",
+      "title": "How to run an evaluation locally (Python only) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/local.md",
+      "size": 3525,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/llm_as_judge",
+      "title": "How to define an LLM-as-a-judge evaluator | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/llm_as_judge.md",
+      "size": 8314,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/langgraph",
+      "title": "How to evaluate a langgraph graph | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/langgraph.md",
+      "size": 15830,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/langchain_runnable",
+      "title": "How to evaluate a langchain runnable | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/langchain_runnable.md",
+      "size": 4477,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/filter_experiments_ui",
+      "title": "How to filter experiments in the UI | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/filter_experiments_ui.md",
+      "size": 3828,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/evaluate_with_attachments",
+      "title": "Run an evaluation with multimodal content | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/evaluate_with_attachments.md",
+      "size": 21899,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/define_target",
+      "title": "How to define a target function to evaluate | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/define_target.md",
+      "size": 9870,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/dataset_version",
+      "title": "How to evaluate on a specific dataset version | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/dataset_version.md",
+      "size": 2247,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/dataset_subset",
+      "title": "How to evaluate on a split / filtered view of a dataset | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/dataset_subset.md",
+      "size": 3178,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/custom_evaluator",
+      "title": "How to define a custom evaluator | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/custom_evaluator.md",
+      "size": 9398,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/async",
+      "title": "How to run an evaluation asynchronously | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/async.md",
+      "size": 3608,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/upload_existing_experiments",
+      "title": "How to upload experiments run outside of LangSmith with the REST API | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/upload_existing_experiments.md",
+      "size": 12047,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions",
+      "title": "EvaluateOptions | LangSmith - v0.3.33",
+      "filepath": "reference/js/interfaces/evaluation.EvaluateOptions",
+      "size": 7772,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/functions/vitest.describe",
+      "title": "describe | LangSmith - v0.3.33",
+      "filepath": "reference/js/functions/vitest.describe",
+      "size": 2544,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/run_evals_api_only",
+      "title": "How to use the REST API | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/run_evals_api_only.md",
+      "size": 11999,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/fetch_perf_metrics_experiment",
+      "title": "How to fetch performance metrics for an experiment | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/fetch_perf_metrics_experiment.md",
+      "size": 6177,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/create_few_shot_evaluators",
+      "title": "How to improve your evaluator with few-shot examples | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/create_few_shot_evaluators.md",
+      "size": 5252,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/evaluation/langsmith.evaluation._arunner.aevaluate",
+      "title": "aevaluate \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/evaluation/langsmith.evaluation._arunner.aevaluate",
+      "size": 9404,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/audit_evaluator_scores",
+      "title": "How to audit evaluator scores | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/audit_evaluator_scores.md",
+      "size": 2450,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/evaluate_pairwise",
+      "title": "How to run pairwise evaluations | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/evaluate_pairwise.md",
+      "size": 11734,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/pytest",
+      "title": "How to run evals with pytest (beta) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/pytest.md",
+      "size": 16132,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/export_filtered_traces_to_dataset",
+      "title": "How to export filtered traces from experiment to dataset | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/export_filtered_traces_to_dataset.md",
+      "size": 1557,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/use_langchain_off_the_shelf_evaluators_old",
+      "title": "How to use off-the-shelf evaluators (Python only) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/use_langchain_off_the_shelf_evaluators_old.md",
+      "size": 9961,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/share_dataset",
+      "title": "Dataset Sharing | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/share_dataset.md",
+      "size": 2089,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/annotation_queues",
+      "title": "Use annotation queues | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/annotation_queues.md",
+      "size": 6154,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/version_datasets",
+      "title": "How to version a dataset | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/version_datasets.md",
+      "size": 2920,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/classes/client.Client",
+      "title": "Client | LangSmith - v0.3.33",
+      "filepath": "reference/js/classes/client.Client",
+      "size": 79771,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/evaluate_on_intermediate_steps",
+      "title": "How to evaluate an application's intermediate steps | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/evaluate_on_intermediate_steps.md",
+      "size": 17048,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/functions/evaluation.evaluate",
+      "title": "evaluate | LangSmith - v0.3.33",
+      "filepath": "reference/js/functions/evaluation.evaluate",
+      "size": 1543,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/annotate_traces_inline",
+      "title": "Annotate traces and runs inline | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/annotate_traces_inline.md",
+      "size": 1837,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/set_up_feedback_criteria",
+      "title": "Set up feedback criteria | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/set_up_feedback_criteria.md",
+      "size": 1812,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/run_evaluation_from_prompt_playground",
+      "title": "Running an evaluation from the prompt playground | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/run_evaluation_from_prompt_playground.md",
+      "size": 2779,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/manage_datasets_programmatically",
+      "title": "How to manage datasets programmatically | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/manage_datasets_programmatically.md",
+      "size": 15708,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/bind_evaluator_to_dataset",
+      "title": "How to bind an evaluator to a dataset in the UI | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/bind_evaluator_to_dataset.md",
+      "size": 7112,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/manage_datasets_in_application",
+      "title": "Creating and Managing Datasets in the UI | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/manage_datasets_in_application.md",
+      "size": 11604,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/evaluate_llm_application",
+      "title": "How to run an evaluation | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/evaluate_llm_application.md",
+      "size": 16017,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/attach_user_feedback",
+      "title": "Log user feedback using the SDK | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/attach_user_feedback.md",
+      "size": 3741,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/analyze_single_experiment",
+      "title": "Analyze a single experiment | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/analyze_single_experiment.md",
+      "size": 5957,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/tutorials/testing",
+      "title": "Test a ReAct agent with Pytest/Vitest and LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/tutorials/testing.md",
+      "size": 46354,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/tutorials/agents",
+      "title": "Evaluate a complex agent | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/tutorials/agents.md",
+      "size": 45820,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/_expect/langsmith._expect._Expect",
+      "title": "_Expect \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/_expect/langsmith._expect._Expect",
+      "size": 5065,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/tutorials/swe-benchmark",
+      "title": "Running SWE-bench with LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/tutorials/swe-benchmark.md",
+      "size": 15312,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/tutorials/backtesting",
+      "title": "Run backtests on a new version of an agent | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/tutorials/backtesting.md",
+      "size": 13304,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/tutorials/rag",
+      "title": "Evaluate a RAG application | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/tutorials/rag.md",
+      "size": 56470,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/tutorials/evaluation",
+      "title": "Evaluate a chatbot | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/tutorials/evaluation.md",
+      "size": 20295,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/concepts",
+      "title": "Concepts | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/concepts.md",
+      "size": 7310,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/multiple_messages",
+      "title": "How to use multiple messages in the playground | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/multiple_messages.md",
+      "size": 3269,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/use_tools",
+      "title": "Use tools in a prompt | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/use_tools.md",
+      "size": 4532,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/trigger_webhook",
+      "title": "Trigger a webhook on prompt commit | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/trigger_webhook.md",
+      "size": 2534,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/multimodal_content",
+      "title": "Include multimodal content in a prompt | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/multimodal_content.md",
+      "size": 2870,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/prompt_canvas",
+      "title": "Prompt Canvas | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/prompt_canvas.md",
+      "size": 2242,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/prompt_tags",
+      "title": "Prompt Tags | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/prompt_tags.md",
+      "size": 3193,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/managing_model_configurations",
+      "title": "Managing Prompt Settings | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/managing_model_configurations.md",
+      "size": 3749,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/update_a_prompt",
+      "title": "Update a prompt | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/update_a_prompt.md",
+      "size": 1634,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/custom_openai_compliant_model",
+      "title": "Run the playground against an OpenAI-compliant model provider/proxy | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/custom_openai_compliant_model.md",
+      "size": 1829,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/custom_endpoint",
+      "title": "Run the playground against a custom LangServe model server | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/custom_endpoint.md",
+      "size": 3184,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/tutorials/prompt_commit",
+      "title": "How to Sync Prompts with GitHub | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/tutorials/prompt_commit.md",
+      "size": 20958,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/tutorials/optimize_classifier",
+      "title": "Optimize a classifier | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/tutorials/optimize_classifier.md",
+      "size": 9911,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation",
+      "title": "Evaluation Quick Start | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation.md",
+      "size": 13134,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js",
+      "title": "LangSmith - v0.3.33",
+      "filepath": "reference/js.md",
+      "size": 19399,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability",
+      "title": "Observability Quick Start | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability.md",
+      "size": 10295,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/evaluate_with_attachments?mode=ui",
+      "title": "Run an evaluation with multimodal content | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/evaluate_with_attachments.md",
+      "size": 21899,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/run_helpers/langsmith.run_helpers.traceable",
+      "title": "traceable \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/run_helpers/langsmith.run_helpers.traceable",
+      "size": 5221,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/functions/wrappers_openai.wrapOpenAI",
+      "title": "wrapOpenAI | LangSmith - v0.3.33",
+      "filepath": "reference/js/functions/wrappers_openai.wrapOpenAI",
+      "size": 2528,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/wrappers/langsmith.wrappers._openai.wrap_openai",
+      "title": "wrap_openai \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/wrappers/langsmith.wrappers._openai.wrap_openai",
+      "size": 2291,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/modules",
+      "title": "LangSmith - v0.3.33",
+      "filepath": "reference/js/modules.md",
+      "size": 2192,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/_modules/langsmith/run_helpers",
+      "title": "langsmith.run_helpers \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/_modules/langsmith/run_helpers.md",
+      "size": 81807,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/run_helpers/langsmith.run_helpers.tracing_context",
+      "title": "tracing_context \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/run_helpers/langsmith.run_helpers.tracing_context",
+      "size": 2401,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/run_helpers/langsmith.run_helpers.trace",
+      "title": "trace \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/run_helpers/langsmith.run_helpers.trace",
+      "size": 6909,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/run_helpers/langsmith.run_helpers.LangSmithExtra",
+      "title": "LangSmithExtra \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/run_helpers/langsmith.run_helpers.LangSmithExtra",
+      "size": 1625,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig",
+      "title": "RunTreeConfig | LangSmith - v0.3.33",
+      "filepath": "reference/js/interfaces/run_trees.RunTreeConfig",
+      "size": 13921,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/_modules/langsmith/wrappers/_openai",
+      "title": "langsmith.wrappers._openai \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/_modules/langsmith/wrappers/_openai.md",
+      "size": 18212,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/python/wrappers/langsmith.wrappers._openai_agents.OpenAIAgentsTracingProcessor",
+      "title": "OpenAIAgentsTracingProcessor \u2014 \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith  documentation",
+      "filepath": "reference/python/wrappers/langsmith.wrappers._openai_agents.OpenAIAgentsTracingProcessor",
+      "size": 1990,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/modules/vitest",
+      "title": "vitest | LangSmith - v0.3.33",
+      "filepath": "reference/js/modules/vitest.md",
+      "size": 2570,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/modules/utils_jestlike",
+      "title": "utils/jestlike | LangSmith - v0.3.33",
+      "filepath": "reference/js/modules/utils_jestlike.md",
+      "size": 2518,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/modules/schemas",
+      "title": "schemas | LangSmith - v0.3.33",
+      "filepath": "reference/js/modules/schemas.md",
+      "size": 8072,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/modules/jest",
+      "title": "jest | LangSmith - v0.3.33",
+      "filepath": "reference/js/modules/jest.md",
+      "size": 2341,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/modules/evaluation",
+      "title": "evaluation | LangSmith - v0.3.33",
+      "filepath": "reference/js/modules/evaluation.md",
+      "size": 2160,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/js/modules/client",
+      "title": "client | LangSmith - v0.3.33",
+      "filepath": "reference/js/modules/client.md",
+      "size": 1791,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.smith.langchain.com",
+      "title": "Get started with LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": ".md",
+      "size": 3931,
+      "depth": 0
+    },
+    {
+      "url": "https://docs.smith.langchain.com/",
+      "title": "Get started with LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": ".md",
+      "size": 3931,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides",
+      "title": "Prompt engineering how-to guides | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides.md",
+      "size": 2135,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/prompt_engineering/how_to_guides/create_a_prompt",
+      "title": "Create a prompt | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "prompt_engineering/how_to_guides/create_a_prompt.md",
+      "size": 15815,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/compare_experiment_results",
+      "title": "How to compare experiment results | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/compare_experiment_results.md",
+      "size": 4360,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides",
+      "title": "Evaluation how-to guides | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides.md",
+      "size": 7841,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/dashboards",
+      "title": "Monitor projects with dashboards | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/dashboards.md",
+      "size": 8349,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/evaluation/how_to_guides/prebuilt_evaluators",
+      "title": "How to use prebuilt evaluators | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "evaluation/how_to_guides/prebuilt_evaluators.md",
+      "size": 6361,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/observability/how_to_guides/trace_with_langchain",
+      "title": "Trace with LangChain (Python and JS/TS) | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "observability/how_to_guides/trace_with_langchain.md",
+      "size": 29206,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/changelog",
+      "title": "Changelog | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "changelog.md",
+      "size": 3038,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/sdk_reference/langchain_evaluators",
+      "title": "LangChain off-the-shelf evaluators | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/sdk_reference/langchain_evaluators.md",
+      "size": 4298,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/regions_faq",
+      "title": "Regions FAQ | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/regions_faq.md",
+      "size": 3702,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/evaluation/dataset_transformations",
+      "title": "Dataset transformations | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/evaluation/dataset_transformations.md",
+      "size": 6131,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/authentication_authorization/authentication_methods",
+      "title": "Authentication methods | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/authentication_authorization/authentication_methods.md",
+      "size": 2233,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/reference/cloud_architecture_and_scalability",
+      "title": "Cloud architecture and scalability | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "reference/cloud_architecture_and_scalability.md",
+      "size": 4313,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.smith.langchain.com/self_hosting",
+      "title": "Self-Hosting LangSmith | \ud83e\udd9c\ufe0f\ud83d\udee0\ufe0f LangSmith",
+      "filepath": "self_hosting.md",
+      "size": 3756,
+      "depth": 1
+    }
+  ],
+  "config_used": {
+    "crawling": {
+      "crawl": false,
+      "delay": 0.1,
+      "exclude_patterns": [
+        "/api/",
+        "/search",
+        "\\.xml$",
+        "/login",
+        "/logout"
+      ],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)"
+      },
+      "include_patterns": [],
+      "max_depth": 3,
+      "max_pages": -1,
+      "num_threads": 20,
+      "skip_extensions": [
+        ".pdf",
+        ".jpg",
+        ".png",
+        ".gif",
+        ".css",
+        ".js",
+        ".svg",
+        ".ico",
+        ".json",
+        ".xml",
+        ".yaml"
+      ],
+      "timeout": 10,
+      "file_extensions": [
+        ".md",
+        ".rst",
+        ".txt",
+        ".py",
+        ".js",
+        ".ts",
+        ".html",
+        ".css",
+        ".json",
+        ".yaml",
+        ".yml",
+        ".c",
+        ".h"
+      ]
+    },
+    "link_processing": {
+      "url_prefix": "https://docs.smith.langchain.com"
+    },
+    "output": {
+      "dest_github_repo": "git@github.com:dyingc/mcp_docs.git",
+      "directory": "docs_output/langsmith",
+      "frontmatter": {
+        "crawled_date": "2025-06-18"
+      },
+      "ignore_images": false,
+      "ignore_links": false,
+      "llm_concurrency": 4,
+      "llms_doc_prefix": "langsmith",
+      "llms_txt": {
+        "description": "MCP Documentation for LangSmith",
+        "include_urls": true,
+        "title": "LangSmith Documentation"
+      },
+      "minimal_size": 1536,
+      "output_llms_txt": true
+    },
+    "site": {
+      "allowed_domains": [],
+      "content_selectors": [
+        "main",
+        "article",
+        ".content",
+        ".documentation"
+      ],
+      "link_selectors": [
+        "a[href]"
+      ],
+      "name": "LangSmith Documentation",
+      "remove_selectors": [
+        "nav",
+        "header",
+        "footer",
+        ".navbar",
+        ".nav",
+        ".sidebar",
+        ".menu",
+        ".breadcrumb",
+        ".pagination",
+        "script",
+        "style",
+        "noscript",
+        ".search-box"
+      ],
+      "start_urls": [],
+      "title_selectors": [
+        "title",
+        "h1",
+        ".page-title"
+      ],
+      "url": "https://docs.smith.langchain.com"
+    }
+  }
+}

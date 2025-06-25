@@ -1,0 +1,220 @@
+# RunTreeConfig | LangSmith - v0.3.33
+
+* [LangSmith](https://docs.smith.langchain.com/reference/js/modules.html)
+  * [run_trees](https://docs.smith.langchain.com/reference/js/modules/run_trees.html)
+  * [RunTreeConfig](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html)
+
+# Interface RunTreeConfig
+
+interface RunTreeConfig {  
+[name](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#name): string;  
+[attachments](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#attachments)?: [Attachments](https://docs.smith.langchain.com/reference/js/types/schemas.Attachments.html);  
+[child_execution_order](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#child_execution_order)?: number;  
+[child_runs](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#child_runs)?: [RunTree](https://docs.smith.langchain.com/reference/js/classes/run_trees.RunTree.html)[];  
+[client](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#client)?: [Client](https://docs.smith.langchain.com/reference/js/classes/client.Client.html);  
+[dotted_order](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#dotted_order)?: string;  
+[end_time](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#end_time)?: number;  
+[error](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#error)?: string;  
+[execution_order](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#execution_order)?: number;  
+[extra](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#extra)?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+[id](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#id)?: string;  
+[inputs](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#inputs)?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+[metadata](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#metadata)?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+[on_end](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#on_end)?: (runTree: [RunTree](https://docs.smith.langchain.com/reference/js/classes/run_trees.RunTree.html)) => void;  
+[outputs](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#outputs)?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html);  
+[parent_run](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#parent_run)?: [RunTree](https://docs.smith.langchain.com/reference/js/classes/run_trees.RunTree.html);  
+[parent_run_id](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#parent_run_id)?: string;  
+[project_name](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#project_name)?: string;  
+[reference_example_id](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#reference_example_id)?: string;  
+[replicas](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#replicas)?: [string, undefined | [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)][];  
+[run_type](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#run_type)?: string;  
+[serialized](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#serialized)?: object;  
+[start_time](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#start_time)?: number;  
+[tags](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#tags)?: string[];  
+[trace_id](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#trace_id)?: string;  
+[tracingEnabled](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#tracingenabled)?: boolean;  
+}
+
+  * Defined in [src/run_trees.ts:33](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L33)
+
+#####  Index
+
+### Properties
+
+[name](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#name) [attachments?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#attachments) [child_execution_order?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#child_execution_order) [child_runs?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#child_runs) [client?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#client) [dotted_order?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#dotted_order) [end_time?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#end_time) [error?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#error) [execution_order?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#execution_order) [extra?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#extra) [id?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#id) [inputs?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#inputs) [metadata?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#metadata) [on_end?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#on_end) [outputs?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#outputs) [parent_run?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#parent_run) [parent_run_id?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#parent_run_id) [project_name?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#project_name) [reference_example_id?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#reference_example_id) [replicas?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#replicas) [run_type?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#run_type) [serialized?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#serialized) [start_time?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#start_time) [tags?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#tags) [trace_id?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#trace_id) [tracingEnabled?](https://docs.smith.langchain.com/reference/js/interfaces/run_trees.RunTreeConfig.html#tracingenabled)
+
+##  Properties
+
+### name
+
+name: string
+
+  * Defined in [src/run_trees.ts:34](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L34)
+
+### `Optional`attachments
+
+attachments?: [Attachments](https://docs.smith.langchain.com/reference/js/types/schemas.Attachments.html)
+
+  * Defined in [src/run_trees.ts:59](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L59)
+
+### `Optional`child_execution_order
+
+child_execution_order?: number
+
+  * Defined in [src/run_trees.ts:55](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L55)
+
+### `Optional`child_runs
+
+child_runs?: [RunTree](https://docs.smith.langchain.com/reference/js/classes/run_trees.RunTree.html)[]
+
+  * Defined in [src/run_trees.ts:40](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L40)
+
+### `Optional`client
+
+client?: [Client](https://docs.smith.langchain.com/reference/js/classes/client.Client.html)
+
+  * Defined in [src/run_trees.ts:51](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L51)
+
+### `Optional`dotted_order
+
+dotted_order?: string
+
+  * Defined in [src/run_trees.ts:58](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L58)
+
+### `Optional`end_time
+
+end_time?: number
+
+  * Defined in [src/run_trees.ts:42](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L42)
+
+### `Optional`error
+
+error?: string
+
+  * Defined in [src/run_trees.ts:46](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L46)
+
+### `Optional`execution_order
+
+execution_order?: number
+
+  * Defined in [src/run_trees.ts:54](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L54)
+
+### `Optional`extra
+
+extra?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)
+
+  * Defined in [src/run_trees.ts:43](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L43)
+
+### `Optional`id
+
+id?: string
+
+  * Defined in [src/run_trees.ts:36](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L36)
+
+### `Optional`inputs
+
+inputs?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)
+
+  * Defined in [src/run_trees.ts:48](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L48)
+
+### `Optional`metadata
+
+metadata?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)
+
+  * Defined in [src/run_trees.ts:44](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L44)
+
+### `Optional`on_end
+
+on_end?: (runTree: [RunTree](https://docs.smith.langchain.com/reference/js/classes/run_trees.RunTree.html)) => void
+
+  * Defined in [src/run_trees.ts:53](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L53)
+
+### `Optional`outputs
+
+outputs?: [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)
+
+  * Defined in [src/run_trees.ts:49](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L49)
+
+### `Optional`parent_run
+
+parent_run?: [RunTree](https://docs.smith.langchain.com/reference/js/classes/run_trees.RunTree.html)
+
+  * Defined in [src/run_trees.ts:38](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L38)
+
+### `Optional`parent_run_id
+
+parent_run_id?: string
+
+  * Defined in [src/run_trees.ts:39](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L39)
+
+### `Optional`project_name
+
+project_name?: string
+
+  * Defined in [src/run_trees.ts:37](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L37)
+
+### `Optional`reference_example_id
+
+reference_example_id?: string
+
+  * Defined in [src/run_trees.ts:50](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L50)
+
+### `Optional`replicas
+
+replicas?: [string, undefined | [KVMap](https://docs.smith.langchain.com/reference/js/types/schemas.KVMap.html)][]
+
+  * Defined in [src/run_trees.ts:60](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L60)
+
+### `Optional`run_type
+
+run_type?: string
+
+  * Defined in [src/run_trees.ts:35](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L35)
+
+### `Optional`serialized
+
+serialized?: object
+
+  * Defined in [src/run_trees.ts:47](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L47)
+
+### `Optional`start_time
+
+start_time?: number
+
+  * Defined in [src/run_trees.ts:41](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L41)
+
+### `Optional`tags
+
+tags?: string[]
+
+  * Defined in [src/run_trees.ts:45](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L45)
+
+### `Optional`trace_id
+
+trace_id?: string
+
+  * Defined in [src/run_trees.ts:57](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L57)
+
+### `Optional`tracingEnabled
+
+tracingEnabled?: boolean
+
+  * Defined in [src/run_trees.ts:52](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/run_trees.ts#L52)
+
+### Settings
+
+Member Visibility
+
+  * Protected
+  * Inherited
+  * External
+
+ThemeOSLightDark
+
+### On This Page
+
+Properties
+
+nameattachmentschild_execution_orderchild_runsclientdotted_orderend_timeerrorexecution_orderextraidinputsmetadataon_endoutputsparent_runparent_run_idproject_namereference_example_idreplicasrun_typeserializedstart_timetagstrace_idtracingEnabled
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

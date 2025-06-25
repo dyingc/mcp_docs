@@ -1,0 +1,47 @@
+# evaluate | LangSmith - v0.3.33
+
+* [LangSmith](https://docs.smith.langchain.com/reference/js/modules.html)
+  * [evaluation](https://docs.smith.langchain.com/reference/js/modules/evaluation.html)
+  * [evaluate](https://docs.smith.langchain.com/reference/js/functions/evaluation.evaluate.html)
+
+# Function evaluate
+
+  * evaluate(  
+target: ComparativeTargetT,  
+options: ComparativeEvaluateOptions,  
+): Promise<ComparisonEvaluationResults>
+
+#### Parameters
+
+    * target: ComparativeTargetT
+    * options: ComparativeEvaluateOptions
+
+#### Returns Promise<ComparisonEvaluationResults>
+
+    * Defined in [src/evaluation/_runner.ts:220](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L220)
+
+  * evaluate(  
+target: StandardTargetT,  
+options: [EvaluateOptions](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html),  
+): Promise<ExperimentResults>
+
+#### Parameters
+
+    * target: StandardTargetT
+    * options: [EvaluateOptions](https://docs.smith.langchain.com/reference/js/interfaces/evaluation.EvaluateOptions.html)
+
+#### Returns Promise<ExperimentResults>
+
+    * Defined in [src/evaluation/_runner.ts:225](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/evaluation/_runner.ts#L225)
+
+### Settings
+
+Member Visibility
+
+  * Protected
+  * Inherited
+  * External
+
+ThemeOSLightDark
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

@@ -1,0 +1,92 @@
+# ExperimentResults — 🦜️🛠️ LangSmith  documentation
+
+# ExperimentResults#
+
+_class _langsmith.evaluation._runner.ExperimentResults(
+
+    _experiment_manager : _ExperimentManager_,
+    _blocking : bool = True_,
+)[[source]](../_modules/langsmith/evaluation/_runner.html#ExperimentResults)#
+    
+
+Represents the results of an evaluate() call.
+
+This class provides an iterator interface to iterate over the experiment results as they become available. It also provides methods to access the experiment name, the number of results, and to wait for the results to be processed.
+
+Parameters:
+    
+
+  * **experiment_manager** (__ExperimentManager_)
+
+  * **blocking** (_bool_)
+
+experiment_name() → str#
+    
+
+Returns the name of the experiment.
+
+wait() → None[[source]](../_modules/langsmith/evaluation/_runner.html#ExperimentResults.wait)#
+    
+
+Waits for the experiment data to be processed.
+
+Attributes
+
+`experiment_name` |   
+---|---  
+  
+Methods
+
+`__init__`(experiment_manager[, blocking]) |   
+---|---  
+`to_pandas`([start, end]) |   
+`wait`() | Wait for the evaluation runner to complete.  
+  
+__init__(
+
+    _experiment_manager : _ExperimentManager_,
+    _blocking : bool = True_,
+)[[source]](../_modules/langsmith/evaluation/_runner.html#ExperimentResults.__init__)#
+    
+
+Parameters:
+    
+
+  * **experiment_manager** (__ExperimentManager_)
+
+  * **blocking** (_bool_)
+
+to_pandas(
+
+    _start : int | None = 0_,
+    _end : int | None = None_,
+) → Any[[source]](../_modules/langsmith/evaluation/_runner.html#ExperimentResults.to_pandas)#
+    
+
+Parameters:
+    
+
+  * **start** (_int_ _|__None_)
+
+  * **end** (_int_ _|__None_)
+
+Return type:
+    
+
+_Any_
+
+wait() → None[[source]](../_modules/langsmith/evaluation/_runner.html#ExperimentResults.wait)#
+    
+
+Wait for the evaluation runner to complete.
+
+This method blocks the current thread until the evaluation runner has finished its execution.
+
+Return type:
+    
+
+None
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

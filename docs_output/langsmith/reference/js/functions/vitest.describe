@@ -1,0 +1,67 @@
+# describe | LangSmith - v0.3.33
+
+* [LangSmith](https://docs.smith.langchain.com/reference/js/modules.html)
+  * [vitest](https://docs.smith.langchain.com/reference/js/modules/vitest.html)
+  * [describe](https://docs.smith.langchain.com/reference/js/functions/vitest.describe.html)
+
+# Function describe
+
+  * describe(  
+name: string,  
+fn: () => void | Promise<void>,  
+config?: [LangSmithJestlikeDescribeWrapperConfig](https://docs.smith.langchain.com/reference/js/types/jest.LangSmithJestlikeDescribeWrapperConfig.html),  
+): void
+
+#### Parameters
+
+    * name: string
+    * fn: () => void | Promise<void>
+    * `Optional`config: [LangSmithJestlikeDescribeWrapperConfig](https://docs.smith.langchain.com/reference/js/types/jest.LangSmithJestlikeDescribeWrapperConfig.html)
+
+#### Returns void
+
+    * Defined in [src/vitest/index.ts:92](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/vitest/index.ts#L92)
+
+#####  Index
+
+### Properties
+
+[concurrent](https://docs.smith.langchain.com/reference/js/functions/vitest.describe.html#concurrent) [only](https://docs.smith.langchain.com/reference/js/functions/vitest.describe.html#only) [skip](https://docs.smith.langchain.com/reference/js/functions/vitest.describe.html#skip)
+
+##  Properties
+
+### concurrent
+
+concurrent: [LangSmithJestlikeDescribeWrapper](https://docs.smith.langchain.com/reference/js/types/jest.LangSmithJestlikeDescribeWrapper.html) = ...
+
+  * Defined in [src/utils/jestlike/index.ts:443](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/utils/jestlike/index.ts#L443)
+
+### only
+
+only: [LangSmithJestlikeDescribeWrapper](https://docs.smith.langchain.com/reference/js/types/jest.LangSmithJestlikeDescribeWrapper.html) = ...
+
+  * Defined in [src/utils/jestlike/index.ts:441](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/utils/jestlike/index.ts#L441)
+
+### skip
+
+skip: [LangSmithJestlikeDescribeWrapper](https://docs.smith.langchain.com/reference/js/types/jest.LangSmithJestlikeDescribeWrapper.html) = ...
+
+  * Defined in [src/utils/jestlike/index.ts:442](https://github.com/langchain-ai/langsmith-sdk/blob/99461eb70b340e10ac7cad42a855945c496a639a/js/src/utils/jestlike/index.ts#L442)
+
+### Settings
+
+Member Visibility
+
+  * Protected
+  * Inherited
+  * External
+
+ThemeOSLightDark
+
+### On This Page
+
+Properties
+
+concurrentonlyskip
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)

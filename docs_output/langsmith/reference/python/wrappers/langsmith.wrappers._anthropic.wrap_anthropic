@@ -1,0 +1,70 @@
+# wrap_anthropic — 🦜️🛠️ LangSmith  documentation
+
+# wrap_anthropic#
+
+langsmith.wrappers._anthropic.wrap_anthropic(
+
+    _client : C_,
+    _*_ ,
+    _tracing_extra : [TracingExtra](langsmith.wrappers._anthropic.TracingExtra.html#langsmith.wrappers._anthropic.TracingExtra "langsmith.wrappers._anthropic.TracingExtra") | None = None_,
+) → C[[source]](../_modules/langsmith/wrappers/_anthropic.html#wrap_anthropic)#
+    
+
+Patch the Anthropic client to make it traceable.
+
+Parameters:
+    
+
+  * **client** (_Union_ _[__Anthropic_ _,__AsyncAnthropic_ _]_) – The client to patch.
+
+  * **tracing_extra** (_Optional_ _[_[_TracingExtra_](langsmith.wrappers._anthropic.TracingExtra.html#langsmith.wrappers._anthropic.TracingExtra "langsmith.wrappers._anthropic.TracingExtra") _]__,__optional_) – Extra tracing information. Defaults to None.
+
+Returns:
+    
+
+The patched client.
+
+Return type:
+    
+
+Union[Anthropic, AsyncAnthropic]
+
+Example
+    
+    
+    import anthropic
+    from langsmith import wrappers
+    
+    client = wrappers.wrap_anthropic(anthropic.Anthropic())
+    
+    # Use Anthropic client same as you normally would:
+    system = "You are a helpful assistant."
+    messages = [
+        {
+            "role": "user",
+            "content": "What physics breakthroughs do you predict will happen by 2300?",
+        }
+    ]
+    completion = client.messages.create(
+        model="claude-3-5-sonnet-latest",
+        messages=messages,
+        max_tokens=1000,
+        system=system,
+    )
+    print(completion.content)
+    
+    # You can also use the streaming context manager:
+    with client.messages.stream(
+        model="claude-3-5-sonnet-latest",
+        messages=messages,
+        max_tokens=1000,
+        system=system,
+    ) as stream:
+        for text in stream.text_stream:
+            print(text, end="", flush=True)
+        message = stream.get_final_message()
+    
+
+__On this page
+  *[/]: Positional-only parameter separator (PEP 570)
+  *[*]: Keyword-only parameters separator (PEP 3102)
