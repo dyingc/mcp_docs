@@ -1942,6 +1942,755 @@
       "filepath": "docs/completion/provider_specific_params.md",
       "size": 13022,
       "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs",
+      "title": "LiteLLM - Getting Started | liteLLM",
+      "filepath": "docs.md",
+      "size": 17522,
+      "depth": 0
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/",
+      "title": "LiteLLM - Getting Started | liteLLM",
+      "filepath": "docs.md",
+      "size": 17522,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/completion/reliable_completions",
+      "title": "Reliability - Retries, Fallbacks | liteLLM",
+      "filepath": "docs/completion/reliable_completions.md",
+      "size": 7524,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/docker_quick_start",
+      "title": "Getting Started - E2E Tutorial | liteLLM",
+      "filepath": "docs/proxy/docker_quick_start.md",
+      "size": 14364,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/users",
+      "title": "\ud83d\udcb0 Budgets, Rate Limits | liteLLM",
+      "filepath": "docs/proxy/users.md",
+      "size": 25245,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/logging",
+      "title": "Logging | liteLLM",
+      "filepath": "docs/proxy/logging.md",
+      "size": 67430,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/virtual_keys",
+      "title": "Virtual Keys | liteLLM",
+      "filepath": "docs/proxy/virtual_keys.md",
+      "size": 21001,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/observability/custom_callback",
+      "title": "Custom Callbacks | liteLLM",
+      "filepath": "docs/observability/custom_callback.md",
+      "size": 15902,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/observability/callbacks",
+      "title": "Callbacks | liteLLM",
+      "filepath": "docs/observability/callbacks.md",
+      "size": 1972,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/routing",
+      "title": "Router - Load Balancing | liteLLM",
+      "filepath": "docs/routing.md",
+      "size": 52513,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/completion/output",
+      "title": "Output | liteLLM",
+      "filepath": "docs/completion/output.md",
+      "size": 2077,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/data_security",
+      "title": "Data Privacy and Security | liteLLM",
+      "filepath": "docs/data_security.md",
+      "size": 7430,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/extras/contributing_code",
+      "title": "Contributing Code | liteLLM",
+      "filepath": "docs/extras/contributing_code.md",
+      "size": 3844,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/openweb_ui",
+      "title": "Open WebUI with LiteLLM | liteLLM",
+      "filepath": "docs/tutorials/openweb_ui.md",
+      "size": 5965,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/benchmarks",
+      "title": "Benchmarks | liteLLM",
+      "filepath": "docs/benchmarks.md",
+      "size": 1968,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/set_keys",
+      "title": "Setting API Keys, Base, Version | liteLLM",
+      "filepath": "docs/set_keys.md",
+      "size": 6670,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/exception_mapping",
+      "title": "Exception Mapping | liteLLM",
+      "filepath": "docs/exception_mapping.md",
+      "size": 8129,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers",
+      "title": "Providers | liteLLM",
+      "filepath": "docs/providers.md",
+      "size": 5951,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/enterprise",
+      "title": "Enterprise | liteLLM",
+      "filepath": "docs/enterprise.md",
+      "size": 4035,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/reliability",
+      "title": "Fallbacks | liteLLM",
+      "filepath": "docs/proxy/reliability.md",
+      "size": 26859,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/team_budgets",
+      "title": "\ud83d\udcb0 Setting Team Budgets | liteLLM",
+      "filepath": "docs/proxy/team_budgets.md",
+      "size": 8931,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/billing",
+      "title": "Billing | liteLLM",
+      "filepath": "docs/proxy/billing.md",
+      "size": 8320,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/self_serve",
+      "title": "Internal User Self-Serve | liteLLM",
+      "filepath": "docs/proxy/self_serve.md",
+      "size": 13423,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/observability/openmeter",
+      "title": "OpenMeter - Usage-Based Billing | liteLLM",
+      "filepath": "docs/observability/openmeter.md",
+      "size": 2182,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/model_discovery",
+      "title": "Model Discovery | liteLLM",
+      "filepath": "docs/proxy/model_discovery.md",
+      "size": 2824,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/custom_prompt_management",
+      "title": "Custom Prompt Management | liteLLM",
+      "filepath": "docs/proxy/custom_prompt_management.md",
+      "size": 5130,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/alerting",
+      "title": "Alerting / Webhooks | liteLLM",
+      "filepath": "docs/proxy/alerting.md",
+      "size": 19153,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/bedrock",
+      "title": "AWS Bedrock | liteLLM",
+      "filepath": "docs/providers/bedrock.md",
+      "size": 63423,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/apply_guardrail",
+      "title": "/guardrails/apply_guardrail | liteLLM",
+      "filepath": "docs/apply_guardrail.md",
+      "size": 1863,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/model_fallbacks",
+      "title": "Model Fallbacks w/ LiteLLM | liteLLM",
+      "filepath": "docs/tutorials/model_fallbacks.md",
+      "size": 2827,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/load_test_rpm",
+      "title": "Multi-Instance TPM/RPM (litellm.Router) | liteLLM",
+      "filepath": "docs/load_test_rpm.md",
+      "size": 12007,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/instructor",
+      "title": "Instructor | liteLLM",
+      "filepath": "docs/tutorials/instructor.md",
+      "size": 1963,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/langchain/",
+      "title": "Using ChatLiteLLM() - Langchain | liteLLM",
+      "filepath": "docs/langchain.md",
+      "size": 4361,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/nebius",
+      "title": "Nebius AI Studio | liteLLM",
+      "filepath": "docs/providers/nebius.md",
+      "size": 5789,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/featherless_ai",
+      "title": "Featherless AI | liteLLM",
+      "filepath": "docs/providers/featherless_ai.md",
+      "size": 2314,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/snowflake",
+      "title": "Snowflake | liteLLM",
+      "filepath": "docs/providers/snowflake.md",
+      "size": 2660,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/custom_llm_server",
+      "title": "Custom API Server (Custom Format) | liteLLM",
+      "filepath": "docs/providers/custom_llm_server.md",
+      "size": 16131,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/sambanova",
+      "title": "SambaNova | liteLLM",
+      "filepath": "docs/providers/sambanova.md",
+      "size": 9461,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/openrouter",
+      "title": "OpenRouter | liteLLM",
+      "filepath": "docs/providers/openrouter.md",
+      "size": 2611,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/prometheus",
+      "title": "\ud83d\udcc8 Prometheus metrics | liteLLM",
+      "filepath": "docs/proxy/prometheus.md",
+      "size": 17697,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/custom_pricing",
+      "title": "Custom LLM Pricing | liteLLM",
+      "filepath": "docs/proxy/custom_pricing.md",
+      "size": 4425,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/ui_logs",
+      "title": "Getting Started with UI Logs | liteLLM",
+      "filepath": "docs/proxy/ui_logs.md",
+      "size": 2175,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/ui_credentials",
+      "title": "Adding LLM Credentials | liteLLM",
+      "filepath": "docs/proxy/ui_credentials.md",
+      "size": 1678,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/response_headers",
+      "title": "Response Headers | liteLLM",
+      "filepath": "docs/proxy/response_headers.md",
+      "size": 3654,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/prompt_management",
+      "title": "Prompt Management | liteLLM",
+      "filepath": "docs/proxy/prompt_management.md",
+      "size": 5426,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/guardrails/secret_detection",
+      "title": "\u2728 Secret Detection/Redaction (Enterprise-only) | liteLLM",
+      "filepath": "docs/proxy/guardrails/secret_detection.md",
+      "size": 19732,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/pass_through/bedrock",
+      "title": "Bedrock (boto3) SDK | liteLLM",
+      "filepath": "docs/pass_through/bedrock.md",
+      "size": 8393,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/bedrock_vector_store",
+      "title": "Bedrock Knowledge Bases | liteLLM",
+      "filepath": "docs/providers/bedrock_vector_store.md",
+      "size": 4343,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/bedrock_agents",
+      "title": "Bedrock Agents | liteLLM",
+      "filepath": "docs/providers/bedrock_agents.md",
+      "size": 5633,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/first_playground",
+      "title": "Create your first LLM playground | liteLLM",
+      "filepath": "docs/tutorials/first_playground.md",
+      "size": 5677,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/adding_provider/new_rerank_provider",
+      "title": "Add Rerank Provider | liteLLM",
+      "filepath": "docs/adding_provider/new_rerank_provider.md",
+      "size": 3141,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/quick_start",
+      "title": "Quick Start | liteLLM",
+      "filepath": "docs/proxy/quick_start.md",
+      "size": 10573,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/finetuned_chat_gpt",
+      "title": "Using Fine-Tuned gpt-3.5-turbo | liteLLM",
+      "filepath": "docs/tutorials/finetuned_chat_gpt.md",
+      "size": 1972,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/TogetherAI_liteLLM",
+      "title": "Llama2 Together AI Tutorial | liteLLM",
+      "filepath": "docs/tutorials/TogetherAI_liteLLM.md",
+      "size": 4553,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/huggingface_tutorial",
+      "title": "Llama2 - Huggingface Tutorial | liteLLM",
+      "filepath": "docs/tutorials/huggingface_tutorial.md",
+      "size": 4900,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/huggingface_codellama",
+      "title": "CodeLlama - Code Infilling | liteLLM",
+      "filepath": "docs/tutorials/huggingface_codellama.md",
+      "size": 1774,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/gradio_integration",
+      "title": "Gradio Chatbot + LiteLLM Tutorial | liteLLM",
+      "filepath": "docs/tutorials/gradio_integration.md",
+      "size": 2968,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/azure_openai",
+      "title": "Replacing OpenAI ChatCompletion with Completion() | liteLLM",
+      "filepath": "docs/tutorials/azure_openai.md",
+      "size": 4416,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/pagerduty",
+      "title": "PagerDuty Alerting | liteLLM",
+      "filepath": "docs/proxy/pagerduty.md",
+      "size": 2463,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/clientside_auth",
+      "title": "Clientside LLM Credentials | liteLLM",
+      "filepath": "docs/proxy/clientside_auth.md",
+      "size": 8156,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/tutorials/scim_litellm",
+      "title": "SCIM with LiteLLM | liteLLM",
+      "filepath": "docs/tutorials/scim_litellm.md",
+      "size": 2455,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/custom_sso",
+      "title": "Event Hook for SSO Login (Custom Handler) | liteLLM",
+      "filepath": "docs/proxy/custom_sso.md",
+      "size": 3281,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/proxy/admin_ui_sso",
+      "title": "\u2728 SSO for Admin UI | liteLLM",
+      "filepath": "docs/proxy/admin_ui_sso.md",
+      "size": 9366,
+      "depth": 3
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/jina_ai",
+      "title": "Jina AI | liteLLM",
+      "filepath": "docs/providers/jina_ai.md",
+      "size": 4168,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/voyage",
+      "title": "Voyage AI | liteLLM",
+      "filepath": "docs/providers/voyage.md",
+      "size": 1860,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/novita",
+      "title": "Novita AI | liteLLM",
+      "filepath": "docs/providers/novita.md",
+      "size": 7012,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/togetherai",
+      "title": "Together AI | liteLLM",
+      "filepath": "docs/providers/togetherai.md",
+      "size": 10579,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/replicate",
+      "title": "Replicate | liteLLM",
+      "filepath": "docs/providers/replicate.md",
+      "size": 9409,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/nlp_cloud",
+      "title": "NLP Cloud | liteLLM",
+      "filepath": "docs/providers/nlp_cloud.md",
+      "size": 1822,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/ai21",
+      "title": "AI21 | liteLLM",
+      "filepath": "docs/providers/ai21.md",
+      "size": 5576,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/deepinfra",
+      "title": "DeepInfra | liteLLM",
+      "filepath": "docs/providers/deepinfra.md",
+      "size": 2075,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/cloudflare_workers",
+      "title": "Cloudflare Workers AI | liteLLM",
+      "filepath": "docs/providers/cloudflare_workers.md",
+      "size": 1833,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/xinference",
+      "title": "Xinference [Xorbits Inference] | liteLLM",
+      "filepath": "docs/providers/xinference.md",
+      "size": 2595,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/infinity",
+      "title": "Infinity | liteLLM",
+      "filepath": "docs/providers/infinity.md",
+      "size": 7421,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/llamafile",
+      "title": "Llamafile | liteLLM",
+      "filepath": "docs/providers/llamafile.md",
+      "size": 4082,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/vllm",
+      "title": "VLLM | liteLLM",
+      "filepath": "docs/providers/vllm.md",
+      "size": 13505,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/clarifai",
+      "title": "Clarifai | liteLLM",
+      "filepath": "docs/providers/clarifai.md",
+      "size": 9799,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/fireworks_ai",
+      "title": "Fireworks AI | liteLLM",
+      "filepath": "docs/providers/fireworks_ai.md",
+      "size": 11915,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/elevenlabs",
+      "title": "ElevenLabs | liteLLM",
+      "filepath": "docs/providers/elevenlabs.md",
+      "size": 5869,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/deepseek",
+      "title": "Deepseek | liteLLM",
+      "filepath": "docs/providers/deepseek.md",
+      "size": 2765,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/github",
+      "title": "\ud83c\udd95 Github | liteLLM",
+      "filepath": "docs/providers/github.md",
+      "size": 8550,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/groq",
+      "title": "Groq | liteLLM",
+      "filepath": "docs/providers/groq.md",
+      "size": 11425,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/galadriel",
+      "title": "Galadriel | liteLLM",
+      "filepath": "docs/providers/galadriel.md",
+      "size": 2012,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/friendliai",
+      "title": "FriendliAI | liteLLM",
+      "filepath": "docs/providers/friendliai.md",
+      "size": 1789,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/perplexity",
+      "title": "Perplexity AI (pplx-api) | liteLLM",
+      "filepath": "docs/providers/perplexity.md",
+      "size": 2940,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/ollama",
+      "title": "Ollama | liteLLM",
+      "filepath": "docs/providers/ollama.md",
+      "size": 20061,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/triton-inference-server",
+      "title": "Triton Inference Server | liteLLM",
+      "filepath": "docs/providers/triton-inference-server.md",
+      "size": 5687,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/volcano",
+      "title": "Volcano Engine (Volcengine) | liteLLM",
+      "filepath": "docs/providers/volcano.md",
+      "size": 2910,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/cerebras",
+      "title": "Cerebras | liteLLM",
+      "filepath": "docs/providers/cerebras.md",
+      "size": 3580,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/lm_studio",
+      "title": "LM Studio | liteLLM",
+      "filepath": "docs/providers/lm_studio.md",
+      "size": 4334,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/xai",
+      "title": "xAI | liteLLM",
+      "filepath": "docs/providers/xai.md",
+      "size": 6389,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/nscale",
+      "title": "Nscale (EU Sovereign) | liteLLM",
+      "filepath": "docs/providers/nscale.md",
+      "size": 5738,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/nvidia_nim",
+      "title": "Nvidia NIM | liteLLM",
+      "filepath": "docs/providers/nvidia_nim.md",
+      "size": 7978,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/predibase",
+      "title": "Predibase | liteLLM",
+      "filepath": "docs/providers/predibase.md",
+      "size": 6758,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/watsonx",
+      "title": "IBM watsonx.ai | liteLLM",
+      "filepath": "docs/providers/watsonx.md",
+      "size": 9815,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/deepgram",
+      "title": "Deepgram | liteLLM",
+      "filepath": "docs/providers/deepgram.md",
+      "size": 1940,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/databricks",
+      "title": "Databricks | liteLLM",
+      "filepath": "docs/providers/databricks.md",
+      "size": 11770,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/huggingface",
+      "title": "Hugging Face | liteLLM",
+      "filepath": "docs/providers/huggingface.md",
+      "size": 13708,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/anyscale",
+      "title": "Anyscale | liteLLM",
+      "filepath": "docs/providers/anyscale.md",
+      "size": 1707,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/cohere",
+      "title": "Cohere | liteLLM",
+      "filepath": "docs/providers/cohere.md",
+      "size": 7828,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/codestral",
+      "title": "Codestral API [Mistral AI] | liteLLM",
+      "filepath": "docs/providers/codestral.md",
+      "size": 6608,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/mistral",
+      "title": "Mistral AI API | liteLLM",
+      "filepath": "docs/providers/mistral.md",
+      "size": 10065,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/meta_llama",
+      "title": "Meta Llama | liteLLM",
+      "filepath": "docs/providers/meta_llama.md",
+      "size": 9598,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/litellm_proxy",
+      "title": "LiteLLM Proxy (LLM Gateway) | liteLLM",
+      "filepath": "docs/providers/litellm_proxy.md",
+      "size": 6275,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/aws_sagemaker",
+      "title": "AWS Sagemaker | liteLLM",
+      "filepath": "docs/providers/aws_sagemaker.md",
+      "size": 14470,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/anthropic",
+      "title": "Anthropic | liteLLM",
+      "filepath": "docs/providers/anthropic.md",
+      "size": 46601,
+      "depth": 2
+    },
+    {
+      "url": "https://docs.litellm.ai/docs/providers/gemini",
+      "title": "Gemini - Google AI Studio | liteLLM",
+      "filepath": "docs/providers/gemini.md",
+      "size": 37431,
+      "depth": 2
     }
   ],
   "config_used": {

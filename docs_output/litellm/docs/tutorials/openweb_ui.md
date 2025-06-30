@@ -136,6 +136,18 @@ On the models dropdown select `thinking-anthropic-claude-3-7-sonnet`
 
   * Running LiteLLM and Open WebUI on Windows Localhost: A Comprehensive Guide <https://www.tanyongsheng.com/note/running-litellm-and-openwebui-on-windows-localhost-a-comprehensive-guide/>
 
+## Add Custom Headers to Spend Tracking​
+
+You can add custom headers to the request to track spend and usage.
+    
+    
+    litellm_settings:  
+      extra_spend_tag_headers:  
+        - "x-custom-header"  
+    
+
+You can add custom headers to the request to track spend and usage.
+
   * Quickstart
   * 1\. Start LiteLLM & Open WebUI
   * 2\. Create a Virtual Key on LiteLLM
@@ -148,3 +160,4 @@ On the models dropdown select `thinking-anthropic-claude-3-7-sonnet`
   * Render `thinking` content on Open WebUI
     * Test it on Open WebUI
   * Additional Resources
+  * Add Custom Headers to Spend Tracking

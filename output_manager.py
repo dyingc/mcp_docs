@@ -194,8 +194,12 @@ class OutputManager:
 
             print(f"Processing for llms.txt: {filepath}", end='')
 
-            with open(filepath, 'r', encoding='utf-8') as f:
-                content = f.read()
+            try:
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    content = f.read()
+            except Exception as e:
+                print(f" - Error reading file: {e}")
+                return None
 
             title, desc = self._summarize_and_title_for_llms(llm, content, filepath.name)
 

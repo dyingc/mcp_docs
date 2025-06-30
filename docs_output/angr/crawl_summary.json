@@ -1,0 +1,743 @@
+{
+  "base_url": "https://docs.angr.io/en/latest",
+  "pages_crawled": -1,
+  "successful_pages": -1,
+  "failed_pages": 0,
+  "saved_files": [
+    {
+      "url": "https://docs.angr.io/en/latest/",
+      "title": "angr documentation",
+      "filepath": "en/latest.md",
+      "size": 15483,
+      "depth": 0
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/quickstart.html",
+      "title": "Introduction - angr documentation",
+      "filepath": "en/latest/quickstart.html",
+      "size": 3565,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/migration-7.html",
+      "title": "Migrating to angr 7 - angr documentation",
+      "filepath": "en/latest/appendix/migration-7.html",
+      "size": 11025,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/migration-8.html",
+      "title": "Migrating to angr 8 - angr documentation",
+      "filepath": "en/latest/appendix/migration-8.html",
+      "size": 6326,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/migration-9.1.html",
+      "title": "Migrating to angr 9.1 - angr documentation",
+      "filepath": "en/latest/appendix/migration-9.1.html",
+      "size": 2106,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/changelog.html",
+      "title": "Changelog - angr documentation",
+      "filepath": "en/latest/appendix/changelog.html",
+      "size": 36324,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/more-examples.html",
+      "title": "CTF Challenge Examples - angr documentation",
+      "filepath": "en/latest/appendix/more-examples.html",
+      "size": 9916,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/options.html",
+      "title": "List of State Options - angr documentation",
+      "filepath": "en/latest/appendix/options.html",
+      "size": 14020,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/ops.html",
+      "title": "List of Claripy Operations - angr documentation",
+      "filepath": "en/latest/appendix/ops.html",
+      "size": 2502,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/cheatsheet.html",
+      "title": "Cheatsheet - angr documentation",
+      "filepath": "en/latest/appendix/cheatsheet.html",
+      "size": 6294,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/faq.html",
+      "title": "Frequently Asked Questions - angr documentation",
+      "filepath": "en/latest/faq.html",
+      "size": 10045,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/examples.html",
+      "title": "angr examples - angr documentation",
+      "filepath": "en/latest/examples.html",
+      "size": 12708,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/extending-angr/analysis_writing.html",
+      "title": "Writing Analyses - angr documentation",
+      "filepath": "en/latest/extending-angr/analysis_writing.html",
+      "size": 4227,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/extending-angr/environment.html",
+      "title": "Extending the Environment Model - angr documentation",
+      "filepath": "en/latest/extending-angr/environment.html",
+      "size": 13570,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/extending-angr/state_plugins.html",
+      "title": "State Plugins - angr documentation",
+      "filepath": "en/latest/extending-angr/state_plugins.html",
+      "size": 9058,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/extending-angr/simprocedures.html",
+      "title": "Hooks and SimProcedures - angr documentation",
+      "filepath": "en/latest/extending-angr/simprocedures.html",
+      "size": 14430,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/debug_var.html",
+      "title": "Debug variable resolution - angr documentation",
+      "filepath": "en/latest/advanced-topics/debug_var.html",
+      "size": 3298,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/symbion.html",
+      "title": "Symbion: Interleaving symbolic and concrete execution - angr documentation",
+      "filepath": "en/latest/advanced-topics/symbion.html",
+      "size": 5763,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/java_support.html",
+      "title": "Java Support - angr documentation",
+      "filepath": "en/latest/advanced-topics/java_support.html",
+      "size": 3079,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/concretization_strategies.html",
+      "title": "Symbolic memory addressing - angr documentation",
+      "filepath": "en/latest/advanced-topics/concretization_strategies.html",
+      "size": 2095,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/claripy.html",
+      "title": "Solver Engine - angr documentation",
+      "filepath": "en/latest/advanced-topics/claripy.html",
+      "size": 12122,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/structured_data.html",
+      "title": "Working with Data and Conventions - angr documentation",
+      "filepath": "en/latest/advanced-topics/structured_data.html",
+      "size": 9228,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/ir.html",
+      "title": "Intermediate Representation - angr documentation",
+      "filepath": "en/latest/advanced-topics/ir.html",
+      "size": 11218,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/file_system.html",
+      "title": "Working with File System, Sockets, and Pipes - angr documentation",
+      "filepath": "en/latest/advanced-topics/file_system.html",
+      "size": 13249,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/speed.html",
+      "title": "Optimization considerations - angr documentation",
+      "filepath": "en/latest/advanced-topics/speed.html",
+      "size": 8353,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/mixins.html",
+      "title": "What\u2019s Up With Mixins, Anyway? - angr documentation",
+      "filepath": "en/latest/advanced-topics/mixins.html",
+      "size": 10333,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/pipeline.html",
+      "title": "Understanding the Execution Pipeline - angr documentation",
+      "filepath": "en/latest/advanced-topics/pipeline.html",
+      "size": 13420,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/gotchas.html",
+      "title": "Gotchas when using angr - angr documentation",
+      "filepath": "en/latest/advanced-topics/gotchas.html",
+      "size": 3964,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/analyses/decompiler.html",
+      "title": "angr Decompiler - angr documentation",
+      "filepath": "en/latest/analyses/decompiler.html",
+      "size": 2116,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/analyses/backward_slice.html",
+      "title": "Backward Slicing - angr documentation",
+      "filepath": "en/latest/analyses/backward_slice.html",
+      "size": 5036,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/analyses/cfg.html",
+      "title": "Control-flow Graph Recovery (CFG) - angr documentation",
+      "filepath": "en/latest/analyses/cfg.html",
+      "size": 12738,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/be_creative.html",
+      "title": "A final word of advice - angr documentation",
+      "filepath": "en/latest/core-concepts/be_creative.html",
+      "size": 2014,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/analyses.html",
+      "title": "Analyses - angr documentation",
+      "filepath": "en/latest/core-concepts/analyses.html",
+      "size": 1688,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/symbolic.html",
+      "title": "Symbolic Execution - angr documentation",
+      "filepath": "en/latest/core-concepts/symbolic.html",
+      "size": 4804,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/simulation.html",
+      "title": "Simulation and Instrumentation - angr documentation",
+      "filepath": "en/latest/core-concepts/simulation.html",
+      "size": 14227,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/pathgroups.html",
+      "title": "Simulation Managers - angr documentation",
+      "filepath": "en/latest/core-concepts/pathgroups.html",
+      "size": 12159,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/states.html",
+      "title": "Machine State - memory, registers, and so on - angr documentation",
+      "filepath": "en/latest/core-concepts/states.html",
+      "size": 18819,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/solver.html",
+      "title": "Symbolic Expressions and Constraint Solving - angr documentation",
+      "filepath": "en/latest/core-concepts/solver.html",
+      "size": 14011,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/loading.html",
+      "title": "Loading a Binary - angr documentation",
+      "filepath": "en/latest/core-concepts/loading.html",
+      "size": 17199,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/toplevel.html",
+      "title": "Core Concepts - angr documentation",
+      "filepath": "en/latest/core-concepts/toplevel.html",
+      "size": 13077,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/getting-started/helpwanted.html",
+      "title": "Help Wanted - angr documentation",
+      "filepath": "en/latest/getting-started/helpwanted.html",
+      "size": 10067,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/getting-started/developing.html",
+      "title": "Reporting Bugs - angr documentation",
+      "filepath": "en/latest/getting-started/developing.html",
+      "size": 7650,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/getting-started/installing.html",
+      "title": "Installing angr - angr documentation",
+      "filepath": "en/latest/getting-started/installing.html",
+      "size": 3123,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/",
+      "title": "angr documentation",
+      "filepath": "en/latest.md",
+      "size": 15483,
+      "depth": 0
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/quickstart.html",
+      "title": "Introduction - angr documentation",
+      "filepath": "en/latest/quickstart.html",
+      "size": 3565,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/_sources/index.rst.txt",
+      "title": "Untitled",
+      "filepath": "en/latest/_sources/index.rst.txt",
+      "size": 868,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/migration-7.html",
+      "title": "Migrating to angr 7 - angr documentation",
+      "filepath": "en/latest/appendix/migration-7.html",
+      "size": 11025,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/migration-8.html",
+      "title": "Migrating to angr 8 - angr documentation",
+      "filepath": "en/latest/appendix/migration-8.html",
+      "size": 6326,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/migration-9.1.html",
+      "title": "Migrating to angr 9.1 - angr documentation",
+      "filepath": "en/latest/appendix/migration-9.1.html",
+      "size": 2106,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/changelog.html",
+      "title": "Changelog - angr documentation",
+      "filepath": "en/latest/appendix/changelog.html",
+      "size": 36324,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/more-examples.html",
+      "title": "CTF Challenge Examples - angr documentation",
+      "filepath": "en/latest/appendix/more-examples.html",
+      "size": 9916,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/options.html",
+      "title": "List of State Options - angr documentation",
+      "filepath": "en/latest/appendix/options.html",
+      "size": 14020,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/ops.html",
+      "title": "List of Claripy Operations - angr documentation",
+      "filepath": "en/latest/appendix/ops.html",
+      "size": 2502,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/appendix/cheatsheet.html",
+      "title": "Cheatsheet - angr documentation",
+      "filepath": "en/latest/appendix/cheatsheet.html",
+      "size": 6294,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/faq.html",
+      "title": "Frequently Asked Questions - angr documentation",
+      "filepath": "en/latest/faq.html",
+      "size": 10045,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/examples.html",
+      "title": "angr examples - angr documentation",
+      "filepath": "en/latest/examples.html",
+      "size": 12708,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/extending-angr/analysis_writing.html",
+      "title": "Writing Analyses - angr documentation",
+      "filepath": "en/latest/extending-angr/analysis_writing.html",
+      "size": 4227,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/extending-angr/environment.html",
+      "title": "Extending the Environment Model - angr documentation",
+      "filepath": "en/latest/extending-angr/environment.html",
+      "size": 13570,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/extending-angr/state_plugins.html",
+      "title": "State Plugins - angr documentation",
+      "filepath": "en/latest/extending-angr/state_plugins.html",
+      "size": 9058,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/extending-angr/simprocedures.html",
+      "title": "Hooks and SimProcedures - angr documentation",
+      "filepath": "en/latest/extending-angr/simprocedures.html",
+      "size": 14430,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/debug_var.html",
+      "title": "Debug variable resolution - angr documentation",
+      "filepath": "en/latest/advanced-topics/debug_var.html",
+      "size": 3298,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/symbion.html",
+      "title": "Symbion: Interleaving symbolic and concrete execution - angr documentation",
+      "filepath": "en/latest/advanced-topics/symbion.html",
+      "size": 5763,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/java_support.html",
+      "title": "Java Support - angr documentation",
+      "filepath": "en/latest/advanced-topics/java_support.html",
+      "size": 3079,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/concretization_strategies.html",
+      "title": "Symbolic memory addressing - angr documentation",
+      "filepath": "en/latest/advanced-topics/concretization_strategies.html",
+      "size": 2095,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/claripy.html",
+      "title": "Solver Engine - angr documentation",
+      "filepath": "en/latest/advanced-topics/claripy.html",
+      "size": 12122,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/structured_data.html",
+      "title": "Working with Data and Conventions - angr documentation",
+      "filepath": "en/latest/advanced-topics/structured_data.html",
+      "size": 9228,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/ir.html",
+      "title": "Intermediate Representation - angr documentation",
+      "filepath": "en/latest/advanced-topics/ir.html",
+      "size": 11218,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/file_system.html",
+      "title": "Working with File System, Sockets, and Pipes - angr documentation",
+      "filepath": "en/latest/advanced-topics/file_system.html",
+      "size": 13249,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/speed.html",
+      "title": "Optimization considerations - angr documentation",
+      "filepath": "en/latest/advanced-topics/speed.html",
+      "size": 8353,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/mixins.html",
+      "title": "What\u2019s Up With Mixins, Anyway? - angr documentation",
+      "filepath": "en/latest/advanced-topics/mixins.html",
+      "size": 10333,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/pipeline.html",
+      "title": "Understanding the Execution Pipeline - angr documentation",
+      "filepath": "en/latest/advanced-topics/pipeline.html",
+      "size": 13420,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/gotchas.html",
+      "title": "Gotchas when using angr - angr documentation",
+      "filepath": "en/latest/advanced-topics/gotchas.html",
+      "size": 3964,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/advanced-topics/index.html",
+      "title": "Advanced Topics - angr documentation",
+      "filepath": "en/latest/advanced-topics/index.html",
+      "size": 755,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/analyses/decompiler.html",
+      "title": "angr Decompiler - angr documentation",
+      "filepath": "en/latest/analyses/decompiler.html",
+      "size": 2116,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/analyses/identifier.html",
+      "title": "Identifier - angr documentation",
+      "filepath": "en/latest/analyses/identifier.html",
+      "size": 1003,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/analyses/backward_slice.html",
+      "title": "Backward Slicing - angr documentation",
+      "filepath": "en/latest/analyses/backward_slice.html",
+      "size": 5036,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/analyses/cfg.html",
+      "title": "Control-flow Graph Recovery (CFG) - angr documentation",
+      "filepath": "en/latest/analyses/cfg.html",
+      "size": 12738,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/be_creative.html",
+      "title": "A final word of advice - angr documentation",
+      "filepath": "en/latest/core-concepts/be_creative.html",
+      "size": 2014,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/symbolic.html",
+      "title": "Symbolic Execution - angr documentation",
+      "filepath": "en/latest/core-concepts/symbolic.html",
+      "size": 4804,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/analyses.html",
+      "title": "Analyses - angr documentation",
+      "filepath": "en/latest/core-concepts/analyses.html",
+      "size": 1688,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/simulation.html",
+      "title": "Simulation and Instrumentation - angr documentation",
+      "filepath": "en/latest/core-concepts/simulation.html",
+      "size": 14227,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/pathgroups.html",
+      "title": "Simulation Managers - angr documentation",
+      "filepath": "en/latest/core-concepts/pathgroups.html",
+      "size": 12159,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/states.html",
+      "title": "Machine State - memory, registers, and so on - angr documentation",
+      "filepath": "en/latest/core-concepts/states.html",
+      "size": 18819,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/solver.html",
+      "title": "Symbolic Expressions and Constraint Solving - angr documentation",
+      "filepath": "en/latest/core-concepts/solver.html",
+      "size": 14011,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/loading.html",
+      "title": "Loading a Binary - angr documentation",
+      "filepath": "en/latest/core-concepts/loading.html",
+      "size": 17199,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/core-concepts/toplevel.html",
+      "title": "Core Concepts - angr documentation",
+      "filepath": "en/latest/core-concepts/toplevel.html",
+      "size": 13077,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/getting-started/helpwanted.html",
+      "title": "Help Wanted - angr documentation",
+      "filepath": "en/latest/getting-started/helpwanted.html",
+      "size": 10067,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/getting-started/developing.html",
+      "title": "Reporting Bugs - angr documentation",
+      "filepath": "en/latest/getting-started/developing.html",
+      "size": 7650,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/getting-started/installing.html",
+      "title": "Installing angr - angr documentation",
+      "filepath": "en/latest/getting-started/installing.html",
+      "size": 3123,
+      "depth": 1
+    },
+    {
+      "url": "https://docs.angr.io/en/latest/api.html",
+      "title": "API Reference - angr documentation",
+      "filepath": "en/latest/api.html",
+      "size": 2942838,
+      "depth": 1
+    }
+  ],
+  "config_used": {
+    "crawling": {
+      "crawl": false,
+      "delay": 0.1,
+      "exclude_patterns": [
+        "/api/",
+        "/search",
+        "\\.xml$",
+        "/login",
+        "/logout"
+      ],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)"
+      },
+      "include_patterns": [],
+      "max_depth": 1,
+      "max_pages": -1,
+      "num_threads": 20,
+      "skip_extensions": [
+        ".pdf",
+        ".jpg",
+        ".png",
+        ".gif",
+        ".css",
+        ".js",
+        ".svg",
+        ".ico",
+        ".json",
+        ".xml",
+        ".yaml"
+      ],
+      "timeout": 10,
+      "file_extensions": [
+        ".md",
+        ".rst",
+        ".txt",
+        ".py",
+        ".js",
+        ".ts",
+        ".html",
+        ".css",
+        ".json",
+        ".yaml",
+        ".yml",
+        ".c",
+        ".h"
+      ]
+    },
+    "link_processing": {
+      "url_prefix": "https://docs.angr.io/en/latest/"
+    },
+    "output": {
+      "dest_github_repo": "git@github.com:dyingc/mcp_docs.git",
+      "directory": "docs_output/angr",
+      "frontmatter": {
+        "crawled_date": "2025-06-29"
+      },
+      "ignore_images": false,
+      "ignore_links": false,
+      "llm_concurrency": 4,
+      "llms_doc_prefix": "angr",
+      "llms_txt": {
+        "description": "MCP Documentation for Angr",
+        "include_urls": true,
+        "title": "Angr Documentation"
+      },
+      "minimal_size": 512,
+      "output_llms_txt": true
+    },
+    "site": {
+      "allowed_domains": [],
+      "content_selectors": [
+        "main",
+        "article",
+        ".content",
+        ".documentation"
+      ],
+      "link_selectors": [
+        "a[href]"
+      ],
+      "name": "Angr Documentation",
+      "remove_selectors": [
+        "nav",
+        "header",
+        "footer",
+        ".navbar",
+        ".nav",
+        ".sidebar",
+        ".menu",
+        ".breadcrumb",
+        ".pagination",
+        "script",
+        "style",
+        "noscript",
+        ".search-box"
+      ],
+      "start_urls": [],
+      "title_selectors": [
+        "title",
+        "h1",
+        ".page-title"
+      ],
+      "url": "https://docs.angr.io/en/latest/"
+    }
+  }
+}
