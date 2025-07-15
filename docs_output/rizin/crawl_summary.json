@@ -1,0 +1,883 @@
+{
+  "base_url": "https://book.rizin.re",
+  "pages_crawled": -1,
+  "successful_pages": -1,
+  "failed_pages": 0,
+  "saved_files": [
+    {
+      "url": "https://book.rizin.re/src/introduction/overview.html",
+      "title": "1\u00a0 The Rizin Framework \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/introduction/overview.html",
+      "size": 6762,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/plugins/testing.html",
+      "title": "107\u00a0 Testing the plugin \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/plugins/testing.html",
+      "size": 1140,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/plugins/debug.html",
+      "title": "106\u00a0 Debugging \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/plugins/debug.html",
+      "size": 1925,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/plugins/python.html",
+      "title": "105\u00a0 Python plugins \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/plugins/python.html",
+      "size": 6842,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/plugins/dev-other.html",
+      "title": "104\u00a0 Write a debugger plugin \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/plugins/dev-other.html",
+      "size": 1742,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/plugins/dev-bin.html",
+      "title": "103\u00a0 Implementing a new format \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/plugins/dev-bin.html",
+      "size": 2772,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/plugins/dev-analysis.html",
+      "title": "102\u00a0 Implementing a new analysis plugin \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/plugins/dev-analysis.html",
+      "size": 4420,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/plugins/dev-asm.html",
+      "title": "101\u00a0 Implementing a new disassembly plugin \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/plugins/dev-asm.html",
+      "size": 4334,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/plugins/ioplugins.html",
+      "title": "100\u00a0 IO plugins \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/plugins/ioplugins.html",
+      "size": 3038,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-hash/rz-hash_tool.html",
+      "title": "98\u00a0 Examples \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-hash/rz-hash_tool.html",
+      "size": 7174,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/plugins/intro.html",
+      "title": "99\u00a0 Plugins \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/plugins/intro.html",
+      "size": 1905,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-hash/intro.html",
+      "title": "97\u00a0 Rz-hash \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-hash/intro.html",
+      "size": 9966,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-gg/lang.html",
+      "title": "96\u00a0 Syntax of the language \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-gg/lang.html",
+      "size": 5193,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-gg/rz-gg.html",
+      "title": "95\u00a0 Rz-gg \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-gg/rz-gg.html",
+      "size": 4973,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-asm/assemble.html",
+      "title": "92\u00a0 Assembler \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-asm/assemble.html",
+      "size": 3380,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-asm/intro.html",
+      "title": "91\u00a0 Rz-asm \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-asm/intro.html",
+      "size": 7812,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-diff/binary_diffing.html",
+      "title": "90\u00a0 Rz-Diff (binary and text diffing utility) \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-diff/binary_diffing.html",
+      "size": 20218,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/acknowledgments/credits.html",
+      "title": "136\u00a0 Authors & Contributors \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/acknowledgments/credits.html",
+      "size": 1917,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/refcard/intro.html",
+      "title": "135\u00a0 Rizin Reference Card \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/refcard/intro.html",
+      "size": 6990,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/hackthebox/find-the-easy-pass/fire-up-the-debugger.html",
+      "title": "133\u00a0 Fire up the debugger \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/hackthebox/find-the-easy-pass/fire-up-the-debugger.html",
+      "size": 2481,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/hackthebox/find-the-easy-pass/find-the-validation-routine.html",
+      "title": "132\u00a0 Find the validation routine \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/hackthebox/find-the-easy-pass/find-the-validation-routine.html",
+      "size": 4762,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/hackthebox/find-the-easy-pass/identification.html",
+      "title": "131\u00a0 identification \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/hackthebox/find-the-easy-pass/identification.html",
+      "size": 1993,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/avatao/01-reverse4/bytecode.html",
+      "title": "127\u00a0 .bytecode \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/avatao/01-reverse4/bytecode.html",
+      "size": 2522,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/avatao/01-reverse4/instructionset.html",
+      "title": "126\u00a0 .instructionset \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/avatao/01-reverse4/instructionset.html",
+      "size": 1221,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/avatao/01-reverse4/vmloop.html",
+      "title": "125\u00a0 .vmloop \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/avatao/01-reverse4/vmloop.html",
+      "size": 19117,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/avatao/01-reverse4/main.html",
+      "title": "124\u00a0 .main \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/avatao/01-reverse4/main.html",
+      "size": 10632,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/avatao/01-reverse4/first_steps.html",
+      "title": "123\u00a0 .first_steps \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/avatao/01-reverse4/first_steps.html",
+      "size": 4441,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/avatao/01-reverse4/rizin.html",
+      "title": "122\u00a0 .rizin \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/avatao/01-reverse4/rizin.html",
+      "size": 3502,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x09.html",
+      "title": "120\u00a0 IOLI 0x09 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x09.html",
+      "size": 7470,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x08.html",
+      "title": "119\u00a0 IOLI 0x08 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x08.html",
+      "size": 4916,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x07.html",
+      "title": "118\u00a0 IOLI 0x07 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x07.html",
+      "size": 15458,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x06.html",
+      "title": "117\u00a0 IOLI 0x06 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x06.html",
+      "size": 8219,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x05.html",
+      "title": "116\u00a0 IOLI 0x05 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x05.html",
+      "size": 3702,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x04.html",
+      "title": "115\u00a0 IOLI 0x04 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x04.html",
+      "size": 6695,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x03.html",
+      "title": "114\u00a0 IOLI 0x03 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x03.html",
+      "size": 8105,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x02.html",
+      "title": "113\u00a0 IOLI 0x02 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x02.html",
+      "size": 6693,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x01.html",
+      "title": "112\u00a0 IOLI 0x01 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x01.html",
+      "size": 5273,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/crackmes/ioli/ioli_0x00.html",
+      "title": "111\u00a0 IOLI 0x00 \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/crackmes/ioli/ioli_0x00.html",
+      "size": 2194,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-diff/intro.html",
+      "title": "89\u00a0 Rz-diff \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-diff/intro.html",
+      "size": 2866,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-bin/program_sections.html",
+      "title": "88\u00a0 Program Sections \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-bin/program_sections.html",
+      "size": 3784,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-bin/strings.html",
+      "title": "87\u00a0 Strings \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-bin/strings.html",
+      "size": 2072,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-bin/libraries.html",
+      "title": "86\u00a0 List Libraries \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-bin/libraries.html",
+      "size": 4155,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-bin/symbols.html",
+      "title": "85\u00a0 Symbols (Exports) \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-bin/symbols.html",
+      "size": 1577,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-bin/imports.html",
+      "title": "83\u00a0 Imports \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-bin/imports.html",
+      "size": 1576,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-bin/file_identification.html",
+      "title": "81\u00a0 File Properties Identification \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-bin/file_identification.html",
+      "size": 1335,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-bin/intro.html",
+      "title": "80\u00a0 Rz-bin \u2014 Show Properties of a Binary \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-bin/intro.html",
+      "size": 5200,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-run/intro.html",
+      "title": "79\u00a0 Rz-run \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-run/intro.html",
+      "size": 2292,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-find/intro.html",
+      "title": "78\u00a0 Rz-find \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-find/intro.html",
+      "size": 4085,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/tools/rz-ax/intro.html",
+      "title": "77\u00a0 Rz-ax \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/tools/rz-ax/intro.html",
+      "size": 4382,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/remote_access/windbg.html",
+      "title": "75\u00a0 WinDBG Kernel-mode Debugging (KD) \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/remote_access/windbg.html",
+      "size": 5806,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/remote_access/remote_gdb.html",
+      "title": "74\u00a0 Debugging with gdbserver \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/remote_access/remote_gdb.html",
+      "size": 4092,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/remote_access/remoting_capabilities.html",
+      "title": "73\u00a0 Remote Access Capabilities \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/remote_access/remoting_capabilities.html",
+      "size": 3126,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/debugger/apple.html",
+      "title": "72\u00a0 macOS/iOS \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/debugger/apple.html",
+      "size": 2388,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/debugger/windows_messages.html",
+      "title": "71\u00a0 Windows Messages \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/debugger/windows_messages.html",
+      "size": 1575,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/debugger/revdebug.html",
+      "title": "70\u00a0 Reverse Debugging \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/debugger/revdebug.html",
+      "size": 2778,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/debugger/heap.html",
+      "title": "68\u00a0 Heap \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/debugger/heap.html",
+      "size": 3859,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/debugger/memory_maps.html",
+      "title": "67\u00a0 Memory Maps \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/debugger/memory_maps.html",
+      "size": 10902,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/debugger/registers.html",
+      "title": "66\u00a0 Registers \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/debugger/registers.html",
+      "size": 5052,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/debugger/migration.html",
+      "title": "65\u00a0 Migration from IDA, GDB or WinDBG \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/debugger/migration.html",
+      "size": 7075,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/debugger/intro.html",
+      "title": "63\u00a0 Debugger \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/debugger/intro.html",
+      "size": 3842,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/scripting/rz-pipe.html",
+      "title": "62\u00a0 Rz-pipe \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/scripting/rz-pipe.html",
+      "size": 2025,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/scripting/macros.html",
+      "title": "61\u00a0 Macros \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/scripting/macros.html",
+      "size": 5483,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/scripting/loops.html",
+      "title": "60\u00a0 Loops \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/scripting/loops.html",
+      "size": 4125,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/scripting/intro.html",
+      "title": "59\u00a0 Scripting \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/scripting/intro.html",
+      "size": 2486,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/cpu_platform_profiles.html",
+      "title": "58\u00a0 CPU and platform profiles \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/cpu_platform_profiles.html",
+      "size": 5345,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/graphs.html",
+      "title": "57\u00a0 Graph commands \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/graphs.html",
+      "size": 4770,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/signatures.html",
+      "title": "56\u00a0 Signatures \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/signatures.html",
+      "size": 15084,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/symbols.html",
+      "title": "55\u00a0 Symbols \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/symbols.html",
+      "size": 5868,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/emulation.html",
+      "title": "54\u00a0 Emulation \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/emulation.html",
+      "size": 7249,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/syscalls.html",
+      "title": "53\u00a0 Syscalls \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/syscalls.html",
+      "size": 3537,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/vtables.html",
+      "title": "52\u00a0 Virtual Tables \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/vtables.html",
+      "size": 1314,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/calling_conventions.html",
+      "title": "51\u00a0 Calling Conventions \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/calling_conventions.html",
+      "size": 1636,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/types.html",
+      "title": "50\u00a0 Types \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/types.html",
+      "size": 6891,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/variables.html",
+      "title": "49\u00a0 Managing variables \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/variables.html",
+      "size": 13479,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/code_analysis.html",
+      "title": "48\u00a0 Code Analysis \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/code_analysis.html",
+      "size": 27797,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/analysis/intro.html",
+      "title": "47\u00a0 Data and Code Analysis \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/analysis/intro.html",
+      "size": 2184,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/disassembling/esil.html",
+      "title": "46\u00a0 ESIL \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/disassembling/esil.html",
+      "size": 20616,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/disassembling/rzil.html",
+      "title": "45\u00a0 RzIL \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/disassembling/rzil.html",
+      "size": 7648,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/disassembling/adding_metadata.html",
+      "title": "44\u00a0 Adding Metadata to Disassembly \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/disassembling/adding_metadata.html",
+      "size": 6027,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/disassembling/intro.html",
+      "title": "43\u00a0 Disassembling \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/disassembling/intro.html",
+      "size": 4247,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/visual_mode/visual_panels.html",
+      "title": "34\u00a0 Visual Panels \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/visual_mode/visual_panels.html",
+      "size": 4943,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/visual_mode/visual_disassembly.html",
+      "title": "31\u00a0 Visual Disassembly \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/visual_mode/visual_disassembly.html",
+      "size": 7835,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/visual_mode/intro.html",
+      "title": "30\u00a0 Visual Mode \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/visual_mode/intro.html",
+      "size": 3999,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/dietline.html",
+      "title": "29\u00a0 Dietline \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/dietline.html",
+      "size": 4299,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/sdb.html",
+      "title": "28\u00a0 SDB \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/sdb.html",
+      "size": 2255,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/comparing_bytes.html",
+      "title": "27\u00a0 Comparing Bytes \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/comparing_bytes.html",
+      "size": 2976,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/yank_paste.html",
+      "title": "26\u00a0 Yank/Paste \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/yank_paste.html",
+      "size": 2363,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/write.html",
+      "title": "25\u00a0 Writing Data \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/write.html",
+      "size": 5754,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/flags.html",
+      "title": "24\u00a0 Flags \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/flags.html",
+      "size": 4846,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/print_modes.html",
+      "title": "23\u00a0 Print Modes \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/print_modes.html",
+      "size": 23356,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/mapping_files.html",
+      "title": "22\u00a0 Mapping Files \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/mapping_files.html",
+      "size": 3589,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/sections.html",
+      "title": "21\u00a0 Sections \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/sections.html",
+      "size": 4700,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/block_size.html",
+      "title": "20\u00a0 Block Size \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/block_size.html",
+      "size": 2282,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/seeking.html",
+      "title": "19\u00a0 Seeking \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/seeking.html",
+      "size": 5387,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/basic_commands/intro.html",
+      "title": "18\u00a0 Basic Commands \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/basic_commands/intro.html",
+      "size": 3179,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/configuration/run_time_variables.html",
+      "title": "17\u00a0 Run-Time Variables \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/configuration/run_time_variables.html",
+      "size": 2549,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/configuration/compile_time_variables.html",
+      "title": "16\u00a0 Compile-Time Variables \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/configuration/compile_time_variables.html",
+      "size": 1042,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/configuration/initial_scripts.html",
+      "title": "15\u00a0 Initial Scripts \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/configuration/initial_scripts.html",
+      "size": 8352,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/configuration/evars.html",
+      "title": "14\u00a0 Evaluable Variables \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/configuration/evars.html",
+      "size": 25327,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/configuration/colors.html",
+      "title": "13\u00a0 Colors & Themes \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/configuration/colors.html",
+      "size": 2403,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/configuration/intro.html",
+      "title": "12\u00a0 Introduction \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/configuration/intro.html",
+      "size": 3677,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/first_steps/contributing.html",
+      "title": "11\u00a0 Contributing \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/first_steps/contributing.html",
+      "size": 1307,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/first_steps/basic_debugger_session.html",
+      "title": "10\u00a0 Basic Debugger Session \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/first_steps/basic_debugger_session.html",
+      "size": 4606,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/first_steps/expressions.html",
+      "title": "9\u00a0 Expressions \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/first_steps/expressions.html",
+      "size": 7505,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/first_steps/commandline_rizin.html",
+      "title": "8\u00a0 Rizin Command-line \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/first_steps/commandline_rizin.html",
+      "size": 12194,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/first_steps/commandline_options.html",
+      "title": "7\u00a0 Shell Command-line Options \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/first_steps/commandline_options.html",
+      "size": 4278,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/first_steps/intro.html",
+      "title": "6\u00a0 Basic Rizin Usage \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/first_steps/intro.html",
+      "size": 8895,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/introduction/compilation_android.html",
+      "title": "5\u00a0 Android \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/introduction/compilation_android.html",
+      "size": 3591,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/introduction/windows_compilation.html",
+      "title": "4\u00a0 Windows \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/introduction/windows_compilation.html",
+      "size": 6565,
+      "depth": 1
+    },
+    {
+      "url": "https://book.rizin.re/src/introduction/compilation_portability.html",
+      "title": "3\u00a0 Compilation and Portability \u2013 The Rizin Handbook: A Guide to Reverse Engineering with the Rizin Framework",
+      "filepath": "src/introduction/compilation_portability.html",
+      "size": 1497,
+      "depth": 1
+    }
+  ],
+  "config_used": {
+    "crawling": {
+      "crawl": false,
+      "delay": 0.1,
+      "exclude_patterns": [
+        "/api/",
+        "/search",
+        "\\.xml$",
+        "/login",
+        "/logout"
+      ],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; DocCrawler/1.0; +https://example.com/bot)"
+      },
+      "include_patterns": [],
+      "max_depth": 1,
+      "max_pages": -1,
+      "num_threads": 20,
+      "skip_extensions": [
+        ".pdf",
+        ".jpg",
+        ".png",
+        ".gif",
+        ".css",
+        ".js",
+        ".svg",
+        ".ico",
+        ".json",
+        ".xml",
+        ".yaml"
+      ],
+      "timeout": 10,
+      "file_extensions": [
+        ".md",
+        ".rst",
+        ".txt",
+        ".py",
+        ".js",
+        ".ts",
+        ".html",
+        ".css",
+        ".json",
+        ".yaml",
+        ".yml",
+        ".c",
+        ".h"
+      ]
+    },
+    "link_processing": {
+      "url_prefix": "https://book.rizin.re/src/"
+    },
+    "output": {
+      "dest_github_repo": "git@github.com:dyingc/mcp_docs.git",
+      "directory": "docs_output/rizin",
+      "frontmatter": {
+        "crawled_date": "2025-07-14"
+      },
+      "ignore_images": false,
+      "ignore_links": false,
+      "llm_concurrency": 4,
+      "llms_doc_prefix": "rizin",
+      "llms_txt": {
+        "description": "MCP Documentation for Rizin",
+        "include_urls": true,
+        "title": "Rizin Documentation"
+      },
+      "minimal_size": 1024,
+      "output_llms_txt": true
+    },
+    "site": {
+      "allowed_domains": [],
+      "content_selectors": [
+        "main",
+        "article",
+        ".content",
+        ".documentation"
+      ],
+      "link_selectors": [
+        "a[href]"
+      ],
+      "name": "Rizin Documentation",
+      "remove_selectors": [
+        "nav",
+        "header",
+        "footer",
+        ".navbar",
+        ".nav",
+        ".sidebar",
+        ".menu",
+        ".breadcrumb",
+        ".pagination",
+        "script",
+        "style",
+        "noscript",
+        ".search-box"
+      ],
+      "start_urls": [],
+      "title_selectors": [
+        "title",
+        "h1",
+        ".page-title"
+      ],
+      "url": "https://book.rizin.re"
+    }
+  }
+}
